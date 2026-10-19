@@ -1,0 +1,7 @@
+coluna,descricao,unidade,fonte
+estudo,Estudo (autoria e ano),,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+local,Local do estudo,,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+bioma,Bioma (tirado do parêntese do local); 'fora do Brasil' ou 'não informado' quando é o caso,,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+publico,Público estudado (sem números),,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+arranjo,Arranjo produtivo avaliado (sem números),,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+doi,"DOI juntado por primeiro autor e ano, só quando inequívoco, ou conferido à parte no Crossref; vazio se não houver; mais de um separado por ';'",,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"

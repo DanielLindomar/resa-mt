@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Emissões do SEEG 13 e desmatamento do PRODES pelos cinco tipos municipais do Manuscrito 1, validação da proxy de desmatamento contra o PRODES oficial e a série do PRODES em Mato Grosso">
+
+<title>Emissões e desmatamento por tipo municipal – Observatório RESA-MT</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8fe2a179c4b423cce90f4f9afe7be56d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="robots" content="noindex, nofollow">
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+
+<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+
+<link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+
+<script src="../site_libs/reactable-binding-0.4.5/reactable.js"></script>
+
+
+
+<link rel="stylesheet" href="resultados.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo-unemat-branco.png" alt="UNEMAT — Universidade do Estado de Mato Grosso" class="navbar-logo light-content">
+    <img src="../assets/logo-unemat-branco.png" alt="UNEMAT — Universidade do Estado de Mato Grosso" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Observatório RESA-MT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Início</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../municipios/index.html"> 
+<span class="menu-text">Municípios</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../indicadores/index.html"> 
+<span class="menu-text">Indicadores</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resultados" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resultados</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resultados">    
+        <li>
+    <a class="dropdown-item" href="../resultados/tipologia.html">
+ <span class="dropdown-text">Tipologia municipal da AF</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/posse.html">
+ <span class="dropdown-text">Posse no Censo e reforma agrária</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/emissoes.html">
+ <span class="dropdown-text">Emissões e desmatamento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/dinamica.html">
+ <span class="dropdown-text">Dinâmica 2006–2017</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../pilotos/index.html"> 
+<span class="menu-text">Áreas‑piloto</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-objetivos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Objetivos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-objetivos">    
+        <li>
+    <a class="dropdown-item" href="../objetivos/index.html">
+ <span class="dropdown-text">Os seis objetivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe1.html">
+ <span class="dropdown-text">OE1 · Território e uso da terra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe2.html">
+ <span class="dropdown-text">OE2 · Produção e renda</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe3.html">
+ <span class="dropdown-text">OE3 · Ambiente e carbono</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe4.html">
+ <span class="dropdown-text">OE4 · Cenários bioeconômicos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe5.html">
+ <span class="dropdown-text">OE5 · Inovação e capital social</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe6.html">
+ <span class="dropdown-text">OE6 · Pacote Tecnológico</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-literatura" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Literatura</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-literatura">    
+        <li>
+    <a class="dropdown-item" href="../literatura/index.html">
+ <span class="dropdown-text">Panorama</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/carbono.html">
+ <span class="dropdown-text">Carbono, mercados e ESG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/saf-psa.html">
+ <span class="dropdown-text">SAF e PSA em assentamentos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/estudos.html">
+ <span class="dropdown-text">Estudos do corpus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../dados/index.html"> 
+<span class="menu-text">Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../biblioteca/index.html"> 
+<span class="menu-text">Biblioteca</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sobre.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#emissões-por-tipo" id="toc-emissões-por-tipo" class="nav-link active" data-scroll-target="#emissões-por-tipo">Emissões por tipo</a></li>
+  <li><a href="#emissões-por-bioma" id="toc-emissões-por-bioma" class="nav-link" data-scroll-target="#emissões-por-bioma">Emissões por bioma</a></li>
+  <li><a href="#desmatamento-por-tipo-artigo-a-refeito-com-o-prodes" id="toc-desmatamento-por-tipo-artigo-a-refeito-com-o-prodes" class="nav-link" data-scroll-target="#desmatamento-por-tipo-artigo-a-refeito-com-o-prodes">Desmatamento por tipo (Artigo A refeito com o PRODES)</a></li>
+  <li><a href="#validação-da-proxy-de-desmatamento" id="toc-validação-da-proxy-de-desmatamento" class="nav-link" data-scroll-target="#validação-da-proxy-de-desmatamento">Validação da proxy de desmatamento</a></li>
+  <li><a href="#a-série-oficial-do-prodes-em-mato-grosso" id="toc-a-série-oficial-do-prodes-em-mato-grosso" class="nav-link" data-scroll-target="#a-série-oficial-do-prodes-em-mato-grosso">A série oficial do PRODES em Mato Grosso</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Emissões e desmatamento por tipo municipal</h1>
+<p class="subtitle lead">Artigos A e B do projeto, recalculados com os tipos do Manuscrito 1</p>
+</div>
+
+<div>
+  <div class="description">
+    Emissões do SEEG 13 e desmatamento do PRODES pelos cinco tipos municipais do Manuscrito 1, validação da proxy de desmatamento contra o PRODES oficial e a série do PRODES em Mato Grosso
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<div class="faixa-versao">Versão preliminar para a equipe do projeto. Os resultados mudam à medida que as etapas do estudo são concluídas.</div>
+</div>
+</div>
+<p>Os Artigos A e B do projeto cruzaram o desmatamento e as emissões municipais com uma tipologia anterior da agricultura familiar. Esta página refaz as contas com os <strong>cinco tipos do Manuscrito 1</strong> (rótulos provisórios). Ela também mostra a validação da proxy de desmatamento dos artigos contra a <strong>série oficial do PRODES</strong>, corrigida em 19/10/2026.</p>
+<div class="aviso-municipio">
+<p><strong>O SEEG mede o município inteiro</strong>: agropecuária de todos os portes, desmatamento, energia, indústria e resíduos das cidades. Os números abaixo descrevem os municípios de cada tipo, não a agricultura familiar.</p>
+</div>
+<section id="emissões-por-tipo" class="level2">
+<h2 class="anchored" data-anchor-id="emissões-por-tipo">Emissões por tipo</h2>
+<p>Média anual de 2010 a 2020, o período do Artigo B. Emissões brutas são a soma dos cinco setores do SEEG, sem as remoções. Os 141 municípios somam, em média, 243,2 MtCO2e por ano; o total estadual do SEEG no mesmo período é de 243,4 MtCO2e por ano, e a diferença (0,19) não é alocada a município.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-a659f01ce07f5405c40b" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a659f01ce07f5405c40b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["<span class=\"chip chip-t1\">T1 · Baixo porte agregado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t2\">T2 · Posse aguardando titulação, sem especialização<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t3\">T3 · Grande porte agregado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t4\">T4 · Mecanizado com posse aguardando titulação<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t5\">T5 · Hortícola-irrigado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<b>Mato Grosso<\/b>"],"Municípios":["74","25","20","10","12","141"],"Soma":["82,0","39,2","66,3","20,9","34,8","243,2"],"Pct":["33,7%","16,1%","27,3%","8,6%","14,3%","100,0%"],"Mediana":["0,79","1,02","3,03","1,87","1,76","1,23"],"A2024":["85,0","43,8","52,3","18,2","31,6","231,0"]},"columns":[{"id":"Grupo","name":"Tipo do M1","type":"character","html":true,"minWidth":250},{"id":"Municípios","name":"Municípios","type":"character","minWidth":80,"align":"right"},{"id":"Soma","name":"Soma","type":"character","header":"Emissões brutas<div class=\"sub\">MtCO2e/ano, média 2010–2020<\/div>","html":true,"align":"right"},{"id":"Pct","name":"Pct","type":"character","header":"Participação<div class=\"sub\">% da soma dos 141 municípios<\/div>","html":true,"align":"right"},{"id":"Mediana","name":"Mediana","type":"character","header":"Mediana municipal<div class=\"sub\">MtCO2e/ano, 2010–2020<\/div>","html":true,"align":"right"},{"id":"A2024","name":"A2024","type":"character","header":"Emissões brutas<div class=\"sub\">MtCO2e, 2024<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"className":"tabela-res","language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"5c2b837eab68a1264c60fc8f4d23134f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site. A coluna de 2024 vem dos agregados do site (soma dos municípios).</p>
+</div>
+</div>
+<div class="achado">
+<p>Os tipos diferem nas emissões brutas (Kruskal-Wallis: H = 38,95; p &lt; 0,001; ε² = 0,28). A diferença acompanha o porte agregado dos tipos: o T3, de maior porte, tem a maior mediana municipal (3,03 MtCO2e por ano) e, com 20 municípios, responde por 27,3% das emissões dos municípios. O T1, com 74 municípios, responde por 33,7%.</p>
+</div>
+<section id="composição-setorial" class="level3">
+<h3 class="anchored" data-anchor-id="composição-setorial">Composição setorial</h3>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 190" width="100%" role="img" aria-label="Composição setorial das emissões brutas por tipo"><text x="102" y="20" font-size="12" text-anchor="end" fill="#1f2937">T1</text><rect x="110.0" y="5" width="357.9" height="20" fill="#1F4D3A" data-tip="T1 · Baixo porte agregado (rótulo provisório) · Mudança de uso da terra e florestas: 63,9%"></rect><text x="289.0" y="20" font-size="11" fill="#fff" text-anchor="middle">64%</text><rect x="467.9" y="5" width="180.4" height="20" fill="#d4a017" data-tip="T1 · Baixo porte agregado (rótulo provisório) · Agropecuária: 32,2%"></rect><text x="558.1" y="20" font-size="11" fill="#1f2937" text-anchor="middle">32%</text><rect x="648.3" y="5" width="19.5" height="20" fill="#2a78d6" data-tip="T1 · Baixo porte agregado (rótulo provisório) · Energia: 3,5%"></rect><rect x="667.9" y="5" width="0.0" height="20" fill="#8b5cf6" data-tip="T1 · Baixo porte agregado (rótulo provisório) · Processos industriais: 0,0%"></rect><rect x="667.9" y="5" width="2.1" height="20" fill="#9ca3af" data-tip="T1 · Baixo porte agregado (rótulo provisório) · Resíduos: 0,4%"></rect><text x="102" y="50" font-size="12" text-anchor="end" fill="#1f2937">T2</text><rect x="110.0" y="35" width="379.1" height="20" fill="#1F4D3A" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · Mudança de uso da terra e florestas: 67,7%"></rect><text x="299.6" y="50" font-size="11" fill="#fff" text-anchor="middle">68%</text><rect x="489.1" y="35" width="159.6" height="20" fill="#d4a017" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · Agropecuária: 28,5%"></rect><text x="568.9" y="50" font-size="11" fill="#1f2937" text-anchor="middle">28%</text><rect x="648.7" y="35" width="17.7" height="20" fill="#2a78d6" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · Energia: 3,2%"></rect><rect x="666.4" y="35" width="0.2" height="20" fill="#8b5cf6" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · Processos industriais: 0,0%"></rect><rect x="666.7" y="35" width="3.3" height="20" fill="#9ca3af" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · Resíduos: 0,6%"></rect><text x="102" y="80" font-size="12" text-anchor="end" fill="#1f2937">T3</text><rect x="110.0" y="65" width="383.3" height="20" fill="#1F4D3A" data-tip="T3 · Grande porte agregado (rótulo provisório) · Mudança de uso da terra e florestas: 68,4%"></rect><text x="301.6" y="80" font-size="11" fill="#fff" text-anchor="middle">68%</text><rect x="493.3" y="65" width="168.7" height="20" fill="#d4a017" data-tip="T3 · Grande porte agregado (rótulo provisório) · Agropecuária: 30,1%"></rect><text x="577.6" y="80" font-size="11" fill="#1f2937" text-anchor="middle">30%</text><rect x="662.0" y="65" width="6.2" height="20" fill="#2a78d6" data-tip="T3 · Grande porte agregado (rótulo provisório) · Energia: 1,1%"></rect><rect x="668.1" y="65" width="0.0" height="20" fill="#8b5cf6" data-tip="T3 · Grande porte agregado (rótulo provisório) · Processos industriais: 0,0%"></rect><rect x="668.1" y="65" width="1.9" height="20" fill="#9ca3af" data-tip="T3 · Grande porte agregado (rótulo provisório) · Resíduos: 0,3%"></rect><text x="102" y="110" font-size="12" text-anchor="end" fill="#1f2937">T4</text><rect x="110.0" y="95" width="367.8" height="20" fill="#1F4D3A" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · Mudança de uso da terra e florestas: 65,7%"></rect><text x="293.9" y="110" font-size="11" fill="#fff" text-anchor="middle">66%</text><rect x="477.8" y="95" width="152.1" height="20" fill="#d4a017" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · Agropecuária: 27,2%"></rect><text x="553.9" y="110" font-size="11" fill="#1f2937" text-anchor="middle">27%</text><rect x="630.0" y="95" width="36.5" height="20" fill="#2a78d6" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · Energia: 6,5%"></rect><rect x="666.5" y="95" width="0.0" height="20" fill="#8b5cf6" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · Processos industriais: 0,0%"></rect><rect x="666.5" y="95" width="3.5" height="20" fill="#9ca3af" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · Resíduos: 0,6%"></rect><text x="102" y="140" font-size="12" text-anchor="end" fill="#1f2937">T5</text><rect x="110.0" y="125" width="327.2" height="20" fill="#1F4D3A" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · Mudança de uso da terra e florestas: 58,4%"></rect><text x="273.6" y="140" font-size="11" fill="#fff" text-anchor="middle">58%</text><rect x="437.2" y="125" width="160.9" height="20" fill="#d4a017" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · Agropecuária: 28,7%"></rect><text x="517.7" y="140" font-size="11" fill="#1f2937" text-anchor="middle">29%</text><rect x="598.1" y="125" width="56.8" height="20" fill="#2a78d6" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · Energia: 10,1%"></rect><text x="626.5" y="140" font-size="11" fill="#fff" text-anchor="middle">10%</text><rect x="655.0" y="125" width="5.9" height="20" fill="#8b5cf6" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · Processos industriais: 1,0%"></rect><rect x="660.8" y="125" width="9.2" height="20" fill="#9ca3af" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · Resíduos: 1,6%"></rect><text x="102" y="170" font-size="12" text-anchor="end" fill="#1f2937" font-weight="700">Mato Grosso</text><rect x="110.0" y="155" width="364.7" height="20" fill="#1F4D3A" data-tip="Mato Grosso · Mudança de uso da terra e florestas: 65,1%"></rect><text x="292.3" y="170" font-size="11" fill="#fff" text-anchor="middle">65%</text><rect x="474.7" y="155" width="168.7" height="20" fill="#d4a017" data-tip="Mato Grosso · Agropecuária: 30,1%"></rect><text x="559.0" y="170" font-size="11" fill="#1f2937" text-anchor="middle">30%</text><rect x="643.4" y="155" width="22.4" height="20" fill="#2a78d6" data-tip="Mato Grosso · Energia: 4,0%"></rect><rect x="665.7" y="155" width="0.9" height="20" fill="#8b5cf6" data-tip="Mato Grosso · Processos industriais: 0,2%"></rect><rect x="666.6" y="155" width="3.4" height="20" fill="#9ca3af" data-tip="Mato Grosso · Resíduos: 0,6%"></rect></svg><figcaption class="legenda-svg"><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#1F4D3A"></rect></svg>Mudança de uso da terra e florestas</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#d4a017"></rect></svg>Agropecuária</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#2a78d6"></rect></svg>Energia</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#8b5cf6"></rect></svg>Processos industriais</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#9ca3af"></rect></svg>Resíduos</span><span class="leg-item">T1 a T5: tipos do Manuscrito 1 (rótulos provisórios na tabela acima).</span></figcaption></figure>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site. Participação de cada setor nas emissões brutas do grupo, média 2010–2020.</p>
+</div>
+</div>
+<p>A mudança de uso da terra e florestas é o maior setor em todos os tipos, de 58,4% (T5) a 68,4% (T3). O T5, que reúne Cuiabá, Rondonópolis e Sinop, tem a maior parte de energia (10,1%). As emissões da agropecuária são as que mais diferem entre os tipos (ε² = 0,33).</p>
+</section>
+<section id="testes-de-diferença-entre-os-tipos" class="level3">
+<h3 class="anchored" data-anchor-id="testes-de-diferença-entre-os-tipos">Testes de diferença entre os tipos</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-7dbfdbfbe46716f48306" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7dbfdbfbe46716f48306">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Medida":["Emissões brutas (média anual 2010–2020)","Mudança de uso da terra e florestas","Agropecuária","Energia"],"H":["38,95","27,78","45,88","31,28"],"gl":["4","4","4","4"],"p":["p < 0,001","p < 0,001","p < 0,001","p < 0,001"],"Efeito":["0,278","0,198","0,328","0,223"]},"columns":[{"id":"Medida","name":"Medida","type":"character","minWidth":260},{"id":"H","name":"H de Kruskal-Wallis","type":"character","align":"right"},{"id":"gl","name":"graus de liberdade","type":"character","align":"right"},{"id":"p","name":"p","type":"character","align":"right"},{"id":"Efeito","name":"Efeito","type":"character","header":"Tamanho de efeito<div class=\"sub\">ε² = H ÷ (n − 1)<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"5e7c145441e99aa9b106ff9c31b7d84a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Kruskal-Wallis sobre as médias municipais de 2010–2020 (141 municípios, 5 tipos), sem correção para a autocorrelação espacial. Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Emissões por estabelecimento e por hectare da AF (ler com cautela)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O Artigo B dividiu as emissões do município pelos estabelecimentos e pela área da agricultura familiar. Como o SEEG mede o município inteiro, essas razões <strong>não são a intensidade de emissão da AF</strong>: servem só como contexto. Por estabelecimento da AF, as razões vão de 1.954 tCO2e (T5) a 4.521 tCO2e (T4) por ano. A diferença entre os tipos é fraca por estabelecimento (p = 0,034; ε² = 0,07) e não é significativa por hectare (p = 0,118).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-a51d02cab8f20c2e7244" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a51d02cab8f20c2e7244">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["<span class=\"chip chip-t1\">T1 · Baixo porte agregado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t2\">T2 · Posse aguardando titulação, sem especialização<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t3\">T3 · Grande porte agregado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t4\">T4 · Mecanizado com posse aguardando titulação<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t5\">T5 · Hortícola-irrigado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<b>Mato Grosso<\/b>"],"E1":["3.587","3.109","2.792","4.521","1.954","2.979"],"E2":["3.044","2.265","2.557","5.948","1.341","2.693"],"H1":["55,1","54,2","36,8","62,0","44,4","47,4"],"H2":["42,2","41,7","35,1","79,4","39,4","41,8"]},"columns":[{"id":"Grupo","name":"Tipo do M1","type":"character","html":true,"minWidth":250},{"id":"E1","name":"E1","type":"character","header":"tCO2e por estab. da AF<div class=\"sub\">razão das somas<\/div>","html":true,"align":"right"},{"id":"E2","name":"E2","type":"character","header":"tCO2e por estab. da AF<div class=\"sub\">mediana municipal<\/div>","html":true,"align":"right"},{"id":"H1","name":"H1","type":"character","header":"tCO2e por ha da AF<div class=\"sub\">razão das somas<\/div>","html":true,"align":"right"},{"id":"H2","name":"H2","type":"character","header":"tCO2e por ha da AF<div class=\"sub\">mediana municipal<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"className":"tabela-res","language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"7fd713f801f0addac81c0a07cc2abb13"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-17287af61517214c3e7f" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-17287af61517214c3e7f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Medida":["Emissões brutas por estabelecimento da AF","Emissões brutas por hectare da AF"],"H":["10,39","7,36"],"gl":["4","4"],"p":["p = 0,034","p = 0,118"],"Efeito":["0,074","0,053"]},"columns":[{"id":"Medida","name":"Medida","type":"character","minWidth":260},{"id":"H","name":"H de Kruskal-Wallis","type":"character","align":"right"},{"id":"gl","name":"graus de liberdade","type":"character","align":"right"},{"id":"p","name":"p","type":"character","align":"right"},{"id":"Efeito","name":"Efeito","type":"character","header":"Tamanho de efeito<div class=\"sub\">ε² = H ÷ (n − 1)<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"56e98409a4f3746f0e8d97a0a3fcacc3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site. Estabelecimentos e área da AF: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="série-histórica-por-tipo" class="level3">
+<h3 class="anchored" data-anchor-id="série-histórica-por-tipo">Série histórica por tipo</h3>
+<p>A série começa em 1990. O SEEG estima as emissões de mudança de uso da terra e florestas só a partir desse ano; antes dele, as emissões brutas não incluem o maior setor de MT e não se comparam com os anos seguintes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 260" width="100%" role="img" aria-label="Emissões brutas por tipo, MtCO2e, 1990–2024"><line x1="62" x2="666" y1="234.0" y2="234.0" stroke="#eef0f4"></line><text x="56" y="238.0" text-anchor="end" font-size="11" fill="#6b7280">0</text><line x1="62" x2="666" y1="202.3" y2="202.3" stroke="#eef0f4"></line><text x="56" y="206.3" text-anchor="end" font-size="11" fill="#6b7280">50</text><line x1="62" x2="666" y1="170.6" y2="170.6" stroke="#eef0f4"></line><text x="56" y="174.6" text-anchor="end" font-size="11" fill="#6b7280">100</text><line x1="62" x2="666" y1="138.9" y2="138.9" stroke="#eef0f4"></line><text x="56" y="142.9" text-anchor="end" font-size="11" fill="#6b7280">150</text><line x1="62" x2="666" y1="107.1" y2="107.1" stroke="#eef0f4"></line><text x="56" y="111.1" text-anchor="end" font-size="11" fill="#6b7280">200</text><line x1="62" x2="666" y1="75.4" y2="75.4" stroke="#eef0f4"></line><text x="56" y="79.4" text-anchor="end" font-size="11" fill="#6b7280">250</text><line x1="62" x2="666" y1="43.7" y2="43.7" stroke="#eef0f4"></line><text x="56" y="47.7" text-anchor="end" font-size="11" fill="#6b7280">300</text><line x1="62" x2="666" y1="12.0" y2="12.0" stroke="#eef0f4"></line><text x="56" y="16.0" text-anchor="end" font-size="11" fill="#6b7280">350</text><text x="62.0" y="252" text-anchor="middle" font-size="11" fill="#6b7280">1990</text><text x="150.8" y="252" text-anchor="middle" font-size="11" fill="#6b7280">1995</text><text x="239.6" y="252" text-anchor="middle" font-size="11" fill="#6b7280">2000</text><text x="328.5" y="252" text-anchor="middle" font-size="11" fill="#6b7280">2005</text><text x="417.3" y="252" text-anchor="middle" font-size="11" fill="#6b7280">2010</text><text x="506.1" y="252" text-anchor="middle" font-size="11" fill="#6b7280">2015</text><text x="594.9" y="252" text-anchor="middle" font-size="11" fill="#6b7280">2020</text><g class="serie"><path class="linha" d="M62.0 166.1 L79.8 161.1 L97.5 137.3 L115.3 143.7 L133.1 112.9 L150.8 83.0 L168.6 98.8 L186.4 108.8 L204.1 103.0 L221.9 97.2 L239.6 128.0 L257.4 127.1 L275.2 93.4 L292.9 27.0 L310.7 57.2 L328.5 98.0 L346.2 156.0 L364.0 173.6 L381.8 164.3 L399.5 191.0 L417.3 192.2 L435.1 177.1 L452.8 186.9 L470.6 173.3 L488.4 183.6 L506.1 179.3 L523.9 186.3 L541.6 184.0 L559.4 186.2 L577.2 175.7 L594.9 176.9 L612.7 177.0 L630.5 162.5 L648.2 161.4 L666.0 180.1" fill="none" stroke="#c3c2b7" stroke-width="2.4" data-tip="T1 · Baixo porte agregado (rótulo provisório)"></path><circle class="pt" cx="62.0" cy="166.1" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1990: 107,0"></circle><circle class="pt" cx="79.8" cy="161.1" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1991: 114,9"></circle><circle class="pt" cx="97.5" cy="137.3" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1992: 152,5"></circle><circle class="pt" cx="115.3" cy="143.7" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1993: 142,4"></circle><circle class="pt" cx="133.1" cy="112.9" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1994: 190,9"></circle><circle class="pt" cx="150.8" cy="83.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1995: 238,0"></circle><circle class="pt" cx="168.6" cy="98.8" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1996: 213,2"></circle><circle class="pt" cx="186.4" cy="108.8" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1997: 197,4"></circle><circle class="pt" cx="204.1" cy="103.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1998: 206,5"></circle><circle class="pt" cx="221.9" cy="97.2" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 1999: 215,6"></circle><circle class="pt" cx="239.6" cy="128.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2000: 167,1"></circle><circle class="pt" cx="257.4" cy="127.1" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2001: 168,5"></circle><circle class="pt" cx="275.2" cy="93.4" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2002: 221,7"></circle><circle class="pt" cx="292.9" cy="27.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2003: 326,4"></circle><circle class="pt" cx="310.7" cy="57.2" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2004: 278,8"></circle><circle class="pt" cx="328.5" cy="98.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2005: 214,4"></circle><circle class="pt" cx="346.2" cy="156.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2006: 122,9"></circle><circle class="pt" cx="364.0" cy="173.6" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2007: 95,3"></circle><circle class="pt" cx="381.8" cy="164.3" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2008: 109,9"></circle><circle class="pt" cx="399.5" cy="191.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2009: 67,7"></circle><circle class="pt" cx="417.3" cy="192.2" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2010: 65,9"></circle><circle class="pt" cx="435.1" cy="177.1" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2011: 89,7"></circle><circle class="pt" cx="452.8" cy="186.9" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2012: 74,2"></circle><circle class="pt" cx="470.6" cy="173.3" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2013: 95,7"></circle><circle class="pt" cx="488.4" cy="183.6" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2014: 79,5"></circle><circle class="pt" cx="506.1" cy="179.3" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2015: 86,3"></circle><circle class="pt" cx="523.9" cy="186.3" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2016: 75,2"></circle><circle class="pt" cx="541.6" cy="184.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2017: 78,8"></circle><circle class="pt" cx="559.4" cy="186.2" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2018: 75,3"></circle><circle class="pt" cx="577.2" cy="175.7" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2019: 91,9"></circle><circle class="pt" cx="594.9" cy="176.9" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2020: 90,1"></circle><circle class="pt" cx="612.7" cy="177.0" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2021: 89,9"></circle><circle class="pt" cx="630.5" cy="162.5" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2022: 112,7"></circle><circle class="pt" cx="648.2" cy="161.4" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2023: 114,5"></circle><circle class="pt" cx="666.0" cy="180.1" r="2.2" fill="#c3c2b7" stroke="transparent" stroke-width="9" data-tip="T1 · Baixo porte agregado (rótulo provisório) · 2024: 85,0"></circle></g><g class="serie"><path class="linha" d="M62.0 205.4 L79.8 208.6 L97.5 200.9 L115.3 204.6 L133.1 180.1 L150.8 182.0 L168.6 181.3 L186.4 189.1 L204.1 196.1 L221.9 190.0 L239.6 199.3 L257.4 205.9 L275.2 195.1 L292.9 160.8 L310.7 178.7 L328.5 177.8 L346.2 197.1 L364.0 201.0 L381.8 201.3 L399.5 216.4 L417.3 216.6 L435.1 212.3 L452.8 210.6 L470.6 206.0 L488.4 209.2 L506.1 206.2 L523.9 211.2 L541.6 211.0 L559.4 209.4 L577.2 204.4 L594.9 203.6 L612.7 204.0 L630.5 200.4 L648.2 203.0 L666.0 206.2" fill="none" stroke="#4a3aa7" stroke-width="2.4" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório)"></path><circle class="pt" cx="62.0" cy="205.4" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1990: 45,1"></circle><circle class="pt" cx="79.8" cy="208.6" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1991: 40,1"></circle><circle class="pt" cx="97.5" cy="200.9" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1992: 52,2"></circle><circle class="pt" cx="115.3" cy="204.6" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1993: 46,4"></circle><circle class="pt" cx="133.1" cy="180.1" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1994: 85,0"></circle><circle class="pt" cx="150.8" cy="182.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1995: 81,9"></circle><circle class="pt" cx="168.6" cy="181.3" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1996: 83,1"></circle><circle class="pt" cx="186.4" cy="189.1" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1997: 70,8"></circle><circle class="pt" cx="204.1" cy="196.1" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1998: 59,7"></circle><circle class="pt" cx="221.9" cy="190.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 1999: 69,3"></circle><circle class="pt" cx="239.6" cy="199.3" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2000: 54,7"></circle><circle class="pt" cx="257.4" cy="205.9" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2001: 44,3"></circle><circle class="pt" cx="275.2" cy="195.1" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2002: 61,3"></circle><circle class="pt" cx="292.9" cy="160.8" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2003: 115,5"></circle><circle class="pt" cx="310.7" cy="178.7" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2004: 87,2"></circle><circle class="pt" cx="328.5" cy="177.8" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2005: 88,7"></circle><circle class="pt" cx="346.2" cy="197.1" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2006: 58,1"></circle><circle class="pt" cx="364.0" cy="201.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2007: 52,1"></circle><circle class="pt" cx="381.8" cy="201.3" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2008: 51,6"></circle><circle class="pt" cx="399.5" cy="216.4" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2009: 27,7"></circle><circle class="pt" cx="417.3" cy="216.6" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2010: 27,4"></circle><circle class="pt" cx="435.1" cy="212.3" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2011: 34,2"></circle><circle class="pt" cx="452.8" cy="210.6" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2012: 36,8"></circle><circle class="pt" cx="470.6" cy="206.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2013: 44,2"></circle><circle class="pt" cx="488.4" cy="209.2" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2014: 39,0"></circle><circle class="pt" cx="506.1" cy="206.2" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2015: 43,8"></circle><circle class="pt" cx="523.9" cy="211.2" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2016: 36,0"></circle><circle class="pt" cx="541.6" cy="211.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2017: 36,2"></circle><circle class="pt" cx="559.4" cy="209.4" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2018: 38,8"></circle><circle class="pt" cx="577.2" cy="204.4" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2019: 46,6"></circle><circle class="pt" cx="594.9" cy="203.6" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2020: 47,9"></circle><circle class="pt" cx="612.7" cy="204.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2021: 47,3"></circle><circle class="pt" cx="630.5" cy="200.4" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2022: 52,9"></circle><circle class="pt" cx="648.2" cy="203.0" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2023: 48,8"></circle><circle class="pt" cx="666.0" cy="206.2" r="2.2" fill="#4a3aa7" stroke="transparent" stroke-width="9" data-tip="T2 · Posse aguardando titulação, sem especialização (rótulo provisório) · 2024: 43,8"></circle></g><g class="serie"><path class="linha" d="M62.0 172.0 L79.8 170.3 L97.5 137.3 L115.3 142.3 L133.1 123.6 L150.8 86.5 L168.6 123.8 L186.4 114.5 L204.1 121.7 L221.9 99.7 L239.6 140.0 L257.4 132.1 L275.2 116.4 L292.9 92.4 L310.7 91.4 L328.5 126.7 L346.2 155.6 L364.0 179.5 L381.8 183.9 L399.5 201.9 L417.3 201.8 L435.1 195.0 L452.8 199.9 L470.6 194.2 L488.4 193.3 L506.1 189.3 L523.9 194.2 L541.6 193.7 L559.4 192.0 L577.2 174.8 L594.9 183.0 L612.7 185.2 L630.5 176.6 L648.2 171.6 L666.0 200.8" fill="none" stroke="#008300" stroke-width="2.4" data-tip="T3 · Grande porte agregado (rótulo provisório)"></path><circle class="pt" cx="62.0" cy="172.0" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1990: 97,7"></circle><circle class="pt" cx="79.8" cy="170.3" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1991: 100,4"></circle><circle class="pt" cx="97.5" cy="137.3" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1992: 152,5"></circle><circle class="pt" cx="115.3" cy="142.3" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1993: 144,5"></circle><circle class="pt" cx="133.1" cy="123.6" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1994: 174,1"></circle><circle class="pt" cx="150.8" cy="86.5" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1995: 232,5"></circle><circle class="pt" cx="168.6" cy="123.8" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1996: 173,8"></circle><circle class="pt" cx="186.4" cy="114.5" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1997: 188,3"></circle><circle class="pt" cx="204.1" cy="121.7" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1998: 177,0"></circle><circle class="pt" cx="221.9" cy="99.7" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 1999: 211,7"></circle><circle class="pt" cx="239.6" cy="140.0" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2000: 148,2"></circle><circle class="pt" cx="257.4" cy="132.1" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2001: 160,7"></circle><circle class="pt" cx="275.2" cy="116.4" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2002: 185,4"></circle><circle class="pt" cx="292.9" cy="92.4" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2003: 223,2"></circle><circle class="pt" cx="310.7" cy="91.4" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2004: 224,8"></circle><circle class="pt" cx="328.5" cy="126.7" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2005: 169,1"></circle><circle class="pt" cx="346.2" cy="155.6" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2006: 123,6"></circle><circle class="pt" cx="364.0" cy="179.5" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2007: 85,9"></circle><circle class="pt" cx="381.8" cy="183.9" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2008: 79,0"></circle><circle class="pt" cx="399.5" cy="201.9" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2009: 50,6"></circle><circle class="pt" cx="417.3" cy="201.8" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2010: 50,8"></circle><circle class="pt" cx="435.1" cy="195.0" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2011: 61,5"></circle><circle class="pt" cx="452.8" cy="199.9" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2012: 53,7"></circle><circle class="pt" cx="470.6" cy="194.2" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2013: 62,7"></circle><circle class="pt" cx="488.4" cy="193.3" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2014: 64,1"></circle><circle class="pt" cx="506.1" cy="189.3" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2015: 70,5"></circle><circle class="pt" cx="523.9" cy="194.2" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2016: 62,8"></circle><circle class="pt" cx="541.6" cy="193.7" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2017: 63,6"></circle><circle class="pt" cx="559.4" cy="192.0" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2018: 66,2"></circle><circle class="pt" cx="577.2" cy="174.8" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2019: 93,4"></circle><circle class="pt" cx="594.9" cy="183.0" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2020: 80,4"></circle><circle class="pt" cx="612.7" cy="185.2" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2021: 76,9"></circle><circle class="pt" cx="630.5" cy="176.6" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2022: 90,5"></circle><circle class="pt" cx="648.2" cy="171.6" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2023: 98,4"></circle><circle class="pt" cx="666.0" cy="200.8" r="2.2" fill="#008300" stroke="transparent" stroke-width="9" data-tip="T3 · Grande porte agregado (rótulo provisório) · 2024: 52,3"></circle></g><g class="serie"><path class="linha" d="M62.0 214.2 L79.8 215.7 L97.5 212.1 L115.3 207.0 L133.1 199.5 L150.8 193.7 L168.6 198.9 L186.4 194.8 L204.1 189.0 L221.9 188.7 L239.6 199.5 L257.4 195.9 L275.2 176.0 L292.9 143.8 L310.7 167.4 L328.5 194.0 L346.2 212.9 L364.0 219.8 L381.8 210.7 L399.5 222.4 L417.3 222.8 L435.1 220.3 L452.8 221.4 L470.6 218.0 L488.4 219.5 L506.1 220.1 L523.9 224.5 L541.6 222.5 L559.4 220.2 L577.2 221.2 L594.9 217.8 L612.7 220.3 L630.5 216.2 L648.2 217.6 L666.0 222.4" fill="none" stroke="#eda100" stroke-width="2.4" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório)"></path><circle class="pt" cx="62.0" cy="214.2" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1990: 31,1"></circle><circle class="pt" cx="79.8" cy="215.7" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1991: 28,9"></circle><circle class="pt" cx="97.5" cy="212.1" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1992: 34,5"></circle><circle class="pt" cx="115.3" cy="207.0" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1993: 42,5"></circle><circle class="pt" cx="133.1" cy="199.5" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1994: 54,4"></circle><circle class="pt" cx="150.8" cy="193.7" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1995: 63,6"></circle><circle class="pt" cx="168.6" cy="198.9" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1996: 55,4"></circle><circle class="pt" cx="186.4" cy="194.8" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1997: 61,8"></circle><circle class="pt" cx="204.1" cy="189.0" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1998: 71,0"></circle><circle class="pt" cx="221.9" cy="188.7" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 1999: 71,4"></circle><circle class="pt" cx="239.6" cy="199.5" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2000: 54,4"></circle><circle class="pt" cx="257.4" cy="195.9" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2001: 60,0"></circle><circle class="pt" cx="275.2" cy="176.0" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2002: 91,5"></circle><circle class="pt" cx="292.9" cy="143.8" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2003: 142,1"></circle><circle class="pt" cx="310.7" cy="167.4" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2004: 105,0"></circle><circle class="pt" cx="328.5" cy="194.0" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2005: 63,0"></circle><circle class="pt" cx="346.2" cy="212.9" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2006: 33,3"></circle><circle class="pt" cx="364.0" cy="219.8" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2007: 22,4"></circle><circle class="pt" cx="381.8" cy="210.7" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2008: 36,7"></circle><circle class="pt" cx="399.5" cy="222.4" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2009: 18,3"></circle><circle class="pt" cx="417.3" cy="222.8" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2010: 17,6"></circle><circle class="pt" cx="435.1" cy="220.3" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2011: 21,6"></circle><circle class="pt" cx="452.8" cy="221.4" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2012: 19,9"></circle><circle class="pt" cx="470.6" cy="218.0" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2013: 25,3"></circle><circle class="pt" cx="488.4" cy="219.5" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2014: 22,9"></circle><circle class="pt" cx="506.1" cy="220.1" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2015: 21,9"></circle><circle class="pt" cx="523.9" cy="224.5" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2016: 14,9"></circle><circle class="pt" cx="541.6" cy="222.5" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2017: 18,1"></circle><circle class="pt" cx="559.4" cy="220.2" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2018: 21,7"></circle><circle class="pt" cx="577.2" cy="221.2" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2019: 20,2"></circle><circle class="pt" cx="594.9" cy="217.8" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2020: 25,6"></circle><circle class="pt" cx="612.7" cy="220.3" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2021: 21,7"></circle><circle class="pt" cx="630.5" cy="216.2" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2022: 28,1"></circle><circle class="pt" cx="648.2" cy="217.6" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2023: 25,8"></circle><circle class="pt" cx="666.0" cy="222.4" r="2.2" fill="#eda100" stroke="transparent" stroke-width="9" data-tip="T4 · Mecanizado com posse aguardando titulação (rótulo provisório) · 2024: 18,2"></circle></g><g class="serie"><path class="linha" d="M62.0 214.0 L79.8 212.6 L97.5 208.5 L115.3 211.1 L133.1 201.5 L150.8 203.1 L168.6 204.1 L186.4 208.2 L204.1 206.9 L221.9 197.5 L239.6 204.8 L257.4 202.3 L275.2 197.2 L292.9 188.8 L310.7 183.4 L328.5 193.3 L346.2 205.3 L364.0 211.2 L381.8 213.8 L399.5 219.9 L417.3 219.3 L435.1 218.5 L452.8 216.9 L470.6 212.1 L488.4 212.2 L506.1 209.3 L523.9 210.9 L541.6 211.0 L559.4 211.1 L577.2 204.3 L594.9 205.7 L612.7 204.6 L630.5 198.3 L648.2 205.0 L666.0 213.9" fill="none" stroke="#e87ba4" stroke-width="2.4" data-tip="T5 · Hortícola-irrigado (rótulo provisório)"></path><circle class="pt" cx="62.0" cy="214.0" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1990: 31,5"></circle><circle class="pt" cx="79.8" cy="212.6" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1991: 33,8"></circle><circle class="pt" cx="97.5" cy="208.5" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1992: 40,2"></circle><circle class="pt" cx="115.3" cy="211.1" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1993: 36,1"></circle><circle class="pt" cx="133.1" cy="201.5" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1994: 51,2"></circle><circle class="pt" cx="150.8" cy="203.1" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1995: 48,7"></circle><circle class="pt" cx="168.6" cy="204.1" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1996: 47,1"></circle><circle class="pt" cx="186.4" cy="208.2" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1997: 40,6"></circle><circle class="pt" cx="204.1" cy="206.9" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1998: 42,8"></circle><circle class="pt" cx="221.9" cy="197.5" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 1999: 57,6"></circle><circle class="pt" cx="239.6" cy="204.8" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2000: 46,0"></circle><circle class="pt" cx="257.4" cy="202.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2001: 49,9"></circle><circle class="pt" cx="275.2" cy="197.2" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2002: 58,1"></circle><circle class="pt" cx="292.9" cy="188.8" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2003: 71,3"></circle><circle class="pt" cx="310.7" cy="183.4" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2004: 79,8"></circle><circle class="pt" cx="328.5" cy="193.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2005: 64,2"></circle><circle class="pt" cx="346.2" cy="205.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2006: 45,2"></circle><circle class="pt" cx="364.0" cy="211.2" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2007: 36,0"></circle><circle class="pt" cx="381.8" cy="213.8" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2008: 31,8"></circle><circle class="pt" cx="399.5" cy="219.9" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2009: 22,2"></circle><circle class="pt" cx="417.3" cy="219.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2010: 23,2"></circle><circle class="pt" cx="435.1" cy="218.5" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2011: 24,4"></circle><circle class="pt" cx="452.8" cy="216.9" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2012: 27,0"></circle><circle class="pt" cx="470.6" cy="212.1" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2013: 34,5"></circle><circle class="pt" cx="488.4" cy="212.2" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2014: 34,3"></circle><circle class="pt" cx="506.1" cy="209.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2015: 38,9"></circle><circle class="pt" cx="523.9" cy="210.9" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2016: 36,5"></circle><circle class="pt" cx="541.6" cy="211.0" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2017: 36,2"></circle><circle class="pt" cx="559.4" cy="211.1" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2018: 36,1"></circle><circle class="pt" cx="577.2" cy="204.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2019: 46,7"></circle><circle class="pt" cx="594.9" cy="205.7" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2020: 44,6"></circle><circle class="pt" cx="612.7" cy="204.6" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2021: 46,3"></circle><circle class="pt" cx="630.5" cy="198.3" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2022: 56,3"></circle><circle class="pt" cx="648.2" cy="205.0" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2023: 45,7"></circle><circle class="pt" cx="666.0" cy="213.9" r="2.2" fill="#e87ba4" stroke="transparent" stroke-width="9" data-tip="T5 · Hortícola-irrigado (rótulo provisório) · 2024: 31,6"></circle></g></svg><figcaption class="legenda-svg"><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#c3c2b7" stroke-width="2.4"></line></svg>T1 · Baixo porte agregado (rótulo provisório)</span><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#4a3aa7" stroke-width="2.4"></line></svg>T2 · Posse aguardando titulação, sem especialização (rótulo provisório)</span><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#008300" stroke-width="2.4"></line></svg>T3 · Grande porte agregado (rótulo provisório)</span><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#eda100" stroke-width="2.4"></line></svg>T4 · Mecanizado com posse aguardando titulação (rótulo provisório)</span><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#e87ba4" stroke-width="2.4"></line></svg>T5 · Hortícola-irrigado (rótulo provisório)</span></figcaption></figure>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Emissões brutas, MtCO2e por ano, 1990–2024: soma dos municípios de cada tipo. Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="emissões-por-bioma" class="level2">
+<h2 class="anchored" data-anchor-id="emissões-por-bioma">Emissões por bioma</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b996784ff9d376d4c85c" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b996784ff9d376d4c85c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["<span class=\"chip chip-amazonia\">Amazônia<\/span>","<span class=\"chip chip-cerrado\">Cerrado<\/span>","<span class=\"chip chip-pantanal\">Pantanal<\/span>","<b>Mato Grosso<\/b>"],"Municípios":["76","61","4","141"],"Soma":["170,8","64,3","8,1","243,2"],"Pct":["70,2%","26,4%","3,3%","100,0%"],"Mediana":["1,71","0,92","1,75","1,23"],"A2024":["154,9","68,0","8,0","231,0"]},"columns":[{"id":"Grupo","name":"Bioma (IBGE 1:250 mil)","type":"character","html":true,"minWidth":250},{"id":"Municípios","name":"Municípios","type":"character","minWidth":80,"align":"right"},{"id":"Soma","name":"Soma","type":"character","header":"Emissões brutas<div class=\"sub\">MtCO2e/ano, média 2010–2020<\/div>","html":true,"align":"right"},{"id":"Pct","name":"Pct","type":"character","header":"Participação<div class=\"sub\">% da soma dos 141 municípios<\/div>","html":true,"align":"right"},{"id":"Mediana","name":"Mediana","type":"character","header":"Mediana municipal<div class=\"sub\">MtCO2e/ano, 2010–2020<\/div>","html":true,"align":"right"},{"id":"A2024","name":"A2024","type":"character","header":"Emissões brutas<div class=\"sub\">MtCO2e, 2024<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"className":"tabela-res","language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"db6d050fc00efdb4ba63841518ad121f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 130" width="100%" role="img" aria-label="Composição setorial das emissões brutas por bioma"><text x="102" y="20" font-size="12" text-anchor="end" fill="#1f2937">Amazônia</text><rect x="110.0" y="5" width="410.3" height="20" fill="#1F4D3A" data-tip="Amazônia · Mudança de uso da terra e florestas: 73,3%"></rect><text x="315.1" y="20" font-size="11" fill="#fff" text-anchor="middle">73%</text><rect x="520.3" y="5" width="139.3" height="20" fill="#d4a017" data-tip="Amazônia · Agropecuária: 24,9%"></rect><text x="589.9" y="20" font-size="11" fill="#1f2937" text-anchor="middle">25%</text><rect x="659.5" y="5" width="8.8" height="20" fill="#2a78d6" data-tip="Amazônia · Energia: 1,6%"></rect><rect x="668.3" y="5" width="0.0" height="20" fill="#8b5cf6" data-tip="Amazônia · Processos industriais: 0,0%"></rect><rect x="668.3" y="5" width="1.7" height="20" fill="#9ca3af" data-tip="Amazônia · Resíduos: 0,3%"></rect><text x="102" y="50" font-size="12" text-anchor="end" fill="#1f2937">Cerrado</text><rect x="110.0" y="35" width="260.7" height="20" fill="#1F4D3A" data-tip="Cerrado · Mudança de uso da terra e florestas: 46,5%"></rect><text x="240.3" y="50" font-size="11" fill="#fff" text-anchor="middle">47%</text><rect x="370.7" y="35" width="228.5" height="20" fill="#d4a017" data-tip="Cerrado · Agropecuária: 40,8%"></rect><text x="484.9" y="50" font-size="11" fill="#1f2937" text-anchor="middle">41%</text><rect x="599.1" y="35" width="59.8" height="20" fill="#2a78d6" data-tip="Cerrado · Energia: 10,7%"></rect><text x="629.0" y="50" font-size="11" fill="#fff" text-anchor="middle">11%</text><rect x="658.9" y="35" width="3.3" height="20" fill="#8b5cf6" data-tip="Cerrado · Processos industriais: 0,6%"></rect><rect x="662.3" y="35" width="7.7" height="20" fill="#9ca3af" data-tip="Cerrado · Resíduos: 1,4%"></rect><text x="102" y="80" font-size="12" text-anchor="end" fill="#1f2937">Pantanal</text><rect x="110.0" y="65" width="228.9" height="20" fill="#1F4D3A" data-tip="Pantanal · Mudança de uso da terra e florestas: 40,9%"></rect><text x="224.5" y="80" font-size="11" fill="#fff" text-anchor="middle">41%</text><rect x="338.9" y="65" width="314.1" height="20" fill="#d4a017" data-tip="Pantanal · Agropecuária: 56,1%"></rect><text x="496.0" y="80" font-size="11" fill="#1f2937" text-anchor="middle">56%</text><rect x="653.0" y="65" width="13.0" height="20" fill="#2a78d6" data-tip="Pantanal · Energia: 2,3%"></rect><rect x="666.0" y="65" width="0.0" height="20" fill="#8b5cf6" data-tip="Pantanal · Processos industriais: 0,0%"></rect><rect x="666.0" y="65" width="4.0" height="20" fill="#9ca3af" data-tip="Pantanal · Resíduos: 0,7%"></rect><text x="102" y="110" font-size="12" text-anchor="end" fill="#1f2937" font-weight="700">Mato Grosso</text><rect x="110.0" y="95" width="364.7" height="20" fill="#1F4D3A" data-tip="Mato Grosso · Mudança de uso da terra e florestas: 65,1%"></rect><text x="292.3" y="110" font-size="11" fill="#fff" text-anchor="middle">65%</text><rect x="474.7" y="95" width="168.7" height="20" fill="#d4a017" data-tip="Mato Grosso · Agropecuária: 30,1%"></rect><text x="559.0" y="110" font-size="11" fill="#1f2937" text-anchor="middle">30%</text><rect x="643.4" y="95" width="22.4" height="20" fill="#2a78d6" data-tip="Mato Grosso · Energia: 4,0%"></rect><rect x="665.7" y="95" width="0.9" height="20" fill="#8b5cf6" data-tip="Mato Grosso · Processos industriais: 0,2%"></rect><rect x="666.6" y="95" width="3.4" height="20" fill="#9ca3af" data-tip="Mato Grosso · Resíduos: 0,6%"></rect></svg><figcaption class="legenda-svg"><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#1F4D3A"></rect></svg>Mudança de uso da terra e florestas</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#d4a017"></rect></svg>Agropecuária</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#2a78d6"></rect></svg>Energia</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#8b5cf6"></rect></svg>Processos industriais</span><span class="leg-item"><svg width="12" height="12"><rect width="12" height="12" fill="#9ca3af"></rect></svg>Resíduos</span></figcaption></figure>
+</div>
+</div>
+<p>Teste de diferença entre os biomas:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-88c516572ee670a16ca6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-88c516572ee670a16ca6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Medida":["Emissões brutas (média anual 2010–2020)","Mudança de uso da terra e florestas","Agropecuária","Energia"],"H":["18,32","24,54","8,08","1,15"],"gl":["2","2","2","2"],"p":["p < 0,001","p < 0,001","p = 0,018","p = 0,563"],"Efeito":["0,131","0,175","0,058","0,008"]},"columns":[{"id":"Medida","name":"Medida","type":"character","minWidth":260},{"id":"H","name":"H de Kruskal-Wallis","type":"character","align":"right"},{"id":"gl","name":"graus de liberdade","type":"character","align":"right"},{"id":"p","name":"p","type":"character","align":"right"},{"id":"Efeito","name":"Efeito","type":"character","header":"Tamanho de efeito<div class=\"sub\">ε² = H ÷ (n − 1)<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"9fa4ceb4a3278d84b6f30d2d7bb7cf06"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site.</p>
+</div>
+</div>
+<p>A Amazônia responde por 70,2% das emissões dos municípios, e nela a mudança de uso da terra é 73,3% do total. Nos 4 municípios do Pantanal, a agropecuária é o maior setor (56,1%).</p>
+</section>
+<section id="desmatamento-por-tipo-artigo-a-refeito-com-o-prodes" class="level2">
+<h2 class="anchored" data-anchor-id="desmatamento-por-tipo-artigo-a-refeito-com-o-prodes">Desmatamento por tipo (Artigo A refeito com o PRODES)</h2>
+<p>O Artigo A comparou o desmatamento entre os tipos municipais com a proxy do SEEG (2010–2020), na tipologia anterior. A proxy fica muito acima do PRODES (veja a validação abaixo). Por isso, esta seção refaz a pergunta com o <strong>incremento oficial do PRODES por município</strong>, de 2017 a 2025, e com os cinco tipos do Manuscrito 1. Nesses nove anos, os três biomas do PRODES têm períodos anuais e consolidados. O total de cada município soma as máscaras de Amazônia, Cerrado e Pantanal.</p>
+<div class="aviso-municipio">
+<p><strong>O PRODES mede o município inteiro</strong>, não a agricultura familiar. Os números descrevem os municípios de cada tipo.</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-5e7cf7fb2ba230d29b22" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5e7cf7fb2ba230d29b22">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["<span class=\"chip chip-t1\">T1 · Baixo porte agregado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t2\">T2 · Posse aguardando titulação, sem especialização<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t3\">T3 · Grande porte agregado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t4\">T4 · Mecanizado com posse aguardando titulação<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<span class=\"chip chip-t5\">T5 · Hortícola-irrigado<\/span>\n<span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","<b>Mato Grosso<\/b>"],"Municípios":["74","25","20","10","12","141"],"Soma":["7.924","5.096","4.736","1.602","3.611","22.969"],"Pct":["34,5%","22,2%","20,6%","7,0%","15,7%","100,0%"],"Terr":["2,23%","3,30%","2,66%","2,04%","2,63%","2,54%"],"Med":["66,1","105,3","125,4","104,0","117,0","87,1"],"MedPct":["1,63%","2,68%","1,72%","1,36%","1,36%","1,71%"]},"columns":[{"id":"Grupo","name":"Tipo do M1","type":"character","html":true,"minWidth":250},{"id":"Municípios","name":"Municípios","type":"character","minWidth":80,"align":"right"},{"id":"Soma","name":"Soma","type":"character","header":"Desmatamento<div class=\"sub\">km², soma 2017–2025<\/div>","html":true,"align":"right"},{"id":"Pct","name":"Pct","type":"character","header":"Participação<div class=\"sub\">% da soma dos 141 municípios<\/div>","html":true,"align":"right"},{"id":"Terr","name":"Terr","type":"character","header":"Desmatado<div class=\"sub\">% do território do grupo<\/div>","html":true,"align":"right"},{"id":"Med","name":"Med","type":"character","header":"Mediana municipal<div class=\"sub\">km², 2017–2025<\/div>","html":true,"align":"right"},{"id":"MedPct","name":"MedPct","type":"character","header":"Mediana municipal<div class=\"sub\">% do território<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"className":"tabela-res","language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"4db2206b76a833718058c6a250584b81"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: INPE, PRODES Amazônia, Cerrado e Pantanal, incremento anual por município, painel TerraBrasilis v3.5.10 (acesso em 19/10/2026); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); área municipal calculada sobre a Malha Municipal 2022 do IBGE; cálculo do site.</p>
+</div>
+</div>
+<div class="achado">
+<p>Os 141 municípios somam 22.969 km² de desmatamento de 2017 a 2025. O T1, com 74 municípios, responde por 34,5%. Os tipos diferem pouco. No total desmatado, a diferença é fraca (Kruskal-Wallis: H = 9,68; p = 0,046; ε² = 0,07). Em % do território, não é significativa (p = 0,234).</p>
+</div>
+<p>Como no Artigo A, o desmatamento não acompanha a parcela da agricultura familiar na categoria 46504 do Censo 2017. O ρ de Spearman é 0,05 (p = 0,522) com o total desmatado e 0,04 (p = 0,666) com a % do território, nos 141 municípios.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-10145f309389f82372fe" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-10145f309389f82372fe">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Medida":["Desmatamento 2017–2025 (km²)","Desmatamento 2017–2025 (% do território)"],"H":["9,68","5,57"],"gl":["4","4"],"p":["p = 0,046","p = 0,234"],"Efeito":["0,069","0,040"]},"columns":[{"id":"Medida","name":"Medida","type":"character","minWidth":260},{"id":"H","name":"H de Kruskal-Wallis","type":"character","align":"right"},{"id":"gl","name":"graus de liberdade","type":"character","align":"right"},{"id":"p","name":"p","type":"character","align":"right"},{"id":"Efeito","name":"Efeito","type":"character","header":"Tamanho de efeito<div class=\"sub\">ε² = H ÷ (n − 1)<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"4e21c1d7c33c5b30c3365187a726a2ef"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Kruskal-Wallis sobre os 141 municípios (5 tipos), sem correção para a autocorrelação espacial. ρ de Spearman entre o desmatamento e a % dos estabelecimentos da AF na categoria 46504 (IBGE, Censo Agropecuário 2017, tabela 6878). Fonte: INPE, PRODES Amazônia, Cerrado e Pantanal, incremento anual por município, painel TerraBrasilis v3.5.10 (acesso em 19/10/2026); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); área municipal calculada sobre a Malha Municipal 2022 do IBGE; cálculo do site.</p>
+</div>
+</div>
+<p>Por bioma dominante:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-c021a6fbc483baa0cbfb" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c021a6fbc483baa0cbfb">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["<span class=\"chip chip-amazonia\">Amazônia<\/span>","<span class=\"chip chip-cerrado\">Cerrado<\/span>","<span class=\"chip chip-pantanal\">Pantanal<\/span>","<b>Mato Grosso<\/b>"],"Municípios":["76","61","4","141"],"Soma":["15.050","6.522","1.397","22.969"],"Pct":["65,5%","28,4%","6,1%","100,0%"],"Terr":["2,98%","1,95%","2,24%","2,54%"],"Med":["102,1","75,8","344,7","87,1"],"MedPct":["1,64%","1,77%","2,56%","1,71%"]},"columns":[{"id":"Grupo","name":"Bioma (IBGE 1:250 mil)","type":"character","html":true,"minWidth":250},{"id":"Municípios","name":"Municípios","type":"character","minWidth":80,"align":"right"},{"id":"Soma","name":"Soma","type":"character","header":"Desmatamento<div class=\"sub\">km², soma 2017–2025<\/div>","html":true,"align":"right"},{"id":"Pct","name":"Pct","type":"character","header":"Participação<div class=\"sub\">% da soma dos 141 municípios<\/div>","html":true,"align":"right"},{"id":"Terr","name":"Terr","type":"character","header":"Desmatado<div class=\"sub\">% do território do grupo<\/div>","html":true,"align":"right"},{"id":"Med","name":"Med","type":"character","header":"Mediana municipal<div class=\"sub\">km², 2017–2025<\/div>","html":true,"align":"right"},{"id":"MedPct","name":"MedPct","type":"character","header":"Mediana municipal<div class=\"sub\">% do território<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"className":"tabela-res","language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"9be6f54b3920cba2f208e487bfb658e7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b6e69a1b7516df91eacb" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b6e69a1b7516df91eacb">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Medida":["Desmatamento 2017–2025 (km²)","Desmatamento 2017–2025 (% do território)"],"H":["7,96","1,07"],"gl":["2","2"],"p":["p = 0,019","p = 0,585"],"Efeito":["0,057","0,008"]},"columns":[{"id":"Medida","name":"Medida","type":"character","minWidth":260},{"id":"H","name":"H de Kruskal-Wallis","type":"character","align":"right"},{"id":"gl","name":"graus de liberdade","type":"character","align":"right"},{"id":"p","name":"p","type":"character","align":"right"},{"id":"Efeito","name":"Efeito","type":"character","header":"Tamanho de efeito<div class=\"sub\">ε² = H ÷ (n − 1)<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"4439cb136c158dbdc585d4874d1d6bd7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: INPE, PRODES Amazônia, Cerrado e Pantanal, incremento anual por município, painel TerraBrasilis v3.5.10 (acesso em 19/10/2026); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); área municipal calculada sobre a Malha Municipal 2022 do IBGE; cálculo do site. Aqui o grupo é o bioma dominante do município (IBGE 1:250 mil); o total de cada município soma todas as máscaras do PRODES, por isso os totais diferem do incremento de cada bioma do PRODES.</p>
+</div>
+</div>
+<p>O mapa e a tabela do desmatamento de cada município estão na página do <a href="../objetivos/oe1.html">OE1</a>.</p>
+</section>
+<section id="validação-da-proxy-de-desmatamento" class="level2">
+<h2 class="anchored" data-anchor-id="validação-da-proxy-de-desmatamento">Validação da proxy de desmatamento</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="nota-correcao">
+<h4 class="anchored">Nota de correção (19/10/2026)</h4>
+<ul>
+<li>A série do PRODES usada antes no projeto tinha a Amazônia digitada à mão, com o rótulo de série oficial. De 2005 a 2024, ela ficava acima da taxa oficial de Mato Grosso em todos os anos.</li>
+<li>Essa série foi substituída pela série oficial do INPE, baixada do TerraBrasilis em 19/10/2026: a taxa anual de MT na Amazônia Legal e o incremento anual por bioma. O site não usa a série antiga.</li>
+<li>No Artigo B, isso muda a validação: a proxy supera o PRODES em cerca de 8 vezes no total estadual de 2010–2020 (antes, "2,6 vezes"), e a frase sobre "fraca aderência interanual" deixa de valer, porque o Pearson contra a taxa oficial é de 0,65.</li>
+<li>O texto do Artigo B ainda não foi reescrito; os números desta seção já usam a série oficial.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Os Artigos A e B estimaram o desmatamento municipal dividindo as emissões de mudança de uso da terra do SEEG por 150 tCO2e por hectare. Esse fator é uma premissa do artigo, sem fonte primária, e está em revisão. A proxy foi comparada com a <strong>taxa oficial de desmatamento de MT</strong> do PRODES (Amazônia Legal, formações florestais).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="kpi-grade">
+<div class="kpi">
+<div class="kpi-rotulo">Proxy ÷ PRODES, 2010–2020</div>
+<div class="kpi-valor">7,96 vezes</div>
+<div class="kpi-meta">11.614.958 ha da proxy contra 1.458.400 ha do PRODES · total estadual, 11 anos</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Razão ano a ano</div>
+<div class="kpi-valor">6,2 a 11,6</div>
+<div class="kpi-meta">vezes, de 2010 a 2020</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Pearson, ano a ano</div>
+<div class="kpi-valor">0,65</div>
+<div class="kpi-meta">p = 0,031 · 11 anos (2010–2020)</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Spearman, ano a ano</div>
+<div class="kpi-valor">0,68</div>
+<div class="kpi-meta">p = 0,021 · 11 anos (2010–2020)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 250" width="100%" role="img" aria-label="Proxy de desmatamento e PRODES em MT, km² por ano, 2010–2020"><line x1="62" x2="666" y1="224.0" y2="224.0" stroke="#eef0f4"></line><text x="56" y="228.0" text-anchor="end" font-size="11" fill="#6b7280">0</text><line x1="62" x2="666" y1="193.7" y2="193.7" stroke="#eef0f4"></line><text x="56" y="197.7" text-anchor="end" font-size="11" fill="#6b7280">2 mil</text><line x1="62" x2="666" y1="163.4" y2="163.4" stroke="#eef0f4"></line><text x="56" y="167.4" text-anchor="end" font-size="11" fill="#6b7280">4 mil</text><line x1="62" x2="666" y1="133.1" y2="133.1" stroke="#eef0f4"></line><text x="56" y="137.1" text-anchor="end" font-size="11" fill="#6b7280">6 mil</text><line x1="62" x2="666" y1="102.9" y2="102.9" stroke="#eef0f4"></line><text x="56" y="106.9" text-anchor="end" font-size="11" fill="#6b7280">8 mil</text><line x1="62" x2="666" y1="72.6" y2="72.6" stroke="#eef0f4"></line><text x="56" y="76.6" text-anchor="end" font-size="11" fill="#6b7280">10 mil</text><line x1="62" x2="666" y1="42.3" y2="42.3" stroke="#eef0f4"></line><text x="56" y="46.3" text-anchor="end" font-size="11" fill="#6b7280">12 mil</text><line x1="62" x2="666" y1="12.0" y2="12.0" stroke="#eef0f4"></line><text x="56" y="16.0" text-anchor="end" font-size="11" fill="#6b7280">14 mil</text><text x="62.0" y="242" text-anchor="middle" font-size="11" fill="#6b7280">2010</text><text x="182.8" y="242" text-anchor="middle" font-size="11" fill="#6b7280">2012</text><text x="303.6" y="242" text-anchor="middle" font-size="11" fill="#6b7280">2014</text><text x="424.4" y="242" text-anchor="middle" font-size="11" fill="#6b7280">2016</text><text x="545.2" y="242" text-anchor="middle" font-size="11" fill="#6b7280">2018</text><text x="666.0" y="242" text-anchor="middle" font-size="11" fill="#6b7280">2020</text><g class="serie"><path class="linha" d="M62.0 113.3 L122.4 67.3 L182.8 90.5 L243.2 40.3 L303.6 64.7 L364.0 45.2 L424.4 82.5 L484.8 77.6 L545.2 74.2 L605.6 17.7 L666.0 31.9" fill="none" stroke="#b42318" stroke-width="2.6" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha)"></path><circle class="pt" cx="62.0" cy="113.3" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2010: 7.309"></circle><circle class="pt" cx="122.4" cy="67.3" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2011: 10.350"></circle><circle class="pt" cx="182.8" cy="90.5" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2012: 8.818"></circle><circle class="pt" cx="243.2" cy="40.3" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2013: 12.130"></circle><circle class="pt" cx="303.6" cy="64.7" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2014: 10.522"></circle><circle class="pt" cx="364.0" cy="45.2" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2015: 11.807"></circle><circle class="pt" cx="424.4" cy="82.5" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2016: 9.347"></circle><circle class="pt" cx="484.8" cy="77.6" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2017: 9.671"></circle><circle class="pt" cx="545.2" cy="74.2" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2018: 9.889"></circle><circle class="pt" cx="605.6" cy="17.7" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2019: 13.622"></circle><circle class="pt" cx="666.0" cy="31.9" r="3" fill="#b42318" stroke="transparent" stroke-width="9" data-tip="Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha) · 2020: 12.685"></circle></g><g class="serie"><path class="linha" d="M62.0 210.8 L122.4 207.0 L182.8 212.5 L243.2 206.8 L303.6 207.7 L364.0 199.8 L424.4 201.5 L484.8 200.4 L545.2 201.4 L605.6 198.2 L666.0 197.1" fill="none" stroke="#1F4D3A" stroke-width="2.6" data-tip="PRODES: taxa oficial de MT (Amazônia Legal)"></path><circle class="pt" cx="62.0" cy="210.8" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2010: 871"></circle><circle class="pt" cx="122.4" cy="207.0" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2011: 1.120"></circle><circle class="pt" cx="182.8" cy="212.5" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2012: 757"></circle><circle class="pt" cx="243.2" cy="206.8" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2013: 1.139"></circle><circle class="pt" cx="303.6" cy="207.7" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2014: 1.075"></circle><circle class="pt" cx="364.0" cy="199.8" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2015: 1.601"></circle><circle class="pt" cx="424.4" cy="201.5" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2016: 1.489"></circle><circle class="pt" cx="484.8" cy="200.4" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2017: 1.561"></circle><circle class="pt" cx="545.2" cy="201.4" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2018: 1.490"></circle><circle class="pt" cx="605.6" cy="198.2" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2019: 1.702"></circle><circle class="pt" cx="666.0" cy="197.1" r="3" fill="#1F4D3A" stroke="transparent" stroke-width="9" data-tip="PRODES: taxa oficial de MT (Amazônia Legal) · 2020: 1.779"></circle></g></svg><figcaption class="legenda-svg"><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#b42318" stroke-width="2.6"></line></svg>Proxy dos Artigos A e B (SEEG, mudança de uso da terra ÷ 150 tCO2e/ha)</span><span class="leg-item"><svg width="22" height="8"><line x1="0" x2="22" y1="4" y2="4" stroke="#1F4D3A" stroke-width="2.6"></line></svg>PRODES: taxa oficial de MT (Amazônia Legal)</span></figcaption></figure>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-2c821722f00a9823add6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2c821722f00a9823add6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Ano":["2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2010–2020"],"Proxy":["730.851","1.034.986","881.842","1.212.996","1.052.246","1.180.694","934.723","967.062","988.930","1.362.171","1.268.457","11.614.958"],"PRODES":["87.100","112.000","75.700","113.900","107.500","160.100","148.900","156.100","149.000","170.200","177.900","1.458.400"],"Razao":["8,39","9,24","11,65","10,65","9,79","7,37","6,28","6,20","6,64","8,00","7,13","7,96"]},"columns":[{"id":"Ano","name":"Ano","type":"character","minWidth":80},{"id":"Proxy","name":"Proxy","type":"character","header":"Proxy dos Artigos A e B<div class=\"sub\">ha<\/div>","html":true,"align":"right"},{"id":"PRODES","name":"PRODES","type":"character","header":"PRODES, taxa de MT<div class=\"sub\">ha<\/div>","html":true,"align":"right"},{"id":"Razao","name":"Razao","type":"character","header":"Razão<div class=\"sub\">proxy ÷ PRODES<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"rowStyle":[null,null,null,null,null,null,null,null,null,null,null,{"fontWeight":700,"borderTop":"2px solid #d1d5db"}],"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"d37e6d423bcf9c3d2c7ffd43690cd765"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: proxy dos Artigos A e B (SEEG 13, emissões municipais de mudança de uso da terra ÷ 150 tCO2e/ha; soma dos 141 municípios); INPE/PRODES, TerraBrasilis, painel versão 3.5.10; acesso em 19/10/2026; atualização do INPE em 16/10/2026. Taxa de MT × 100 (km² para ha). Cálculo do site sobre a tabela de robustez do Artigo B, refeita em 19/10/2026.</p>
+</div>
+</div>
+<p><strong>Por bioma.</strong> A proxy, somada pelos municípios de cada bioma dominante, foi comparada com o incremento anual do PRODES no bioma, só nos anos com período anual:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-8535125185aef99c298e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8535125185aef99c298e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Bioma":["<span class=\"chip chip-amazonia\">Amazônia<\/span>","<span class=\"chip chip-cerrado\">Cerrado<\/span>","<span class=\"chip chip-pantanal\">Pantanal<\/span>"],"Municípios":["76","61","4"],"Anos":["2008–2024 (17)","2013–2024 (12)","2011–2024 (10)"],"Pearson":["0,84","0,67","−0,19"],"Spearman":["0,86","0,38","−0,10"],"Razao":["6,2","2,0","1,5"]},"columns":[{"id":"Bioma","name":"Bioma","type":"character","html":true,"minWidth":110},{"id":"Municípios","name":"Municípios","type":"character","align":"right"},{"id":"Anos","name":"Anos com período anual","type":"character","minWidth":130},{"id":"Pearson","name":"Pearson","type":"character","align":"right"},{"id":"Spearman","name":"Spearman","type":"character","align":"right"},{"id":"Razao","name":"Razao","type":"character","header":"Razão<div class=\"sub\">proxy ÷ incremento PRODES<\/div>","html":true,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"324f92f99f4e3ab680dca7f770893260"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Bioma dominante IBGE 1:250 mil (2019). Fonte: proxy dos Artigos A e B; INPE/PRODES, TerraBrasilis, painel versão 3.5.10; acesso em 19/10/2026; atualização do INPE em 16/10/2026; cálculo do site.</p>
+</div>
+</div>
+<p>Com a escala de bioma usada na robustez do Artigo B (mapa de 2004), os valores são próximos: Amazônia 0,83 (Pearson), 0,85 (Spearman) e razão 6,1; Cerrado 0,63, 0,31 e 2,1.</p>
+<section id="o-que-isso-significa" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-isso-significa">O que isso significa</h3>
+<ul>
+<li>Na Amazônia, a proxy acompanha bem a variação de um ano para o outro (Spearman de 0,86), mas o nível fica 6,2 vezes acima do PRODES.</li>
+<li>No Cerrado, o nível fica 2,0 vezes acima, e o ordenamento dos anos é fraco (Spearman de 0,38). No Pantanal, não há aderência.</li>
+<li>O SEEG conta mais que o corte raso da floresta, e o fator de 150 tCO2e/ha não tem fonte. Por isso, a proxy serve como <strong>indicador relativo</strong> entre municípios e tipos, não como área desmatada.</li>
+<li>A validação da proxy foi feita no total estadual e por bioma. A comparação município a município ainda não foi feita. O PRODES por município (2017–2025) está na seção sobre o Artigo A, acima, e na página do <a href="../objetivos/oe1.html">OE1</a>.</li>
+</ul>
+</section>
+</section>
+<section id="a-série-oficial-do-prodes-em-mato-grosso" class="level2">
+<h2 class="anchored" data-anchor-id="a-série-oficial-do-prodes-em-mato-grosso">A série oficial do PRODES em Mato Grosso</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="kpi-grade">
+<div class="kpi">
+<div class="kpi-rotulo">Taxa de desmatamento de MT, 2025</div>
+<div class="kpi-valor">1.593 km²</div>
+<div class="kpi-meta">PRODES Amazônia Legal, formações florestais · INPE/TerraBrasilis</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Maior taxa da série (1988–2025)</div>
+<div class="kpi-valor">11.814 km²</div>
+<div class="kpi-meta">em 2004 · INPE/TerraBrasilis</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Incremento por bioma, 2025</div>
+<div class="kpi-valor">1.934 km²</div>
+<div class="kpi-meta">Amazônia 1.425 · Cerrado 455 · Pantanal 54</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Taxa estimada, 2026</div>
+<div class="kpi-valor">849 km²</div>
+<div class="kpi-meta">estimativa do INPE; fora de todas as contas do site</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 280" width="100%" role="img" aria-label="Taxa anual de desmatamento do PRODES em Mato Grosso, km²"><line x1="56" x2="666" y1="254.0" y2="254.0" stroke="#eef0f4"></line><text x="50" y="258.0" text-anchor="end" font-size="11" fill="#6b7280">0</text><line x1="56" x2="666" y1="213.7" y2="213.7" stroke="#eef0f4"></line><text x="50" y="217.7" text-anchor="end" font-size="11" fill="#6b7280">2.000</text><line x1="56" x2="666" y1="173.3" y2="173.3" stroke="#eef0f4"></line><text x="50" y="177.3" text-anchor="end" font-size="11" fill="#6b7280">4.000</text><line x1="56" x2="666" y1="133.0" y2="133.0" stroke="#eef0f4"></line><text x="50" y="137.0" text-anchor="end" font-size="11" fill="#6b7280">6.000</text><line x1="56" x2="666" y1="92.7" y2="92.7" stroke="#eef0f4"></line><text x="50" y="96.7" text-anchor="end" font-size="11" fill="#6b7280">8.000</text><line x1="56" x2="666" y1="52.3" y2="52.3" stroke="#eef0f4"></line><text x="50" y="56.3" text-anchor="end" font-size="11" fill="#6b7280">10.000</text><line x1="56" x2="666" y1="12.0" y2="12.0" stroke="#eef0f4"></line><text x="50" y="16.0" text-anchor="end" font-size="11" fill="#6b7280">12.000</text><text x="88.1" y="272" text-anchor="middle" font-size="11" fill="#6b7280">1990</text><text x="168.4" y="272" text-anchor="middle" font-size="11" fill="#6b7280">1995</text><text x="248.6" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2000</text><text x="328.9" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2005</text><text x="409.2" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2010</text><text x="489.4" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2015</text><text x="569.7" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2020</text><text x="649.9" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2025</text><path d="M56.0 150.3 L72.1 133.8 L88.1 172.9 L104.2 196.7 L120.2 159.7 L136.3 128.6 L152.3 128.6 L168.4 44.4 L184.4 122.0 L200.5 147.7 L216.5 123.6 L232.6 113.6 L248.6 125.6 L264.7 98.7 L280.7 94.8 L296.8 44.2 L312.8 15.8 L328.9 109.9 L344.9 166.6 L361.0 200.0 L377.1 188.3 L393.1 232.8 L409.2 236.4 L425.2 231.4 L441.3 238.7 L457.3 231.0 L473.4 232.3 L489.4 221.7 L505.5 224.0 L521.5 222.5 L537.6 224.0 L553.6 219.7 L569.7 218.1 L585.7 209.4 L601.8 215.1 L617.8 212.7 L633.9 228.7 L649.9 221.9" fill="none" stroke="#1F4D3A" stroke-width="2.2"></path><circle cx="56.0" cy="150.3" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1988: 5.140 km²"></circle><circle cx="72.1" cy="133.8" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1989: 5.960 km²"></circle><circle cx="88.1" cy="172.9" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1990: 4.020 km²"></circle><circle cx="104.2" cy="196.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1991: 2.840 km²"></circle><circle cx="120.2" cy="159.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1992: 4.674 km²"></circle><circle cx="136.3" cy="128.6" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1993: 6.220 km²"></circle><circle cx="152.3" cy="128.6" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1994: 6.220 km²"></circle><circle cx="168.4" cy="44.4" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1995: 10.391 km²"></circle><circle cx="184.4" cy="122.0" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1996: 6.543 km²"></circle><circle cx="200.5" cy="147.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1997: 5.271 km²"></circle><circle cx="216.5" cy="123.6" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1998: 6.466 km²"></circle><circle cx="232.6" cy="113.6" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="1999: 6.963 km²"></circle><circle cx="248.6" cy="125.6" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2000: 6.369 km²"></circle><circle cx="264.7" cy="98.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2001: 7.703 km²"></circle><circle cx="280.7" cy="94.8" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2002: 7.892 km²"></circle><circle cx="296.8" cy="44.2" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2003: 10.405 km²"></circle><circle cx="312.8" cy="15.8" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2004: 11.814 km²"></circle><circle cx="328.9" cy="109.9" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2005: 7.145 km²"></circle><circle cx="344.9" cy="166.6" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2006: 4.333 km²"></circle><circle cx="361.0" cy="200.0" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2007: 2.678 km²"></circle><circle cx="377.1" cy="188.3" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2008: 3.258 km²"></circle><circle cx="393.1" cy="232.8" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2009: 1.049 km²"></circle><circle cx="409.2" cy="236.4" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2010: 871 km²"></circle><circle cx="425.2" cy="231.4" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2011: 1.120 km²"></circle><circle cx="441.3" cy="238.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2012: 757 km²"></circle><circle cx="457.3" cy="231.0" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2013: 1.139 km²"></circle><circle cx="473.4" cy="232.3" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2014: 1.075 km²"></circle><circle cx="489.4" cy="221.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2015: 1.601 km²"></circle><circle cx="505.5" cy="224.0" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2016: 1.489 km²"></circle><circle cx="521.5" cy="222.5" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2017: 1.561 km²"></circle><circle cx="537.6" cy="224.0" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2018: 1.490 km²"></circle><circle cx="553.6" cy="219.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2019: 1.702 km²"></circle><circle cx="569.7" cy="218.1" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2020: 1.779 km²"></circle><circle cx="585.7" cy="209.4" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2021: 2.213 km²"></circle><circle cx="601.8" cy="215.1" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2022: 1.927 km²"></circle><circle cx="617.8" cy="212.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2023: 2.048 km²"></circle><circle cx="633.9" cy="228.7" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2024: 1.257 km²"></circle><circle cx="649.9" cy="221.9" r="2.8" fill="#1F4D3A" stroke="#1F4D3A" stroke-width="1.6" data-tip="2025: 1.593 km²"></circle><circle cx="666.0" cy="236.9" r="3.6" fill="#fff" stroke="#1F4D3A" stroke-width="1.6" data-tip="2026: 849 km² (taxa estimada; fora das contas)"></circle></svg><figcaption class="legenda-svg"><span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="#1F4D3A" stroke-width="2.2"></line><circle cx="11" cy="5" r="2.8" fill="#1F4D3A"></circle></svg>taxa consolidada, 1988–2025</span><span class="leg-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3.6" fill="#fff" stroke="#1F4D3A" stroke-width="1.6"></circle></svg>2026: taxa estimada (fora das contas)</span></figcaption></figure>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Taxa anual de desmatamento de Mato Grosso no PRODES Amazônia Legal (formações florestais), km². O ano do PRODES vai de agosto a julho. Fonte: INPE/PRODES, TerraBrasilis, painel versão 3.5.10; acesso em 19/10/2026; atualização do INPE em 16/10/2026.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 280" width="100%" role="img" aria-label="Incremento anual de desmatamento do PRODES em Mato Grosso, por bioma, km²"><line x1="56" x2="666" y1="254.0" y2="254.0" stroke="#eef0f4"></line><text x="50" y="258.0" text-anchor="end" font-size="11" fill="#6b7280">0</text><line x1="56" x2="666" y1="219.4" y2="219.4" stroke="#eef0f4"></line><text x="50" y="223.4" text-anchor="end" font-size="11" fill="#6b7280">1.000</text><line x1="56" x2="666" y1="184.9" y2="184.9" stroke="#eef0f4"></line><text x="50" y="188.9" text-anchor="end" font-size="11" fill="#6b7280">2.000</text><line x1="56" x2="666" y1="150.3" y2="150.3" stroke="#eef0f4"></line><text x="50" y="154.3" text-anchor="end" font-size="11" fill="#6b7280">3.000</text><line x1="56" x2="666" y1="115.7" y2="115.7" stroke="#eef0f4"></line><text x="50" y="119.7" text-anchor="end" font-size="11" fill="#6b7280">4.000</text><line x1="56" x2="666" y1="81.1" y2="81.1" stroke="#eef0f4"></line><text x="50" y="85.1" text-anchor="end" font-size="11" fill="#6b7280">5.000</text><line x1="56" x2="666" y1="46.6" y2="46.6" stroke="#eef0f4"></line><text x="50" y="50.6" text-anchor="end" font-size="11" fill="#6b7280">6.000</text><line x1="56" x2="666" y1="12.0" y2="12.0" stroke="#eef0f4"></line><text x="50" y="16.0" text-anchor="end" font-size="11" fill="#6b7280">7.000</text><text x="132.2" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2005</text><text x="259.3" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2010</text><text x="386.4" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2015</text><text x="513.5" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2020</text><text x="640.6" y="272" text-anchor="middle" font-size="11" fill="#6b7280">2025</text><path d="M208.5 140.0 L233.9 227.2 L259.3 229.3 L284.8 219.5 L310.2 228.1 L335.6 217.4 L361.0 218.0 L386.4 204.4 L411.8 206.7 L437.2 207.4 L462.7 205.1 L488.1 190.9 L513.5 192.6 L538.9 187.7 L564.3 185.5 L589.8 188.2 L615.2 209.9 L640.6 204.7" fill="none" stroke="#1baf7a" stroke-width="2"></path><circle cx="208.5" cy="140.0" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2008: 3.297 km²"></circle><circle cx="233.9" cy="227.2" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2009: 776 km²"></circle><circle cx="259.3" cy="229.3" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2010: 715 km²"></circle><circle cx="284.8" cy="219.5" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2011: 998 km²"></circle><circle cx="310.2" cy="228.1" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2012: 750 km²"></circle><circle cx="335.6" cy="217.4" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2013: 1.060 km²"></circle><circle cx="361.0" cy="218.0" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2014: 1.041 km²"></circle><circle cx="386.4" cy="204.4" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2015: 1.436 km²"></circle><circle cx="411.8" cy="206.7" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2016: 1.370 km²"></circle><circle cx="437.2" cy="207.4" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2017: 1.348 km²"></circle><circle cx="462.7" cy="205.1" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2018: 1.415 km²"></circle><circle cx="488.1" cy="190.9" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2019: 1.825 km²"></circle><circle cx="513.5" cy="192.6" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2020: 1.777 km²"></circle><circle cx="538.9" cy="187.7" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2021: 1.919 km²"></circle><circle cx="564.3" cy="185.5" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2022: 1.981 km²"></circle><circle cx="589.8" cy="188.2" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2023: 1.905 km²"></circle><circle cx="615.2" cy="209.9" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2024: 1.274 km²"></circle><circle cx="640.6" cy="204.7" r="2.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2025: 1.425 km²"></circle><circle cx="666.0" cy="225.8" r="3.6" fill="#fff" stroke="#1baf7a" stroke-width="1.6" data-tip="Amazônia · 2026: 816 km² (incremento parcial; fora das contas)"></circle><path d="M56.0 89.7 L106.8 44.2 L157.7 166.9 L208.5 192.8 L259.3 220.1 L310.2 221.2 L335.6 189.3 L361.0 217.8 L386.4 198.2 L411.8 210.0 L437.2 218.4 L462.7 217.7 L488.1 223.4 L513.5 227.4 L538.9 226.2 L564.3 228.3 L589.8 232.8 L615.2 239.1 L640.6 238.3" fill="none" stroke="#eb6834" stroke-width="2"></path><circle cx="56.0" cy="89.7" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2002: 4.752 km² por ano (média do período de 2 anos encerrado em 2002)"></circle><circle cx="106.8" cy="44.2" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2004: 6.070 km² por ano (média do período de 2 anos encerrado em 2004)"></circle><circle cx="157.7" cy="166.9" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2006: 2.521 km² por ano (média do período de 2 anos encerrado em 2006)"></circle><circle cx="208.5" cy="192.8" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2008: 1.770 km² por ano (média do período de 2 anos encerrado em 2008)"></circle><circle cx="259.3" cy="220.1" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2010: 980 km² por ano (média do período de 2 anos encerrado em 2010)"></circle><circle cx="310.2" cy="221.2" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2012: 950 km² por ano (média do período de 2 anos encerrado em 2012)"></circle><circle cx="335.6" cy="189.3" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2013: 1.870 km²"></circle><circle cx="361.0" cy="217.8" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2014: 1.048 km²"></circle><circle cx="386.4" cy="198.2" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2015: 1.615 km²"></circle><circle cx="411.8" cy="210.0" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2016: 1.272 km²"></circle><circle cx="437.2" cy="218.4" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2017: 1.029 km²"></circle><circle cx="462.7" cy="217.7" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2018: 1.049 km²"></circle><circle cx="488.1" cy="223.4" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2019: 884 km²"></circle><circle cx="513.5" cy="227.4" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2020: 770 km²"></circle><circle cx="538.9" cy="226.2" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2021: 803 km²"></circle><circle cx="564.3" cy="228.3" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2022: 742 km²"></circle><circle cx="589.8" cy="232.8" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2023: 613 km²"></circle><circle cx="615.2" cy="239.1" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2024: 432 km²"></circle><circle cx="640.6" cy="238.3" r="2.8" fill="#eb6834" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2025: 455 km²"></circle><circle cx="666.0" cy="238.3" r="3.6" fill="#fff" stroke="#eb6834" stroke-width="1.6" data-tip="Cerrado · 2026: 455 km² (incremento parcial; fora das contas)"></circle><path d="M106.8 242.3 L157.7 246.7 L208.5 248.9 L259.3 248.5 L284.8 249.3 L335.6 249.5 L361.0 249.5 L411.8 246.4 L437.2 246.1 L462.7 247.3 L488.1 249.9 L513.5 250.1 L538.9 251.3 L564.3 248.3 L589.8 248.2 L615.2 247.0 L640.6 252.1" fill="none" stroke="#2a78d6" stroke-width="2"></path><circle cx="106.8" cy="242.3" r="3.6" fill="#fff" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2004: 339 km² por ano (média do período de 4 anos encerrado em 2004)"></circle><circle cx="157.7" cy="246.7" r="3.6" fill="#fff" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2006: 211 km² por ano (média do período de 2 anos encerrado em 2006)"></circle><circle cx="208.5" cy="248.9" r="3.6" fill="#fff" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2008: 147 km² por ano (média do período de 2 anos encerrado em 2008)"></circle><circle cx="259.3" cy="248.5" r="3.6" fill="#fff" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2010: 160 km² por ano (média do período de 2 anos encerrado em 2010)"></circle><circle cx="284.8" cy="249.3" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2011: 136 km²"></circle><circle cx="335.6" cy="249.5" r="3.6" fill="#fff" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2013: 130 km² por ano (média do período de 2 anos encerrado em 2013)"></circle><circle cx="361.0" cy="249.5" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2014: 132 km²"></circle><circle cx="411.8" cy="246.4" r="3.6" fill="#fff" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2016: 219 km² por ano (média do período de 2 anos encerrado em 2016)"></circle><circle cx="437.2" cy="246.1" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2017: 229 km²"></circle><circle cx="462.7" cy="247.3" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2018: 194 km²"></circle><circle cx="488.1" cy="249.9" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2019: 119 km²"></circle><circle cx="513.5" cy="250.1" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2020: 113 km²"></circle><circle cx="538.9" cy="251.3" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2021: 77 km²"></circle><circle cx="564.3" cy="248.3" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2022: 166 km²"></circle><circle cx="589.8" cy="248.2" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2023: 169 km²"></circle><circle cx="615.2" cy="247.0" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2024: 202 km²"></circle><circle cx="640.6" cy="252.1" r="2.8" fill="#2a78d6" stroke="#2a78d6" stroke-width="1.6" data-tip="Pantanal · 2025: 54 km²"></circle></svg><figcaption class="legenda-svg"><span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="#1baf7a" stroke-width="2"></line><circle cx="11" cy="5" r="2.8" fill="#1baf7a"></circle></svg>Amazônia</span><span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="#eb6834" stroke-width="2"></line><circle cx="11" cy="5" r="2.8" fill="#eb6834"></circle></svg>Cerrado</span><span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="#2a78d6" stroke-width="2"></line><circle cx="11" cy="5" r="2.8" fill="#2a78d6"></circle></svg>Pantanal</span><span class="leg-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3.6" fill="#fff" stroke="#6b7280" stroke-width="1.6"></circle></svg>ponto vazado: média anual de período de 2 a 4 anos, ou dado parcial de 2026 (sem linha, fora das contas)</span></figcaption></figure>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Incremento anual de desmatamento em Mato Grosso por bioma, km². Amazônia desde 2008; Cerrado desde 2002, em períodos de 2 anos até 2012; Pantanal desde 2004, em períodos de 1 a 4 anos até 2016. Nos períodos plurianuais, o ponto mostra a média anual (valor do período ÷ número de anos). Fonte: INPE/PRODES, TerraBrasilis, painel versão 3.5.10; acesso em 19/10/2026; atualização do INPE em 16/10/2026.</p>
+</div>
+</div>
+<p>A taxa de MT cobre só as formações florestais da Amazônia Legal, que inclui o estado inteiro. Ela não é a soma dos incrementos dos três biomas. Os dados de 2026 são estimativa ou incremento parcial e ficam fora de todas as contas.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> De volta ao topo</a></main> <!-- /main -->
+<script>
+
+// Siglas explicadas ao passar o cursor (ou tocar, no celular). Aplica-se a parágrafos, listas e legendas.
+
+(function () {
+
+  var G = {
+
+    "AF": "Agricultura familiar, conforme a Lei 11.326/2006 e o Censo Agropecuário 2017",
+
+    "PA": "Projeto de Assentamento da reforma agrária",
+
+    "PAs": "Projetos de Assentamento da reforma agrária",
+
+    "INCRA": "Instituto Nacional de Colonização e Reforma Agrária",
+
+    "SIPRA": "Sistema de Informações de Projetos de Reforma Agrária (INCRA)",
+
+    "PNCF": "Programa Nacional de Crédito Fundiário (terra comprada com financiamento)",
+
+    "PRONAF": "Programa Nacional de Fortalecimento da Agricultura Familiar",
+
+    "DAP": "Declaração de Aptidão ao Pronaf",
+
+    "SEEG": "Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (Observatório do Clima)",
+
+    "PRODES": "Monitoramento do desmatamento por satélite (INPE)",
+
+    "INPE": "Instituto Nacional de Pesquisas Espaciais",
+
+    "GEE": "Gases de efeito estufa",
+
+    "CO2e": "Dióxido de carbono equivalente: soma dos gases ponderada pelo potencial de aquecimento",
+
+    "GWP-AR5": "Potencial de aquecimento global do 5º Relatório do IPCC, usado pelo SEEG para somar os gases",
+
+    "SAF": "Sistema agroflorestal",
+
+    "PSA": "Pagamento por serviços ambientais",
+
+    "ESG": "Critérios ambientais, sociais e de governança",
+
+    "REDD+": "Redução de emissões por desmatamento e degradação florestal",
+
+    "VPL": "Valor presente líquido",
+
+    "TIR": "Taxa interna de retorno",
+
+    "PAF": "Fatoração pelo eixo principal (análise fatorial exploratória)",
+
+    "OE": "Objetivo específico do projeto",
+
+    "iCS": "Instituto Clima e Sociedade",
+
+    "UNEMAT": "Universidade do Estado de Mato Grosso",
+
+    "MapBiomas": "Mapeamento anual da cobertura e do uso da terra no Brasil",
+
+    "CAR": "Cadastro Ambiental Rural",
+
+    "KMO": "Medida de adequação dos dados à análise fatorial, de 0 a 1 (acima de 0,8 é boa)",
+
+    "ARI": "Índice de Rand ajustado: concordância entre duas classificações dos mesmos municípios (1 = iguais; 0 = acaso)",
+
+    "Jaccard": "Estabilidade de um grupo nas reamostras: 1 quando o grupo se repete sempre igual",
+
+    "clusterboot": "Rotina do R (pacote fpc) que mede a estabilidade dos grupos por reamostragem",
+
+    "silhueta": "Medida de separação dos grupos, de −1 a 1: quanto maior, mais nítidos os grupos",
+
+    "Calinski-Harabasz": "Índice de qualidade do agrupamento: quanto maior, mais separados os grupos",
+
+    "Davies-Bouldin": "Índice de qualidade do agrupamento: quanto menor, mais separados os grupos",
+
+    "gap": "Critério que compara o agrupamento com dados ao acaso para escolher o número de grupos",
+
+    "Kruskal-Wallis": "Teste de diferença entre grupos que usa a ordem dos valores, não os valores",
+
+    "ε²": "Tamanho de efeito do Kruskal-Wallis: parte da variação explicada pelo grupo, de 0 a 1",
+
+    "Spearman": "Correlação pela ordem dos valores, de −1 a 1",
+
+    "Pearson": "Correlação linear entre os valores, de −1 a 1",
+
+    "Dutilleul": "Correção do teste de correlação para a semelhança entre municípios vizinhos",
+
+    "symlog": "Escala logarítmica que aceita o zero",
+
+    "Φ": "Correlação entre dois fatores numa rotação oblíqua",
+
+    "AFOLU": "Agricultura, florestas e outros usos da terra (setor do inventário de emissões)",
+
+    "banking": "Guardar permissões de emissão de um período para usar depois",
+
+    "spillover": "Efeito de transbordamento: o que acontece num mercado afeta outro",
+
+    "cointegração": "Relação de longo prazo entre séries de preços"
+
+  };
+
+  var chaves = Object.keys(G).sort(function (a, b) { return b.length - a.length; });
+
+  var re = new RegExp("(^|[^\\wÀ-ú-])(" + chaves.map(function (k) { return k.replace(/[-+.]/g, "\\$&"); }).join("|") + ")(?![\\wÀ-ú-])");
+
+  function marcar(el) {
+
+    var usados = {};
+
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+
+      acceptNode: function (n) {
+
+        var p = n.parentNode;
+
+        while (p && p !== el) { if (/^(A|ABBR|CODE|SCRIPT|STYLE|SVG|BUTTON|SELECT|OPTION)$/i.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
+
+        return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+
+      }
+
+    });
+
+    var nos = []; while (w.nextNode()) nos.push(w.currentNode);
+
+    nos.forEach(function (n) {
+
+      var m = n.nodeValue.match(re); if (!m || usados[m[2]]) return;
+
+      usados[m[2]] = true;
+
+      var i = m.index + m[1].length, depois = n.splitText(i); depois.splitText(m[2].length);
+
+      var ab = document.createElement("abbr"); ab.title = G[m[2]]; ab.tabIndex = 0; ab.textContent = m[2];
+
+      depois.parentNode.replaceChild(ab, depois);
+
+    });
+
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll("main p, main li, main figcaption, main .kpi-rotulo, main .kpi-meta").forEach(marcar);
+
+  });
+
+})();
+
+</script>
+
+<div id="dica-grafico" role="tooltip" aria-hidden="true"></div>
+
+<script>
+
+// Dica imediata para elementos com data-tip (pontos, barras e linhas dos gráficos SVG; selos).
+
+(function () {
+
+  var dica = document.getElementById("dica-grafico");
+
+  function mostrar(el, x, y) {
+
+    dica.textContent = el.getAttribute("data-tip");
+
+    dica.style.display = "block";
+
+    var w = dica.offsetWidth, h = dica.offsetHeight;
+
+    var left = Math.min(x + 12, window.innerWidth - w - 8), top = y - h - 12;
+
+    if (top < 4) top = y + 16;
+
+    dica.style.left = left + "px"; dica.style.top = top + "px";
+
+  }
+
+  function esconder() { dica.style.display = "none"; }
+
+  document.addEventListener("mouseover", function (e) {
+
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el) mostrar(el, e.clientX, e.clientY);
+
+  });
+
+  document.addEventListener("mousemove", function (e) {
+
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el && dica.style.display === "block") mostrar(el, e.clientX, e.clientY);
+
+  });
+
+  document.addEventListener("mouseout", function (e) {
+
+    if (e.target.closest && e.target.closest("[data-tip]")) esconder();
+
+  });
+
+  document.addEventListener("touchstart", function (e) {
+
+    var el = e.target.closest && e.target.closest("[data-tip]"); var t = e.touches[0];
+
+    if (el) mostrar(el, t.clientX, t.clientY); else esconder();
+
+  }, { passive: true });
+
+  window.addEventListener("scroll", esconder, { passive: true });
+
+})();
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 19/10/2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="..\assets/logo-unemat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="UNEMAT"><img src="..\assets/logo-unemat.png" height="40" alt="UNEMAT" class="figure-img"></a></p>
+<figcaption>UNEMAT</figcaption>
+</figure>
+</div>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

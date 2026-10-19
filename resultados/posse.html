@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="A categoria do Censo 2017 de concessionário(a) ou assentado(a) aguardando titulação definitiva, confrontada com os registros do INCRA">
+
+<title>O que a posse registrada no Censo mede – Observatório RESA-MT</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8fe2a179c4b423cce90f4f9afe7be56d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="robots" content="noindex, nofollow">
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+
+<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+
+<link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+
+<script src="../site_libs/reactable-binding-0.4.5/reactable.js"></script>
+
+
+
+<link rel="stylesheet" href="resultados.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo-unemat-branco.png" alt="UNEMAT — Universidade do Estado de Mato Grosso" class="navbar-logo light-content">
+    <img src="../assets/logo-unemat-branco.png" alt="UNEMAT — Universidade do Estado de Mato Grosso" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Observatório RESA-MT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Início</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../municipios/index.html"> 
+<span class="menu-text">Municípios</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../indicadores/index.html"> 
+<span class="menu-text">Indicadores</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resultados" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resultados</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resultados">    
+        <li>
+    <a class="dropdown-item" href="../resultados/tipologia.html">
+ <span class="dropdown-text">Tipologia municipal da AF</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/posse.html">
+ <span class="dropdown-text">Posse no Censo e reforma agrária</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/emissoes.html">
+ <span class="dropdown-text">Emissões e desmatamento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/dinamica.html">
+ <span class="dropdown-text">Dinâmica 2006–2017</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../pilotos/index.html"> 
+<span class="menu-text">Áreas‑piloto</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-objetivos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Objetivos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-objetivos">    
+        <li>
+    <a class="dropdown-item" href="../objetivos/index.html">
+ <span class="dropdown-text">Os seis objetivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe1.html">
+ <span class="dropdown-text">OE1 · Território e uso da terra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe2.html">
+ <span class="dropdown-text">OE2 · Produção e renda</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe3.html">
+ <span class="dropdown-text">OE3 · Ambiente e carbono</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe4.html">
+ <span class="dropdown-text">OE4 · Cenários bioeconômicos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe5.html">
+ <span class="dropdown-text">OE5 · Inovação e capital social</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe6.html">
+ <span class="dropdown-text">OE6 · Pacote Tecnológico</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-literatura" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Literatura</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-literatura">    
+        <li>
+    <a class="dropdown-item" href="../literatura/index.html">
+ <span class="dropdown-text">Panorama</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/carbono.html">
+ <span class="dropdown-text">Carbono, mercados e ESG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/saf-psa.html">
+ <span class="dropdown-text">SAF e PSA em assentamentos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/estudos.html">
+ <span class="dropdown-text">Estudos do corpus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../dados/index.html"> 
+<span class="menu-text">Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../biblioteca/index.html"> 
+<span class="menu-text">Biblioteca</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sobre.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#mato-grosso-em-números" id="toc-mato-grosso-em-números" class="nav-link active" data-scroll-target="#mato-grosso-em-números">Mato Grosso em números</a></li>
+  <li><a href="#a-categoria-capta-no-máximo-268-da-reforma-agrária" id="toc-a-categoria-capta-no-máximo-268-da-reforma-agrária" class="nav-link" data-scroll-target="#a-categoria-capta-no-máximo-268-da-reforma-agrária">A categoria capta no máximo 26,8% da reforma agrária</a></li>
+  <li><a href="#censo-e-incra-município-a-município" id="toc-censo-e-incra-município-a-município" class="nav-link" data-scroll-target="#censo-e-incra-município-a-município">Censo e INCRA, município a município</a></li>
+  <li><a href="#validação-externa-por-tipo" id="toc-validação-externa-por-tipo" class="nav-link" data-scroll-target="#validação-externa-por-tipo">Validação externa por tipo</a></li>
+  <li><a href="#o-sigilo-na-categoria-46504" id="toc-o-sigilo-na-categoria-46504" class="nav-link" data-scroll-target="#o-sigilo-na-categoria-46504">O sigilo na categoria 46504</a></li>
+  <li><a href="#por-tipo" id="toc-por-tipo" class="nav-link" data-scroll-target="#por-tipo">Por tipo</a></li>
+  <li><a href="#tabela-municipal-censo-2017-e-sipra" id="toc-tabela-municipal-censo-2017-e-sipra" class="nav-link" data-scroll-target="#tabela-municipal-censo-2017-e-sipra">Tabela municipal: Censo 2017 e SIPRA</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">O que a posse registrada no Censo mede</h1>
+<p class="subtitle lead">Categoria 46504 do Censo Agropecuário 2017 e reforma agrária (Manuscrito 1, em preparação)</p>
+</div>
+
+<div>
+  <div class="description">
+    A categoria do Censo 2017 de concessionário(a) ou assentado(a) aguardando titulação definitiva, confrontada com os registros do INCRA
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<div class="faixa-versao">Versão preliminar para a equipe do projeto. Os resultados mudam à medida que as etapas do estudo são concluídas.</div>
+</div>
+</div>
+<p>O Censo Agropecuário pergunta ao produtor em que condição ele ocupa as terras. Uma das respostas é <strong>concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)</strong>, a categoria 46504 do SIDRA. É uma condição <strong>declarada</strong>. O Censo não pergunta se o estabelecimento é da reforma agrária, e quem já recebeu o título pode se declarar proprietário. Esta página mostra, com os resultados do Manuscrito 1, quanto da reforma agrária a categoria capta em Mato Grosso.</p>
+<section id="mato-grosso-em-números" class="level2">
+<h2 class="anchored" data-anchor-id="mato-grosso-em-números">Mato Grosso em números</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="kpi-grade">
+<div class="kpi">
+<div class="kpi-rotulo">Estab. da AF na categoria 46504</div>
+<div class="kpi-valor">8.834</div>
+<div class="kpi-meta">10,82% dos 81.635 estabelecimentos da AF · IBGE, Censo Agropecuário 2017</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Área da AF na categoria 46504</div>
+<div class="kpi-valor">397.305 ha</div>
+<div class="kpi-meta">7,74% da área da AF · IBGE, Censo Agropecuário 2017</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Estab. na categoria 46504, AF e não AF</div>
+<div class="kpi-valor">11.248</div>
+<div class="kpi-meta">AF e não AF · IBGE, Censo Agropecuário 2017</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Estab. da reforma agrária no Censo</div>
+<div class="kpi-valor">42.014</div>
+<div class="kpi-meta">identificados pelo IBGE com o INCRA, por critérios múltiplos · Censo 2017 (Marques, 2021)</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Projetos de reforma agrária</div>
+<div class="kpi-valor">575</div>
+<div class="kpi-meta">85.653 famílias assentadas; 6.539.004 ha · INCRA/SIPRA, Relatório 0227, posição de 03/06/2025</div>
+</div>
+<div class="kpi">
+<div class="kpi-rotulo">Beneficiários do INCRA</div>
+<div class="kpi-valor">76.247</div>
+<div class="kpi-meta">assentados e titulados homologados até 30/09/2017 · INCRA, relação de beneficiários da SR-13 (só a contagem)</div>
+</div>
+</div>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: Manuscrito 1 do Projeto RESA (em preparação), Tabela 1 e nota da Tabela A.15; dados de IBGE, Censo Agropecuário 2017; INCRA/SIPRA, Relatório 0227; INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13; assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais; Marques (2021), tabulação IBGE-INCRA do Censo 2017. Números copiados dos resultados finais do manuscrito, sem recálculo.</p>
+</div>
+</div>
+</section>
+<section id="a-categoria-capta-no-máximo-268-da-reforma-agrária" class="level2">
+<h2 class="anchored" data-anchor-id="a-categoria-capta-no-máximo-268-da-reforma-agrária">A categoria capta no máximo 26,8% da reforma agrária</h2>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="grafico-svg figure"><svg viewbox="0 0 680 92" width="100%" role="img" aria-label="Estabelecimentos da reforma agrária e categoria 46504"><rect x="10" y="26" width="176.7" height="34" fill="#4a3aa7" data-tip="No máximo 11.248 estabelecimentos (26,8%) na categoria 46504"></rect><rect x="186.7" y="26" width="483.3" height="34" fill="#d9d6ee" data-tip="Pelo menos 30.766 estabelecimentos (73,2%) fora da categoria 46504"></rect><text x="10" y="18" font-size="12" fill="#1f2937">No máximo 11.248 (26,8%) na categoria 46504</text><text x="670" y="18" font-size="12" fill="#1f2937" text-anchor="end">pelo menos 30.766 (73,2%) fora dela</text><text x="10" y="80" font-size="11" fill="#6b7280">42.014 estabelecimentos da reforma agrária identificados no Censo 2017 pelo IBGE com o INCRA (Marques, 2021)</text></svg></figure>
+</div>
+</div>
+<div class="achado">
+<p>Mesmo que todos os 11.248 estabelecimentos da categoria 46504 fossem da reforma agrária, eles seriam só <strong>26,8%</strong> dos 42.014 que o IBGE e o INCRA identificaram no Censo 2017. Pelo menos 30.766 (73,2%) ficam fora da categoria.</p>
+</div>
+<ul>
+<li><strong>Na agricultura familiar</strong>, a cobertura da categoria frente aos beneficiários do INCRA é de 0,116 em MT: 8.834 estabelecimentos para 76.247 beneficiários.</li>
+<li><strong>Muitos titulados se declaram proprietários.</strong> 10.479 estabelecimentos da AF de proprietários obtiveram a terra por titulação ou licença da reforma agrária (Censo 2017, tabela 6774). Somados à categoria 46504, formam a <strong>medida combinada</strong>: 23,66% dos estabelecimentos da AF.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: Manuscrito 1 do Projeto RESA (em preparação), nota da Tabela A.15; dados de IBGE, Censo Agropecuário 2017; INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13; assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais; Marques (2021). Números copiados dos resultados finais do manuscrito, sem recálculo.</p>
+</div>
+</div>
+</section>
+<section id="censo-e-incra-município-a-município" class="level2">
+<h2 class="anchored" data-anchor-id="censo-e-incra-município-a-município">Censo e INCRA, município a município</h2>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="figure figura-res">
+<a href="figuras/m1/fig6_censo_incra_final.png" class="lightbox">
+<img src="figuras/m1/fig6_censo_incra_final.png" alt="Figura 6 do Manuscrito 1. (a) Estabelecimentos da AF na categoria 46504 por 100 estabelecimentos da AF (Censo 2017). (b) Beneficiários do INCRA (assentados e titulados, homologados até 30/09/2017) por 100 estabelecimentos da AF, alocados aos municípios pela área dos polígonos dos projetos. As classes são as mesmas nos dois mapas." class="img-fluid figure-img" loading="lazy">
+</a>
+<figcaption class="figure-caption">
+Figura 6 do Manuscrito 1. (a) Estabelecimentos da AF na categoria 46504 por 100 estabelecimentos da AF (Censo 2017). (b) Beneficiários do INCRA (assentados e titulados, homologados até 30/09/2017) por 100 estabelecimentos da AF, alocados aos municípios pela área dos polígonos dos projetos. As classes são as mesmas nos dois mapas.
+<span class="nota-fonte">
+<br>
+Fonte: IBGE, Censo Agropecuário 2017; INCRA/SIPRA, Relatório 0227; INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13; assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais; elaboração dos autores do Manuscrito 1. Na legenda da figura, os tipos aparecem com outra redação de rótulo, também provisória. Os tipos são os mesmos (T1 a T5, com os mesmos municípios); neste site vale a redação da tabela, com o selo "rótulo provisório".
+</span>
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Os dois mapas não coincidem. Onde o INCRA registra muitos beneficiários, o Censo muitas vezes registra poucos estabelecimentos na categoria. 41 municípios têm 50 ou mais beneficiários por 100 estabelecimentos da AF e menos de 5% da AF na categoria: 29 no T1, 1 no T2, 10 no T3 e 1 no T5. No sentido inverso (categoria na média de MT ou acima, e menos de 10 beneficiários por 100 estabelecimentos da AF), há 1 município (Tesouro).</p>
+</section>
+<section id="validação-externa-por-tipo" class="level2">
+<h2 class="anchored" data-anchor-id="validação-externa-por-tipo">Validação externa por tipo</h2>
+<p>Se a categoria medisse a reforma agrária, os municípios com mais beneficiários do INCRA teriam mais estabelecimentos na categoria. A associação é fraca e perde a significância quando se desconta a semelhança entre municípios vizinhos (teste t modificado de Dutilleul, que corrige o teste para essa semelhança):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-5056472cd7cc4b2c84ed" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5056472cd7cc4b2c84ed">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Municípios":["Todos os municípios (141)","Com algum beneficiário (132)","Com 100 beneficiários ou mais (99)"],"% da AF em 46504":["0,175 [−0,002; 0,335]; p Dutilleul = 0,067","0,085 [−0,081; 0,246]; p Dutilleul = 0,393","−0,163 [−0,348; 0,034]; p Dutilleul = 0,294"],"Escore F5 (posse)":["0,128 [−0,039; 0,289]; p Dutilleul = 0,236","0,062 [−0,100; 0,227]; p Dutilleul = 0,580","−0,162 [−0,340; 0,027]; p Dutilleul = 0,341"],"Medida combinada":["0,497 [0,356; 0,615]; p Dutilleul < 0,001","0,435 [0,282; 0,570]; p Dutilleul < 0,001","0,220 [0,018; 0,416]; p Dutilleul = 0,082"]},"columns":[{"id":"Municípios","name":"Municípios","type":"character","minWidth":190},{"id":"% da AF em 46504","name":"% da AF em 46504","type":"character"},{"id":"Escore F5 (posse)","name":"Escore F5 (posse)","type":"character"},{"id":"Medida combinada","name":"Medida combinada","type":"character"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"b093c9b9ff64fa7ed9079949a37a03f5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">ρ de Spearman entre cada medida e os beneficiários do INCRA por 100 estabelecimentos da AF [IC 95% por bootstrap]; p corrigido para a autocorrelação espacial (Dutilleul). Medida combinada: categoria 46504 mais proprietários titulados pela reforma agrária.</p>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: Manuscrito 1 do Projeto RESA (em preparação), Tabela A.15; dados de IBGE, Censo Agropecuário 2017; INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13; assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais. Números copiados dos resultados finais do manuscrito, sem recálculo.</p>
+</div>
+</div>
+<p>A medida combinada acompanha melhor o INCRA (ρ = 0,497 em todos os municípios) do que a categoria sozinha (ρ = 0,175). Por tipo:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-7a471f460f34cbca9e17" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7a471f460f34cbca9e17">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["% dos beneficiários do INCRA de MT<div class=\"sub\">%<\/div>","Beneficiários do INCRA por 100 estab. da AF<div class=\"sub\">por 100<\/div>","Cobertura: estab. da AF em 46504 ÷ beneficiários<div class=\"sub\">razão<\/div>","Cobertura: (46504 + proprietários titulados pela reforma agrária) ÷ beneficiários<div class=\"sub\">razão<\/div>","Medida combinada: 46504 + proprietários titulados pela reforma agrária<div class=\"sub\">% dos estab. da AF<\/div>","Beneficiários já titulados no SIPRA<div class=\"sub\">%<\/div>","Ano médio de criação dos projetos<div class=\"sub\">ponderado por famílias<\/div>","Famílias em projetos criados até 1995<div class=\"sub\">%<\/div>","Famílias em projetos de colonização antigos<div class=\"sub\">%<\/div>","Famílias em projetos estaduais<div class=\"sub\">%<\/div>"],"T1":["27,1","90,3","0,041","0,199","18,00","20,8","1997,7","36,0","1,0","12,1"],"T2":["16,1","97,5","0,249","0,332","32,37","11,9","1999,6","17,4","0,0","32,8"],"T3":["36,2","116,2","0,027","0,146","16,99","14,8","1993,2","55,9","8,6","6,2"],"T4":["7,0","115,3","0,303","0,453","52,18","44,0","1998,3","30,4","0,8","0,6"],"T5":["13,6","58,4","0,247","0,450","26,26","17,8","1999,6","7,1","0,0","21,8"],"MT":["100,0","93,4","0,116","0,253","23,66","18,7","1996,6","35,9","3,5","13,5"]},"columns":[{"id":"Indicador","name":"Indicador","type":"character","html":true,"minWidth":250,"sticky":"left"},{"id":"T1","name":"T1","type":"character","header":"<span class=\"chip chip-t1\">T1<\/span><div class=\"sub\">Baixo porte agregado<\/div><span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","html":true,"minWidth":115,"align":"right"},{"id":"T2","name":"T2","type":"character","header":"<span class=\"chip chip-t2\">T2<\/span><div class=\"sub\">Posse aguardando titulação, sem especialização<\/div><span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","html":true,"minWidth":115,"align":"right"},{"id":"T3","name":"T3","type":"character","header":"<span class=\"chip chip-t3\">T3<\/span><div class=\"sub\">Grande porte agregado<\/div><span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","html":true,"minWidth":115,"align":"right"},{"id":"T4","name":"T4","type":"character","header":"<span class=\"chip chip-t4\">T4<\/span><div class=\"sub\">Mecanizado com posse aguardando titulação<\/div><span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","html":true,"minWidth":115,"align":"right"},{"id":"T5","name":"T5","type":"character","header":"<span class=\"chip chip-t5\">T5<\/span><div class=\"sub\">Hortícola-irrigado<\/div><span class=\"rotulo-provisorio\" title=\"Rótulo pendente de aprovação dos autores do Manuscrito 1\">rótulo provisório<\/span>","html":true,"minWidth":115,"align":"right"},{"id":"MT","name":"Mato Grosso","type":"character","minWidth":95,"align":"right","style":{"fontWeight":600}}],"sortable":false,"pagination":false,"striped":true,"compact":true,"className":"tabela-res","language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"d9ec7db8ab3e8f2e3153e30ed9ca24e4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: Manuscrito 1 do Projeto RESA (em preparação), Tabela A.15; dados de IBGE, Censo Agropecuário 2017; INCRA/SIPRA, Relatório 0227; INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13; assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais, alocada pela área dos polígonos dos projetos. Números copiados dos resultados finais do manuscrito, sem recálculo.</p>
+</div>
+</div>
+<ul>
+<li><strong>T3:</strong> reúne 36,2% dos beneficiários do INCRA de MT, mas a cobertura da categoria é de só 0,027. Seus projetos são mais antigos: ano médio de criação 1993,2, com 55,9% das famílias em projetos criados até 1995. A posse “baixa” do rótulo é a declarada ao Censo.</li>
+<li><strong>T4:</strong> 44,0% dos beneficiários já estão titulados no SIPRA, a maior proporção entre os tipos; com os titulados, a cobertura sobe para 0,453.</li>
+<li><strong>T2:</strong> 32,8% das famílias estão em projetos estaduais.</li>
+<li><strong>T5:</strong> tem o menor número de beneficiários por estabelecimento da AF (58,4 por 100).</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<figure class="figure figura-res">
+<a href="figuras/figA5_validacao_incra_final.svg" class="lightbox">
+<img src="figuras/figA5_validacao_incra_final.svg" alt="Figura A5 do Manuscrito 1. Cada ponto é um município: (a) % da AF na categoria 46504, (b) escore do fator de posse e (c) medida combinada, contra os beneficiários do INCRA por 100 estabelecimentos da AF (escala logarítmica que aceita o zero, dita symlog)." class="img-fluid figure-img" loading="lazy">
+</a>
+<figcaption class="figure-caption">
+Figura A5 do Manuscrito 1. Cada ponto é um município: (a) % da AF na categoria 46504, (b) escore do fator de posse e (c) medida combinada, contra os beneficiários do INCRA por 100 estabelecimentos da AF (escala logarítmica que aceita o zero, dita symlog).
+<span class="nota-fonte">
+<br>
+Fonte: IBGE, Censo Agropecuário 2017 (tabelas 6878 e 6774); INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13; assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais; elaboração dos autores do Manuscrito 1. Na legenda da figura, os tipos aparecem com outra redação de rótulo, também provisória. Os tipos são os mesmos (T1 a T5, com os mesmos municípios); neste site vale a redação da tabela, com o selo "rótulo provisório".
+</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="o-sigilo-na-categoria-46504" class="level2">
+<h2 class="anchored" data-anchor-id="o-sigilo-na-categoria-46504">O sigilo na categoria 46504</h2>
+<p>O IBGE omite, com o sinal X, as células que poderiam identificar um informante. Na categoria 46504:</p>
+<ul>
+<li><strong>estabelecimentos:</strong> sem X. 106 municípios com valor e 35 com – (zero absoluto);</li>
+<li><strong>área:</strong> X em 52 municípios; 44.431 ha (11,2% da área da categoria em MT) ficam sob X;</li>
+<li><strong>pessoal ocupado:</strong> X em 50 municípios.</li>
+</ul>
+<p>Por isso, a % de área da categoria por tipo usa só os municípios sem X (ver a Tabela 3 na página da <a href="../resultados/tipologia.html">tipologia</a>). Neste site, X nunca vira zero.</p>
+<p><strong>Juara, sede do PA Vale do Arinos</strong>, aparece com – (zero absoluto) na categoria 46504: o Censo não registrou nenhum estabelecimento da AF nessa condição, embora o município tenha projetos de assentamento no SIPRA. É um exemplo de reforma agrária fora da categoria.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: Manuscrito 1 do Projeto RESA (em preparação), Tabela 1; dados de IBGE, Censo Agropecuário 2017; Juara: dados do site (Censo 2017, tabela 6878; INCRA/SIPRA, 2025). Números copiados dos resultados finais do manuscrito, sem recálculo.</p>
+</div>
+</div>
+</section>
+<section id="por-tipo" class="level2">
+<h2 class="anchored" data-anchor-id="por-tipo">Por tipo</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-21addf7cb106e8c1f4dd" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-21addf7cb106e8c1f4dd">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Baixo porte agregado","T2 · Posse aguardando titulação, sem especialização","T3 · Grande porte agregado","T4 · Mecanizado com posse aguardando titulação","T5 · Hortícola-irrigado","Mato Grosso"],"estab_af_46504":["851","3.053","751","1.611","2.568","8.834"],"pct_estab_46504":["3,7%","24,2%","3,2%","34,9%","14,4%","10,8%"],"pct_area_46504":["0,4%*","18,0%","3,5%*","36,3%*","13,0%*","11,3%*"],"n_pa":["164","148","125","42","96","575"],"fam_pa":["21.522","13.782","31.141","7.587","11.621","85.653"]},"columns":[{"id":"Grupo","name":"Tipo do M1 (rótulo provisório)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"estab_af_46504","name":"estab_af_46504","type":"character","header":"<a href=\"../indicadores/estab_af_46504.html\">Estab. da AF em 46504<\/a><div class=\"sub\">estabelecimentos · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_estab_46504","name":"pct_estab_46504","type":"character","header":"<a href=\"../indicadores/pct_estab_46504.html\">% da AF em 46504<\/a><div class=\"sub\">% dos estabelecimentos da AF · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_area_46504","name":"pct_area_46504","type":"character","header":"<a href=\"../indicadores/pct_area_46504.html\">% da área da AF em 46504<\/a><div class=\"sub\">% da área dos estabelecimentos da AF · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"n_pa","name":"n_pa","type":"character","header":"<a href=\"../indicadores/n_pa.html\">Projetos de assentamento<\/a><div class=\"sub\">projetos · 2025<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"fam_pa","name":"fam_pa","type":"character","header":"<a href=\"../indicadores/fam_pa.html\">Famílias assentadas<\/a><div class=\"sub\">famílias · 2025<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"0dfacc5e275c30918ad78e4963fc1aa0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Agregados: soma dos municípios para totais; razão das somas para proporções e médias; variação das somas para a dinâmica. 
+* há municípios com X (sigilo) no grupo; o valor usa só os municípios com valor publicado.
+</p>
+</div>
+</div>
+</section>
+<section id="tabela-municipal-censo-2017-e-sipra" class="level2">
+<h2 class="anchored" data-anchor-id="tabela-municipal-censo-2017-e-sipra">Tabela municipal: Censo 2017 e SIPRA</h2>
+<p>A categoria 46504 vem do Censo de 2017. Os projetos e as famílias vêm do SIPRA, com posição de 2025, e contam os projetos com sede no município. Os anos são diferentes; a tabela serve para comparar a ordem de grandeza, não para fazer contas.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="aviso-municipio">
+<b>O município não é a área-piloto. </b>
+Os indicadores descrevem o município inteiro (ou toda a sua agricultura familiar). Eles dão o contexto das áreas-piloto, não medem as áreas-piloto.
+</div>
+</div>
+<div class="cell-output-display">
+<div class="legenda-sinais">
+Sinais do IBGE: 
+<b>X</b>
+ sigilo (dado omitido para não identificar o informante) · 
+<b>–</b>
+ zero absoluto · 
+<b>...</b>
+ não disponível. Nenhum deles é tratado como zero na exibição.
+</div>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-e4c8378ad37d03286fad" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e4c8378ad37d03286fad">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Município":["<a href=\"../municipios/itanhanga.html\">Itanhangá<\/a>","<a href=\"../municipios/sao-jose-do-rio-claro.html\">São José do Rio Claro<\/a>","<a href=\"../municipios/conquista-d-oeste.html\">Conquista D'Oeste<\/a>","<a href=\"../municipios/nova-brasilandia.html\">Nova Brasilândia<\/a>","<a href=\"../municipios/uniao-do-sul.html\">União do Sul<\/a>","<a href=\"../municipios/claudia.html\">Cláudia<\/a>","<a href=\"../municipios/vera.html\">Vera<\/a>","<a href=\"../municipios/pedra-preta.html\">Pedra Preta<\/a>","<a href=\"../municipios/nortelandia.html\">Nortelândia<\/a>","<a href=\"../municipios/nobres.html\">Nobres<\/a>","<a href=\"../municipios/nova-mutum.html\">Nova Mutum<\/a>","<a href=\"../municipios/mirassol-d-oeste.html\">Mirassol d'Oeste<\/a>","<a href=\"../municipios/vila-rica.html\">Vila Rica<\/a>","<a href=\"../municipios/nova-lacerda.html\">Nova Lacerda<\/a>","<a href=\"../municipios/santa-cruz-do-xingu.html\">Santa Cruz do Xingu<\/a>","<a href=\"../municipios/sao-jose-dos-quatro-marcos.html\">São José dos Quatro Marcos<\/a>","<a href=\"../municipios/sao-jose-do-povo.html\">São José do Povo<\/a>","<a href=\"../municipios/diamantino.html\">Diamantino<\/a>","<a href=\"../municipios/tangara-da-serra.html\">Tangará da Serra<\/a>","<a href=\"../municipios/paranatinga.html\">Paranatinga<\/a>","<a href=\"../municipios/sao-felix-do-araguaia.html\">São Félix do Araguaia<\/a>","<a href=\"../municipios/araputanga.html\">Araputanga<\/a>","<a href=\"../municipios/varzea-grande.html\">Várzea Grande<\/a>","<a href=\"../municipios/cuiaba.html\">Cuiabá<\/a>","<a href=\"../municipios/nova-ubirata.html\">Nova Ubiratã<\/a>","<a href=\"../municipios/rosario-oeste.html\">Rosário Oeste<\/a>","<a href=\"../municipios/colniza.html\">Colniza<\/a>","<a href=\"../municipios/marcelandia.html\">Marcelândia<\/a>","<a href=\"../municipios/tesouro.html\">Tesouro<\/a>","<a href=\"../municipios/barra-do-bugres.html\">Barra do Bugres<\/a>","<a href=\"../municipios/juscimeira.html\">Juscimeira<\/a>","<a href=\"../municipios/alto-paraguai.html\">Alto Paraguai<\/a>","<a href=\"../municipios/poxoreu.html\">Poxoréu<\/a>","<a href=\"../municipios/pontal-do-araguaia.html\">Pontal do Araguaia<\/a>","<a href=\"../municipios/brasnorte.html\">Brasnorte<\/a>","<a href=\"../municipios/barra-do-garcas.html\">Barra do Garças<\/a>","<a href=\"../municipios/rondonopolis.html\">Rondonópolis<\/a>","<a href=\"../municipios/santo-afonso.html\">Santo Afonso<\/a>","<a href=\"../municipios/nossa-senhora-do-livramento.html\">Nossa Senhora do Livramento<\/a>","<a href=\"../municipios/sinop.html\">Sinop<\/a>","<a href=\"../municipios/salto-do-ceu.html\">Salto do Céu<\/a>","<a href=\"../municipios/sao-pedro-da-cipa.html\">São Pedro da Cipa<\/a>","<a href=\"../municipios/aripuana.html\">Aripuanã<\/a>","<a href=\"../municipios/dom-aquino.html\">Dom Aquino<\/a>","<a href=\"../municipios/santo-antonio-de-leverger.html\">Santo Antônio de Leverger<\/a>","<a href=\"../municipios/sorriso.html\">Sorriso<\/a>","<a href=\"../municipios/agua-boa.html\">Água Boa<\/a>","<a href=\"../municipios/querencia.html\">Querência<\/a>","<a href=\"../municipios/caceres.html\">Cáceres<\/a>","<b><a href=\"../municipios/pocone.html\">Poconé<\/a><\/b><div class=\"sub\">sede de área-piloto<\/div>","<b><a href=\"../municipios/lucas-do-rio-verde.html\">Lucas do Rio Verde<\/a><\/b><div class=\"sub\">sede de área-piloto<\/div>","<a href=\"../municipios/porto-esperidiao.html\">Porto Esperidião<\/a>","<a href=\"../municipios/vila-bela-da-santissima-trindade.html\">Vila Bela da Santíssima Trindade<\/a>","<a href=\"../municipios/guiratinga.html\">Guiratinga<\/a>","<a href=\"../municipios/campinapolis.html\">Campinápolis<\/a>","<a href=\"../municipios/santa-carmem.html\">Santa Carmem<\/a>","<a href=\"../municipios/cotriguacu.html\">Cotriguaçu<\/a>","<a href=\"../municipios/jangada.html\">Jangada<\/a>","<a href=\"../municipios/pontes-e-lacerda.html\">Pontes e Lacerda<\/a>","<a href=\"../municipios/novo-mundo.html\">Novo Mundo<\/a>","<a href=\"../municipios/cocalinho.html\">Cocalinho<\/a>","<a href=\"../municipios/denise.html\">Denise<\/a>","<a href=\"../municipios/paranaita.html\">Paranaíta<\/a>","<a href=\"../municipios/nova-marilandia.html\">Nova Marilândia<\/a>","<a href=\"../municipios/ribeirao-cascalheira.html\">Ribeirão Cascalheira<\/a>","<a href=\"../municipios/general-carneiro.html\">General Carneiro<\/a>","<a href=\"../municipios/itiquira.html\">Itiquira<\/a>","<a href=\"../municipios/carlinda.html\">Carlinda<\/a>","<a href=\"../municipios/figueiropolis-d-oeste.html\">Figueirópolis D'Oeste<\/a>","<a href=\"../municipios/chapada-dos-guimaraes.html\">Chapada dos Guimarães<\/a>","<a href=\"../municipios/campo-verde.html\">Campo Verde<\/a>","<a href=\"../municipios/ribeiraozinho.html\">Ribeirãozinho<\/a>","<a href=\"../municipios/nova-maringa.html\">Nova Maringá<\/a>","<a href=\"../municipios/jauru.html\">Jauru<\/a>","<a href=\"../municipios/arenapolis.html\">Arenápolis<\/a>","<a href=\"../municipios/ipiranga-do-norte.html\">Ipiranga do Norte<\/a>","<a href=\"../municipios/sao-jose-do-xingu.html\">São José do Xingu<\/a>","<a href=\"../municipios/gloria-d-oeste.html\">Glória D'Oeste<\/a>","<a href=\"../municipios/curvelandia.html\">Curvelândia<\/a>","<a href=\"../municipios/alto-garcas.html\">Alto Garças<\/a>","<a href=\"../municipios/alta-floresta.html\">Alta Floresta<\/a>","<a href=\"../municipios/nova-nazare.html\">Nova Nazaré<\/a>","<a href=\"../municipios/santa-terezinha.html\">Santa Terezinha<\/a>","<a href=\"../municipios/nova-guarita.html\">Nova Guarita<\/a>","<a href=\"../municipios/jaciara.html\">Jaciara<\/a>","<a href=\"../municipios/feliz-natal.html\">Feliz Natal<\/a>","<a href=\"../municipios/reserva-do-cabacal.html\">Reserva do Cabaçal<\/a>","<a href=\"../municipios/nova-xavantina.html\">Nova Xavantina<\/a>","<a href=\"../municipios/nova-santa-helena.html\">Nova Santa Helena<\/a>","<a href=\"../municipios/guaranta-do-norte.html\">Guarantã do Norte<\/a>","<a href=\"../municipios/juina.html\">Juína<\/a>","<a href=\"../municipios/acorizal.html\">Acorizal<\/a>","<a href=\"../municipios/vale-de-sao-domingos.html\">Vale de São Domingos<\/a>","<a href=\"../municipios/apiacas.html\">Apiacás<\/a>","<a href=\"../municipios/novo-horizonte-do-norte.html\">Novo Horizonte do Norte<\/a>","<a href=\"../municipios/nova-bandeirantes.html\">Nova Bandeirantes<\/a>","<a href=\"../municipios/nova-monte-verde.html\">Nova Monte Verde<\/a>","<a href=\"../municipios/novo-sao-joaquim.html\">Novo São Joaquim<\/a>","<a href=\"../municipios/castanheira.html\">Castanheira<\/a>","<a href=\"../municipios/barao-de-melgaco.html\">Barão de Melgaço<\/a>","<a href=\"../municipios/nova-canaa-do-norte.html\">Nova Canaã do Norte<\/a>","<a href=\"../municipios/matupa.html\">Matupá<\/a>","<a href=\"../municipios/comodoro.html\">Comodoro<\/a>","<a href=\"../municipios/confresa.html\">Confresa<\/a>","<a href=\"../municipios/terra-nova-do-norte.html\">Terra Nova do Norte<\/a>","<a href=\"../municipios/colider.html\">Colíder<\/a>","<a href=\"../municipios/alto-araguaia.html\">Alto Araguaia<\/a>","<a href=\"../municipios/alto-boa-vista.html\">Alto Boa Vista<\/a>","<a href=\"../municipios/alto-taquari.html\">Alto Taquari<\/a>","<a href=\"../municipios/araguaiana.html\">Araguaiana<\/a>","<a href=\"../municipios/araguainha.html\">Araguainha<\/a>","<a href=\"../municipios/bom-jesus-do-araguaia.html\">Bom Jesus do Araguaia<\/a>","<a href=\"../municipios/campo-novo-do-parecis.html\">Campo Novo do Parecis<\/a>","<a href=\"../municipios/campos-de-julio.html\">Campos de Júlio<\/a>","<a href=\"../municipios/canabrava-do-norte.html\">Canabrava do Norte<\/a>","<a href=\"../municipios/canarana.html\">Canarana<\/a>","<a href=\"../municipios/gaucha-do-norte.html\">Gaúcha do Norte<\/a>","<a href=\"../municipios/indiavai.html\">Indiavaí<\/a>","<a href=\"../municipios/itauba.html\">Itaúba<\/a>","<b><a href=\"../municipios/juara.html\">Juara<\/a><\/b><div class=\"sub\">sede de área-piloto<\/div>","<a href=\"../municipios/juruena.html\">Juruena<\/a>","<a href=\"../municipios/lambari-d-oeste.html\">Lambari D'Oeste<\/a>","<a href=\"../municipios/luciara.html\">Luciara<\/a>","<a href=\"../municipios/nova-olimpia.html\">Nova Olímpia<\/a>","<a href=\"../municipios/novo-santo-antonio.html\">Novo Santo Antônio<\/a>","<a href=\"../municipios/peixoto-de-azevedo.html\">Peixoto de Azevedo<\/a>","<a href=\"../municipios/planalto-da-serra.html\">Planalto da Serra<\/a>","<a href=\"../municipios/ponte-branca.html\">Ponte Branca<\/a>","<a href=\"../municipios/porto-alegre-do-norte.html\">Porto Alegre do Norte<\/a>","<a href=\"../municipios/porto-dos-gauchos.html\">Porto dos Gaúchos<\/a>","<a href=\"../municipios/porto-estrela.html\">Porto Estrela<\/a>","<a href=\"../municipios/primavera-do-leste.html\">Primavera do Leste<\/a>","<a href=\"../municipios/rio-branco.html\">Rio Branco<\/a>","<a href=\"../municipios/rondolandia.html\">Rondolândia<\/a>","<a href=\"../municipios/santa-rita-do-trivelato.html\">Santa Rita do Trivelato<\/a>","<a href=\"../municipios/santo-antonio-do-leste.html\">Santo Antônio do Leste<\/a>","<a href=\"../municipios/sapezal.html\">Sapezal<\/a>","<a href=\"../municipios/serra-nova-dourada.html\">Serra Nova Dourada<\/a>","<a href=\"../municipios/tabapora.html\">Tabaporã<\/a>","<a href=\"../municipios/tapurah.html\">Tapurah<\/a>","<a href=\"../municipios/torixoreu.html\">Torixoréu<\/a>"],"bioma":["Amazônia","Amazônia","Amazônia","Cerrado","Amazônia","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Cerrado","Amazônia","Amazônia","Amazônia","Amazônia","Amazônia","Cerrado","Cerrado","Cerrado","Cerrado","Amazônia","Amazônia","Cerrado","Cerrado","Amazônia","Cerrado","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Cerrado","Cerrado","Cerrado","Amazônia","Cerrado","Cerrado","Amazônia","Cerrado","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Pantanal","Cerrado","Cerrado","Amazônia","Pantanal","Pantanal","Cerrado","Amazônia","Amazônia","Cerrado","Cerrado","Amazônia","Amazônia","Cerrado","Amazônia","Amazônia","Cerrado","Amazônia","Amazônia","Amazônia","Cerrado","Cerrado","Cerrado","Amazônia","Amazônia","Cerrado","Cerrado","Cerrado","Amazônia","Amazônia","Amazônia","Amazônia","Amazônia","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Cerrado","Amazônia","Amazônia","Amazônia","Cerrado","Cerrado","Amazônia","Amazônia","Amazônia","Amazônia","Cerrado","Amazônia","Pantanal","Amazônia","Amazônia","Cerrado","Amazônia","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Cerrado","Cerrado","Amazônia","Cerrado","Cerrado","Amazônia","Cerrado","Amazônia","Amazônia","Amazônia","Amazônia","Amazônia","Amazônia","Cerrado","Amazônia","Cerrado","Amazônia","Cerrado","Cerrado","Amazônia","Amazônia","Cerrado","Cerrado","Amazônia","Amazônia","Cerrado","Cerrado","Cerrado","Cerrado","Amazônia","Amazônia","Cerrado"],"tipo_m1":["T4","T2","T2","T1","T2","T4","T4","T2","T2","T2","T4","T5","T2","T2","T2","T5","T1","T4","T5","T2","T2","T2","T2","T5","T4","T2","T5","T2","T2","T1","T1","T1","T2","T2","T3","T1","T5","T1","T2","T5","T2","T1","T3","T2","T5","T4","T4","T4","T5","T5","T4","T3","T3","T2","T1","T1","T3","T2","T3","T3","T2","T1","T3","T1","T1","T1","T1","T3","T1","T2","T5","T1","T1","T1","T1","T1","T1","T1","T1","T1","T3","T1","T1","T1","T1","T1","T1","T3","T1","T3","T5","T1","T1","T1","T1","T3","T1","T1","T3","T1","T3","T1","T1","T3","T3","T3","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T3","T1","T1","T1","T1","T1","T3","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1","T1"],"e_v":[794,293,97,162,73,202,124,340,138,194,121,405,358,162,51,366,111,143,293,169,161,113,87,167,96,192,507,91,13,65,126,75,159,24,110,66,220,36,160,77,59,18,179,36,156,31,52,39,213,133,9,66,78,25,43,4,101,25,54,46,10,21,55,5,24,7,7,34,18,23,25,3,3,18,4,1,3,3,4,1,9,1,4,3,3,1,1,4,1,4,6,1,1,1,1,3,1,1,2,1,2,1,1,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"p_v":[69.527145,66.289593,60.625,54,50,49.388753,49.206349,49.132948,46.779661,43.99093,42.45614,35.872453,33.240483,31.764706,29.310345,29.0938,28.90625,27.290076,25.367965,25.337331,22.454672,22.287968,21.641791,20.591862,19.472617,18.426104,18.376223,18.273092,17.808219,17.615176,17.355372,16.816143,16.719243,16.666667,15.558699,15.034169,14.483213,14.457831,14.171833,13.824057,13.53211,12.328767,11.722331,10.97561,10.648464,9.253731,8.652246,8.441558,8.182866,7.897862,7.758621,7.621247,7.442748,7.183908,6.913183,6.896552,6.499356,5.952381,5.921053,5.330243,5.128205,4.929577,4.661017,4.347826,4.116638,3.743316,3.703704,3.090909,3.035413,2.864259,2.796421,2.564103,2.479339,2.176542,1.895735,1.724138,1.570681,1.153846,1.017812,0.943396,0.751252,0.653595,0.609756,0.598802,0.596421,0.574713,0.571429,0.425532,0.387597,0.38059,0.306592,0.296736,0.230947,0.228833,0.224719,0.221729,0.176367,0.166113,0.16129,0.158983,0.158479,0.141443,0.121212,0.103146,0.093545,0.072359,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"a_v":[73.465322,52.129123,69.196344,"NA",33.548508,28.211851,26.294407,36.550688,27.284617,44.978778,17.147999,21.861604,26.321918,13.783959,19.612528,12.872109,"NA",20.385381,24.867345,13.080112,20.23375,12.467454,21.620527,10.2823,26.048305,14.84927,18.435093,10.367134,4.297408,"NA","NA","NA",7.869184,1.733858,"NA","NA",10.630481,"NA",5.300199,14.516903,4.338422,"NA",8.845949,5.498282,8.924367,"NA",8.892662,7.867461,5.309944,6.003959,"NA","NA",2.90383,2.701687,"NA","NA",5.461113,5.727265,0.87882,4.444956,10.34689,"NA","NA","NA",5.063977,"NA",0.79615,1.667283,0.157143,0.892421,2.749161,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA",0.317497,"NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA","NA",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"n_v":[1,3,1,2,5,3,1,10,3,4,6,7,8,3,1,1,4,7,2,4,9,4,3,6,3,26,7,1,0,4,4,7,9,1,3,4,10,1,24,2,2,1,2,4,13,7,9,5,21,16,0,2,12,6,3,1,3,9,11,16,1,2,2,2,8,2,1,2,1,7,7,0,5,3,1,6,3,0,2,0,4,3,3,10,2,1,1,5,0,7,4,6,1,2,5,2,1,1,2,3,11,1,7,15,7,6,2,3,0,1,1,3,1,0,5,0,1,1,0,3,2,0,1,5,2,10,1,0,4,1,3,2,1,1,1,0,0,2,2,4,0],"f_v":[1273,735,390,216,131,633,231,570,308,718,434,900,890,633,261,73,392,618,1003,691,987,398,323,734,609,1984,2472,375,0,206,394,606,539,24,1938,443,814,58,1808,541,73,24,340,138,1048,959,1568,1262,1776,881,0,74,1262,205,945,35,1873,989,1181,3150,80,114,824,212,2487,164,80,124,24,532,965,0,87,950,73,256,315,0,187,0,1608,357,714,246,9,379,35,636,0,2433,414,1466,122,272,267,1232,118,57,594,249,984,421,1144,4850,2184,1912,136,799,0,34,13,915,54,0,884,0,73,45,0,332,483,0,25,357,683,3610,12,0,546,25,60,37,104,214,46,0,0,224,1052,577,0]},"columns":[{"id":"Município","name":"Município","type":"character","html":true,"minWidth":170},{"id":"bioma","name":"Bioma","type":"character","minWidth":85},{"id":"tipo_m1","name":"Tipo (M1)","type":"character","minWidth":70,"align":"center"},{"id":"e_v","name":"e_v","type":"numeric","sortNALast":true,"cell":["794","293","97","162","73","202","124","340","138","194","121","405","358","162","51","366","111","143","293","169","161","113","87","167","96","192","507","91","13","65","126","75","159","24","110","66","220","36","160","77","59","18","179","36","156","31","52","39","213","133","9","66","78","25","43","4","101","25","54","46","10","21","55","5","24","7","7","34","18","23","25","3","3","18","4","1","3","3","4","1","9","1","4","3","3","1","1","4","1","4","6","1","1","1","1","3","1","1","2","1","2","1","1","2","1","1","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>"],"header":"Estab. da AF em 46504<div class=\"sub\">Censo 2017<\/div>","html":true,"minWidth":105,"align":"right"},{"id":"p_v","name":"p_v","type":"numeric","sortNALast":true,"cell":["69,5%","66,3%","60,6%","54,0%","50,0%","49,4%","49,2%","49,1%","46,8%","44,0%","42,5%","35,9%","33,2%","31,8%","29,3%","29,1%","28,9%","27,3%","25,4%","25,3%","22,5%","22,3%","21,6%","20,6%","19,5%","18,4%","18,4%","18,3%","17,8%","17,6%","17,4%","16,8%","16,7%","16,7%","15,6%","15,0%","14,5%","14,5%","14,2%","13,8%","13,5%","12,3%","11,7%","11,0%","10,6%","9,3%","8,7%","8,4%","8,2%","7,9%","7,8%","7,6%","7,4%","7,2%","6,9%","6,9%","6,5%","6,0%","5,9%","5,3%","5,1%","4,9%","4,7%","4,3%","4,1%","3,7%","3,7%","3,1%","3,0%","2,9%","2,8%","2,6%","2,5%","2,2%","1,9%","1,7%","1,6%","1,2%","1,0%","0,9%","0,8%","0,7%","0,6%","0,6%","0,6%","0,6%","0,6%","0,4%","0,4%","0,4%","0,3%","0,3%","0,2%","0,2%","0,2%","0,2%","0,2%","0,2%","0,2%","0,2%","0,2%","0,1%","0,1%","0,1%","0,1%","0,1%","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>"],"header":"% da AF em 46504<div class=\"sub\">dos estab., Censo 2017<\/div>","html":true,"minWidth":105,"align":"right"},{"id":"a_v","name":"a_v","type":"numeric","sortNALast":true,"cell":["73,5%","52,1%","69,2%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","33,5%","28,2%","26,3%","36,6%","27,3%","45,0%","17,1%","21,9%","26,3%","13,8%","19,6%","12,9%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","20,4%","24,9%","13,1%","20,2%","12,5%","21,6%","10,3%","26,0%","14,8%","18,4%","10,4%","4,3%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","7,9%","1,7%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","10,6%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","5,3%","14,5%","4,3%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","8,8%","5,5%","8,9%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","8,9%","7,9%","5,3%","6,0%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","2,9%","2,7%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","5,5%","5,7%","0,9%","4,4%","10,3%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","5,1%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","0,8%","1,7%","0,2%","0,9%","2,7%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","0,3%","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-x\" title=\"X (sigilo IBGE)\">X<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>","<span class=\"sinal sinal-zero\" title=\"– (zero absoluto)\">–<\/span>"],"header":"% da área da AF em 46504<div class=\"sub\">Censo 2017<\/div>","html":true,"minWidth":105,"align":"right"},{"id":"n_v","name":"n_v","type":"numeric","sortNALast":true,"cell":["1","3","1","2","5","3","1","10","3","4","6","7","8","3","1","1","4","7","2","4","9","4","3","6","3","26","7","1","0","4","4","7","9","1","3","4","10","1","24","2","2","1","2","4","13","7","9","5","21","16","0","2","12","6","3","1","3","9","11","16","1","2","2","2","8","2","1","2","1","7","7","0","5","3","1","6","3","0","2","0","4","3","3","10","2","1","1","5","0","7","4","6","1","2","5","2","1","1","2","3","11","1","7","15","7","6","2","3","0","1","1","3","1","0","5","0","1","1","0","3","2","0","1","5","2","10","1","0","4","1","3","2","1","1","1","0","0","2","2","4","0"],"header":"Projetos de assentamento<div class=\"sub\">SIPRA, 2025<\/div>","html":true,"minWidth":105,"align":"right"},{"id":"f_v","name":"f_v","type":"numeric","sortNALast":true,"cell":["1.273","735","390","216","131","633","231","570","308","718","434","900","890","633","261","73","392","618","1.003","691","987","398","323","734","609","1.984","2.472","375","0","206","394","606","539","24","1.938","443","814","58","1.808","541","73","24","340","138","1.048","959","1.568","1.262","1.776","881","0","74","1.262","205","945","35","1.873","989","1.181","3.150","80","114","824","212","2.487","164","80","124","24","532","965","0","87","950","73","256","315","0","187","0","1.608","357","714","246","9","379","35","636","0","2.433","414","1.466","122","272","267","1.232","118","57","594","249","984","421","1.144","4.850","2.184","1.912","136","799","0","34","13","915","54","0","884","0","73","45","0","332","483","0","25","357","683","3.610","12","0","546","25","60","37","104","214","46","0","0","224","1.052","577","0"],"header":"Famílias assentadas<div class=\"sub\">SIPRA, 2025<\/div>","html":true,"minWidth":105,"align":"right"}],"searchable":true,"defaultPageSize":15,"showPageSizeOptions":true,"pageSizeOptions":[15,50,141],"striped":true,"compact":true,"className":"tabela-res","language":{"searchPlaceholder":"Buscar município","noData":"Nenhum município","pageNext":"próxima","pagePrevious":"anterior","pageInfo":"{rowStart}–{rowEnd} de {rows} municípios","pageSizeOptions":"Mostrar {rows}"},"dataKey":"09d9889b9de289e7b2f13a542fe17a1d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<p class="nota-fonte">Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878; INCRA/SIPRA, Relatório 0227 (posição de 03/06/2025). Bioma dominante: IBGE, Biomas 1:250 mil (2019). Tipos municipais: Manuscrito 1 do Projeto RESA (k = 5; rótulos provisórios). Agregados: – (zero absoluto) conta como zero; X e ... ficam fora. Detalhes em <a href="../dados/index.html">Dados</a>.</p>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> De volta ao topo</a></main> <!-- /main -->
+<script>
+
+// Siglas explicadas ao passar o cursor (ou tocar, no celular). Aplica-se a parágrafos, listas e legendas.
+
+(function () {
+
+  var G = {
+
+    "AF": "Agricultura familiar, conforme a Lei 11.326/2006 e o Censo Agropecuário 2017",
+
+    "PA": "Projeto de Assentamento da reforma agrária",
+
+    "PAs": "Projetos de Assentamento da reforma agrária",
+
+    "INCRA": "Instituto Nacional de Colonização e Reforma Agrária",
+
+    "SIPRA": "Sistema de Informações de Projetos de Reforma Agrária (INCRA)",
+
+    "PNCF": "Programa Nacional de Crédito Fundiário (terra comprada com financiamento)",
+
+    "PRONAF": "Programa Nacional de Fortalecimento da Agricultura Familiar",
+
+    "DAP": "Declaração de Aptidão ao Pronaf",
+
+    "SEEG": "Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (Observatório do Clima)",
+
+    "PRODES": "Monitoramento do desmatamento por satélite (INPE)",
+
+    "INPE": "Instituto Nacional de Pesquisas Espaciais",
+
+    "GEE": "Gases de efeito estufa",
+
+    "CO2e": "Dióxido de carbono equivalente: soma dos gases ponderada pelo potencial de aquecimento",
+
+    "GWP-AR5": "Potencial de aquecimento global do 5º Relatório do IPCC, usado pelo SEEG para somar os gases",
+
+    "SAF": "Sistema agroflorestal",
+
+    "PSA": "Pagamento por serviços ambientais",
+
+    "ESG": "Critérios ambientais, sociais e de governança",
+
+    "REDD+": "Redução de emissões por desmatamento e degradação florestal",
+
+    "VPL": "Valor presente líquido",
+
+    "TIR": "Taxa interna de retorno",
+
+    "PAF": "Fatoração pelo eixo principal (análise fatorial exploratória)",
+
+    "OE": "Objetivo específico do projeto",
+
+    "iCS": "Instituto Clima e Sociedade",
+
+    "UNEMAT": "Universidade do Estado de Mato Grosso",
+
+    "MapBiomas": "Mapeamento anual da cobertura e do uso da terra no Brasil",
+
+    "CAR": "Cadastro Ambiental Rural",
+
+    "KMO": "Medida de adequação dos dados à análise fatorial, de 0 a 1 (acima de 0,8 é boa)",
+
+    "ARI": "Índice de Rand ajustado: concordância entre duas classificações dos mesmos municípios (1 = iguais; 0 = acaso)",
+
+    "Jaccard": "Estabilidade de um grupo nas reamostras: 1 quando o grupo se repete sempre igual",
+
+    "clusterboot": "Rotina do R (pacote fpc) que mede a estabilidade dos grupos por reamostragem",
+
+    "silhueta": "Medida de separação dos grupos, de −1 a 1: quanto maior, mais nítidos os grupos",
+
+    "Calinski-Harabasz": "Índice de qualidade do agrupamento: quanto maior, mais separados os grupos",
+
+    "Davies-Bouldin": "Índice de qualidade do agrupamento: quanto menor, mais separados os grupos",
+
+    "gap": "Critério que compara o agrupamento com dados ao acaso para escolher o número de grupos",
+
+    "Kruskal-Wallis": "Teste de diferença entre grupos que usa a ordem dos valores, não os valores",
+
+    "ε²": "Tamanho de efeito do Kruskal-Wallis: parte da variação explicada pelo grupo, de 0 a 1",
+
+    "Spearman": "Correlação pela ordem dos valores, de −1 a 1",
+
+    "Pearson": "Correlação linear entre os valores, de −1 a 1",
+
+    "Dutilleul": "Correção do teste de correlação para a semelhança entre municípios vizinhos",
+
+    "symlog": "Escala logarítmica que aceita o zero",
+
+    "Φ": "Correlação entre dois fatores numa rotação oblíqua",
+
+    "AFOLU": "Agricultura, florestas e outros usos da terra (setor do inventário de emissões)",
+
+    "banking": "Guardar permissões de emissão de um período para usar depois",
+
+    "spillover": "Efeito de transbordamento: o que acontece num mercado afeta outro",
+
+    "cointegração": "Relação de longo prazo entre séries de preços"
+
+  };
+
+  var chaves = Object.keys(G).sort(function (a, b) { return b.length - a.length; });
+
+  var re = new RegExp("(^|[^\\wÀ-ú-])(" + chaves.map(function (k) { return k.replace(/[-+.]/g, "\\$&"); }).join("|") + ")(?![\\wÀ-ú-])");
+
+  function marcar(el) {
+
+    var usados = {};
+
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+
+      acceptNode: function (n) {
+
+        var p = n.parentNode;
+
+        while (p && p !== el) { if (/^(A|ABBR|CODE|SCRIPT|STYLE|SVG|BUTTON|SELECT|OPTION)$/i.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
+
+        return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+
+      }
+
+    });
+
+    var nos = []; while (w.nextNode()) nos.push(w.currentNode);
+
+    nos.forEach(function (n) {
+
+      var m = n.nodeValue.match(re); if (!m || usados[m[2]]) return;
+
+      usados[m[2]] = true;
+
+      var i = m.index + m[1].length, depois = n.splitText(i); depois.splitText(m[2].length);
+
+      var ab = document.createElement("abbr"); ab.title = G[m[2]]; ab.tabIndex = 0; ab.textContent = m[2];
+
+      depois.parentNode.replaceChild(ab, depois);
+
+    });
+
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll("main p, main li, main figcaption, main .kpi-rotulo, main .kpi-meta").forEach(marcar);
+
+  });
+
+})();
+
+</script>
+
+<div id="dica-grafico" role="tooltip" aria-hidden="true"></div>
+
+<script>
+
+// Dica imediata para elementos com data-tip (pontos, barras e linhas dos gráficos SVG; selos).
+
+(function () {
+
+  var dica = document.getElementById("dica-grafico");
+
+  function mostrar(el, x, y) {
+
+    dica.textContent = el.getAttribute("data-tip");
+
+    dica.style.display = "block";
+
+    var w = dica.offsetWidth, h = dica.offsetHeight;
+
+    var left = Math.min(x + 12, window.innerWidth - w - 8), top = y - h - 12;
+
+    if (top < 4) top = y + 16;
+
+    dica.style.left = left + "px"; dica.style.top = top + "px";
+
+  }
+
+  function esconder() { dica.style.display = "none"; }
+
+  document.addEventListener("mouseover", function (e) {
+
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el) mostrar(el, e.clientX, e.clientY);
+
+  });
+
+  document.addEventListener("mousemove", function (e) {
+
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el && dica.style.display === "block") mostrar(el, e.clientX, e.clientY);
+
+  });
+
+  document.addEventListener("mouseout", function (e) {
+
+    if (e.target.closest && e.target.closest("[data-tip]")) esconder();
+
+  });
+
+  document.addEventListener("touchstart", function (e) {
+
+    var el = e.target.closest && e.target.closest("[data-tip]"); var t = e.touches[0];
+
+    if (el) mostrar(el, t.clientX, t.clientY); else esconder();
+
+  }, { passive: true });
+
+  window.addEventListener("scroll", esconder, { passive: true });
+
+})();
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 19/10/2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="..\assets/logo-unemat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="UNEMAT"><img src="..\assets/logo-unemat.png" height="40" alt="UNEMAT" class="figure-img"></a></p>
+<figcaption>UNEMAT</figcaption>
+</figure>
+</div>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

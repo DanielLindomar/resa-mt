@@ -1,0 +1,10 @@
+coluna,descricao,unidade,fonte
+id_municipio,Código IBGE do município (7 dígitos),,IBGE
+municipio,Nome do município,,IBGE
+slug,"Nome do município sem acento, usado no endereço do perfil no site",,Projeto RESA
+bioma,Bioma dominante do município (maior área),,"IBGE, Biomas 1:250 mil (2019)"
+tipo_m1,Tipo municipal da AF no Manuscrito 1 (k = 5),,"Projeto RESA, Manuscrito 1 (em preparação)"
+rotulo_m1,Rótulo do tipo,,"Projeto RESA, Manuscrito 1 (em preparação)"
+rotulo_status,"Situação do rótulo: provisório, pendente de aprovação dos autores",,Projeto RESA
+sede_piloto,Município-sede de uma das três áreas-piloto (true/false),,Projeto RESA
+geometria,"Polígono do município, simplificado para a web (coordenadas com 3 casas decimais, WGS 84)",graus,"IBGE, Malha Municipal 2022"

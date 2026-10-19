@@ -1,0 +1,9 @@
+coluna,descricao,unidade,fonte
+id_municipio,Código IBGE do município (7 dígitos),,IBGE
+municipio,Nome do município,,IBGE
+n_estab_total_2006,"Estabelecimentos agropecuários (todos), 2006",estabelecimentos,"IBGE, Censo Agropecuário 2006"
+n_estab_total_2017,"Estabelecimentos agropecuários (todos), 2017",estabelecimentos,"IBGE, Censo Agropecuário 2017"
+area_total_ha_2006,"Área dos estabelecimentos (todos), 2006",hectares,"IBGE, Censo Agropecuário 2006"
+area_total_ha_2017,"Área dos estabelecimentos (todos), 2017",hectares,"IBGE, Censo Agropecuário 2017"
+pct_var_n_estab,"Variação do número de estabelecimentos, 2006–2017",%,cálculo do projeto
+pct_var_area,"Variação da área, 2006–2017",%,cálculo do projeto

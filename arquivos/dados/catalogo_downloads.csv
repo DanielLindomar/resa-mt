@@ -1,0 +1,8 @@
+arquivo,linhas,colunas,kb,dicionario
+catalogo_downloads.csv,7,5,0.5,
+fontes_licencas.csv,10,6,2,
+resa_censo2017_af_municipios.csv,141,58,41.1,dicionarios/resa_censo2017_af_municipios.csv
+resa_dinamica_2006_2017_municipios.csv,141,8,9,dicionarios/resa_dinamica_2006_2017_municipios.csv
+resa_incra_sipra_municipios.csv,141,6,5.8,dicionarios/resa_incra_sipra_municipios.csv
+resa_indicadores_municipios.csv,141,66,72.2,dicionarios/resa_indicadores_municipios.csv
+resa_tipologia_m1_municipios.csv,141,6,13.5,dicionarios/resa_tipologia_m1_municipios.csv

@@ -1,0 +1,7 @@
+coluna,descricao,unidade,fonte
+id_municipio,Código IBGE do município (7 dígitos),,IBGE
+municipio,Nome do município,,IBGE
+bioma,Bioma dominante do município (maior área),,"IBGE, Biomas 1:250 mil (2019)"
+tipo_m1,Tipo municipal da AF no Manuscrito 1 (k = 5),,"Projeto RESA, Manuscrito 1"
+rotulo_m1,Rótulo do tipo (provisório: ver rotulo_status),,"Projeto RESA, Manuscrito 1"
+rotulo_status,"Situação do rótulo: provisório, pendente de aprovação dos autores",,Projeto RESA
