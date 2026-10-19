@@ -1,0 +1,88 @@
+```{r}
+#| include: false
+# Modelo comum das páginas de área-piloto. A página define PIL_SLUG antes de incluir este arquivo:
+#   vale-do-arinos.qmd, quata-nsa-aparecida.qmd e lambari.qmd (nome do arquivo = slug de dados_site/pilotos.csv).
+# Não use o nome _piloto.qmd: o script 03 geraria páginas com outros nomes a partir dele.
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+P <- PIL[PIL$slug == PIL_SLUG, ]
+stopifnot(nrow(P) == 1)
+M <- MUN[MUN$id_municipio == P$id_municipio, ]
+INFO <- PIL_INFO[[PIL_SLUG]]
+KPIS <- c("estab_af", "pct_estab_af", "pct_estab_46504", "seeg_emissao_bruta")
+s46504 <- ultimo("estab_af_46504", M$id_municipio)
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+::: {.nav-mun}
+[← Todas as áreas-piloto](index.qmd){.btn .btn-sm .btn-outline-primary}
+:::
+
+::: {.perfil-topo}
+:::: {}
+### Identificação
+
+```{r}
+ident_piloto(PIL_SLUG)
+```
+
+```{r}
+if (length(INFO$notas)) tagList(lapply(INFO$notas, function(x) p(class = "nota-fonte", x)))
+```
+::::
+
+:::: {}
+```{r}
+mapa_municipio(M$id_municipio, altura = 340, prefixo = "../municipios/")
+```
+
+```{r}
+p(class = "nota-fonte", sprintf("%s em destaque entre os municípios de MT, por bioma dominante (IBGE, Biomas 1:250 mil, 2019). O mapa não mostra o perímetro da área-piloto.", M$municipio))
+```
+::::
+:::
+
+```{r}
+homonimos(PIL_SLUG)
+```
+
+## O município de `r M$municipio` no contexto de MT
+
+```{r}
+aviso_municipio()
+```
+
+```{r}
+div(class = "kpi-grade", lapply(KPIS, kpi_mun, mun_id = M$id_municipio))
+```
+
+```{r}
+legenda_sinais()
+```
+
+```{r}
+#| results: asis
+if (identical(s46504$sinal, TRACO)) {
+  cat(sprintf(paste0(
+    "No Censo Agropecuário 2017, %s aparece com %s (zero absoluto) em estabelecimentos da agricultura familiar de ",
+    "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017). Isso não quer dizer que não haja assentados no município. ",
+    "A categoria mede como o produtor declarou a sua condição em relação às terras: quem já tem título aparece como proprietário, ",
+    "e ela não coincide com o cadastro do INCRA. Veja [Posse no Censo e reforma agrária](../resultados/posse.qmd).\n"),
+    M$municipio, TRACO))
+}
+```
+
+```{r}
+p("Perfil completo, com todos os indicadores, posição no bioma e em MT: ",
+  a(href = url_mun(M$slug), paste("município de", M$municipio, "→")))
+```
+
+## O que vem e quando
+
+```{r}
+o_que_vem()
+```

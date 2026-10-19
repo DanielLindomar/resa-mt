@@ -1,0 +1,52 @@
+---
+title: "OE5 · Inovação e capital social"
+description: "Objetivo específico 5 do Projeto RESA: capacidade de inovação, difusão de conhecimento e capital social nas áreas-piloto. Objetivo, método previsto e situação"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objetivo
+
+Entender como as famílias das áreas-piloto inovam, trocam conhecimento e se organizam. O OE5 procura o que favorece o engajamento e como as famílias percebem as mudanças propostas. Com isso, a difusão do Pacote Tecnológico fica mais eficaz, e a rede entre famílias, pesquisadores e poder público se fortalece.
+
+```{r}
+bloco_situacao("OE5", list(
+  c("previsto", "Oficinas participativas nas áreas-piloto.", "Vêm depois do diagnóstico da Fase 1; sem data confirmada."),
+  c("previsto", "Relatórios das oficinas e protocolos de engajamento comunitário.")))
+```
+
+## Método previsto
+
+- **Oficinas participativas** com agricultores e lideranças, para validar os resultados do diagnóstico e construir as recomendações em conjunto.
+- **Entrevistas semiestruturadas** com famílias e lideranças, para captar percepções e fatores de engajamento.
+- **Capacitação prática** nas áreas-piloto, em manejo de baixo carbono e acesso a mercados diferenciados, como o de créditos de carbono e o PSA.
+- **Plano de difusão**, com materiais em linguagem simples (cartilhas, vídeos curtos, mapas simplificados) e dias de campo.
+
+## Resultados esperados
+
+A proposta acompanha três metas ligadas a este objetivo:
+
+- o grau de engajamento e de apropriação do Pacote Tecnológico pelas comunidades;
+- o número de produtores familiares capacitados em tecnologias de baixo carbono;
+- as propostas de política pública apresentadas a tomadores de decisão.
+
+## Cuidados com as pessoas
+
+As atividades com as famílias dependem da aprovação no Comitê de Ética em Pesquisa e do consentimento livre e esclarecido. O site não publica nomes, fotos de pessoas nem dados individuais. Os resultados das oficinas entram só de forma agregada.
+
+```{r}
+p(class = "nota-fonte", "Fonte: proposta do Projeto RESA (objetivos específicos, metodologia e plano de disseminação), em texto próprio.")
+```
+
+```{r}
+nav_oes("OE5")
+```

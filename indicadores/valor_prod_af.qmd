@@ -1,0 +1,15 @@
+---
+title: "Valor da produção da agricultura familiar"
+description: "Estrutura da agricultura familiar · R$ mil (valores de 2017) · 2017. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6898."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "valor_prod_af"
+```
+
+{{< include _indicador.qmd >}}

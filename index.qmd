@@ -1,0 +1,70 @@
+---
+title: "Observatório RESA-MT"
+subtitle: "Agricultura familiar, assentamentos e carbono nos três biomas de Mato Grosso"
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
+```
+
+```{r}
+faixa_versao("Versão preliminar para a equipe do projeto. Os resultados mudam à medida que as etapas do estudo são concluídas. Os rótulos dos tipos municipais são provisórios.")
+```
+
+Os assentamentos rurais de Mato Grosso podem ser economicamente viáveis com a floresta em pé? O Projeto RESA busca essa resposta nos três biomas do estado (Amazônia, Cerrado e Pantanal), a partir dos 141 municípios e de três áreas-piloto.
+
+```{r}
+atalhos_inicio()
+```
+
+## Mato Grosso em números
+
+```{r}
+kpis_inicio()
+```
+
+::: {.nota-fonte}
+A série do PRODES é a oficial do INPE. Ela substitui uma série usada antes nos materiais do projeto; veja a nota de correção em [Emissões e desmatamento](resultados/emissoes.qmd). Os totais são estaduais e oficiais; a soma dos municípios pode diferir um pouco (ver [Dados](dados/index.qmd)).
+:::
+
+## Os 141 municípios
+
+O primeiro mapa mostra o tipo municipal da agricultura familiar no Manuscrito 1 do projeto; o segundo, o bioma dominante. As sedes das três áreas-piloto têm contorno escuro. Passe o cursor (ou toque) para ver o nome; clique num município para abrir o perfil.
+
+```{r}
+mapas_inicio(altura = 380)
+```
+
+```{r}
+aviso_municipio()
+```
+
+## As três áreas-piloto
+
+Uma área por bioma. Os números de famílias e de área ainda divergem entre as fontes e entram depois da conciliação.
+
+```{r}
+cartoes_pilotos()
+```
+
+## O que há no site
+
+```{r}
+cartoes_secoes()
+```
+
+## Novidades
+
+**19/10/2026 — Versão 0.1.** É a primeira versão para a equipe do projeto. Entram:
+
+- os 141 municípios, com `r nrow(IND)` indicadores e os sinais do IBGE à vista;
+- as fontes dos indicadores: Censo Agropecuário 2017 da agricultura familiar, INCRA/SIPRA, SEEG 13 e dinâmica 2006–2017;
+- a tipologia municipal do Manuscrito 1 (k = 5, rótulos provisórios);
+- a posse no Censo e a reforma agrária;
+- emissões e desmatamento por tipo, com a série oficial do PRODES e a nota de correção;
+- as três áreas-piloto, só com identificação, e os seis objetivos;
+- a literatura, só com metadados: 115 referências sobre carbono, mercados e ESG e 38 estudos comparados do OE4;
+- os dados para baixar, com dicionário, fontes e licenças.

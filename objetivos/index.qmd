@@ -1,0 +1,56 @@
+---
+title: "Os seis objetivos"
+description: "Os objetivos específicos do Projeto RESA, as fases do estudo, as entregas e a situação de cada um em 19/10/2026"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+O Projeto RESA quer saber se a agricultura familiar dos assentamentos de Mato Grosso pode fazer a transição para uma economia de baixo carbono, com a floresta em pé, nos três biomas do estado. A análise junta território, produção, renda e ambiente. Ela busca o que favorece a redução das emissões, a adaptação ao clima e a sustentabilidade de longo prazo.
+
+O produto final é um **Pacote Tecnológico**: ferramentas, métodos, modelos e recomendações para apoiar políticas públicas. O trabalho se organiza em três fases e seis objetivos específicos (OE).
+
+- **Fase 1 · Diagnóstico e evidências** (OE1, OE2 e OE3): território, produção e renda, carbono, água e solo nas áreas-piloto.
+- **Fase 2 · Estratégias e modelagem de viabilidade** (OE4): cenários de baixo carbono com indicadores financeiros.
+- **Fase 3 · Pacote Tecnológico e articulação** (OE5 e OE6): oficinas com as famílias, consolidação do pacote, capacitação e propostas de política pública.
+
+## Objetivos, perguntas e entregas
+
+```{r}
+tabela_oes()
+```
+
+```{r}
+p(class = "nota-fonte", "Fonte: proposta do Projeto RESA (objetivos específicos e metodologia) e apresentação do projeto no Encontro RESA, em texto próprio. ",
+  "Situação: registro interno do projeto em 19/10/2026; os selos ainda serão validados pela coordenação.")
+```
+
+## Linha do tempo
+
+A proposta organiza o cronograma em marcos de janeiro, abril, agosto e dezembro de cada ano. Cada marco aparece abaixo com a situação em 19/10/2026. As datas são as do cronograma da proposta. Onde a etapa não tem data confirmada, o selo diz "previsto" e a nota explica por quê.
+
+```{r}
+linha_tempo()
+```
+
+```{r}
+p(class = "nota-fonte", "Selos: ", selo_situacao("concluido"), " ", selo_situacao("andamento"), " ", selo_situacao("confirmar"), " ", selo_situacao("previsto"),
+  ". A cor do topo de cada marco segue a etapa menos avançada do marco. As datas de 2027 podem mudar com o andamento da coleta de campo.")
+```
+
+## Onde ver cada objetivo
+
+```{r}
+div(class = "cartoes", lapply(seq_len(nrow(OES)), function(i) { o <- OES[i, ]
+  a(class = "cartao", href = paste0(o$pagina, ".html"),
+    div(class = "cartao-topo", span(class = "selo", paste("Fase", o$fase)), selo_situacao(o$situacao)),
+    tags$h4(paste(o$oe, "·", o$nome)), p(o$pergunta)) }))
+```

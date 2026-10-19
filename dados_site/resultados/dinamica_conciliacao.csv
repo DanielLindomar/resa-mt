@@ -1,0 +1,6 @@
+item,rotulo,unidade,soma_municipal,tabela_estadual,tabela_confronto_ibge,diferenca,pct_diferenca
+estab_2006,"Estabelecimentos agropecuários, 2006",estabelecimentos,112987,112978,112987,9,0.007966
+area_2006,"Área dos estabelecimentos agropecuários, 2006",hectares,48688715,47805514,48688710,883201,1.847488
+vbp_2006,"Valor da produção dos estabelecimentos agropecuários, 2006 (valores correntes)",R$ mil,12291803,9601893,,2689910,28.014372
+estab_2017,"Estabelecimentos agropecuários, 2017",estabelecimentos,118679,118679,,0,0
+area_2017,"Área dos estabelecimentos agropecuários, 2017",hectares,54922849,54922850,,-1,-0.000002

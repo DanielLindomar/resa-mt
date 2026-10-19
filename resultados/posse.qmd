@@ -1,0 +1,142 @@
+---
+title: "O que a posse registrada no Censo mede"
+subtitle: "Categoria 46504 do Censo Agropecuário 2017 e reforma agrária (Manuscrito 1, em preparação)"
+description: "A categoria do Censo 2017 de concessionário(a) ou assentado(a) aguardando titulação definitiva, confrontada com os registros do INCRA"
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_resultados.R"))
+juara <- ultimo("estab_af_46504", 5105101)
+stopifnot(identical(juara$sinal, TRACO))          # Juara: – (zero absoluto) na categoria 46504
+pa_juara <- ultimo("n_pa", 5105101)
+stopifnot(identical(pa_juara$sinal, "valor"), pa_juara$valor > 0)
+disc <- regmatches(m1("INCRA_DISCORDANTES_A"), regexec("^(\\d+) \\(T1 (\\d+), T2 (\\d+), T3 (\\d+), T5 (\\d+)\\)", m1("INCRA_DISCORDANTES_A")))[[1]]
+stopifnot(length(disc) == 6)
+# frases comparativas do texto: conferidas contra os números
+v <- function(campo) setNames(as.numeric(M1N$valor_bruto[match(sprintf("INCRA_%s_%s", names(TIPOS), campo), M1N$id)]), names(TIPOS))
+stopifnot(names(which.max(v("PCT_TITULADO_BENEF_SIPRA"))) == "T4", names(which.min(v("REF_POR100AF_PONDERADO"))) == "T5",
+          names(which.min(v("ANO_CRIACAO_MEDIO_POND_FAMILIAS"))) == "T3", names(which.max(v("PCT_REF_DO_MT"))) == "T3")
+```
+
+```{r}
+faixa_versao()
+```
+
+O Censo Agropecuário pergunta ao produtor em que condição ele ocupa as terras. Uma das respostas é **concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)**, a categoria 46504 do SIDRA. É uma condição **declarada**. O Censo não pergunta se o estabelecimento é da reforma agrária, e quem já recebeu o título pode se declarar proprietário. Esta página mostra, com os resultados do Manuscrito 1, quanto da reforma agrária a categoria capta em Mato Grosso.
+
+## Mato Grosso em números
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Estab. da AF na categoria 46504", m1("TOT_46504_ESTAB"),
+             sprintf("%s%% dos %s estabelecimentos da AF · IBGE, Censo Agropecuário 2017", m1("PCT_46504_ESTAB_MT"), m1("TOT_AF_ESTAB"))),
+  cartao_kpi("Área da AF na categoria 46504", paste(m1("TOT_46504_AREA"), "ha"),
+             sprintf("%s%% da área da AF · IBGE, Censo Agropecuário 2017", m1("PCT_46504_AREA_MT"))),
+  cartao_kpi("Estab. na categoria 46504, AF e não AF", m1("TOT_TODOS_46504_ESTAB"),
+             "AF e não AF · IBGE, Censo Agropecuário 2017"),
+  cartao_kpi("Estab. da reforma agrária no Censo", m1("MARQUES2021_ESTAB_RA_MT"),
+             "identificados pelo IBGE com o INCRA, por critérios múltiplos · Censo 2017 (Marques, 2021)"),
+  cartao_kpi("Projetos de reforma agrária", m1("INCRA_PROJETOS_2025"),
+             sprintf("%s famílias assentadas; %s ha · INCRA/SIPRA, Relatório 0227, posição de 03/06/2025", m1("INCRA_FAMILIAS_2025"), m1("INCRA_AREA_2025"))),
+  cartao_kpi("Beneficiários do INCRA", m1("INCRA_REF_BENEFICIARIOS"),
+             "assentados e titulados homologados até 30/09/2017 · INCRA, relação de beneficiários da SR-13 (só a contagem)"))
+fonte_m1("Tabela 1 e nota da Tabela A.15", c("TOT_46504_ESTAB", "PCT_46504_ESTAB_MT", "TOT_AF_ESTAB", "TOT_46504_AREA", "PCT_46504_AREA_MT",
+                                               "TOT_TODOS_46504_ESTAB", "MARQUES2021_ESTAB_RA_MT", "INCRA_PROJETOS_2025",
+                                               "INCRA_FAMILIAS_2025", "INCRA_AREA_2025", "INCRA_REF_BENEFICIARIOS"),
+         extra = paste0("; INCRA/SIPRA, Relatório 0227; ", FONTE_BENEF, "; Marques (2021), tabulação IBGE-INCRA do Censo 2017"))
+```
+
+## A categoria capta no máximo `r m1("COBERTURA_MAX_46504_MARQUES")`% da reforma agrária
+
+```{r}
+svg_cobertura_46504()
+```
+
+::: {.achado}
+Mesmo que todos os `r m1("TOT_TODOS_46504_ESTAB")` estabelecimentos da categoria 46504 fossem da reforma agrária, eles seriam só **`r m1("COBERTURA_MAX_46504_MARQUES")`%** dos `r m1("MARQUES2021_ESTAB_RA_MT")` que o IBGE e o INCRA identificaram no Censo 2017. Pelo menos `r m1("INCRA_LIM_INF_RA_FORA_46504")` (`r m1("INCRA_LIM_INF_RA_FORA_46504_PCT")`%) ficam fora da categoria.
+:::
+
+- **Na agricultura familiar**, a cobertura da categoria frente aos beneficiários do INCRA é de `r m1("COBERTURA_46504AF_REF_MT")` em MT: `r m1("TOT_46504_ESTAB")` estabelecimentos para `r m1("INCRA_REF_BENEFICIARIOS")` beneficiários.
+- **Muitos titulados se declaram proprietários.** `r m1("INCRA_PROP_TITRA_AF")` estabelecimentos da AF de proprietários obtiveram a terra por titulação ou licença da reforma agrária (Censo 2017, tabela 6774). Somados à categoria 46504, formam a **medida combinada**: `r m1("S4_PCT_MT")`% dos estabelecimentos da AF.
+
+```{r}
+fonte_m1("nota da Tabela A.15", c("COBERTURA_MAX_46504_MARQUES", "TOT_TODOS_46504_ESTAB", "MARQUES2021_ESTAB_RA_MT", "INCRA_LIM_INF_RA_FORA_46504",
+                                   "INCRA_LIM_INF_RA_FORA_46504_PCT", "COBERTURA_46504AF_REF_MT", "INCRA_PROP_TITRA_AF", "S4_PCT_MT"),
+         extra = paste0("; ", FONTE_BENEF, "; Marques (2021)"))
+```
+
+## Censo e INCRA, município a município
+
+```{r}
+figura_res("fig6_censo_incra_final.png",
+           "Figura 6 do Manuscrito 1. (a) Estabelecimentos da AF na categoria 46504 por 100 estabelecimentos da AF (Censo 2017). (b) Beneficiários do INCRA (assentados e titulados, homologados até 30/09/2017) por 100 estabelecimentos da AF, alocados aos municípios pela área dos polígonos dos projetos. As classes são as mesmas nos dois mapas.",
+           paste0("Fonte: IBGE, Censo Agropecuário 2017; INCRA/SIPRA, Relatório 0227; ", FONTE_BENEF, "; elaboração dos autores do Manuscrito 1. ", nota_rotulos_figura()),
+           pasta = "figuras/m1/")
+```
+
+Os dois mapas não coincidem. Onde o INCRA registra muitos beneficiários, o Censo muitas vezes registra poucos estabelecimentos na categoria. `r disc[2]` municípios têm 50 ou mais beneficiários por 100 estabelecimentos da AF e menos de 5% da AF na categoria: `r disc[3]` no T1, `r disc[4]` no T2, `r disc[5]` no T3 e `r disc[6]` no T5. No sentido inverso (categoria na média de MT ou acima, e menos de 10 beneficiários por 100 estabelecimentos da AF), há `r sub(" \\(", " município (", m1("INCRA_DISCORDANTES_B"))`.
+
+## Validação externa por tipo
+
+Se a categoria medisse a reforma agrária, os municípios com mais beneficiários do INCRA teriam mais estabelecimentos na categoria. A associação é fraca e perde a significância quando se desconta a semelhança entre municípios vizinhos (teste t modificado de Dutilleul, que corrige o teste para essa semelhança):
+
+```{r}
+tabela_spearman_incra()
+nf("ρ de Spearman entre cada medida e os beneficiários do INCRA por 100 estabelecimentos da AF [IC 95% por bootstrap]; p corrigido para a autocorrelação espacial (Dutilleul). Medida combinada: categoria 46504 mais proprietários titulados pela reforma agrária.")
+fonte_m1("Tabela A.15", c("INCRA_RHO_PCT_ESTAB_*", "INCRA_RHO_F5_*", "INCRA_RHO_S4_*"), extra = paste0("; ", FONTE_BENEF))
+```
+
+A medida combinada acompanha melhor o INCRA (ρ = `r m1_re("INCRA_RHO_S4_141", "^([0-9,]+)")` em todos os municípios) do que a categoria sozinha (ρ = `r m1_re("INCRA_RHO_PCT_ESTAB_141", "^([0-9,]+)")`). Por tipo:
+
+```{r}
+tabela_validacao_incra()
+fonte_m1("Tabela A.15", c("INCRA_T1_* a INCRA_MT_*"), extra = paste0("; INCRA/SIPRA, Relatório 0227; ", FONTE_BENEF, ", alocada pela área dos polígonos dos projetos"))
+```
+
+- **T3:** reúne `r m1("INCRA_T3_PCT_REF_DO_MT")`% dos beneficiários do INCRA de MT, mas a cobertura da categoria é de só `r m1("INCRA_T3_COBERTURA_46504AF_SOBRE_REF")`. Seus projetos são mais antigos: ano médio de criação `r m1("INCRA_T3_ANO_CRIACAO_MEDIO_POND_FAMILIAS")`, com `r m1("INCRA_T3_PCT_FAMILIAS_PROJETOS_ATE1995")`% das famílias em projetos criados até 1995. A posse "baixa" do rótulo é a declarada ao Censo.
+- **T4:** `r m1("INCRA_T4_PCT_TITULADO_BENEF_SIPRA")`% dos beneficiários já estão titulados no SIPRA, a maior proporção entre os tipos; com os titulados, a cobertura sobe para `r m1("INCRA_T4_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF")`.
+- **T2:** `r m1("INCRA_T2_PCT_FAMILIAS_PE_ESTADUAL")`% das famílias estão em projetos estaduais.
+- **T5:** tem o menor número de beneficiários por estabelecimento da AF (`r m1("INCRA_T5_REF_POR100AF_PONDERADO")` por 100).
+
+```{r}
+figura_res("figA5_validacao_incra_final.svg",
+           "Figura A5 do Manuscrito 1. Cada ponto é um município: (a) % da AF na categoria 46504, (b) escore do fator de posse e (c) medida combinada, contra os beneficiários do INCRA por 100 estabelecimentos da AF (escala logarítmica que aceita o zero, dita symlog).",
+           paste0("Fonte: IBGE, Censo Agropecuário 2017 (tabelas 6878 e 6774); ", FONTE_BENEF, "; elaboração dos autores do Manuscrito 1. ", nota_rotulos_figura()))
+```
+
+## O sigilo na categoria 46504
+
+O IBGE omite, com o sinal X, as células que poderiam identificar um informante. Na categoria 46504:
+
+- **estabelecimentos:** sem X. `r m1_partes("SIG_46504_ESTAB_STATUS")[1]` municípios com valor e `r m1_partes("SIG_46504_ESTAB_STATUS")[3]` com – (zero absoluto);
+- **área:** X em `r m1_partes("SIG_46504_AREA_STATUS")[2]` municípios; `r m1("AREA_46504_SOB_SIGILO")` ha (`r m1("PCT_AREA_46504_SOB_SIGILO")`% da área da categoria em MT) ficam sob X;
+- **pessoal ocupado:** X em `r m1_partes("SIG_46504_POCUP_STATUS")[2]` municípios.
+
+Por isso, a % de área da categoria por tipo usa só os municípios sem X (ver a Tabela 3 na página da [tipologia](tipologia.qmd)). Neste site, X nunca vira zero.
+
+**Juara, sede do PA Vale do Arinos**, aparece com – (zero absoluto) na categoria 46504: o Censo não registrou nenhum estabelecimento da AF nessa condição, embora o município tenha projetos de assentamento no SIPRA. É um exemplo de reforma agrária fora da categoria.
+
+```{r}
+fonte_m1("Tabela 1", c("SIG_46504_ESTAB_STATUS", "SIG_46504_AREA_STATUS", "SIG_46504_POCUP_STATUS", "AREA_46504_SOB_SIGILO", "PCT_AREA_46504_SOB_SIGILO"),
+         extra = "; Juara: dados do site (Censo 2017, tabela 6878; INCRA/SIPRA, 2025)")
+```
+
+## Por tipo
+
+```{r}
+tabela_por_grupo(c("estab_af_46504", "pct_estab_46504", "pct_area_46504", "n_pa", "fam_pa"), recorte = "tipo")
+```
+
+## Tabela municipal: Censo 2017 e SIPRA
+
+A categoria 46504 vem do Censo de 2017. Os projetos e as famílias vêm do SIPRA, com posição de 2025, e contam os projetos com sede no município. Os anos são diferentes; a tabela serve para comparar a ordem de grandeza, não para fazer contas.
+
+```{r}
+aviso_municipio()
+legenda_sinais()
+tabela_posse_municipal()
+fonte_ind(c("estab_af_46504", "pct_estab_46504", "pct_area_46504", "n_pa", "fam_pa"))
+```

@@ -1,0 +1,74 @@
+---
+title: "OE2 · Produção e renda"
+description: "Objetivo específico 2 do Projeto RESA: desempenho técnico e econômico dos sistemas familiares. Situação e o que já é público: retrato do Censo Agropecuário 2017 e tipologia municipal"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+pct <- function(id) fmt_valor(TOT$valor[TOT$id == id], "pct1")
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objetivo
+
+Montar um banco de dados do desempenho técnico e econômico dos sistemas de produção familiares nas áreas-piloto. O OE2 mede custos, rentabilidade, emprego e renda, para identificar práticas de baixo carbono que se pagam. Esses resultados sustentam as recomendações do Pacote Tecnológico.
+
+**Como.** A proposta combina dados secundários (censos e cadastros públicos) com levantamento de campo nas áreas-piloto: questionários estruturados e entrevistas sobre práticas agrícolas, custos, produtividade, emprego e renda.
+
+```{r}
+bloco_situacao("OE2", list(
+  c("concluido", "Retrato municipal da agricultura familiar de MT, com os 141 municípios (IBGE, Censo Agropecuário 2017)."),
+  c("concluido", "Tipologia municipal da agricultura familiar do Manuscrito 1 (cinco tipos, com rótulos provisórios).", "Manuscrito em revisão pelos autores."),
+  c("previsto", "Levantamento de campo nas áreas-piloto.", "Sem data confirmada: depende da aprovação do questionário no Comitê de Ética em Pesquisa."),
+  c("previsto", "Banco de dados de desempenho por área-piloto e relatório de diagnóstico socioeconômico e produtivo.")))
+```
+
+## O que já é público
+
+### A agricultura familiar de MT em números
+
+```{r}
+div(class = "kpi-grade",
+  cartao_tot("tot_af_estab", "int", rotulo = "Estabelecimentos da agricultura familiar em MT",
+             comp = sprintf("%s dos estabelecimentos agropecuários de MT", pct("pct_af_estab_mt"))),
+  cartao_tot("area_media_af_mt", "dec1", rotulo = "Área média dos estabelecimentos da AF em MT"),
+  cartao_tot("pct_af_vbp_mt", "pct1", rotulo = "Participação da AF no valor da produção de MT",
+             comp = sprintf("Na lavoura permanente: %s · na horticultura: %s", pct("pct_af_vbp_lavperm_mt"), pct("pct_af_vbp_hort_mt"))),
+  cartao_tot("tot_46504_estab", "int",
+             comp = sprintf("%s dos estabelecimentos da AF de MT", pct("pct_46504_estab_mt"))))
+```
+
+### Tipologia municipal (Manuscrito 1)
+
+O Manuscrito 1 do projeto agrupa os 141 municípios de MT em cinco tipos, a partir de 21 variáveis do Censo Agropecuário 2017 (análise fatorial e agrupamento K-means). Os rótulos ainda são provisórios.
+
+```{r}
+tabela_tipos_m1()
+```
+
+```{r}
+p(class = "nota-fonte", "Fonte: Manuscrito 1 do Projeto RESA (em preparação), com dados do IBGE, Censo Agropecuário 2017. Número de municípios por tipo.")
+```
+
+- [Tipologia municipal da agricultura familiar](../resultados/tipologia.qmd): perfis dos tipos, mapa e método.
+- [Posse no Censo e reforma agrária](../resultados/posse.qmd): a categoria do Censo 2017 de concessionário(a) ou assentado(a) aguardando titulação definitiva e os projetos do INCRA.
+- [Dinâmica 2006–2017](../resultados/dinamica.qmd): variação do número e da área dos estabelecimentos entre os dois censos.
+- [Municípios](../municipios/index.qmd): perfil de cada município.
+
+### Indicadores municipais
+
+Cada indicador tem mapa dos 141 municípios, ranking no bioma e em MT e tabela.
+
+```{r}
+links_indicadores(c("estrutura", "tecnologia", "alimentos", "posse"))
+```
+
+```{r}
+nav_oes("OE2")
+```

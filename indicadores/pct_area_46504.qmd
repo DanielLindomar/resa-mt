@@ -1,0 +1,15 @@
+---
+title: "Área da AF de concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017), em % da área da AF"
+description: "Posse e reforma agrária · % da área dos estabelecimentos da AF · 2017. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "pct_area_46504"
+```
+
+{{< include _indicador.qmd >}}

@@ -1,0 +1,16 @@
+tipo,posicao,id_municipio,municipio,slug,bioma
+T1,1,5103437,Curvelândia,curvelandia,Amazônia
+T1,2,5103957,Glória D'Oeste,gloria-d-oeste,Amazônia
+T1,3,5100102,Acorizal,acorizal,Cerrado
+T2,1,5106182,Nova Lacerda,nova-lacerda,Amazônia
+T2,2,5101258,Araputanga,araputanga,Amazônia
+T2,3,5105903,Nobres,nobres,Cerrado
+T3,1,5108055,Terra Nova do Norte,terra-nova-do-norte,Amazônia
+T3,2,5101902,Brasnorte,brasnorte,Amazônia
+T3,3,5106299,Paranaíta,paranaita,Amazônia
+T4,1,5106224,Nova Mutum,nova-mutum,Cerrado
+T4,2,5103502,Diamantino,diamantino,Cerrado
+T4,3,5107925,Sorriso,sorriso,Cerrado
+T5,1,5107958,Tangará da Serra,tangara-da-serra,Cerrado
+T5,2,5107800,Santo Antônio de Leverger,santo-antonio-de-leverger,Pantanal
+T5,3,5107107,São José dos Quatro Marcos,sao-jose-dos-quatro-marcos,Amazônia

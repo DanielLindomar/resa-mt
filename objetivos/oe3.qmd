@@ -1,0 +1,81 @@
+---
+title: "OE3 · Ambiente e carbono"
+description: "Objetivo específico 3 do Projeto RESA: balanço de carbono, água e solo. Situação, emissões de MT por setor (SEEG 13) e ressalvas"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+tt <- function(id) TOT$valor[TOT$id == id]
+bruta <- tt("seeg_bruta_mt_2024"); mut <- tt("seeg_mut_mt_2024"); agro <- tt("seeg_agro_mt_2024")
+s24 <- SEEG_SETOR[SEEG_SETOR$ano == 2024, ]
+smun <- sum(ULT$ultimos$valor_calc[ULT$ultimos$indicador == "seeg_emissao_bruta"], na.rm = TRUE) / 1000
+stopifnot(abs(sum(s24$emissao_mtco2e) - bruta) < 1e-3)
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objetivo
+
+Medir os impactos socioambientais dos sistemas produtivos das áreas-piloto com indicadores. O OE3 estima o balanço de carbono, isto é, as emissões e as remoções de gases de efeito estufa, e avalia a situação da água e do solo. Os resultados orientam as diretrizes ambientais do Pacote Tecnológico e as políticas de mitigação e adaptação.
+
+**Como.** A proposta prevê estimar os estoques de carbono na biomassa e no solo e as emissões e remoções ligadas às mudanças de uso da terra e ao manejo. O resultado é o balanço líquido de carbono de cada área-piloto.
+
+```{r}
+bloco_situacao("OE3", list(
+  c("concluido", "Contexto estadual e municipal das emissões (SEEG 13) e do desmatamento (PRODES oficial)."),
+  c("concluido", "Validação do Artigo B recalculada com o PRODES oficial.", "O texto do artigo está em revisão."),
+  c("previsto", "Balanço de carbono por área-piloto.", "Depende do uso e cobertura da terra nas áreas-piloto (OE1)."),
+  c("previsto", "Indicadores de água e solo por área-piloto.")))
+```
+
+## Emissões de Mato Grosso por setor (SEEG 13)
+
+Em 2024, as emissões brutas de MT somaram **`r num(bruta, 1)` MtCO2e**. A mudança de uso da terra e florestas respondeu por **`r num(100 * mut / bruta, 1)`%** (`r num(mut, 1)` MtCO2e), e a agropecuária, por **`r num(100 * agro / bruta, 1)`%** (`r num(agro, 1)` MtCO2e).
+
+```{r}
+div(class = "kpi-grade",
+  cartao_tot("seeg_bruta_mt_2024", "dec1", rotulo = "Emissões brutas de MT"),
+  cartao_tot("seeg_mut_mt_2024", "dec1", rotulo = "Mudança de uso da terra e florestas",
+             comp = sprintf("%s das emissões brutas", fmt_valor(100 * mut / bruta, "pct1"))),
+  cartao_tot("seeg_agro_mt_2024", "dec1", rotulo = "Agropecuária",
+             comp = sprintf("%s das emissões brutas", fmt_valor(100 * agro / bruta, "pct1"))))
+```
+
+```{r}
+tabela_seeg_ano(2024)
+```
+
+```{r}
+HTML(grafico_seeg_setor(1990))
+```
+
+```{r}
+p(class = "nota-fonte", "Fonte: SEEG 13, Observatório do Clima, emissões estaduais por setor (GWP-AR5), 1990–2024. O SEEG estima a mudança de uso da terra a partir de 1990.")
+```
+
+### Ressalvas
+
+- **São estimativas.** O SEEG calcula as emissões com métodos e fatores próprios. Cada nova coleção revê a série inteira. Aqui está a coleção 13.
+- **Emissões brutas.** Os números acima não descontam as remoções de carbono pela vegetação. As remoções municipais estão nos indicadores de clima.
+- **Estado e município inteiros.** O SEEG mede o território, não a agricultura familiar nem os assentamentos.
+- **Soma dos municípios.** Em 2024, os municípios somam `r num(smun, 2)` MtCO2e, contra `r num(bruta, 2)` MtCO2e do estado. A diferença é a parte das emissões que o SEEG não atribui a município.
+- **Desmatamento.** A mudança de uso da terra acompanha o desmatamento, mas não é igual a ele. A série oficial do desmatamento está no [OE1](oe1.qmd).
+- **Licença.** Os dados municipais do SEEG aparecem nas páginas, mas ficam fora dos downloads até a conferência da licença.
+
+## O que já é público e onde ver
+
+- [Emissões e desmatamento](../resultados/emissoes.qmd): resultados do Artigo B pelos tipos municipais do Manuscrito 1, com a validação pelo PRODES oficial e a nota de correção.
+- Indicadores de clima por município:
+
+```{r}
+links_indicadores("clima")
+```
+
+```{r}
+nav_oes("OE3")
+```

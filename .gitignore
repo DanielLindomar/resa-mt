@@ -1,0 +1,22 @@
+_site/
+*_files/
+.Rhistory
+.RData
+__pycache__/
+**/*.quarto_ipynb
+config.local.toml
+
+# Pastas ocultas locais da raiz (cache do Quarto, configurações de editor e de ferramentas):
+# ficam fora do controle de versão. A pasta .github/ entra.
+/.*/
+!/.github/
+
+# Dados com licença de redistribuição em conferência (SEEG e PRODES por município). São gerados
+# pelos scripts 01, 02 e 06 a partir das bases do projeto e ficam fora do controle de versão até
+# a conferência da licença. Se o repositório for privado, a coordenação pode tirar estas linhas.
+/dados_site/valores.csv
+/dados_site/serie.rds
+/dados_site/ultimos.rds
+/objetivos/dados/
+
+/.quarto/

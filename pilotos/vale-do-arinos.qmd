@@ -1,0 +1,14 @@
+---
+title: "Vale do Arinos"
+subtitle: "Área-piloto da Amazônia · município-sede: Juara"
+description: "Área-piloto Vale do Arinos (Juara, MT): projeto de assentamento do INCRA MT0641000. Identificação e contexto do município-sede"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+PIL_SLUG <- "vale-do-arinos"
+```
+
+{{< include _modelo_piloto.qmd >}}

@@ -1,0 +1,11 @@
+orgao,produto,uso_no_site,licenca,url,data_acesso
+IBGE,"Censo Agropecuário 2017 (SIDRA, API de agregados v3)","indicadores da AF, posse (categoria 46504)",dados públicos; citar a fonte,https://sidra.ibge.gov.br,16/09/2026
+IBGE,Censo Agropecuário 2006 (resultados municipais),dinâmica 2006–2017 (todos os estabelecimentos),dados públicos; citar a fonte,https://sidra.ibge.gov.br,fev/2026 (data do arquivo baixado)
+IBGE,"Biomas do Brasil, escala 1:250 mil (2019)",bioma dominante de cada município,dados públicos; citar a fonte,https://www.ibge.gov.br/geociencias,16/09/2026
+IBGE,"Malha Municipal 2022 (141 municípios de MT), simplificada para a web",mapas do site e malha GeoJSON,dados públicos; citar a fonte,https://www.ibge.gov.br/geociencias,mar/2026
+INCRA,"SIPRA, Relatório 0227 (posição de 03/06/2025)","projetos, famílias e área por município-sede",dados públicos; citar a fonte,https://www.gov.br/incra,16/09/2026
+Observatório do Clima,"SEEG 13, emissões e remoções municipais e estaduais (GWP-AR5)",indicadores de clima,licença a conferir; dados municipais fora dos downloads até a conferência,https://seeg.eco.br,abr/2026 (data do arquivo baixado)
+INPE,"PRODES, painel TerraBrasilis v3.5.10: taxa anual de MT e incremento anual por bioma",desmatamento oficial de MT,dados públicos; licença a conferir,https://terrabrasilis.dpi.inpe.br,19/10/2026
+INPE,"PRODES Amazônia, Cerrado e Pantanal, painel TerraBrasilis v3.5.10: incremento anual por município",desmatamento por município (OE1) e por tipo do M1 (Artigo A refeito); fora dos downloads,dados públicos; licença a conferir,https://terrabrasilis.dpi.inpe.br,19/10/2026
+MapBiomas,"Coleção de cobertura e uso da terra, estatísticas municipais",previsto (OE1); ainda não usado,CC BY 4.0 (a conferir),https://brasil.mapbiomas.org,não se aplica (ainda não usado)
+Projeto RESA,Manuscrito 1 (em preparação): tipologia municipal k = 5,tipos dos municípios (rótulos provisórios),resultado do projeto; citar o projeto,,19/10/2026

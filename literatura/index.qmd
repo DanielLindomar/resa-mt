@@ -1,0 +1,75 @@
+---
+title: "Literatura: panorama"
+description: "As buscas de literatura do Projeto RESA em números e as listas finais verificadas por DOI"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
+```
+
+```{r}
+faixa_versao("Versão preliminar para a equipe do projeto. A literatura aparece só com metadados (autores, ano, título, periódico e DOI) e com as contagens das bases. A síntese dos achados entra em versão futura, em texto próprio.")
+```
+
+O projeto fez duas buscas de literatura. A primeira trata de carbono, mercados e ESG, para os objetivos de ambiente e carbono (OE3) e de cenários bioeconômicos (OE4). A segunda procura estudos parecidos com Dominicis et al. (2023), a referência do OE4: viabilidade de sistemas agroflorestais (SAF) com pagamento por serviços ambientais (PSA) em assentamentos e na agricultura familiar.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Registros no Scopus (carbono, mercados e ESG)", pan_txt("scopus_total"),
+             "4 consultas principais · artigos de 2005 a 2026 · consulta em 06/09/2026", "Fonte: Scopus, pelo Portal de Periódicos da CAPES."),
+  cartao_kpi("Referências com DOI verificado", pan_txt("refs_doi"),
+             "lista final da revisão de carbono, mercados e ESG, em 6 blocos · set/2026", "DOI, título, autoria, ano e periódico conferidos no Crossref."),
+  cartao_kpi("Registros no OpenAlex (OE4)", pan_txt("oe4_openalex"),
+             "busca de estudos parecidos com Dominicis et al. (2023) · 15/10/2026", "Fonte: OpenAlex (API aberta)."),
+  cartao_kpi("Estudos comparados (OE4)", pan_txt("oe4_comparados"),
+             sprintf("%s deles com DOI · out/2026", pan_txt("oe4_com_doi")), "DOI conferido no Crossref."))
+```
+
+## Carbono, mercados e ESG
+
+**Scopus, 06/09/2026.** As quatro consultas principais somam `r pan_txt("scopus_total")` registros (artigos publicados de 2005 a 2026; os de 2026 são parciais, porque a consulta foi em setembro).
+
+```{r}
+s <- PAN[PAN$grupo == "carbono_string", ]
+reactable(tibble::tibble(String = s$rotulo, Registros = s$valor), compact = TRUE, sortable = FALSE, pagination = FALSE,
+          columns = list(String = colDef(name = "Tema da consulta", minWidth = 260),
+                         Registros = colDef(align = "right", format = colFormat(separators = TRUE, locales = "pt-BR"))))
+```
+
+**OpenAlex, 07/09/2026.** A consulta ampliada no OpenAlex trouxe `r pan_txt("oa_colhidos")` registros.
+
+**Lista final.** São `r pan_txt("refs_doi")` referências com DOI verificado no Crossref, em seis blocos temáticos:
+
+```{r}
+b <- PAN[PAN$grupo == "carbono_bloco", ]
+reactable(tibble::tibble(Bloco = b$rotulo, Referências = b$valor), compact = TRUE, sortable = FALSE, pagination = FALSE,
+          columns = list(Bloco = colDef(minWidth = 280), Referências = colDef(align = "right")))
+```
+
+Os temas e as perguntas de cada bloco, com a lista completa, estão em [Carbono, mercados e ESG](carbono.qmd).
+
+## SAF e PSA em assentamentos (OE4)
+
+**Busca de 15 e 16/10/2026.** Duas bases: o OpenAlex trouxe `r pan_txt("oe4_openalex")` registros (15/10/2026) e o Scopus, `r pan_txt("oe4_scopus")` registros únicos (16/10/2026).
+
+**Lista final.** São `r pan_txt("oe4_comparados")` estudos comparados; `r pan_txt("oe4_com_doi")` deles têm DOI conferido no Crossref. Os demais ficam sem DOI nesta versão: em geral, são relatórios e literatura técnica.
+
+A tabela dos estudos, o artigo-âncora e as lacunas estão em [SAF e PSA em assentamentos](saf-psa.qmd).
+
+## As páginas da seção
+
+```{r}
+div(class = "cartoes",
+  a(class = "cartao", href = "carbono.html", tags$h4("Carbono, mercados e ESG"),
+    p(sprintf("Os seis blocos (A a F), com tema e pergunta, e as %s referências com DOI.", pan_txt("refs_doi")))),
+  a(class = "cartao", href = "saf-psa.html", tags$h4("SAF e PSA em assentamentos"),
+    p(sprintf("Dominicis et al. (2023) como âncora do OE4, os %s estudos comparados e as lacunas.", pan_txt("oe4_comparados")))),
+  a(class = "cartao", href = "estudos.html", tags$h4("Estudos do corpus"),
+    p("As duas listas numa tabela só, com busca e filtros, e os arquivos CSV e BibTeX.")))
+```
+
+::: {.nota-fonte}
+Fontes: Scopus (Portal de Periódicos da CAPES), OpenAlex e Crossref, nas datas indicadas. Contagens conferidas nos arquivos das buscas do Projeto RESA em 19/10/2026.
+:::

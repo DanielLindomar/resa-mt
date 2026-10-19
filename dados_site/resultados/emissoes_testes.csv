@@ -1,0 +1,13 @@
+recorte,metrica,rotulo,n,gl,H,p,epsilon2
+tipo,bruta,Emissões brutas (média anual 2010–2020),141,4,38.953383,7.12263e-08,0.278238
+tipo,mut,Mudança de uso da terra e florestas,141,4,27.784584,1.37916e-05,0.198461
+tipo,agro,Agropecuária,141,4,45.881832,2.60632e-09,0.327727
+tipo,energia,Energia,141,4,31.276681,2.68822e-06,0.223405
+tipo,t_por_estab_af,Emissões brutas por estabelecimento da AF,141,4,10.392656,0.0343082,0.074233
+tipo,t_por_ha_af,Emissões brutas por hectare da AF,141,4,7.36047,0.118022,0.052575
+bioma,bruta,Emissões brutas (média anual 2010–2020),141,2,18.317798,0.000105279,0.130841
+bioma,mut,Mudança de uso da terra e florestas,141,2,24.535119,4.70183e-06,0.175251
+bioma,agro,Agropecuária,141,2,8.075341,0.0176385,0.057681
+bioma,energia,Energia,141,2,1.148687,0.563074,0.008205
+bioma,t_por_estab_af,Emissões brutas por estabelecimento da AF,141,2,4.152729,0.125385,0.029662
+bioma,t_por_ha_af,Emissões brutas por hectare da AF,141,2,1.083665,0.581681,0.00774

@@ -1,0 +1,7 @@
+coluna,descricao,unidade,fonte
+id_municipio,Código IBGE do município (7 dígitos),,IBGE
+municipio,Nome do município,,IBGE
+n_projetos,Projetos de assentamento com sede no município,projetos,"INCRA/SIPRA, Relatório 0227 (03/06/2025)"
+familias_assentadas,Famílias assentadas,famílias,"INCRA/SIPRA, Relatório 0227 (03/06/2025)"
+capacidade_familias,Capacidade de famílias dos projetos,famílias,"INCRA/SIPRA, Relatório 0227 (03/06/2025)"
+area_ha,Área declarada dos projetos,hectares,"INCRA/SIPRA, Relatório 0227 (03/06/2025)"

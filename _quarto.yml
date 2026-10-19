@@ -1,0 +1,98 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - arquivos/
+    - resultados/figuras/
+    - robots.txt
+
+website:
+  title: "Observatório RESA-MT"
+  description: "Resultados do Projeto RESA nº 115 — viabilidade econômica de assentamentos rurais nos três biomas de Mato Grosso (UNEMAT, com apoio do Instituto Clima e Sociedade)"
+  favicon: assets/favicon.png
+  search: true
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    background: "#1F4D3A"
+    foreground: "#ffffff"
+    logo: assets/logo-unemat-branco.png
+    logo-alt: "UNEMAT — Universidade do Estado de Mato Grosso"
+    collapse-below: xl
+    left:
+      - href: index.qmd
+        text: Início
+      - href: municipios/index.qmd
+        text: Municípios
+      - href: indicadores/index.qmd
+        text: Indicadores
+      - text: Resultados
+        menu:
+          - href: resultados/tipologia.qmd
+            text: "Tipologia municipal da AF"
+          - href: resultados/posse.qmd
+            text: "Posse no Censo e reforma agrária"
+          - href: resultados/emissoes.qmd
+            text: "Emissões e desmatamento"
+          - href: resultados/dinamica.qmd
+            text: "Dinâmica 2006–2017"
+      - href: pilotos/index.qmd
+        text: "Áreas‑piloto"
+      - text: Objetivos
+        menu:
+          - href: objetivos/index.qmd
+            text: "Os seis objetivos"
+          - href: objetivos/oe1.qmd
+            text: "OE1 · Território e uso da terra"
+          - href: objetivos/oe2.qmd
+            text: "OE2 · Produção e renda"
+          - href: objetivos/oe3.qmd
+            text: "OE3 · Ambiente e carbono"
+          - href: objetivos/oe4.qmd
+            text: "OE4 · Cenários bioeconômicos"
+          - href: objetivos/oe5.qmd
+            text: "OE5 · Inovação e capital social"
+          - href: objetivos/oe6.qmd
+            text: "OE6 · Pacote Tecnológico"
+      - text: Literatura
+        menu:
+          - href: literatura/index.qmd
+            text: "Panorama"
+          - href: literatura/carbono.qmd
+            text: "Carbono, mercados e ESG"
+          - href: literatura/saf-psa.qmd
+            text: "SAF e PSA em assentamentos"
+          - href: literatura/estudos.qmd
+            text: "Estudos do corpus"
+      - href: dados/index.qmd
+        text: Dados
+      - href: biblioteca/index.qmd
+        text: Biblioteca
+      - href: sobre.qmd
+        text: Sobre
+  page-footer:
+    left: |
+      Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 19/10/2026
+    right: |
+      ![UNEMAT](/assets/logo-unemat.png){height=40}
+
+format:
+  html:
+    theme: [cosmo, estilo.scss]
+    lang: pt-BR
+    toc: true
+    toc-depth: 2
+    toc-title: "Nesta página"
+    smooth-scroll: true
+    link-external-newwindow: true
+    lightbox: auto
+    include-in-header: assets/robots.html
+    include-after-body: assets/glossario.html
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+
+engine: knitr

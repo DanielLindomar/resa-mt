@@ -1,0 +1,99 @@
+---
+title: "OE1 · Território e uso da terra"
+description: "Objetivo específico 1 do Projeto RESA: diagnóstico territorial e ecológico das áreas-piloto. Situação, série oficial do PRODES de MT e desmatamento por município"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+J <- 2017:2025
+sb <- vapply(BIOMAS, prodes_soma, numeric(1), anos = J)
+d  <- prodes_largo()
+top <- d[order(-d$j_tot), ][1:3, ]
+sed <- d[d$sede_piloto, ]; sed <- sed[match(SEDES$id_municipio, sed$id_municipio), ]
+tx <- PRODES_TAXA[PRODES_TAXA$status == "consolidada", ]
+tx_ult <- tx[which.max(tx$ano), ]; tx_est <- PRODES_TAXA[PRODES_TAXA$status == "estimada", ]
+f <- PRODES_FONTE[1, ]
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objetivo
+
+Fazer o diagnóstico territorial e ecológico das áreas-piloto com geotecnologias. O OE1 mapeia como o uso e a cobertura da terra mudaram ao longo do tempo e mede a estrutura da paisagem, como a fragmentação e a conectividade da vegetação nativa. É a base técnica e visual do Pacote Tecnológico para discutir a floresta em pé com as famílias e com o poder público.
+
+**Período.** A proposta prevê o período de 1980 a 2023. A fonte de uso e cobertura da terra prevista para o OE1 (MapBiomas, dados públicos) ainda não entrou nesta versão; o período final depende da coleção usada.
+
+```{r}
+bloco_situacao("OE1", list(
+  c("concluido", "Série oficial do PRODES de MT (taxa anual e incremento por bioma) e incremento por município, baixados do TerraBrasilis em 19/10/2026."),
+  c("andamento", "Recorte do uso e cobertura da terra nas áreas-piloto.", "Depende dos perímetros validados pela equipe de SIG do projeto."),
+  c("previsto", "Estatísticas municipais de uso e cobertura da terra (MapBiomas, dados públicos)."),
+  c("previsto", "Métricas de paisagem e mapas de uso e cobertura da terra por área-piloto.")))
+```
+
+## Desmatamento em Mato Grosso: série oficial do PRODES
+
+```{r}
+nota_correcao_prodes()
+```
+
+A taxa anual de MT vem do PRODES Amazônia Legal, que mede o corte raso de formações florestais. Em `r tx_ult$ano`, a taxa foi de **`r num(tx_ult$taxa_km2)` km²** (agosto de `r tx_ult$ano - 1` a julho de `r tx_ult$ano`). O valor de `r tx_est$ano` (`r num(tx_est$taxa_km2)` km²) ainda é uma estimativa e fica fora do gráfico.
+
+```{r}
+HTML(grafico_prodes_taxa())
+```
+
+O PRODES também mede o incremento de desmatamento em cada bioma, cada um com a sua máscara e o seu método. Por isso, o incremento por bioma não se compara, um a um, com a taxa da Amazônia Legal. O gráfico mostra só os períodos anuais. No Cerrado até 2012 e no Pantanal em alguns anos até 2016, o PRODES publica períodos de dois anos ou mais, que ficam fora.
+
+```{r}
+HTML(grafico_prodes_bioma())
+```
+
+```{r}
+p(class = "nota-fonte", sprintf("Fonte: INPE, PRODES (Amazônia Legal: taxa anual por estado; Amazônia, Cerrado e Pantanal: incremento anual no bioma, em MT), painel TerraBrasilis v%s; acesso em %s; atualização do INPE em %s. Ano do PRODES: agosto do ano anterior a julho do ano indicado.",
+  f$versao_painel, format(as.Date(f$data_acesso), "%d/%m/%Y"), format(as.Date(f$atualizacao_inpe), "%d/%m/%Y")))
+```
+
+## Desmatamento por município (PRODES, 2017–2025)
+
+O PRODES publica o incremento de desmatamento de cada município, por bioma. Entre 2017 e 2025 (anos do PRODES, de agosto de 2016 a julho de 2025), ele mapeou em MT **`r num(sb[["Amazônia"]])` km² na Amazônia**, **`r num(sb[["Cerrado"]])` km² no Cerrado** e **`r num(sb[["Pantanal"]])` km² no Pantanal**. Nesses nove anos, os períodos são anuais e consolidados nos três biomas.
+
+Os municípios com mais desmatamento no período foram `r top$municipio[1]` (`r num(top$j_tot[1])` km²), `r top$municipio[2]` (`r num(top$j_tot[2])` km²) e `r top$municipio[3]` (`r num(top$j_tot[3])` km²). Nos municípios-sede das áreas-piloto, o total foi de `r num(sed$j_tot[1], 1)` km² em `r sed$municipio[1]`, `r num(sed$j_tot[2], 1)` km² em `r sed$municipio[2]` e `r num(sed$j_tot[3], 1)` km² em `r sed$municipio[3]`. São números do município inteiro, não das áreas-piloto.
+
+::: {.panel-tabset}
+### Em km²
+
+```{r}
+mapa_prodes_mun("km2")
+```
+
+### Em % do território municipal
+
+```{r}
+mapa_prodes_mun("pct")
+```
+:::
+
+```{r}
+p(class = "nota-fonte", fonte_prodes_mun(),
+  " Classes por quintis. Um município pode estar em mais de uma máscara do PRODES: o total soma os biomas.")
+```
+
+```{r}
+tabela_prodes_mun()
+```
+
+## O que já é público e onde ver
+
+- [Emissões e desmatamento](../resultados/emissoes.qmd): desmatamento do PRODES por tipo municipal do M1 (Artigo A refeito) e validação da proxy dos Artigos A e B com o PRODES oficial.
+- [Indicadores de clima (SEEG 13)](../indicadores/index.qmd): emissões de mudança de uso da terra e remoções, por município.
+- [OE3 · Ambiente e carbono](oe3.qmd): emissões de MT por setor.
+
+```{r}
+nav_oes("OE1")
+```

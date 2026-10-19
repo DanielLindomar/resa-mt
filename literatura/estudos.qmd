@@ -1,0 +1,85 @@
+---
+title: "Estudos do corpus"
+description: "As 115 referências sobre carbono, mercados e ESG e os 38 estudos comparados do OE4 numa tabela só, com busca, filtros e arquivos CSV e BibTeX"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
+TD <- ler_lit("estudos_todos.csv")
+C1 <- "Carbono, mercados e ESG"; C2 <- "SAF e PSA em assentamentos (OE4)"
+n_bib <- length(grep("^@", readLines(file.path(RAIZ, "arquivos", "literatura", "resa_literatura_estudos.bib"), encoding = "UTF-8")))
+```
+
+```{r}
+faixa_versao("Versão preliminar para a equipe do projeto. Só metadados: autores, ano, título, periódico, tipo e DOI. Resumos de terceiros não são publicados.")
+```
+
+A tabela junta as duas listas finais da literatura do projeto. A coluna **Corpus** diz de qual busca vem cada linha. Nos estudos do OE4, a coluna Autores traz o nome do estudo, e o título aparece quando o DOI foi conferido.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi(C1, fmt_valor(sum(TD$corpus == C1), "int"), "referências, todas com DOI verificado · set/2026",
+             a(href = "carbono.html", "Ver os seis blocos →")),
+  cartao_kpi(C2, fmt_valor(sum(TD$corpus == C2), "int"),
+             sprintf("estudos comparados, %s com DOI · out/2026", fmt_valor(sum(TD$corpus == C2 & nzchar(TD$doi)), "int")),
+             a(href = "saf-psa.html", "Ver local, público e arranjo →")))
+```
+
+## Arquivos
+
+- [Tabela completa (CSV, `r nrow(TD)` linhas)](../arquivos/literatura/resa_literatura_estudos.csv) · [dicionário](../arquivos/literatura/dicionarios/resa_literatura_estudos.csv)
+- [Referências em BibTeX](../arquivos/literatura/resa_literatura_estudos.bib) (`r n_bib` entradas: as `r sum(TD$corpus == C1)` de carbono, mercados e ESG e os trabalhos do OE4 com DOI), para Zotero, Mendeley ou JabRef. Sem resumos.
+- Por corpus: [carbono, mercados e ESG (CSV)](../arquivos/literatura/resa_refs_carbono_esg.csv) · [SAF e PSA, OE4 (CSV)](../arquivos/literatura/resa_estudos_saf_psa_oe4.csv)
+
+Os arquivos estão em UTF-8, separados por vírgula. Quando um estudo tem mais de um DOI, eles vêm separados por ponto e vírgula.
+
+## Estudos
+
+Use a busca para localizar autor, título ou periódico, e os filtros de corpus, grupo, ano e tipo. O DOI abre a página da publicação.
+
+```{r}
+tab <- TD |> transmute(Corpus = corpus, Grupo = grupo_curto(grupo), Autores = autores, Ano = ifelse(is.na(ano), "—", as.character(ano)),
+                       Título = ifelse(nzchar(titulo), titulo, "—"), Periódico = ifelse(nzchar(periodico), periodico, "—"),
+                       Tipo = ifelse(nzchar(tipo), tipo, "—"), DOI = doi)
+reactable(tab, elementId = "tab-estudos", searchable = TRUE, filterable = TRUE, compact = TRUE, wrap = TRUE, striped = TRUE,
+  defaultPageSize = 20, showPageSizeOptions = TRUE, pageSizeOptions = c(20, 50, 153),
+  language = reactableLang(searchPlaceholder = "Buscar autor, título ou periódico", noData = "Nenhum estudo encontrado",
+                           pageInfo = "{rowStart}–{rowEnd} de {rows} estudos", pagePrevious = "Anterior",
+                           pageNext = "Próxima", pageSizeOptions = "Mostrar {rows}"),
+  columns = list(
+    Corpus = colDef(minWidth = 150, filterInput = filtro_lista_lit("tab-estudos", c(C1, C2)), filterMethod = filtro_igual_lit),
+    Grupo = colDef(minWidth = 180, filterInput = filtro_lista_lit("tab-estudos", unique(tab$Grupo)), filterMethod = filtro_igual_lit),
+    Autores = colDef(minWidth = 170, filterable = FALSE),
+    Ano = colDef(minWidth = 85, align = "center", filterInput = filtro_lista_lit("tab-estudos", rev(sort(unique(tab$Ano)))),
+                 filterMethod = filtro_igual_lit),
+    Título = colDef(minWidth = 300, filterable = FALSE),
+    Periódico = colDef(minWidth = 160, filterable = FALSE),
+    Tipo = colDef(minWidth = 95, filterInput = filtro_lista_lit("tab-estudos"), filterMethod = filtro_igual_lit),
+    DOI = colDef(minWidth = 170, filterable = FALSE, style = list(fontSize = "0.78rem", wordBreak = "break-all"), cell = function(v) link_doi(v))))
+```
+
+```{=html}
+<script>
+// estudos.html#bloco=A (links da página de carbono): abre a tabela filtrada no bloco
+(function () {
+  var m = /bloco=([A-F])/.exec(window.location.hash || "");
+  if (!m) return;
+  function aplica(t) {
+    var s = document.querySelector('#tab-estudos select[aria-label="Filtrar Grupo"]');
+    if (window.Reactable && s) {
+      var op = Array.prototype.find.call(s.options, function (o) { return o.value.indexOf(m[1] + " · ") === 0; });
+      if (op) { s.value = op.value; Reactable.setFilter("tab-estudos", "Grupo", op.value); }
+    } else if (t < 40) { setTimeout(function () { aplica(t + 1); }, 100); }
+  }
+  aplica(0);
+})();
+</script>
+```
+
+::: {.nota-fonte}
+Fontes: revisão de literatura sobre carbono, mercados e ESG (setembro de 2026) e busca de estudos parecidos com Dominicis et al. (2023) (outubro de 2026), do Projeto RESA. DOI, título, autoria, ano e periódico conferidos no Crossref. O tipo fica como "—" quando o registro não o informa.
+:::

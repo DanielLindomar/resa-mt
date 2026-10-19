@@ -1,0 +1,7 @@
+recorte,metrica,rotulo,n,gl,H,p,epsilon2
+tipo,var_estab,Variação do número de estabelecimentos (%),141,4,6.109619,0.19111,0.04364
+tipo,var_area,Variação da área (%),141,4,0.260705,0.992208,0.001862
+tipo,var_area_media,Variação da área média por estabelecimento (%),141,4,6.004391,0.198821,0.042889
+bioma,var_estab,Variação do número de estabelecimentos (%),141,2,5.564413,0.0619018,0.039746
+bioma,var_area,Variação da área (%),141,2,4.419813,0.109711,0.03157
+bioma,var_area_media,Variação da área média por estabelecimento (%),141,2,4.117931,0.127586,0.029414

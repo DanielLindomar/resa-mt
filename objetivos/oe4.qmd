@@ -1,0 +1,69 @@
+---
+title: "OE4 · Cenários bioeconômicos"
+description: "Objetivo específico 4 do Projeto RESA: cenários de viabilidade da transição de baixo carbono (VPL, TIR, payback, PSA, carbono e risco). Situação, estudo de referência e lacunas"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+selo_lacuna <- function(estado) span(class = paste("selo-lacuna", c(confirmada = "lacuna-confirmada", parcial = "lacuna-parcial")[[estado]]),
+                                     c(confirmada = "confirmada", parcial = "preenchida em parte")[[estado]])
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objetivo
+
+Simular cenários de viabilidade para a transição de baixo carbono nas áreas-piloto. O OE4 junta o valor do carbono e dos serviços ambientais a indicadores financeiros, para propor modelos de negócio e recomendações de política pública ao Pacote Tecnológico.
+
+```{r}
+bloco_situacao("OE4", list(
+  c("concluido", "Revisão de literatura sobre carbono, mercados e ESG."),
+  c("concluido", "Busca e comparação de estudos semelhantes ao estudo de referência."),
+  c("andamento", "Desenho dos cenários e do fluxo de caixa por área-piloto."),
+  c("previsto", "Cálculo dos cenários por área-piloto.", "Depende dos dados de campo (OE2) e do balanço de carbono (OE3).")))
+```
+
+## O que será calculado
+
+Os cenários comparam o uso atual do lote com alternativas de baixo carbono, como sistemas agroflorestais (SAF) e integração lavoura-pecuária-floresta (ILPF), no mesmo lote, com e sem projeto.
+
+- **Indicadores financeiros:** valor presente líquido (VPL), taxa interna de retorno (TIR) e tempo de retorno do investimento (*payback*), além de relação benefício/custo.
+- **Pagamento por serviços ambientais (PSA):** cenários com e sem pagamento, e o pagamento mínimo que torna a transição viável.
+- **Carbono:** receita de carbono com preços de fontes abertas, e o preço do carbono que equilibra a comparação.
+- **Risco e sensibilidade:** variação de preços, produtividade, perdas e taxa de desconto, com simulação de risco.
+- **Particularidades das áreas-piloto:** em N. Sra. Aparecida, que é do crédito fundiário (PNCF), a parcela paga pela terra entra no fluxo de caixa da família.
+
+## Estudo de referência
+
+```{r}
+div(class = "bloco-situacao",
+  p(style = "margin:0", tags$b("Dominicis et al. (2023), "), tags$i("Forests"), ", 14(10), 2110. DOI ",
+    a(href = "https://doi.org/10.3390/f14102110", "10.3390/f14102110"), "."),
+  p(style = "margin:.4rem 0 0", "O estudo avalia a viabilidade financeira de sistemas agroflorestais de produtores, a maioria de assentamentos de reforma agrária, na Bacia do Descoberto (DF). ",
+    "Ele compara cenários com e sem pagamento por serviços ambientais (PSA) e usa indicadores como o valor presente líquido (VPL) e a taxa interna de retorno (TIR)."),
+  p(class = "nota-fonte", style = "margin:.4rem 0 0", "O OE4 reproduz o desenho do estudo nas três áreas-piloto e acrescenta o que falta nele: o resultado por família, o carbono e o risco."))
+```
+
+## O que o RESA acrescenta: lacunas na literatura
+
+A comparação com estudos semelhantes mostrou o que ainda não existe.
+
+```{r}
+tags$ul(class = "lista-lacunas",
+  tags$li(selo_lacuna("confirmada"), tags$b("1. "), "Não há estudo de viabilidade de SAF ou de restauração produtiva em assentamento de Mato Grosso."),
+  tags$li(selo_lacuna("confirmada"), tags$b("2. "), "Não há estudo desse tipo no Pantanal."),
+  tags$li(selo_lacuna("parcial"), tags$b("3. "), "O carbono a preço de mercado em assentamento aparece só em parte: em estudos análogos de outros países e em estudos sem amostra de famílias."),
+  tags$li(selo_lacuna("confirmada"), tags$b("4. "), "Nenhum estudo junta, ao mesmo tempo, as diferenças entre famílias, o PSA, o carbono e o risco."))
+```
+
+- [SAF e PSA em assentamentos](../literatura/saf-psa.qmd): os estudos comparados, com local, público, arranjo e DOI.
+- [Carbono, mercados e ESG](../literatura/carbono.qmd): referências da revisão de literatura.
+
+```{r}
+nav_oes("OE4")
+```

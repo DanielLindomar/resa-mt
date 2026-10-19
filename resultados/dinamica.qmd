@@ -1,0 +1,127 @@
+---
+title: "Dinâmica 2006–2017 por tipo municipal"
+subtitle: "Artigo C do projeto, recalculado com os tipos do Manuscrito 1"
+description: "Estabelecimentos, área e área média dos estabelecimentos agropecuários entre os Censos de 2006 e 2017, pelos cinco tipos municipais do Manuscrito 1 e por bioma"
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_resultados.R"))
+D  <- function(g, col) DIN[[col]][DIN$grupo == g]
+TS <- function(rec, m, col) DIN_TES[[col]][DIN_TES$recorte == rec & DIN_TES$metrica == m]
+C  <- function(item, col) DIN_CONC[[col]][DIN_CONC$item == item]
+tp <- DIN[DIN$recorte == "tipo", ]
+# frases comparativas: conferidas contra os números
+stopifnot(tp$grupo[which.max(tp$var_estab)] == "T5", tp$grupo[which.min(tp$var_estab)] == "T4",
+          tp$grupo[which.max(tp$var_area_media)] == "T4", D("T3", "var_estab") < 0, D("T4", "var_estab") < 0,
+          all(DIN_TES$p[DIN_TES$recorte == "tipo"] > 0.05), abs(D("T5", "var_area_media")) < 1,
+          D("Pantanal", "var_estab") == max(DIN$var_estab[DIN$recorte == "bioma"]))
+p_min_tipo <- min(DIN_TES$p[DIN_TES$recorte == "tipo"])
+fonte_din <- "Fonte: IBGE, Censos Agropecuários 2006 e 2017 (SIDRA), todos os estabelecimentos agropecuários; base municipal do Artigo C (versão corrigida); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site."
+```
+
+```{r}
+faixa_versao()
+```
+
+O Artigo C do projeto comparou os Censos Agropecuários de 2006 e 2017. Esta página refaz as contas com os **cinco tipos do Manuscrito 1** (rótulos provisórios) e com o bioma dominante IBGE 1:250 mil. Os números são de **todos os estabelecimentos agropecuários**, não só da agricultura familiar, nos 141 municípios.
+
+```{r}
+div(class = "nota-conciliacao",
+  tags$h4("A soma dos municípios em 2006 não fecha com a tabela estadual"),
+  tags$ul(
+    tags$li(paste0("A soma dos 141 municípios dá ", num(C("estab_2006", "soma_municipal"), 0), " estabelecimentos e ",
+                   num(C("area_2006", "soma_municipal") / 1e6, 2), " milhões de ha em 2006. A tabela estadual de comparação 2006–2017 dá ",
+                   num(C("estab_2006", "tabela_estadual"), 0), " estabelecimentos e ", num(C("area_2006", "tabela_estadual") / 1e6, 2),
+                   " milhões de ha. A diferença de área é de ", num(C("area_2006", "diferenca") / 1e3, 0), " mil ha (",
+                   pct_txt(C("area_2006", "pct_diferenca")), ").")),
+    tags$li(paste0("A tabela de confronto dos Censos do IBGE (série histórica) dá ", num(C("estab_2006", "tabela_confronto_ibge"), 0),
+                   " estabelecimentos e ", num(C("area_2006", "tabela_confronto_ibge"), 0),
+                   " ha em 2006, valores que batem com a soma municipal. A origem da diferença com a tabela estadual ainda não foi esclarecida.")),
+    tags$li(paste0("Em 2017, a soma fecha: ", num(C("estab_2017", "soma_municipal"), 0), " estabelecimentos e ",
+                   num(C("area_2017", "soma_municipal"), 0), " ha, contra ", num(C("area_2017", "tabela_estadual"), 0),
+                   " ha no total estadual (arredondamento).")),
+    tags$li("As variações abaixo usam a soma municipal nos dois anos, para que 2006 e 2017 tenham a mesma base.")))
+```
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Estabelecimentos agropecuários", pct_txt(D("MT", "var_estab")),
+             sprintf("%s em 2006 → %s em 2017 · soma dos 141 municípios", num(D("MT", "estab_2006"), 0), num(D("MT", "estab_2017"), 0))),
+  cartao_kpi("Área dos estabelecimentos", pct_txt(D("MT", "var_area")),
+             sprintf("%s → %s milhões de ha · soma dos 141 municípios", num(D("MT", "area_2006") / 1e6, 2), num(D("MT", "area_2017") / 1e6, 2))),
+  cartao_kpi("Área média por estabelecimento", pct_txt(D("MT", "var_area_media")),
+             sprintf("%s → %s ha · razão das somas", num(D("MT", "area_media_2006"), 0), num(D("MT", "area_media_2017"), 0))),
+  cartao_kpi("Municípios que perderam estabelecimentos", sprintf("%d de %d", D("MT", "n_mun_estab_cai"), D("MT", "n_mun")),
+             sprintf("%d de %d perderam área · IBGE, Censos 2006 e 2017", D("MT", "n_mun_area_cai"), D("MT", "n_mun"))))
+nf(fonte_din)
+```
+
+## Por tipo
+
+```{r}
+tabela_dinamica("tipo")
+nf(fonte_din, " Variação de 2017 sobre 2006, calculada sobre as somas dos municípios de cada tipo.")
+```
+
+```{r}
+svg_dinamica()
+```
+
+::: {.achado}
+O T5 teve o maior aumento de estabelecimentos (`r pct_txt(D("T5", "var_estab"))`), com a área média quase igual (`r pct_txt(D("T5", "var_area_media"))`). O T4 perdeu `r pct_txt(-D("T4", "var_estab"))` dos estabelecimentos, e sua área média subiu `r pct_txt(D("T4", "var_area_media"))`, a maior alta entre os tipos. O T3 também perdeu estabelecimentos (`r pct_txt(D("T3", "var_estab"))`) e ganhou área (`r pct_txt(D("T3", "var_area"))`).
+:::
+
+Essas diferenças aparecem nas somas, mas não são estatisticamente claras entre os municípios. No teste de Kruskal-Wallis sobre as variações municipais, nenhuma das três medidas difere entre os tipos (p ≥ `r num(p_min_tipo, 2)`). A variação mediana dos municípios conta outra parte da história:
+
+```{r}
+tabela_medianas_dinamica("tipo")
+```
+
+Teste de diferença entre os tipos:
+
+```{r}
+tabela_testes(DIN_TES, "tipo")
+nf("Kruskal-Wallis sobre as variações percentuais dos 141 municípios (5 tipos), sem correção para a autocorrelação espacial. ", fonte_din)
+```
+
+## Por bioma
+
+```{r}
+tabela_dinamica("bioma")
+```
+
+Variação mediana dos municípios e teste de diferença entre os biomas:
+
+```{r}
+tabela_medianas_dinamica("bioma")
+tabela_testes(DIN_TES, "bioma")
+nf(fonte_din)
+```
+
+No Pantanal, o número de estabelecimentos subiu `r pct_txt(D("Pantanal", "var_estab"))`, mas são só `r D("Pantanal", "n_mun")` municípios. Na Amazônia, o número quase não mudou (`r pct_txt(D("Amazônia", "var_estab"))`), e a área cresceu `r pct_txt(D("Amazônia", "var_area"))`.
+
+## Municípios-sede das áreas-piloto
+
+```{r}
+aviso_municipio()
+tabela_sedes_dinamica()
+p(class = "nota-fonte", HTML(paste0(esc(fonte_din), " Ver também os indicadores ",
+  "<a href=\"../indicadores/var_estab_0617.html\">variação dos estabelecimentos</a> e ",
+  "<a href=\"../indicadores/var_area_0617.html\">variação da área</a>, com o mapa dos 141 municípios.")))
+```
+
+## Valor da produção: fora desta versão
+
+::: {.callout-warning appearance="simple"}
+**O valor da produção de 2006 não concilia.** A tabela estadual dá R\$ `r num(C("vbp_2006", "tabela_estadual") / 1e6, 2)` bilhões; a soma da base municipal corrigida (IBGE, tabela 1118) dá R\$ `r num(C("vbp_2006", "soma_municipal") / 1e6, 2)` bilhões, `r pct_txt(C("vbp_2006", "pct_diferenca"), 0)` a mais (valores correntes de 2006). Enquanto a diferença não for explicada, a variação do valor da produção entre 2006 e 2017 fica fora do site.
+:::
+
+## Conciliação com as tabelas estaduais
+
+```{r}
+tabela_conciliacao()
+nf("Fonte: soma municipal da base do Artigo C (IBGE, Censos Agropecuários 2006 e 2017; valor de 2006 da tabela 1118 do SIDRA); tabela estadual de comparação 2006–2017 (coluna Total) e tabela de confronto dos Censos do IBGE (série histórica), do caderno de tabelas estaduais do Censo 2017 organizado pelo projeto.")
+```

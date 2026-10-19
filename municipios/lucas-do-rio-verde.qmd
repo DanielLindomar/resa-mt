@@ -1,0 +1,15 @@
+---
+title: "Lucas do Rio Verde"
+description: "Perfil do município de Lucas do Rio Verde (MT): bioma Cerrado, tipo T4 do Manuscrito 1 (rótulo provisório), agricultura familiar no Censo 2017, posse, SIPRA, SEEG e dinâmica 2006–2017. Sede da área-piloto Quatá e N. Sra. Aparecida."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+MUN_ID <- 5105259L
+```
+
+{{< include _perfil.qmd >}}

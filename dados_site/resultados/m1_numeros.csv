@@ -1,0 +1,347 @@
+id,valor,valor_bruto,unidade,ano,status_m1,arquivo_m1,tabela_m1
+T3_T1_N,74,74.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F1_MEDIA_WINSOR,"−0,31",-0.3145151571837353,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F1_MEDIANA,"−0,42",-0.4224902247617623,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F2_MEDIA_WINSOR,"−0,57",-0.5655609695656656,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F2_MEDIANA,"−0,72",-0.7228746396317814,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F3_MEDIA_WINSOR,"−0,43",-0.4257581515120299,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F3_MEDIANA,"−0,56",-0.5604087339916435,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F4_MEDIA_WINSOR,"−0,15",-0.1471266832872202,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F4_MEDIANA,"−0,16",-0.1624659426863342,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F5_MEDIA_WINSOR,"−0,68",-0.6811751849180885,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_F5_MEDIANA,"−0,86",-0.8614025774846058,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_PCT_ESTAB_46504_PONDERADA,"3,72",3.720706540748514,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS,"3,18",3.1819347671321467,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_PCT_ESTAB_46504_MEDIANA_MUNICIPAL,"0,17",0.1712398999220704,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_N_MUNIS_COM_ESTAB_46504,41,41.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_PCT_AREA_46504_PONDERADA_SEM_SIGILO,"0,36",0.3644362461026135,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_N_MUNIS_SIGILO_AREA_46504,37,37.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA,"65,1",65.09387023434768,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL,"68,2",68.18889313869234,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_ESTAB_AF_POR_MUNICIPIO_MEDIA,309,309.0810810810811,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_ESTAB_AF_POR_MUNICIPIO_MEDIANA,249,249.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_SOMA_ESTAB_AF,22.872,22872.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_SOMA_ESTAB_AF_46504,851,851.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_SOMA_AREA_AF_HA,1.488.827,1488827.0,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_BIOMA250_AMAZONIA,36,36.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_BIOMA250_CERRADO,37,37.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_BIOMA250_PANTANAL,1,1.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_N,25,25.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F1_MEDIA_WINSOR,"−0,27",-0.2733448232295728,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F1_MEDIANA,"−0,38",-0.375712729976541,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F2_MEDIA_WINSOR,"−0,17",-0.1739525365713321,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F2_MEDIANA,"−0,32",-0.3219784864880721,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F3_MEDIA_WINSOR,"−0,19",-0.1915451383282574,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F3_MEDIANA,"−0,28",-0.2843438802051172,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F4_MEDIA_WINSOR,"−0,16",-0.1589937325653251,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F4_MEDIANA,"−0,23",-0.2315170986786275,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F5_MEDIA_WINSOR,"1,42",1.421553839443135,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_F5_MEDIANA,"1,45",1.4516594424440885,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_PCT_ESTAB_46504_PONDERADA,"24,24",24.23592918948956,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS,"26,02",26.02228237221922,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_PCT_ESTAB_46504_MEDIANA_MUNICIPAL,"21,64",21.64179104477612,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_N_MUNIS_COM_ESTAB_46504,25,25.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_PCT_AREA_46504_PONDERADA_SEM_SIGILO,"17,97",17.96684348295777,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_N_MUNIS_SIGILO_AREA_46504,0,0.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA,"57,3",57.317615305231406,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL,"56,1",56.09713574097136,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_ESTAB_AF_POR_MUNICIPIO_MEDIA,504,503.88,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_ESTAB_AF_POR_MUNICIPIO_MEDIANA,441,441.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_SOMA_ESTAB_AF,12.597,12597.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_SOMA_ESTAB_AF_46504,3.053,3053.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_SOMA_AREA_AF_HA,722.030,722030.0,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_BIOMA250_AMAZONIA,11,11.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_BIOMA250_CERRADO,14,14.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_BIOMA250_PANTANAL,0,0.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_N,20,20.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F1_MEDIA_WINSOR,"0,03",0.0323942431575427,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F1_MEDIANA,"−0,04",-0.0385911108416709,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F2_MEDIA_WINSOR,"1,61",1.6055385237157247,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F2_MEDIANA,"1,52",1.5237293083455046,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F3_MEDIA_WINSOR,"0,21",0.2137973817608588,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F3_MEDIANA,"0,05",0.0458505299188469,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F4_MEDIA_WINSOR,"0,16",0.1559655971499333,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F4_MEDIANA,"−0,23",-0.2344539005848264,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F5_MEDIA_WINSOR,"−0,41",-0.4094086208332517,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_F5_MEDIANA,"−0,90",-0.9025874963594268,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_PCT_ESTAB_46504_PONDERADA,"3,16",3.161306617275636,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS,"3,51",3.5107763181952976,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_PCT_ESTAB_46504_MEDIANA_MUNICIPAL,"0,59",0.5883920008524847,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_N_MUNIS_COM_ESTAB_46504,18,18.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_PCT_AREA_46504_PONDERADA_SEM_SIGILO,"3,52",3.5215997150977176,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_N_MUNIS_SIGILO_AREA_46504,12,12.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA,"75,8",75.7891480047146,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL,"73,6",73.63156026801065,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_ESTAB_AF_POR_MUNICIPIO_MEDIA,1.188,1187.8,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_ESTAB_AF_POR_MUNICIPIO_MEDIANA,1.165,1164.5,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_SOMA_ESTAB_AF,23.756,23756.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_SOMA_ESTAB_AF_46504,751,751.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_SOMA_AREA_AF_HA,1.800.447,1800447.0,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_BIOMA250_AMAZONIA,19,19.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_BIOMA250_CERRADO,1,1.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_BIOMA250_PANTANAL,0,0.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_N,10,10.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F1_MEDIA_WINSOR,"1,94",1.940100011379096,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F1_MEDIANA,"1,88",1.8777386003920784,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F2_MEDIA_WINSOR,"−0,09",-0.0947921599212389,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F2_MEDIANA,"−0,19",-0.1862311946853496,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F3_MEDIA_WINSOR,"0,15",0.1504530989972699,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F3_MEDIANA,"0,07",0.0729378598259155,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F4_MEDIA_WINSOR,"−0,31",-0.3090556501041095,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F4_MEDIANA,"−0,36",-0.3567512042417379,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F5_MEDIA_WINSOR,"1,11",1.1088277199958791,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_F5_MEDIANA,"1,23",1.2281749213866209,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_PCT_ESTAB_46504_PONDERADA,"34,88",34.877679151331456,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS,"29,14",29.144723767195508,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_PCT_ESTAB_46504_MEDIANA_MUNICIPAL,"23,38",23.381346484368947,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_N_MUNIS_COM_ESTAB_46504,10,10.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_PCT_AREA_46504_PONDERADA_SEM_SIGILO,"36,28",36.28483053034188,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_N_MUNIS_SIGILO_AREA_46504,2,2.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA,"73,0",72.967092444252,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL,"76,4",76.4048914419173,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_ESTAB_AF_POR_MUNICIPIO_MEDIA,462,461.9,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_ESTAB_AF_POR_MUNICIPIO_MEDIANA,436,435.5,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_SOMA_ESTAB_AF,4.619,4619.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_SOMA_ESTAB_AF_46504,1.611,1611.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_SOMA_AREA_AF_HA,337.035,337035.0,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_BIOMA250_AMAZONIA,5,5.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_BIOMA250_CERRADO,5,5.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_BIOMA250_PANTANAL,0,0.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_N,12,12.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F1_MEDIA_WINSOR,"0,32",0.3244409293968378,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F1_MEDIANA,"0,10",0.0977233815698106,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F2_MEDIA_WINSOR,"1,14",1.1428572220662865,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F2_MEDIANA,"0,91",0.9103156974469362,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F3_MEDIA_WINSOR,"2,13",2.128855510583878,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F3_MEDIANA,"2,35",2.3454479770319985,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F4_MEDIA_WINSOR,"0,57",0.5714938196319733,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F4_MEDIANA,"0,28",0.2754509895689415,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F5_MEDIA_WINSOR,"1,00",0.9973344095472018,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_F5_MEDIANA,"1,25",1.2472712568433126,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_PCT_ESTAB_46504_PONDERADA,"14,43",14.4342645157664,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS,"15,62",15.620148202633336,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_PCT_ESTAB_46504_MEDIANA_MUNICIPAL,"14,15",14.153635045261517,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_N_MUNIS_COM_ESTAB_46504,12,12.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_PCT_AREA_46504_PONDERADA_SEM_SIGILO,"12,95",12.950812365226987,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_N_MUNIS_SIGILO_AREA_46504,1,1.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA,"44,0",43.9976392558035,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL,"34,2",34.24483184368038,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_ESTAB_AF_POR_MUNICIPIO_MEDIA,1.483,1482.5833333333333,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_ESTAB_AF_POR_MUNICIPIO_MEDIANA,1.362,1361.5,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_SOMA_ESTAB_AF,17.791,17791.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_SOMA_ESTAB_AF_46504,2.568,2568.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_SOMA_AREA_AF_HA,782.762,782762.0,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_BIOMA250_AMAZONIA,5,5.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_BIOMA250_CERRADO,4,4.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_BIOMA250_PANTANAL,3,3.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_N,141,141.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F1_MEDIA_WINSOR,"−0,04",-0.0437274190257579,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F1_MEDIANA,"−0,33",-0.331408646454299,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F2_MEDIA_WINSOR,"−0,01",-0.0093843235620214,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F2_MEDIANA,"−0,32",-0.3245853056604491,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F3_MEDIA_WINSOR,"−0,04",-0.0352339497723421,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F3_MEDIANA,"−0,35",-0.3457377292367607,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F4_MEDIA_WINSOR,"−0,06",-0.0565640893606111,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F4_MEDIANA,"−0,17",-0.1747584670653954,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F5_MEDIA_WINSOR,"0,00",5.039310182695746e-17,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_F5_MEDIANA,"−0,38",-0.3845800632677927,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_PCT_ESTAB_46504_PONDERADA,"10,82",10.821338886507013,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS,"10,18",10.17818989035972,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_PCT_ESTAB_46504_MEDIANA_MUNICIPAL,"2,80",2.796420581655481,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_N_MUNIS_COM_ESTAB_46504,106,106.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_PCT_AREA_46504_PONDERADA_SEM_SIGILO,"11,28",11.284179208143373,%,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_N_MUNIS_SIGILO_AREA_46504,52,52.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA,"62,9",62.85418019231947,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL,"65,6",65.6375,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_ESTAB_AF_POR_MUNICIPIO_MEDIA,579,578.9716312056737,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_ESTAB_AF_POR_MUNICIPIO_MEDIANA,439,439.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_SOMA_ESTAB_AF,81.635,81635.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_SOMA_ESTAB_AF_46504,8.834,8834.0,estab.,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_SOMA_AREA_AF_HA,5.131.101,5131101.0,ha,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_BIOMA250_AMAZONIA,76,76.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_BIOMA250_CERRADO,61,61.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_MT_BIOMA250_PANTANAL,4,4.0,municipios,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_JACCARD_BOOTSTRAP_REPETICOES,"0,94",0.9357435448322609,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_JACCARD_BOOTSTRAP_REPETICOES,"0,80",0.7954533143345577,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_JACCARD_BOOTSTRAP_REPETICOES,"0,70",0.6971244235320714,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_JACCARD_BOOTSTRAP_REPETICOES,"0,79",0.7927751006677913,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_JACCARD_BOOTSTRAP_REPETICOES,"0,66",0.6564803049574592,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T1_JACCARD_BOOTSTRAP_CLUSTERBOOT_PADRAO,"0,95",0.9512969377762492,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T2_JACCARD_BOOTSTRAP_CLUSTERBOOT_PADRAO,"0,84",0.8409130161223142,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T3_JACCARD_BOOTSTRAP_CLUSTERBOOT_PADRAO,"0,74",0.7392833767324867,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T4_JACCARD_BOOTSTRAP_CLUSTERBOOT_PADRAO,"0,85",0.8500862578683787,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+T3_T5_JACCARD_BOOTSTRAP_CLUSTERBOOT_PADRAO,"0,71",0.706136275081128,,,final,03_Resultados/tipologia_k5_tabela3_final.csv,Tabela 3
+INCRA_T1_REF,20.644,20644.21752184899,beneficiarios,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_PCT_REF_DO_MT,"27,1",27.075448898775026,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_REF_POR100AF_PONDERADO,"90,3",90.2597827992698,por 100,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_COBERTURA_46504AF_SOBRE_REF,"0,041",0.0412221969226654,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF,"0,199",0.1993778643169107,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_PCT_ALT_S4_AF_PONDERADO,"18,00",17.995802728226653,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_PCT_TITULADO_BENEF_SIPRA,"20,8",20.80141152435344,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_ANO_CRIACAO_MEDIO_POND_FAMILIAS,"1997,7",1997.691920644048,ano,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_PCT_FAMILIAS_PROJETOS_ATE1995,"36,0",36.0072838796243,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_PCT_FAMILIAS_COLONIZACAO_ANTIGA,"1,0",1.025493578685068,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T1_PCT_FAMILIAS_PE_ESTADUAL,"12,1",12.07590569292697,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_REF,12.284,12284.403025548663,beneficiarios,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_PCT_REF_DO_MT,"16,1",16.111326380773885,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_REF_POR100AF_PONDERADO,"97,5",97.51848079343227,por 100,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_COBERTURA_46504AF_SOBRE_REF,"0,249",0.2485265253549952,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF,"0,332",0.3319656634122733,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_PCT_ALT_S4_AF_PONDERADO,"32,37",32.37278717154878,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_PCT_TITULADO_BENEF_SIPRA,"11,9",11.9127030162413,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_ANO_CRIACAO_MEDIO_POND_FAMILIAS,"1999,6",1999.640579275156,ano,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_PCT_FAMILIAS_PROJETOS_ATE1995,"17,4",17.378254670968712,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_PCT_FAMILIAS_COLONIZACAO_ANTIGA,"0,0",0.0150071283859833,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T2_PCT_FAMILIAS_PE_ESTADUAL,"32,8",32.760561266601634,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_REF,27.601,27600.931139986427,beneficiarios,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_PCT_REF_DO_MT,"36,2",36.19936671604972,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_REF_POR100AF_PONDERADO,"116,2",116.185094881236,por 100,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_COBERTURA_46504AF_SOBRE_REF,"0,027",0.0272092269710423,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF,"0,146",0.146263181467507,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_PCT_ALT_S4_AF_PONDERADO,"16,99",16.993601616433743,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_PCT_TITULADO_BENEF_SIPRA,"14,8",14.80740692947932,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_ANO_CRIACAO_MEDIO_POND_FAMILIAS,"1993,2",1993.1633226713195,ano,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_PCT_FAMILIAS_PROJETOS_ATE1995,"55,9",55.86249232658072,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_PCT_FAMILIAS_COLONIZACAO_ANTIGA,"8,6",8.581305935187878,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T3_PCT_FAMILIAS_PE_ESTADUAL,"6,2",6.232431908500532,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_REF,5.324,5323.8286042019245,beneficiarios,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_PCT_REF_DO_MT,"7,0",6.982345015806425,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_REF_POR100AF_PONDERADO,"115,3",115.2593332799724,por 100,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_COBERTURA_46504AF_SOBRE_REF,"0,303",0.3026017777372641,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF,"0,453",0.452681740749104,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_PCT_ALT_S4_AF_PONDERADO,"52,18",52.17579562675904,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_PCT_TITULADO_BENEF_SIPRA,"44,0",44.009021708486046,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_ANO_CRIACAO_MEDIO_POND_FAMILIAS,"1998,3",1998.2796887796887,ano,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_PCT_FAMILIAS_PROJETOS_ATE1995,"30,4",30.37128037128037,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_PCT_FAMILIAS_COLONIZACAO_ANTIGA,"0,8",0.7507507507507507,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T4_PCT_FAMILIAS_PE_ESTADUAL,"0,6",0.586950586950587,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_REF,10.394,10393.619708413997,beneficiarios,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_PCT_REF_DO_MT,"13,6",13.631512988594954,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_REF_POR100AF_PONDERADO,"58,4",58.42066049358662,por 100,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_COBERTURA_46504AF_SOBRE_REF,"0,247",0.2470746546480929,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF,"0,450",0.4495065368052531,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_PCT_ALT_S4_AF_PONDERADO,"26,26",26.26046877634759,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_PCT_TITULADO_BENEF_SIPRA,"17,8",17.77300085984523,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_ANO_CRIACAO_MEDIO_POND_FAMILIAS,"1999,6",1999.560721721027,ano,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_PCT_FAMILIAS_PROJETOS_ATE1995,"7,1",7.095766828591256,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_PCT_FAMILIAS_COLONIZACAO_ANTIGA,"0,0",0.0086745315752949,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_T5_PCT_FAMILIAS_PE_ESTADUAL,"21,8",21.76439972241499,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_REF,76.247,76247.0,beneficiarios,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_PCT_REF_DO_MT,"100,0",100.0,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_REF_POR100AF_PONDERADO,"93,4",93.3998897531696,por 100,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_COBERTURA_46504AF_SOBRE_REF,"0,116",0.115860296142799,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF,"0,253",0.2532952116148832,razao,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_PCT_ALT_S4_AF_PONDERADO,"23,66",23.657744839835853,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_PCT_TITULADO_BENEF_SIPRA,"18,7",18.69701708386733,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_ANO_CRIACAO_MEDIO_POND_FAMILIAS,"1996,6",1996.6401904761904,ano,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_PCT_FAMILIAS_PROJETOS_ATE1995,"35,9",35.90833333333333,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_PCT_FAMILIAS_COLONIZACAO_ANTIGA,"3,5",3.4857142857142858,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+INCRA_MT_PCT_FAMILIAS_PE_ESTADUAL,"13,5",13.532142857142857,%,,final,03_Resultados/validacao_incra_por_tipo_final.csv,Tabela A.15
+AE_N_MUNICIPIOS,141,141.0,municipios,2017,descritivo,02_Dados_extraidos/fatos_area_estudo.csv,Tabela 1 e totais estaduais
+TOT_AF_ESTAB,81.635,81635.0,estab.,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+TOT_TODOS_ESTAB,118.679,118679.0,estab.,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+TOT_46504_ESTAB,8.834,8834.0,estab.,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+PCT_46504_ESTAB_MT,"10,82",10.821338886507013,%,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+TOT_46504_AREA,397.305,397305.0,ha,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+PCT_46504_AREA_MT,"7,74",7.743070497109394,%,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+TOT_TODOS_46504_ESTAB,11.248,11248.0,estab.,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+TOT_46504_PESSOAL,22.466,22466.0,pessoas,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+PCT_46504_PESSOAL_MT,"10,42",10.415729764062812,%,2017,descritivo,03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 e totais estaduais
+AFE_N_CANDIDATAS,34,34,variaveis,,final,03_Resultados/afe_resumo_final.json,Tabelas 2 e A.1
+AFE_N_VARIAVEIS,21,21,variaveis,,final,03_Resultados/afe_resumo_final.json,Tabelas 2 e A.1
+AFE_KMO,"0,824",0.8236825889624959,,,final,03_Resultados/afe_resumo_final.json,Tabelas 2 e A.1
+AFE_VARIANCIA_COMUM,"83,43",83.42998213418726,%,,final,03_Resultados/afe_resumo_final.json,Tabelas 2 e A.1
+AFE_H2_MEDIA,"0,834",0.8342998213418726,,,final,03_Resultados/afe_resumo_final.json,Tabelas 2 e A.1
+AFE_RETENCAO_HORN_R,5 (quatro criterios),5,fatores,,final,03_Resultados/afe_paralela_retencao_final.csv,Tabelas 2 e A.1
+AFE_N_CARGAS05_TOTAL,21,21,cargas,,final,03_Resultados/afe_mapeamento_fatores_final.csv,Tabelas 2 e A.1
+CARGA_POSSE_PCT_ESTAB,"0,883 [0,710; 0,987]",0.8829830769375987,,,final,03_Resultados/afe_bootstrap_cargas_posse_final.csv,Tabelas 2 e A.1
+CARGA_POSSE_PCT_PESSOAL,"0,873 [0,727; 0,985]",0.8731968902230666,,,final,03_Resultados/afe_bootstrap_cargas_posse_final.csv,Tabelas 2 e A.1
+TIPO_WINSORIZADOS,7 (7 municipios),7,celulas,,final,03_Resultados/tipologia_winsorizacao_final.csv,Tabela A.5
+K_REGRA,5,5,,,final,03_Resultados/tipologia_escolha_k_final.csv,Tabela A.5
+K5_SILHUETA,"0,4165",0.4164552134071577,,,final,03_Resultados/tipologia_avaliacao_k_final.csv,Tabela A.5
+K4_SILHUETA,"0,4136",0.4136315476049467,,,final,03_Resultados/tipologia_avaliacao_k_final.csv,Tabela A.5
+K6_SILHUETA,"0,4043",0.404267890163538,,,final,03_Resultados/tipologia_avaliacao_k_final.csv,Tabela A.5
+K_EMPATE_DIF,"0,0028",0.0028236658022109,,,final,03_Resultados/tipologia_empate_silhueta_final.csv,Tabela A.5
+K_GAP_1EP,5,5,,,final,03_Resultados/tipologia_escolha_k_final.csv,Tabela A.5
+K5_JACCARD_MEDIO_REP,"0,776",0.775515337664828,,,final,03_Resultados/tipologia_avaliacao_k_final.csv,Tabela A.5
+K5_JACCARD_MEDIO_PADRAO,"0,818",0.8175431727161113,,,final,03_Resultados/tipologia_avaliacao_k_final.csv,Tabela A.5
+TIPO_ARI_WARD,"0,802",0.8017225017029006,,,final,03_Resultados/tipologia_resumo_final.json,Tabela A.5
+K5_TAMANHOS,74-25-20-12-10,,,,final,03_Resultados/tipologia_avaliacao_k_final.csv,Tabela A.5
+K4_COMPOSICAO,grupo de 76 = 74 do T1; 1 do T2; 1 do T4 | grupo de 33 = 24 do T2; 9 do T4 | grupo de 20 = 20 do T3 | grupo de 12 = 12 do T5,24,municipios,,sensibilidade,03_Resultados/tipologia_municipios_final.csv,Tabela A.5
+TIPO_ARI_ESCORES_REGRESSAO,"1,000",1.0,,,sensibilidade,03_Resultados/tipologia_sensibilidade_escores_regressao_final.csv,Tabela A.5
+RAZAO_T2_46504_VS_MT,"2,24x",2.239642381009713,razao,,final,03_Resultados/tipologia_k5_tabela3_final.csv; 03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela A.8
+RAZAO_T4_46504_VS_MT,"3,22x",3.223046567261652,razao,,final,03_Resultados/tipologia_k5_tabela3_final.csv; 03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela A.8
+PREV_SEM_ITANHANGA_T4,"24,66 / 23,50 / 19,47",23.49726775956284,%,,sensibilidade,03_Resultados/tipologia_k5_prevalencia_46504_final.csv,Tabela A.8
+RAZAO_T4_46504_VS_MT_SEM_ITANHANGA,"2,17x",2.17138267325324,razao,,sensibilidade,03_Resultados/tipologia_k5_prevalencia_46504_final.csv; 03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela A.8
+INVERSAO_T4,"37,69 / 36,28 / 0,96",0.9626681963746972,razao,2017,final,02_Dados_extraidos/dataset_AF_MT_status.csv; 03_Resultados/tipologia_municipios_final.csv,Tabela A.8
+OUT_T5_F4_SEM_COLNIZA,"0,35",0.3507205305076072,,,sensibilidade,03_Resultados/tipologia_k5_sensibilidade_outliers_final.csv,Tabela A.8
+BIOMA_K5_250MIL_CHI2,"39,24 (8); p = 4,4e-6; perm. 0,0002; FFH 0,0001",39.236782699438,,,final,03_Resultados/tipologia_bioma_testes_final.csv,Tabela A.9
+BIOMA_K5_250MIL_V,"V = 0,373 [0,254; 0,547]; V corr. = 0,335 [0,191; 0,524]; 6 de 15 celulas",0.373011430525891,,,final,03_Resultados/tipologia_bioma_testes_final.csv,Tabela A.9
+PHI_POSSE_MEC,"0,292",0.2919104243032451,,,final,03_Resultados/afe_oblimin_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_MEC_IC_IID,"[0,110; 0,413]",0.1100299744755979,,,final,03_Resultados/afe_bootstrap_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_MEC_IC_BLOCOS,"[0,048; 0,443]",0.0478026721654928,,,sensibilidade,03_Resultados/afe_bootstrap_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_ESC,"0,171",0.1709185156774358,,,final,03_Resultados/afe_oblimin_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_ESC_IC_IID,"[0,009; 0,297]",0.0094205397800029,,,final,03_Resultados/afe_bootstrap_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_HORT,"0,266",0.2657515203252348,,,final,03_Resultados/afe_oblimin_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_HORT_IC_IID,"[0,094; 0,384]",0.094139029140707,,,final,03_Resultados/afe_bootstrap_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_PER,"0,089",0.0887401460641109,,,final,03_Resultados/afe_oblimin_phi_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_PER_IC_IID,"[−0,013; 0,265]",-0.0128138464980632,,,final,03_Resultados/afe_bootstrap_phi_final.csv,Tabelas A.2 e A.3
+REGRA_M,"0,292",0.2919104243032451,,,final,03_Resultados/afe_regra_decisao_sintese_final.csv,Tabelas A.2 e A.3
+REGRA_VEREDITO_CANONICO,independência parcial,,,,final,03_Resultados/afe_regra_decisao_sintese_final.csv,Tabelas A.2 e A.3
+REGRA_M_IC_BOOT_IID,"[0,134; 0,413]",0.1342790905653257,,,final,03_Resultados/afe_regra_decisao_final.csv,Tabelas A.2 e A.3
+REGRA_FAIXAS_CANONICAS_BOOT_IID,"13,5 / 69,3 / 17,2",0.172,%,,final,03_Resultados/afe_regra_decisao_final.csv,Tabelas A.2 e A.3
+REGRA_M_IC_BOOT_BLOCOS,"[0,110; 0,443]",0.1101681903090242,,,sensibilidade,03_Resultados/afe_regra_decisao_final.csv,Tabelas A.2 e A.3
+REGRA_FAIXAS_CANONICAS_BOOT_BLOCOS,"19,3 / 57,1 / 23,7",0.2365,%,,sensibilidade,03_Resultados/afe_regra_decisao_final.csv,Tabelas A.2 e A.3
+PHI_POSSE_MEC_PROMAX,"0,367",0.3670062132240136,,,sensibilidade,03_Resultados/afe_promax_phi_final.csv,Tabelas A.2 e A.3
+REGRA_M_PROMAX,"0,367",0.3670062132240136,,,sensibilidade,03_Resultados/afe_regra_decisao_sintese_final.csv,Tabelas A.2 e A.3
+REGRA_VEREDITO_CANONICO_PROMAX,reformulação obrigatória,,,,sensibilidade,03_Resultados/afe_regra_decisao_sintese_final.csv,Tabelas A.2 e A.3
+REGRA_FAIXAS_CANONICAS_BOOT_IID_PROMAX,"3,1 / 46,1 / 50,9",0.5085,%,,sensibilidade,03_Resultados/afe_regra_decisao_final.csv,Tabelas A.2 e A.3
+REGRA_M_IC_BOOT_IID_PROMAX,"[0,192; 0,465]",0.1918368216313565,,,sensibilidade,03_Resultados/afe_regra_decisao_final.csv,Tabelas A.2 e A.3
+REGRA_M_OBLIMIN_KAISER,"0,298",0.2981167906499568,,,sensibilidade,03_Resultados/afe_regra_decisao_sintese_final.csv,Tabelas A.2 e A.3
+H2_VEREDITO,não sustentada (D8),,,,final,03_Resultados/afe_bootstrap_phi_final.csv,Tabelas A.2 e A.3
+SENS_K6_PHI_POSSE_MEC,"0,324",0.3240747652024136,,,sensibilidade,03_Resultados/afe_sensibilidade_k_final.csv,Tabelas A.2 e A.3
+SIG_46504_ESTAB_STATUS,106 / 0 / 35,0,municipios,,descritivo,03_Resultados/20_sigilo_resumo.json,Tabela 1 (sigilo)
+SIG_46504_AREA_STATUS,54 / 52 / 35,52,municipios,,descritivo,03_Resultados/20_sigilo_resumo.json,Tabela 1 (sigilo)
+SIG_46504_POCUP_STATUS,56 / 50 / 35,50,municipios,,descritivo,03_Resultados/20_sigilo_resumo.json,Tabela 1 (sigilo)
+SIG_21VARS_CELULAS_X,362 (em 130 municipios),362,celulas,,final,02_Dados_extraidos/sidra_raw_status_long.csv,Tabela A.10
+SIG_X_PCT_PESSOAL_ASSENTADOS,50,50,municipios,,descritivo,02_Dados_extraidos/sidra_raw_status_long.csv,Tabela A.10
+SIG_X_ESTAGROLAVPERM_AREA,92,92,municipios,,descritivo,02_Dados_extraidos/sidra_raw_status_long.csv,Tabela A.10
+SOMA_PUBLICADA_AREA_46504,352.874,352874.0,ha,2017,descritivo,03_Resultados/validacao_tabela2_bioma.csv,Tabela 1 (sigilo)
+AREA_46504_SOB_SIGILO,44.431,44431.0,ha,2017,descritivo,03_Resultados/validacao_tabela2_bioma.csv; 03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 (sigilo)
+PCT_AREA_46504_SOB_SIGILO,"11,2",11.183096110041404,%,2017,descritivo,03_Resultados/validacao_tabela2_bioma.csv; 03_Resultados/v2_ibge_N3_condicao_produtor.csv,Tabela 1 (sigilo)
+S3C_FILTRAGEM,"18 variaveis, 4 fatores, sem fator de posse (pct_pessoal sai: carga 0,272, h2 0,206)",18,,,sensibilidade,03_Resultados/afe_sigilo_S3c_filtragem_final.csv,Tabela A.10
+S3_REGRA,"m = 0,303 (independência parcial); IC [0,189; 0,425]; >= 0,35 em 29,7%; Heywood em 1.580 de 2.000",0.3030036433711095,,,sensibilidade,03_Resultados/afe_sigilo_cenarios_final.csv,Tabela A.10
+E2_R1,"Phi escala/mec./hort. = 0,166 / 0,287 / 0,267; m = 0,287 (independência parcial); promax m = 0,364 (reformulação obrigatória); ARI k5 = 1,000 (0 mudam)",0.2870969585371321,,,sensibilidade,03_Resultados/sigilo_E2_cenarios_sintese_final.csv,Tabela A.10
+E2_R2A,"fator de posse nao identificado; ARI da tipologia k5 = 0,421 (46 municipios mudam)",,,,sensibilidade,03_Resultados/sigilo_E2_cenarios_sintese_final.csv,Tabela A.10
+E2_R3,"Phi escala/mec./hort. = 0,126 / 0,263 / 0,212; m = 0,263 (independência parcial); promax m = 0,313 (independência parcial); ARI k5 = 0,734 (15 mudam)",0.2630299004303266,,,sensibilidade,03_Resultados/sigilo_E2_cenarios_sintese_final.csv,Tabela A.10
+E2_R3_TIPOLOGIA,"0,734 (0,649 a 0,760); 15 (14 a 22); modal 0,753 (14 diferem)",0.7338550312754104,,,sensibilidade,03_Resultados/sigilo_E2_cenarios_final.csv,Tabela A.10
+S4_H2_DWYER_PCTESTAB,"0,112 / 0,138",0.1115387898890978,,,final,03_Resultados/afe_S4_comunalidade_final.csv,Tabela A.10
+S4_PCTESTAB_X_F1,"0,290 [0,126; 0,432]; p Dutilleul = 0,007",0.2898772341046968,,,final,03_Resultados/afe_S4_spearman_dutilleul_final.csv,Tabela A.10
+S4_PCTESTAB_X_F2,"0,276 [0,115; 0,416]; p Dutilleul = 0,003",0.2759426952962172,,,final,03_Resultados/afe_S4_spearman_dutilleul_final.csv,Tabela A.10
+S4_PCTESTAB_X_F3,"0,361 [0,210; 0,504]; p Dutilleul < 0,001",0.360701792500613,,,final,03_Resultados/afe_S4_spearman_dutilleul_final.csv,Tabela A.10
+TIPO_ARI_ORIGINAL,"0,747",0.7472903994640621,,,final,03_Resultados/tipologia_resumo_final.json,Tabela A.6
+TIPO_MUDANCAS_VS_ORIGINAL,28,28,municipios,,final,03_Resultados/tipologia_resumo_final.json,Tabela A.6
+INCRA_PROJETOS_2025,575,575.0,projetos,03/06/2025,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,área de estudo (INCRA/SIPRA)
+INCRA_FAMILIAS_2025,85.653,85653.0,familias,03/06/2025,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,área de estudo (INCRA/SIPRA)
+INCRA_AREA_2025,6.539.004,6539004.4226,ha,03/06/2025,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,área de estudo (INCRA/SIPRA)
+INCRA_MUN_SEDE_2025,126,126.0,municipios,03/06/2025,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,área de estudo (INCRA/SIPRA)
+INCRA_REF_BENEFICIARIOS,76.247,76247.0,beneficiarios,03/06/2025 (homologados ate 30/09/2017),final,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+MARQUES2021_ESTAB_RA_MT,42.014,42014.0,estab.,30/09/2017,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+MARQUES2021_AREA_RA_MT,2.251.222,2251222.0,ha,30/09/2017,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+COBERTURA_MAX_46504_MARQUES,"26,8",26.77,%,30/09/2017,final,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+INCRA_LIM_INF_RA_FORA_46504,30.766,30766.0,estab.,30/09/2017,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+INCRA_LIM_INF_RA_FORA_46504_PCT,"73,2",73.23,%,30/09/2017,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+COBERTURA_46504AF_REF_MT,"0,116",0.11586029614279907,razao,2017,final,03_Resultados/v2_ibge_N3_condicao_produtor.csv; 02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+INCRA_PROP_TITRA_AF,10.479,10479.0,estab.,30/09/2017,descritivo,02_Dados_extraidos/incra_totais_estaduais_MT.csv,Tabela A.15 (nota)
+S4_PCT_MT,"23,66",23.657744839835853,%,2017,final,03_Resultados/afe_resumo_final.json,Tabela A.15 (nota)
+INCRA_RHO_PCT_ESTAB_141,"0,175 [−0,002; 0,335]; p Dutilleul = 0,067",0.175196479763707,,,final,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_F5_141,"0,128 [−0,039; 0,289]; p Dutilleul = 0,236",0.1284766237692065,,,final,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_S4_141,"0,497 [0,356; 0,615]; p Dutilleul < 0,001",0.4968758727434938,,,final,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_PCT_ESTAB_REFGT0,"0,085 [−0,081; 0,246]; p Dutilleul = 0,393",0.0851930846010253,,,sensibilidade,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_F5_REFGT0,"0,062 [−0,100; 0,227]; p Dutilleul = 0,580",0.0619765931135959,,,sensibilidade,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_S4_REFGT0,"0,435 [0,282; 0,570]; p Dutilleul < 0,001",0.4348749483267265,,,sensibilidade,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_PCT_ESTAB_REFGE100,"−0,163 [−0,348; 0,034]; p Dutilleul = 0,294",-0.1628302523344964,,,sensibilidade,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_F5_REFGE100,"−0,162 [−0,340; 0,027]; p Dutilleul = 0,341",-0.162238713667285,,,sensibilidade,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_RHO_S4_REFGE100,"0,220 [0,018; 0,416]; p Dutilleul = 0,082",0.2201484230055658,,,sensibilidade,03_Resultados/validacao_incra_spearman_final.csv,Tabela A.15
+INCRA_DISCORDANTES_A,"41 (T1 29, T2 1, T3 10, T5 1)",41,municipios,,final,03_Resultados/validacao_incra_discordantes_final.csv,Tabela A.15
+INCRA_DISCORDANTES_B,1 (Tesouro),1,municipios,,final,03_Resultados/validacao_incra_discordantes_final.csv,Tabela A.15

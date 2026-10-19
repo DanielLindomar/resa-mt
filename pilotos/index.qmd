@@ -1,0 +1,58 @@
+---
+title: "Áreas-piloto"
+description: "As três áreas-piloto do Projeto RESA, uma em cada bioma de Mato Grosso: Vale do Arinos (Juara), Quatá e N. Sra. Aparecida (Lucas do Rio Verde) e Lambari (Poconé)"
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+O projeto estuda três áreas-piloto de agricultura familiar, uma em cada bioma de Mato Grosso. Elas foram definidas em junho de 2026 e substituem as áreas citadas na proposta original.
+
+Nesta versão, o site mostra só a **identificação** de cada área. Famílias e área divergem entre as fontes consultadas. Por isso, esses números ficam de fora até a conciliação (`r as.character(selo_conciliacao())`). O site também não publica o perímetro das áreas-piloto.
+
+```{r}
+cartoes_pilotos()
+```
+
+## Os três municípios-sede
+
+O mapa mostra os municípios de MT por bioma dominante. Os municípios-sede das áreas-piloto têm contorno. O mapa não mostra o perímetro das áreas-piloto.
+
+```{r}
+mapa_municipio(SEDES$id_municipio, altura = 420, prefixo = "../municipios/")
+```
+
+```{r}
+p(class = "nota-fonte", "Fonte: IBGE, Malha Municipal 2022; IBGE, Biomas do Brasil, escala 1:250 mil (2019), para o bioma dominante de cada município. Tipos municipais: Manuscrito 1 do Projeto RESA (rótulos provisórios).")
+```
+
+## Identificação
+
+```{r}
+tabela_pilotos()
+```
+
+```{r}
+homonimos()
+```
+
+```{r}
+aviso_municipio()
+```
+
+Cada página de área-piloto traz um retrato do município-sede, com a ressalva acima. O perfil completo do município está em [Municípios](../municipios/index.qmd).
+
+## O que vem e quando
+
+```{r}
+o_que_vem()
+```

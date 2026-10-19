@@ -1,0 +1,15 @@
+---
+title: "Estabelecimentos da AF com irrigação"
+description: "Tecnologia, assistência e crédito · % dos estabelecimentos da AF · 2017. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabelas 6857 e 6878."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "pct_irrigacao_af"
+```
+
+{{< include _indicador.qmd >}}

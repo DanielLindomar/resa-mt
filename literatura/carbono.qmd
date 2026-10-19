@@ -1,0 +1,67 @@
+---
+title: "Carbono, mercados e ESG"
+description: "Os seis blocos da revisão de literatura sobre carbono, mercados e ESG e as 115 referências com DOI verificado, só com metadados"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
+BL <- ler_lit("blocos_carbono.csv")
+RF <- ler_lit("refs_carbono.csv")
+```
+
+```{r}
+faixa_versao("Versão preliminar para a equipe do projeto. Esta página traz só metadados (autores, ano, título, periódico e DOI). A síntese dos achados entra em versão futura, em texto próprio.")
+```
+
+A revisão organiza a literatura em seis blocos. Cada bloco tem um tema e uma pergunta. As `r fmt_valor(nrow(RF), "int")` referências têm DOI verificado no Crossref (set/2026). Elas servem aos objetivos de ambiente e carbono (OE3) e de cenários bioeconômicos (OE4).
+
+## Os seis blocos
+
+```{r}
+div(class = "cartoes", lapply(seq_len(nrow(BL)), function(i) {
+  b <- BL[i, ]
+  a(class = "cartao", href = sprintf("estudos.html#bloco=%s", b$bloco),
+    div(class = "cartao-topo", tags$h4(style = "margin: 0;", paste0(b$bloco, " · ", b$tema)),
+        span(class = "selo", style = "white-space: nowrap;", sprintf("%d refs.", b$n_refs))),
+    p(tags$i("Pergunta: "), b$pergunta))
+}))
+```
+
+::: {.nota-fonte}
+Temas e perguntas dos blocos: revisão de literatura do Projeto RESA, setembro de 2026. Clique num bloco para ver as referências dele na tabela dos estudos.
+:::
+
+## As `r nrow(RF)` referências
+
+Use a busca para localizar autor, título ou periódico, e os filtros de bloco, ano e tipo. O DOI abre a página da publicação.
+
+```{r}
+tab <- RF |> left_join(select(BL, bloco, tema), by = "bloco") |> transmute(Bloco = paste0(bloco, " · ", tema), Autores = autores, Ano = as.character(ano),
+                       Título = titulo, Periódico = periodico, Tipo = ifelse(nzchar(tipo), tipo, "—"), DOI = doi)
+ordem_bl <- paste0(BL$bloco, " · ", BL$tema)
+reactable(tab, elementId = "tab-carbono", searchable = TRUE, filterable = TRUE, compact = TRUE, wrap = TRUE, striped = TRUE,
+  defaultPageSize = 20, showPageSizeOptions = TRUE, pageSizeOptions = c(20, 50, 115),
+  language = reactableLang(searchPlaceholder = "Buscar autor, título ou periódico", noData = "Nenhuma referência encontrada",
+                           pageInfo = "{rowStart}–{rowEnd} de {rows} referências", pagePrevious = "Anterior",
+                           pageNext = "Próxima", pageSizeOptions = "Mostrar {rows}"),
+  columns = list(
+    Bloco = colDef(minWidth = 150, filterInput = filtro_lista_lit("tab-carbono", ordem_bl), filterMethod = filtro_igual_lit),
+    Autores = colDef(minWidth = 170, filterable = FALSE),
+    Ano = colDef(minWidth = 85, align = "center", filterInput = filtro_lista_lit("tab-carbono", rev(sort(unique(tab$Ano)))),
+                 filterMethod = filtro_igual_lit),
+    Título = colDef(minWidth = 320, filterable = FALSE),
+    Periódico = colDef(minWidth = 170, filterable = FALSE),
+    Tipo = colDef(minWidth = 95, filterInput = filtro_lista_lit("tab-carbono"), filterMethod = filtro_igual_lit),
+    DOI = colDef(minWidth = 170, filterable = FALSE, style = list(fontSize = "0.78rem", wordBreak = "break-all"), cell = function(v) link_doi(v))))
+```
+
+- [Baixar as `r nrow(RF)` referências (CSV)](../arquivos/literatura/resa_refs_carbono_esg.csv) · [dicionário](../arquivos/literatura/dicionarios/resa_refs_carbono_esg.csv)
+- [Baixar a lista completa da literatura em BibTeX](../arquivos/literatura/resa_literatura_estudos.bib), sem resumos
+
+::: {.nota-fonte}
+Fonte: revisão de literatura do Projeto RESA (setembro de 2026), com DOI, título, autoria, ano e periódico conferidos no Crossref. O ano é o do registro da revisão; quando ausente, o do Crossref. O tipo fica como "—" quando o registro não o informa. Resumos de terceiros não são publicados.
+:::

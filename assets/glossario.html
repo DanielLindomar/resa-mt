@@ -1,0 +1,105 @@
+<script>
+// Siglas explicadas ao passar o cursor (ou tocar, no celular). Aplica-se a parágrafos, listas e legendas.
+(function () {
+  var G = {
+    "AF": "Agricultura familiar, conforme a Lei 11.326/2006 e o Censo Agropecuário 2017",
+    "PA": "Projeto de Assentamento da reforma agrária",
+    "PAs": "Projetos de Assentamento da reforma agrária",
+    "INCRA": "Instituto Nacional de Colonização e Reforma Agrária",
+    "SIPRA": "Sistema de Informações de Projetos de Reforma Agrária (INCRA)",
+    "PNCF": "Programa Nacional de Crédito Fundiário (terra comprada com financiamento)",
+    "PRONAF": "Programa Nacional de Fortalecimento da Agricultura Familiar",
+    "DAP": "Declaração de Aptidão ao Pronaf",
+    "SEEG": "Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (Observatório do Clima)",
+    "PRODES": "Monitoramento do desmatamento por satélite (INPE)",
+    "INPE": "Instituto Nacional de Pesquisas Espaciais",
+    "GEE": "Gases de efeito estufa",
+    "CO2e": "Dióxido de carbono equivalente: soma dos gases ponderada pelo potencial de aquecimento",
+    "GWP-AR5": "Potencial de aquecimento global do 5º Relatório do IPCC, usado pelo SEEG para somar os gases",
+    "SAF": "Sistema agroflorestal",
+    "PSA": "Pagamento por serviços ambientais",
+    "ESG": "Critérios ambientais, sociais e de governança",
+    "REDD+": "Redução de emissões por desmatamento e degradação florestal",
+    "VPL": "Valor presente líquido",
+    "TIR": "Taxa interna de retorno",
+    "PAF": "Fatoração pelo eixo principal (análise fatorial exploratória)",
+    "OE": "Objetivo específico do projeto",
+    "iCS": "Instituto Clima e Sociedade",
+    "UNEMAT": "Universidade do Estado de Mato Grosso",
+    "MapBiomas": "Mapeamento anual da cobertura e do uso da terra no Brasil",
+    "CAR": "Cadastro Ambiental Rural",
+    "KMO": "Medida de adequação dos dados à análise fatorial, de 0 a 1 (acima de 0,8 é boa)",
+    "ARI": "Índice de Rand ajustado: concordância entre duas classificações dos mesmos municípios (1 = iguais; 0 = acaso)",
+    "Jaccard": "Estabilidade de um grupo nas reamostras: 1 quando o grupo se repete sempre igual",
+    "clusterboot": "Rotina do R (pacote fpc) que mede a estabilidade dos grupos por reamostragem",
+    "silhueta": "Medida de separação dos grupos, de −1 a 1: quanto maior, mais nítidos os grupos",
+    "Calinski-Harabasz": "Índice de qualidade do agrupamento: quanto maior, mais separados os grupos",
+    "Davies-Bouldin": "Índice de qualidade do agrupamento: quanto menor, mais separados os grupos",
+    "gap": "Critério que compara o agrupamento com dados ao acaso para escolher o número de grupos",
+    "Kruskal-Wallis": "Teste de diferença entre grupos que usa a ordem dos valores, não os valores",
+    "ε²": "Tamanho de efeito do Kruskal-Wallis: parte da variação explicada pelo grupo, de 0 a 1",
+    "Spearman": "Correlação pela ordem dos valores, de −1 a 1",
+    "Pearson": "Correlação linear entre os valores, de −1 a 1",
+    "Dutilleul": "Correção do teste de correlação para a semelhança entre municípios vizinhos",
+    "symlog": "Escala logarítmica que aceita o zero",
+    "Φ": "Correlação entre dois fatores numa rotação oblíqua",
+    "AFOLU": "Agricultura, florestas e outros usos da terra (setor do inventário de emissões)",
+    "banking": "Guardar permissões de emissão de um período para usar depois",
+    "spillover": "Efeito de transbordamento: o que acontece num mercado afeta outro",
+    "cointegração": "Relação de longo prazo entre séries de preços"
+  };
+  var chaves = Object.keys(G).sort(function (a, b) { return b.length - a.length; });
+  var re = new RegExp("(^|[^\\wÀ-ú-])(" + chaves.map(function (k) { return k.replace(/[-+.]/g, "\\$&"); }).join("|") + ")(?![\\wÀ-ú-])");
+  function marcar(el) {
+    var usados = {};
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        while (p && p !== el) { if (/^(A|ABBR|CODE|SCRIPT|STYLE|SVG|BUTTON|SELECT|OPTION)$/i.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
+        return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+    var nos = []; while (w.nextNode()) nos.push(w.currentNode);
+    nos.forEach(function (n) {
+      var m = n.nodeValue.match(re); if (!m || usados[m[2]]) return;
+      usados[m[2]] = true;
+      var i = m.index + m[1].length, depois = n.splitText(i); depois.splitText(m[2].length);
+      var ab = document.createElement("abbr"); ab.title = G[m[2]]; ab.tabIndex = 0; ab.textContent = m[2];
+      depois.parentNode.replaceChild(ab, depois);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("main p, main li, main figcaption, main .kpi-rotulo, main .kpi-meta").forEach(marcar);
+  });
+})();
+</script>
+<div id="dica-grafico" role="tooltip" aria-hidden="true"></div>
+<script>
+// Dica imediata para elementos com data-tip (pontos, barras e linhas dos gráficos SVG; selos).
+(function () {
+  var dica = document.getElementById("dica-grafico");
+  function mostrar(el, x, y) {
+    dica.textContent = el.getAttribute("data-tip");
+    dica.style.display = "block";
+    var w = dica.offsetWidth, h = dica.offsetHeight;
+    var left = Math.min(x + 12, window.innerWidth - w - 8), top = y - h - 12;
+    if (top < 4) top = y + 16;
+    dica.style.left = left + "px"; dica.style.top = top + "px";
+  }
+  function esconder() { dica.style.display = "none"; }
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el) mostrar(el, e.clientX, e.clientY);
+  });
+  document.addEventListener("mousemove", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el && dica.style.display === "block") mostrar(el, e.clientX, e.clientY);
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (e.target.closest && e.target.closest("[data-tip]")) esconder();
+  });
+  document.addEventListener("touchstart", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); var t = e.touches[0];
+    if (el) mostrar(el, t.clientX, t.clientY); else esconder();
+  }, { passive: true });
+  window.addEventListener("scroll", esconder, { passive: true });
+})();
+</script>

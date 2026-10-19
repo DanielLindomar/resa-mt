@@ -1,0 +1,80 @@
+---
+title: "Municípios"
+description: "Os 141 municípios de Mato Grosso no Censo Agropecuário 2017: bioma, tipo municipal da agricultura familiar do Manuscrito 1 (rótulo provisório), indicadores principais e perfis"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_municipios.R"))
+nb <- table(factor(MUN$bioma, BIOMAS)); nt <- table(factor(MUN$tipo_m1, names(TIPOS)))
+IDS_TAB <- c("estab_af", "pct_estab_af", "area_media_af", "pct_estab_46504", "pct_area_46504",
+             "valor_prod_estab_af", "n_pa", "fam_pa", "seeg_emissao_bruta", "var_estab_0617")
+```
+
+```{r}
+faixa_versao()
+```
+
+São os 141 municípios do Censo Agropecuário 2017 (Boa Esperança do Norte, criado depois, não entra). O bioma de cada um é o **bioma dominante** no IBGE 1:250 mil (2019): `r nb[["Amazônia"]]` na Amazônia, `r nb[["Cerrado"]]` no Cerrado e `r nb[["Pantanal"]]` no Pantanal. O **tipo** é o grupo do município na tipologia municipal da agricultura familiar do Manuscrito 1 do Projeto RESA. Os rótulos dos tipos são provisórios, até a aprovação dos autores. Os perfis descrevem municípios, não assentamentos.
+
+:::: {.perfil-topo}
+::: {.perfil-texto}
+### Municípios-sede das áreas-piloto
+
+```{r}
+div(class = "cartoes", lapply(seq_len(nrow(SEDES)), function(i) {
+  m <- SEDES[i, ]
+  corpo <- tagList(h4(m$municipio), p(chip_bioma(m$bioma), " ", chip_tipo(m$tipo_m1, rotulo = FALSE)),
+                   p(style = "margin-top:.35rem", paste("Sede da área-piloto", m$piloto)), p(selo_conciliacao()))
+  if (tem_perfil(m$slug)) a(class = "cartao", href = paste0(m$slug, ".html"), corpo) else div(class = "cartao", corpo)
+}))
+```
+
+### Ir para um perfil
+
+```{r}
+if (nrow(PERFIS) > 0) div(class = "nav-mun",
+  tags$select(class = "form-select", `aria-label` = "Abrir o perfil de um município",
+              onchange = "if (this.value) window.location = this.value",
+              tags$option(value = "", "Escolha um município"),
+              lapply(seq_len(nrow(PERFIS)), function(j) tags$option(value = paste0(PERFIS$slug[j], ".html"), PERFIS$municipio[j]))))
+```
+
+### Os cinco tipos do Manuscrito 1
+
+K-means com k = 5 sobre os escores de Bartlett de uma análise fatorial (fatoração pelo eixo principal, rotação oblimin) de 21 variáveis do Censo Agropecuário 2017, nos 141 municípios. [Ver a tipologia](../resultados/tipologia.qmd).
+
+```{r}
+tags$ul(style = "list-style:none;padding-left:0", lapply(names(TIPOS), function(t)
+  tags$li(style = "margin-bottom:.3rem", chip_tipo(t), span(class = "sub", sprintf(" %d municípios", nt[[t]])))))
+```
+:::
+::: {.perfil-mapa}
+```{r}
+svg_mapa_mt(alternar = TRUE, tol = 1200, id = "mapa-municipios")
+```
+
+[Passe o cursor (ou toque) sobre um município para ver o nome, o bioma e o tipo; clique para abrir o perfil. Os botões trocam a cor entre bioma e tipo do M1.]{.nota-fonte}
+:::
+::::
+
+## Os 141 municípios
+
+Busque pelo nome ou filtre por bioma e por tipo nas listas do cabeçalho. Clique no nome de uma coluna para ordenar. Os valores com X (sigilo IBGE), – (zero absoluto) ou ... (não disponível) aparecem com o sinal; na ordenação, X e ... vão para o fim e – conta como zero. Clique no nome de um indicador para ver o mapa e o ranking.
+
+```{r}
+tabela_municipios(prefixo = "", ids = IDS_TAB)
+```
+
+```{r}
+legenda_sinais()
+```
+
+Notas: a categoria 46504 é a de concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017) e sub-registra a reforma agrária ([ver Posse no Censo e reforma agrária](../resultados/posse.qmd)); o SIPRA conta cada projeto de assentamento só no município-sede (INCRA, Relatório 0227, posição de 03/06/2025); o SEEG mede o município inteiro, não a agricultura familiar; a dinâmica 2006–2017 cobre todos os estabelecimentos, e a soma municipal de 2006 não fecha com a tabela estadual (112.987 contra 112.978 estabelecimentos). Os dados completos, com dicionário, estão em [Dados](../dados/index.qmd).
+
+```{r}
+fonte_rodape(IDS_TAB)
+```

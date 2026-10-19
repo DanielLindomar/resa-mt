@@ -1,0 +1,205 @@
+---
+title: "Tipologia municipal da agricultura familiar"
+subtitle: "Manuscrito 1, em preparação"
+description: "Os cinco tipos municipais da agricultura familiar de Mato Grosso no Manuscrito 1 (k = 5), com rótulos provisórios"
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_resultados.R"))
+FAT <- ler(ds("m1_fatores.csv"))
+k4 <- regmatches(m1("K4_COMPOSICAO"), regexec("grupo de (\\d+) = (\\d+) do T2; (\\d+) do T4", m1("K4_COMPOSICAO")))[[1]]
+sedes_tipo <- paste(sprintf("%s (%s)", SEDES$municipio, SEDES$tipo_m1)[order(SEDES$municipio)], collapse = ", ")
+```
+
+```{r}
+faixa_versao()
+```
+
+::: {.callout-note appearance="simple"}
+**Resultado em preparação.** Esta página resume o Manuscrito 1 do Projeto RESA, que ainda não foi publicado. Os números vêm do arquivo de números finais do manuscrito. Os nomes dos tipos são **rótulos provisórios**: os autores ainda vão aprová-los.
+:::
+
+## A pergunta
+
+O Censo Agropecuário 2017 registra a condição do produtor em relação às terras. Uma das categorias é a de **concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)**, código 46504 no SIDRA. O Manuscrito 1 pergunta duas coisas:
+
+- essa condição de posse forma um eixo próprio da agricultura familiar (AF), separado da escala e da mecanização?
+- como os municípios de Mato Grosso se agrupam quando a posse entra junto com a produção?
+
+As duas hipóteses e a regra para julgá-las foram fixadas antes da estimação. A resposta curta: pela regra, a posse tem **`r m1("REGRA_VEREDITO_CANONICO")`** em relação à escala e à mecanização, com veredito sensível à rotação e ao sigilo; a hipótese de que produção de alimentos e posse ficam em eixos separados foi julgada **`r sub(" \\(.*", "", m1("H2_VEREDITO"))`**.
+
+## Dados e método, em linguagem simples
+
+::: {.cartoes .passos}
+
+::: {.cartao}
+#### [1]{.num-passo} Dados
+Censo Agropecuário 2017 (IBGE), agricultura familiar, `r m1("AE_N_MUNICIPIOS")` municípios. De `r m1("AFE_N_CANDIDATAS")` variáveis candidatas, `r m1("AFE_N_VARIAVEIS")` ficaram na análise.
+:::
+
+::: {.cartao}
+#### [2]{.num-passo} Fatores
+Análise fatorial por eixos principais (PAF) com rotação oblíqua oblimin. A análise paralela na matriz de correlações indica `r sub(" .*", "", m1("AFE_RETENCAO_HORN_R"))` fatores. KMO = `r m1("AFE_KMO")`.
+:::
+
+::: {.cartao}
+#### [3]{.num-passo} Escores
+Cada município recebe um escore de Bartlett por fator. Os `r sub(" .*", "", m1("TIPO_WINSORIZADOS"))` escores fora de ±3 são truncados em ±3 antes do agrupamento.
+:::
+
+::: {.cartao}
+#### [4]{.num-passo} Tipos
+K-means com k de 3 a 8. A regra fixada antes escolhe a maior silhueta entre k = 3 e 6: k = `r m1("K_REGRA")`, silhueta de `r m1("K5_SILHUETA")`.
+:::
+
+:::
+
+Os cinco fatores são:
+
+```{r}
+tags$ul(lapply(seq_len(nrow(FAT)), function(i) tags$li(tags$b(paste0(FAT$fator[i], " · ", FAT$nome[i])), ": ", FAT$descricao[i], ".")))
+```
+
+**Por que cinco tipos.** Com k = 5, a silhueta (`r m1("K5_SILHUETA")`) fica quase empatada com a de k = 4 (`r m1("K4_SILHUETA")`; diferença de `r m1("K_EMPATE_DIF")`). O critério do gap também aponta k = `r m1("K_GAP_1EP")`, e o agrupamento hierárquico de Ward concorda com o K-means (índice de Rand ajustado, ARI = `r m1("TIPO_ARI_WARD")`). Com k = 4, `r k4[3]` municípios do T2 e `r k4[4]` do T4 formam um só grupo de `r k4[2]`. A estabilidade por reamostragem (Jaccard médio) é de `r m1("K5_JACCARD_MEDIO_REP")` (repetições) e `r m1("K5_JACCARD_MEDIO_PADRAO")` (convenção do clusterboot, rotina de reamostragem do R).
+
+```{r}
+figura_res("figA4_criterios_k_final.svg",
+           "Critérios de escolha de k (Figura A4 do Manuscrito 1): silhueta, Calinski-Harabasz, Davies-Bouldin, gap e Jaccard bootstrap. A faixa cinza marca k = 5.",
+           "Fonte: IBGE, Censo Agropecuário 2017; elaboração dos autores do Manuscrito 1. Tabela A.5.")
+fonte_m1("Tabelas 2 e A.5", c("AE_N_MUNICIPIOS", "AFE_N_CANDIDATAS", "AFE_N_VARIAVEIS", "AFE_RETENCAO_HORN_R", "AFE_KMO",
+                                "TIPO_WINSORIZADOS", "K_REGRA", "K5_SILHUETA", "K4_SILHUETA", "K_EMPATE_DIF", "K_GAP_1EP",
+                                "TIPO_ARI_WARD", "K4_COMPOSICAO", "K5_JACCARD_MEDIO_REP", "K5_JACCARD_MEDIO_PADRAO"))
+```
+
+## Os cinco tipos no mapa
+
+Cada cor é um tipo (rótulo provisório). O contorno escuro marca os municípios-sede das três áreas-piloto: `r sedes_tipo`. O clique abre o perfil do município.
+
+```{r}
+mapa_municipio(NULL, altura = 470, prefixo = "../municipios/", cor_por = "tipo")
+```
+
+```{r}
+nf("Fonte: tipos do Manuscrito 1 (Tabela A.19), a partir de IBGE, Censo Agropecuário 2017. Malha Municipal 2022 do IBGE. Rótulos provisórios.")
+```
+
+## Perfis dos tipos
+
+A tabela reproduz a Tabela 3 do Manuscrito 1. Os escores dos fatores têm média zero em MT: valor positivo indica mais que a média; negativo, menos. A categoria 46504 é a de concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017).
+
+```{r}
+tabela_perfis_m1()
+fonte_m1("Tabela 3", extra = paste0("; beneficiários: ", FONTE_BENEF, " (Tabela A.15)"))
+nf(sprintf(
+  "Média dos escores truncados em ±3 e, entre parênteses, mediana. A %% de área da categoria 46504 usa só os municípios sem X; a de MT (%s%%) não é o total estadual, que é de %s%%. X = dado omitido pelo IBGE para não identificar o informante.",
+  m1("T3_MT_PCT_AREA_46504_PONDERADA_SEM_SIGILO"), m1("PCT_46504_AREA_MT")))
+```
+
+### Como ler cada tipo
+
+```{r}
+cartoes_tipos()
+fonte_m1("Tabelas 3 e A.8", c("T3_*", "INCRA_T3_REF_POR100AF_PONDERADO", "RAZAO_T2_46504_VS_MT", "RAZAO_T4_46504_VS_MT",
+                               "PREV_SEM_ITANHANGA_T4", "RAZAO_T4_46504_VS_MT_SEM_ITANHANGA", "OUT_T5_F4_SEM_COLNIZA"))
+```
+
+## Municípios mais representativos
+
+São os três municípios mais próximos do centro de cada tipo, isto é, os que melhor resumem o seu perfil.
+
+```{r}
+tabela_representativos()
+nf("Fonte: Manuscrito 1 do Projeto RESA (em preparação), nota da Tabela 3 (distância ao centro do tipo nos escores truncados em ±3).")
+```
+
+Todos os municípios de cada tipo (clique para abrir):
+
+```{r}
+lista_municipios_tipo()
+aviso_municipio()
+```
+
+## Tipo e bioma
+
+```{r}
+tabela_tipo_bioma()
+fonte_m1("Tabelas 3 e A.9", extra = "; bioma dominante: IBGE, Biomas 1:250 mil (2019)")
+```
+
+O tipo e o bioma estão associados, mas um não repete o outro. O V de Cramér é `r m1_re("BIOMA_K5_250MIL_V", "^V = ([0-9,]+)")` (IC 95% de `r sub("; ", " a ", m1_re("BIOMA_K5_250MIL_V", "^V = [0-9,]+ \\[([^]]+)\\]"), fixed = TRUE)`), com qui-quadrado de `r m1_re("BIOMA_K5_250MIL_CHI2", "^([0-9,]+)")` e `r m1_re("BIOMA_K5_250MIL_CHI2", "\\((\\d+)\\)")` graus de liberdade (p = `r sci_br(m1_re("BIOMA_K5_250MIL_CHI2", "p = ([0-9,e-]+)"))`; por permutação, p = `r m1_re("BIOMA_K5_250MIL_CHI2", "perm\\. ([0-9,]+)")`). O teste por permutação importa porque `r m1_re("BIOMA_K5_250MIL_V", "; ([0-9]+ de [0-9]+) celulas")` células da tabela têm frequência esperada menor que 5.
+
+- O T3 é quase todo amazônico: `r m1("T3_T3_BIOMA250_AMAZONIA")` de `r m1("T3_T3_N")` municípios.
+- Os `r m1("T3_MT_BIOMA250_PANTANAL")` municípios de bioma dominante Pantanal estão no T1 (`r m1("T3_T1_BIOMA250_PANTANAL")`) e no T5 (`r m1("T3_T5_BIOMA250_PANTANAL")`).
+- T1, T2 e T4 se dividem quase em partes iguais entre Amazônia e Cerrado.
+
+## A regra de decisão sobre a posse
+
+Numa rotação oblíqua, os fatores podem se correlacionar. A correlação entre dois fatores se chama Φ. Antes da estimação, os autores fixaram uma regra sobre m, o maior valor entre Φ posse × escala (porte agregado) e Φ posse × mecanização:
+
+- m abaixo de 0,20: a posse é tratada como eixo independente;
+- m de 0,20 a 0,35: **independência parcial**;
+- m de 0,35 ou mais: a hipótese teria de ser reformulada.
+
+```{r}
+svg_regua_regra()
+```
+
+**O resultado.** Φ posse × mecanização = `r m1("PHI_POSSE_MEC")` (IC 95% de `r ic_br("PHI_POSSE_MEC_IC_IID")`) e Φ posse × porte agregado = `r m1("PHI_POSSE_ESC")` (`r ic_br("PHI_POSSE_ESC_IC_IID")`). Logo, m = `r m1("REGRA_M")`: **`r m1("REGRA_VEREDITO_CANONICO")`**. Nas 2.000 reamostras de municípios, `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID")[1]`% ficam abaixo de 0,20, `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID")[2]`% na faixa parcial e `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID")[3]`% acima de 0,35. Reamostrando por blocos regionais, o intervalo de m vai de `r ic_br("REGRA_M_IC_BOOT_BLOCOS")`.
+
+**A sensibilidade à rotação.** Com a rotação promax, m = `r m1("REGRA_M_PROMAX")`, o que pela regra levaria a **`r m1("REGRA_VEREDITO_CANONICO_PROMAX")`**; `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID_PROMAX")[3]`% das reamostras passam de 0,35. Com a oblimin normalizada (Kaiser), m = `r m1("REGRA_M_OBLIMIN_KAISER")`, de novo na faixa parcial.
+
+**Fora da regra.** A posse também se correlaciona com horticultura e irrigação: Φ = `r m1("PHI_POSSE_HORT")` (IC 95% de `r ic_br("PHI_POSSE_HORT_IC_IID")`). Por isso a segunda hipótese, de eixos separados para alimentos e posse, foi julgada `r sub(" \\(.*", "", m1("H2_VEREDITO"))`. Com lavoura permanente, Φ = `r m1("PHI_POSSE_PER")`.
+
+```{r}
+figura_res("fig3_matriz_phi_final.svg",
+           "Correlações entre fatores (Φ) e regra de decisão (Figura 3 do Manuscrito 1). (a) Matriz Φ da solução oblimin com IC 95% por bootstrap simples e por blocos regionais; (b) Φ da posse com os demais fatores, nas rotações oblimin e promax, e os limiares 0,20 e 0,35.",
+           "Fonte: IBGE, Censo Agropecuário 2017; elaboração dos autores do Manuscrito 1. Tabelas A.2 e A.3.")
+fonte_m1("Tabelas A.2 e A.3", c("PHI_POSSE_MEC", "PHI_POSSE_MEC_IC_IID", "PHI_POSSE_ESC", "PHI_POSSE_ESC_IC_IID", "REGRA_M",
+                                 "REGRA_VEREDITO_CANONICO", "REGRA_FAIXAS_CANONICAS_BOOT_IID", "REGRA_M_IC_BOOT_BLOCOS",
+                                 "REGRA_M_PROMAX", "REGRA_M_IC_BOOT_IID_PROMAX", "REGRA_VEREDITO_CANONICO_PROMAX",
+                                 "REGRA_FAIXAS_CANONICAS_BOOT_IID_PROMAX", "REGRA_M_OBLIMIN_KAISER", "PHI_POSSE_HORT",
+                                 "PHI_POSSE_HORT_IC_IID", "PHI_POSSE_PER", "H2_VEREDITO"))
+```
+
+### O que isso significa
+
+- A posse declarada ao Censo não é só um reflexo da escala ou da mecanização: a análise encontra um eixo de posse.
+- Mas o eixo não é independente: onde há mais posse aguardando titulação, tende a haver um pouco mais de mecanização e de horticultura.
+- O veredito muda com a rotação e com o tratamento do sigilo (ver abaixo). Ele deve ser lido como tendência, não como fronteira nítida.
+- Para o projeto, a posse precisa ser lida junto com a estrutura produtiva. E a categoria do Censo precisa ser conferida com os registros do INCRA, porque mede a condição declarada, não a reforma agrária. Ver [o que a posse registrada no Censo mede](posse.qmd).
+
+## A ressalva do sigilo
+
+O IBGE omite, com o sinal X, as células que poderiam identificar um informante. O Manuscrito 1 leu os X como zero nas `r m1("AFE_N_VARIAVEIS")` variáveis: são `r m1_re("SIG_21VARS_CELULAS_X", "^([0-9.]+)")` células, em `r m1_re("SIG_21VARS_CELULAS_X", "em ([0-9]+) municipios")` municípios. Na categoria 46504, a área tem X em `r m1_partes("SIG_46504_AREA_STATUS")[2]` municípios e o pessoal ocupado em `r m1_partes("SIG_46504_POCUP_STATUS")[2]`. O número de estabelecimentos não tem X.
+
+**O fator de posse depende de ler X como zero** (Tabela A.10 do Manuscrito 1):
+
+- Só com os municípios sem X na área e no pessoal da categoria, a análise fica com `r m1_re("S3C_FILTRAGEM", "^([0-9]+) variaveis")` variáveis e `r m1_re("S3C_FILTRAGEM", "([0-9]+) fatores")` fatores, **sem fator de posse**.
+- Sem as variáveis com mais de 30% de X, o fator de posse não é identificado, e `r m1_re("E2_R2A", "\\(([0-9]+) municipios mudam\\)")` municípios mudam de tipo (ARI = `r m1_re("E2_R2A", "k5 = ([0-9,]+)")`).
+- Com imputação múltipla dos X, a regra continua em independência parcial (m = `r m1_re("E2_R3", "; m = ([0-9,]+)")`), mas `r m1_re("E2_R3", "\\(([0-9]+) mudam\\)")` municípios mudam de tipo (ARI = `r m1_re("E2_R3", "ARI k5 = ([0-9,]+)")`).
+
+**O que não depende do sigilo.** A proporção de estabelecimentos da AF na categoria 46504 não tem X. Ela partilha só `r m1_partes("S4_H2_DWYER_PCTESTAB")[1]` de sua variância com os quatro fatores produtivos (escala logarítmica; `r m1_partes("S4_H2_DWYER_PCTESTAB")[2]` em porcentagem). Suas correlações com mecanização (`r m1_re("S4_PCTESTAB_X_F1", "^([0-9,]+)")`), porte agregado (`r m1_re("S4_PCTESTAB_X_F2", "^([0-9,]+)")`) e horticultura (`r m1_re("S4_PCTESTAB_X_F3", "^([0-9,]+)")`) são positivas e de magnitude parecida. Isso sustenta a leitura de que a posse não se reduz à estrutura produtiva, sem ser independente dela.
+
+Neste site, X nunca vira zero: em mapas e tabelas, X aparece em cinza, com a dica "X (sigilo IBGE)".
+
+```{r}
+fonte_m1("Tabelas 1 e A.10", c("SIG_21VARS_CELULAS_X", "SIG_46504_AREA_STATUS", "SIG_46504_POCUP_STATUS", "S3C_FILTRAGEM",
+                                "E2_R2A", "E2_R3", "S4_H2_DWYER_PCTESTAB", "S4_PCTESTAB_X_F1", "S4_PCTESTAB_X_F2", "S4_PCTESTAB_X_F3"))
+```
+
+## Nota de método: versão anterior
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Versão anterior da tipologia (superada)
+
+Versões anteriores do Manuscrito 1 e os Artigos A, B e C do projeto usaram outra tipologia: seis tipos (k = 6), obtidos por componentes principais com rotação Varimax. O Manuscrito 1 substituiu essa especificação pela atual: análise fatorial por eixos principais com rotação oblimin, `r m1("AFE_N_VARIAVEIS")` variáveis, escores de Bartlett e k = 5. Uma das mudanças foi tirar o valor total da produção, que repete a soma dos valores vegetal e animal.
+
+A concordância entre as duas tipologias é ARI = `r m1("TIPO_ARI_ORIGINAL")`, e `r m1("TIPO_MUDANCAS_VS_ORIGINAL")` municípios mudam de tipo (Tabela A.6 do Manuscrito 1). Este site usa só a tipologia atual. As páginas de [emissões e desmatamento](emissoes.qmd) e de [dinâmica 2006–2017](dinamica.qmd) refazem os resultados dos Artigos A, B e C pelos cinco tipos do Manuscrito 1. No Artigo A, o desmatamento passa a vir do PRODES municipal oficial, no lugar da proxy do SEEG.
+:::
+
+```{r}
+fonte_ind(c("estab_af", "estab_af_46504"))
+```

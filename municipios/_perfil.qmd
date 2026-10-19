@@ -1,0 +1,117 @@
+```{r}
+#| include: false
+# Modelo dos perfis municipais. Cada municipios/<slug>.qmd (gerado por
+# scripts/03_gerar_stubs.py) define MUN_ID (código IBGE, inteiro) e inclui este arquivo.
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_municipios.R"))
+M    <- MUN[MUN$id_municipio == MUN_ID, ]
+NOME <- M$municipio
+```
+
+```{r}
+faixa_versao(paste("Versão preliminar para a equipe do projeto. Dados do Censo Agropecuário 2017 (IBGE), do INCRA/SIPRA (posição de 03/06/2025),",
+                   "do SEEG 13 (1970–2024) e dos Censos Agropecuários 2006 e 2017. Cada valor mostra o ano a que se refere."))
+```
+
+```{r}
+navegacao_municipio(MUN_ID)
+```
+
+:::: {.perfil-topo}
+::: {.perfil-texto}
+```{r}
+tagList(cabecalho_municipio(MUN_ID), aviso_sede(MUN_ID), texto_perfil(MUN_ID))
+```
+:::
+::: {.perfil-mapa}
+```{r}
+svg_mapa_mt(destaque = MUN_ID, tol = 2000, id = "mapa-perfil")
+```
+:::
+::::
+
+## Indicadores-chave
+
+Os oito indicadores-chave do observatório. Abaixo de cada valor, a mediana dos municípios do bioma `r M$bioma` e a dos 141 municípios de MT, ou a parcela no total dos municípios de MT. Verde indica situação mais favorável que a mediana do bioma, e vermelho, menos favorável; os indicadores de contexto não têm cor.
+
+```{r}
+grade_kpis_mun(MUN_ID)
+```
+
+## Posição no bioma e em Mato Grosso
+
+A posição ordena os municípios do maior para o menor valor (1º = maior), entre os que têm valor publicado. – (zero absoluto) conta como zero; X (sigilo) e ... (não disponível) ficam fora. O tipo é o grupo de `r NOME` na tipologia do Manuscrito 1 (`r M$tipo_m1`, rótulo provisório).
+
+```{r}
+tabela_posicao(MUN_ID)
+```
+
+## Indicadores por tema
+
+Na coluna "Posição", cada ponto claro é um município do bioma `r M$bioma`, o ponto escuro é `r NOME` e o traço pontilhado é a mediana de MT. Passe o cursor (ou toque) no ⓘ para ler a nota do indicador.
+
+::: {.panel-tabset}
+
+### Estrutura da AF
+
+```{r}
+tabela_tema_mun("estrutura", MUN_ID, NOME)
+```
+
+### Tecnologia, assistência e crédito
+
+```{r}
+tabela_tema_mun("tecnologia", MUN_ID, NOME)
+```
+
+### Produção e alimentos
+
+```{r}
+tabela_tema_mun("alimentos", MUN_ID, NOME)
+```
+
+### Posse e reforma agrária
+
+A categoria 46504 do Censo 2017 (concessionário(a) ou assentado(a) aguardando titulação definitiva) sub-registra a reforma agrária: quem já tem título aparece como proprietário(a). O SIPRA conta cada projeto de assentamento só no município-sede (INCRA, Relatório 0227, posição de 03/06/2025). Ver [Posse no Censo e reforma agrária](../resultados/posse.qmd).
+
+```{r}
+tabela_tema_mun("posse", MUN_ID, NOME)
+```
+
+### Clima (SEEG 13)
+
+O SEEG estima as emissões do município inteiro, não só da agricultura familiar (SEEG 13, Observatório do Clima, GWP-AR5).
+
+```{r}
+tabela_tema_mun("clima", MUN_ID, NOME)
+```
+
+### Dinâmica 2006–2017
+
+Todos os estabelecimentos agropecuários (AF e não AF). A soma municipal de 2006 não fecha com a tabela estadual do IBGE: 112.987 contra 112.978 estabelecimentos e 48,69 contra 47,81 milhões de ha.
+
+```{r}
+tabela_tema_mun("dinamica", MUN_ID, NOME)
+```
+
+:::
+
+```{r}
+legenda_sinais()
+```
+
+## Emissões no tempo
+
+Emissões brutas, emissões de mudança de uso da terra e florestas, emissões da agropecuária e remoções estimadas pelo SEEG 13 para o município inteiro, em mil tCO2e (GWP-AR5), de 1970 a 2024. As remoções aparecem em valor absoluto. `r NOTA_1990` Passe o cursor (ou toque) sobre o gráfico para ver os valores de cada ano.
+
+```{r}
+HTML(svg_seeg_mun(MUN_ID, NOME))
+```
+
+```{r}
+fonte_rodape()
+```
+
+```{r}
+navegacao_municipio(MUN_ID)
+```

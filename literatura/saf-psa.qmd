@@ -1,0 +1,72 @@
+---
+title: "SAF e PSA em assentamentos"
+description: "Dominicis et al. (2023) como referência do OE4, os 38 estudos comparados (só local, público, arranjo e DOI) e as lacunas que o projeto ocupa"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
+ES <- ler_lit("estudos_saf_psa.csv")
+n_bioma <- function(b) sum(grepl(b, ES$bioma, fixed = TRUE))
+```
+
+```{r}
+faixa_versao("Versão preliminar para a equipe do projeto. A tabela traz só a identificação de cada estudo (local, bioma, público, arranjo e DOI), sem os resultados numéricos.")
+```
+
+## O artigo de referência
+
+**Dominicis et al. (2023)**, publicado na revista *Forests* ([10.3390/f14102110](https://doi.org/10.3390/f14102110)), avalia a viabilidade financeira de sistemas agroflorestais (SAF) implantados por agricultores familiares, a maioria assentados da reforma agrária, na bacia do rio Descoberto (Distrito Federal, Cerrado). O estudo compara o resultado com e sem pagamento por serviços ambientais (PSA) e usa indicadores como o valor presente líquido (VPL) e a taxa interna de retorno (TIR).
+
+É o desenho que o OE4 vai reproduzir e ampliar nas três áreas-piloto do projeto, uma por bioma. A busca de estudos parecidos serve para escolher os métodos e para mostrar o que ainda falta na literatura.
+
+## Os `r nrow(ES)` estudos comparados
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Estudos comparados", fmt_valor(nrow(ES), "int"), "busca de out/2026", sprintf("%d com DOI conferido no Crossref", sum(nzchar(ES$doi)))),
+  cartao_kpi("Na Amazônia", fmt_valor(n_bioma("Amazônia"), "int"), "estudos que citam o bioma", "inclui os de Amazônia e Cerrado"),
+  cartao_kpi("No Cerrado", fmt_valor(n_bioma("Cerrado"), "int"), "estudos que citam o bioma", "inclui transições"),
+  cartao_kpi("No Pantanal", fmt_valor(sum(ES$bioma == "Pantanal"), "int"), "estudos só do Pantanal",
+             sprintf("%d na transição com o Cerrado", sum(grepl("Pantanal", ES$bioma) & ES$bioma != "Pantanal"))),
+  cartao_kpi("Fora do Brasil", fmt_valor(sum(ES$bioma == "fora do Brasil"), "int"), "estudos de outros países", "pagamento por serviços ambientais e carbono"))
+```
+
+A tabela traz só a identificação de cada estudo: local e bioma, público, arranjo e DOI. Use a busca, ou o filtro de bioma.
+
+```{r}
+tab <- ES |> transmute(Estudo = estudo, Local = local, Bioma = bioma, Público = publico, Arranjo = arranjo, DOI = doi)
+reactable(tab, elementId = "tab-saf", filterable = TRUE, searchable = TRUE, compact = TRUE, wrap = TRUE, striped = TRUE,
+  defaultPageSize = 38, pagination = FALSE,
+  language = reactableLang(searchPlaceholder = "Buscar estudo, local, público ou arranjo", noData = "Nenhum estudo encontrado"),
+  columns = list(
+    Estudo = colDef(minWidth = 170, filterable = FALSE, style = list(fontWeight = 600)),
+    Local = colDef(minWidth = 170, filterable = FALSE),
+    Bioma = colDef(minWidth = 120, filterInput = filtro_lista_lit("tab-saf"), filterMethod = filtro_igual_lit),
+    Público = colDef(minWidth = 180, filterable = FALSE),
+    Arranjo = colDef(minWidth = 180, filterable = FALSE),
+    DOI = colDef(minWidth = 160, filterable = FALSE, style = list(fontSize = "0.78rem", wordBreak = "break-all"), cell = function(v) link_doi(v))))
+```
+
+- [Baixar os `r nrow(ES)` estudos (CSV)](../arquivos/literatura/resa_estudos_saf_psa_oe4.csv) · [dicionário](../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv)
+
+::: {.nota-fonte}
+Fonte: busca de estudos parecidos com Dominicis et al. (2023), Projeto RESA (15 e 16/10/2026). O bioma é o indicado no local de cada estudo. O DOI foi juntado pelo primeiro autor e pelo ano, só quando havia um único registro conferido no Crossref; um estudo com mais de um trabalho tem mais de um DOI. O DOI de Lucchesi et al. (2024) foi conferido à parte no Crossref, em 19/10/2026. Sem DOI não quer dizer sem publicação: relatórios e literatura técnica, em geral, não têm DOI. Quando a fonte não traz o local ou o público, a célula diz "não informado".
+:::
+
+## O que falta na literatura
+
+A comparação dos estudos aponta cinco lacunas. O projeto trata cada uma de forma diferente:
+
+1. **Assentamento de Mato Grosso** · confirmada. Não foi encontrado estudo de viabilidade de SAF ou de restauração produtiva em assentamento de Mato Grosso. O que existe no estado trata de pequena propriedade fora de assentamento, de fazenda comercial ou de experimento.
+2. **Pantanal** · confirmada. Não foi encontrado estudo desse tipo no Pantanal. Os parâmetros mais próximos vêm do Cerrado de Mato Grosso do Sul, na transição com o Pantanal.
+3. **Carbono a preço de mercado em assentamentos e na pequena produção** · preenchida em parte. Há estudos que põem o carbono no fluxo de caixa de pequenos produtores, a maioria fora do Brasil. No Brasil, os casos são poucos e parciais.
+4. **Diferenças entre famílias, PSA, carbono e risco no mesmo estudo** · confirmada. Nenhum estudo junta os quatro elementos. Essa combinação é a contribuição do OE4.
+5. **Dívida do crédito fundiário no fluxo de caixa** · não afirmada. A busca não foi dirigida a esse ponto, que importa para N. Sra. Aparecida (crédito fundiário). Antes de afirmar a lacuna, é preciso uma busca específica.
+
+::: {.nota-fonte}
+Lacunas: síntese do Projeto RESA sobre a busca de outubro de 2026, em texto próprio.
+:::

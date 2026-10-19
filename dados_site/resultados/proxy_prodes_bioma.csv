@@ -1,0 +1,7 @@
+escala_bioma,bioma,periodos,n_anos,ano_ini,ano_fim,n_mun,pearson,spearman,razao,proxy_total_ha,prodes_total_ha
+IBGE 1:250 mil (2019),Amazônia,anuais,17,2008,2024,76,0.844903,0.862745,6.163975,15339569.924893,2488584.1
+IBGE 1:250 mil (2019),Cerrado,anuais,12,2013,2024,61,0.665617,0.384615,1.973267,2392917.660421,1212667.9
+IBGE 1:250 mil (2019),Pantanal,anuais,10,2011,2024,4,-0.194923,-0.10303,1.464063,225047.612887,153714.4
+crosswalk 2004 (robustez do Artigo B),Amazônia,anuais,17,2008,2024,74,0.827987,0.848039,6.056005,15070878.486209,2488584.1
+crosswalk 2004 (robustez do Artigo B),Cerrado,anuais,12,2013,2024,62,0.630524,0.307692,2.119525,2570280.458248,1212667.9
+crosswalk 2004 (robustez do Artigo B),Pantanal,anuais,10,2011,2024,5,-0.184283,-0.127273,1.49521,229835.328038,153714.4

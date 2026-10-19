@@ -1,0 +1,46 @@
+/* Páginas de Resultados (resultados/*.qmd). Complementa estilo.scss. */
+
+.tabela-res .rt-th, .tabela-res .rt-td { font-size: .86rem; }
+.tabela-res .rotulo-provisorio { margin-left: 0; margin-top: .15rem; }
+
+/* Chips quebram linha dentro das tabelas */
+.reactable .chip { white-space: normal; }
+
+/* Cartões dos tipos */
+.cartoes-tipos { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.cartao-tipo { border-top: 4px solid var(--cor-tipo, #9ca3af); }
+.cartao-tipo .cartao-topo { flex-wrap: wrap; justify-content: flex-start; }
+.cartao-tipo ul { padding-left: 1.1rem; margin: .45rem 0 .3rem; font-size: .87rem; color: #374151; }
+.cartao-tipo li { margin-bottom: .25rem; }
+.borda-t1 { --cor-tipo: #c3c2b7; }
+.borda-t2 { --cor-tipo: #4a3aa7; }
+.borda-t3 { --cor-tipo: #008300; }
+.borda-t4 { --cor-tipo: #eda100; }
+.borda-t5 { --cor-tipo: #e87ba4; }
+
+/* Passos do método */
+.passos .cartao h4 { font-size: .98rem; }
+.passos .cartao h4 .num-passo { display: inline-block; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; text-align: center;
+  border-radius: 50%; background: #1F4D3A; color: #fff; font-size: .8rem; margin-right: .35rem; }
+
+/* Figuras do Manuscrito 1 */
+.figura-res { margin: .8rem 0 1.4rem; }
+.figura-res img { border: 1px solid #eef0f4; border-radius: 6px; background: #fff; width: 100%; height: auto; }
+.figura-res figcaption { font-size: .86rem; color: #374151; margin-top: .4rem; }
+
+/* Listas de municípios por tipo */
+details.lista-tipo { border: 1px solid #eef0f4; border-radius: 6px; padding: .4rem .7rem; margin: .4rem 0; background: #fff; }
+details.lista-tipo summary { cursor: pointer; font-size: .9rem; }
+details.lista-tipo p { font-size: .86rem; margin: .5rem 0 .2rem; }
+
+/* Quadros de nota (correção, conciliação) */
+.nota-correcao h4, .nota-conciliacao h4 { font-size: 1rem; margin: .1rem 0 .4rem; color: #7a4b00; }
+.nota-correcao ul, .nota-conciliacao ul { margin-bottom: .2rem; padding-left: 1.1rem; }
+.nota-conciliacao { background: #fff8e8; border-left: 4px solid #d4a017; padding: .55rem .9rem; font-size: .88rem; margin: .5rem 0 1rem; border-radius: 4px; }
+
+/* Destaque de resultado em uma frase */
+.achado { border-left: 4px solid #1F4D3A; background: #f4f8f6; padding: .55rem .9rem; margin: .6rem 0 1rem; border-radius: 4px; font-size: .95rem; }
+
+@media (max-width: 576px) {
+  .tabela-res .rt-th, .tabela-res .rt-td { font-size: .8rem; }
+}

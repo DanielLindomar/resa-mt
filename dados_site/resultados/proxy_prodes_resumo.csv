@@ -1,0 +1,14 @@
+id,valor,unidade
+n_anos,11,anos
+ano_ini,2010,ano
+ano_fim,2020,ano
+proxy_total_ha,11614958.31,ha
+prodes_total_ha,1458400,ha
+razao_total,7.964179,vezes
+razao_min,6.195144,vezes
+razao_max,11.649166,vezes
+pearson,0.649599,
+pearson_p,0.030523,
+spearman,0.681818,
+spearman_p,0.020843,
+fator_tco2e_ha,150,tCO2e/ha

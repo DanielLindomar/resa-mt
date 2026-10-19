@@ -1,0 +1,169 @@
+---
+title: "Dados"
+description: "Explorador dos indicadores dos 141 municípios de Mato Grosso e downloads com dicionário, fontes e licenças"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
+IDS_DL <- IND$id[IND$download == 1]
+```
+
+```{r}
+faixa_versao("Versão preliminar para a equipe do projeto. Bases congeladas em 19/10/2026. Os sinais do IBGE (X, – e ...) aparecem como publicados e nunca viram zero.")
+```
+
+## Explorador de indicadores
+
+A tabela traz o valor de `r length(IDS_DL)` indicadores para os 141 municípios de Mato Grosso, no ano de referência de cada um. Use as listas para escolher município, bioma, tipo, tema ou indicador, e o botão para baixar o recorte em CSV. Para ver um indicador em mapa, use a página [Indicadores](../indicadores/index.qmd). Os `r sum(IND$download == 0)` indicadores de emissões (SEEG) aparecem só nas páginas do site, porque a licença de redistribuição ainda está em conferência.
+
+```{r}
+legenda_sinais()
+```
+
+```{r}
+DEC <- c(int = 0, dec1 = 1, dec2 = 2, dec3 = 3, pct1 = 1, pct2 = 2, brl = 0, brl_mil = 0, usd = 0)
+I2 <- IND[IND$id %in% IDS_DL, ] |> arrange(ordem)
+ex <- ULT$ultimos |>
+  filter(indicador %in% IDS_DL) |>
+  left_join(select(I2, indicador = id, ordem, dim, rotulo, unidade, fmt, fonte), by = "indicador") |>
+  left_join(select(MUN, id_municipio, municipio, bioma, tipo_m1), by = "id_municipio") |>
+  mutate(tema = unname(TEMAS[dim]),
+         ordem_valor = ifelse(sinal == "valor", mapply(function(v, f) round(v, DEC[[f]]), valor, fmt), NA_real_),
+         # no CSV, a célula do número traz o próprio sinal quando não há número (X, – ou ...), como nas tabelas do IBGE
+         valor_csv = ifelse(sinal == "valor", mapply(function(v, f) num_csv(v, DEC[[f]]), valor, fmt), sinal),
+         exibir = ifelse(sinal == "valor", mapply(function(v, f) num(v, DEC[[f]]), valor, fmt),
+                         html_celula(NA_real_, sinal, "int")))
+ex <- ex[order(ex$ordem, ordem_pt(ex$municipio) |> order()), ] |>
+  transmute(Município = municipio, `Código IBGE` = id_municipio, Bioma = bioma, `Tipo (M1)` = tipo_m1, Tema = tema,
+            Indicador = rotulo, Ordem = ordem_valor, Valor = valor_csv, Sinal = sinal, Unidade = unidade, Ano = ano, Fonte = fonte, exibir)
+stopifnot(nrow(ex) == 141 * length(IDS_DL), all(!is.na(ex$Ordem) | ex$Sinal != "valor"), all(is.na(ex$Ordem[ex$Sinal != "valor"])),
+          all(ex$Valor[ex$Sinal != "valor"] == ex$Sinal[ex$Sinal != "valor"]), all(nzchar(ex$Valor)))
+
+col_csv <- c("Município", "Código IBGE", "Bioma", "Tipo (M1)", "Tema", "Indicador", "Valor", "Sinal", "Unidade", "Ano", "Fonte")
+js_csv <- sprintf("Reactable.downloadDataCSV('explorador', 'resa-mt_indicadores_recorte.csv', {columnIds: [%s]})",
+                  paste0("'", col_csv, "'", collapse = ", "))
+tagList(
+  tags$button(class = "btn btn-sm btn-outline-primary mb-2", onclick = js_csv, "Baixar o recorte filtrado (CSV)"),
+  reactable(ex, elementId = "explorador", filterable = TRUE, searchable = TRUE, compact = TRUE, striped = TRUE,
+            defaultPageSize = 20, showPageSizeOptions = TRUE, pageSizeOptions = c(20, 50, 141, 500),
+            columns = list(
+              Município = colDef(minWidth = 150, filterInput = filtro_lista_lit("explorador"), filterMethod = filtro_igual_lit),
+              `Código IBGE` = colDef(minWidth = 90, filterable = FALSE),
+              Bioma = colDef(minWidth = 105, filterInput = filtro_lista_lit("explorador", BIOMAS), filterMethod = filtro_igual_lit),
+              `Tipo (M1)` = colDef(minWidth = 95, align = "center", filterInput = filtro_lista_lit("explorador", names(TIPOS)),
+                                   filterMethod = filtro_igual_lit,
+                                   cell = function(v) span(title = paste0(TIPOS[[v]], " (rótulo provisório)"), v)),
+              Tema = colDef(minWidth = 160, filterInput = filtro_lista_lit("explorador", unname(TEMAS)), filterMethod = filtro_igual_lit),
+              Indicador = colDef(minWidth = 230, filterInput = filtro_lista_lit("explorador", I2$rotulo), filterMethod = filtro_igual_lit),
+              Ordem = colDef(name = "Valor", align = "right", minWidth = 95, filterable = FALSE, sortNALast = TRUE, html = TRUE,
+                             cell = function(v, i) ex$exibir[i]),
+              Valor = colDef(show = FALSE),
+              Sinal = colDef(minWidth = 95, align = "center", filterInput = filtro_lista_lit("explorador", c("valor", "X", TRACO, "...")),
+                             filterMethod = filtro_igual_lit),
+              Unidade = colDef(minWidth = 150, filterable = FALSE, style = list(color = "#6b7280", fontSize = "0.85em")),
+              Ano = colDef(align = "center", minWidth = 60, filterable = FALSE),
+              Fonte = colDef(show = FALSE),
+              exibir = colDef(show = FALSE))))
+```
+
+::: {.nota-fonte}
+Tipos do Manuscrito 1 (rótulos provisórios): `r paste(sprintf("%s · %s", names(TIPOS), TIPOS), collapse = "; ")`. Bioma dominante: IBGE 1:250 mil (2019). No CSV do recorte, o número fica em `Valor`, com ponto decimal. Quando o IBGE não publica o número, `Valor` traz o próprio sinal (X, – ou ...), como nas tabelas do IBGE, e a coluna `Sinal` repete o sinal; nenhuma dessas células é zero. É a mesma regra dos arquivos abaixo. A coluna `Fonte` vai no CSV.
+:::
+
+## Arquivos para baixar
+
+Todos os arquivos estão em UTF-8, separados por vírgula, com ponto decimal. A chave `id_municipio` é o código IBGE de 7 dígitos. Cada base tem um dicionário (coluna, descrição, unidade e fonte). Nas bases do Censo, cada variável tem uma coluna `sinal_<variável>` com `valor`, X, – ou ...; quando não há número, a coluna da variável traz o próprio sinal, como nas tabelas do IBGE. Nos arquivos com o tipo do M1, a coluna `rotulo_status` lembra que o rótulo é provisório.
+
+```{r}
+DESC <- c(
+  "resa_indicadores_municipios.csv" = "Os indicadores municipais do site, menos os do SEEG, em formato largo, com o sinal de cada célula",
+  "resa_censo2017_af_municipios.csv" = "Variáveis do Censo Agropecuário 2017 da agricultura familiar usadas nos indicadores, com o sinal de cada célula",
+  "resa_tipologia_m1_municipios.csv" = "Tipo municipal da agricultura familiar no Manuscrito 1 (k = 5), com rótulo provisório e bioma",
+  "resa_incra_sipra_municipios.csv" = "Projetos de assentamento, famílias, capacidade e área por município-sede (INCRA/SIPRA, posição de 03/06/2025)",
+  "resa_dinamica_2006_2017_municipios.csv" = "Estabelecimentos e área (todos os estabelecimentos) em 2006 e 2017, por município",
+  "resa_refs_carbono_esg.csv" = "As 115 referências da revisão sobre carbono, mercados e ESG, só com metadados",
+  "resa_estudos_saf_psa_oe4.csv" = "Os 38 estudos comparados do OE4: local, bioma, público, arranjo e DOI",
+  "resa_literatura_estudos.csv" = "As duas listas da literatura numa tabela só, com a coluna corpus",
+  "resa_literatura_estudos.bib" = "As referências da literatura em BibTeX, sem resumos",
+  "mt_municipios.geojson" = "Malha dos 141 municípios de MT (IBGE, Malha Municipal 2022), simplificada para a web, com bioma e tipo do M1 (rótulo provisório)",
+  "fontes_licencas.csv" = "Fontes, uso no site e licenças",
+  "catalogo_downloads.csv" = "Catálogo das bases de dados (linhas, colunas e tamanho)")
+GRUPO <- c(dados = "Dados municipais", literatura = "Literatura", geo = "Malha municipal")
+info_arq <- function(pasta) {
+  d <- file.path(RAIZ, "arquivos", pasta)
+  fs <- list.files(d, pattern = "\\.(csv|bib|geojson)$")
+  if (!length(fs)) return(NULL)
+  bind_rows(lapply(fs, function(f) {
+    p <- file.path(d, f); csv <- grepl("\\.csv$", f)
+    cab <- if (csv) names(data.table::fread(p, nrows = 0, encoding = "UTF-8")) else character(0)
+    nl <- if (csv) length(readLines(p, encoding = "UTF-8", warn = FALSE)) - 1L else NA_integer_
+    dic <- file.path(d, "dicionarios", sub("[.]geojson$", ".csv", f))
+    tibble::tibble(Grupo = GRUPO[[pasta]], Arquivo = f, pasta = pasta,
+                   Descrição = if (f %in% names(DESC)) DESC[[f]] else "Ver o dicionário",
+                   Linhas = nl, Colunas = if (csv) length(cab) else NA_integer_,
+                   KB = round(file.size(p) / 1024, 1), dic = if (file.exists(dic)) paste0("../arquivos/", pasta, "/dicionarios/", basename(dic)) else "")
+  }))
+}
+cat_a <- bind_rows(info_arq("dados"), info_arq("literatura"), info_arq("geo")) |>
+  mutate(ord = match(Arquivo, c(names(DESC)))) |> arrange(match(Grupo, GRUPO), Arquivo %in% c("fontes_licencas.csv", "catalogo_downloads.csv"), ord, Arquivo)
+reactable(select(cat_a, -ord), compact = TRUE, striped = TRUE, pagination = FALSE, wrap = TRUE, groupBy = "Grupo", defaultExpanded = TRUE,
+          columns = list(
+            Grupo = colDef(minWidth = 130),
+            Arquivo = colDef(minWidth = 230, cell = function(v, i) a(href = paste0("../arquivos/", cat_a$pasta[i], "/", v), download = v, v)),
+            pasta = colDef(show = FALSE),
+            Descrição = colDef(minWidth = 300),
+            Linhas = colDef(align = "right", minWidth = 70, cell = function(v) if (is.na(v)) "—" else fmt_valor(v, "int")),
+            Colunas = colDef(align = "right", minWidth = 75, cell = function(v) if (is.na(v)) "—" else fmt_valor(v, "int")),
+            KB = colDef(align = "right", minWidth = 70, cell = function(v) fmt_valor(v, "dec1")),
+            dic = colDef(name = "Dicionário", minWidth = 95, cell = function(v) if (nzchar(v)) a(href = v, "dicionário") else "—")))
+```
+
+## Fontes e licenças
+
+```{r}
+fl <- ler(ds("fontes_licencas.csv"), colClasses = "character", na.strings = NULL) |>
+  mutate(across(everything(), ~ ifelse(is.na(.x), "", .x))) |>
+  transmute(Órgão = orgao, Produto = produto, `Uso no site` = uso_no_site, Licença = licenca, Endereço = url,
+            Acesso = ifelse(nzchar(data_acesso), data_acesso, "—"))
+reactable(fl, compact = TRUE, striped = TRUE, pagination = FALSE, wrap = TRUE,
+          columns = list(Órgão = colDef(minWidth = 110, style = list(fontWeight = 600)), Produto = colDef(minWidth = 230),
+                         `Uso no site` = colDef(minWidth = 200), Licença = colDef(minWidth = 200),
+                         Endereço = colDef(minWidth = 160, cell = function(v) if (nzchar(v)) a(href = v, target = "_blank", rel = "noopener", sub("^https?://", "", v)) else "—"),
+                         Acesso = colDef(minWidth = 90, align = "center")))
+```
+
+## Notas sobre os números
+
+```{r}
+d06 <- ler(ds("dinamica_2006_2017.csv"))
+s_area17 <- sum(d06$area_total_ha_2017, na.rm = TRUE); s_est06 <- sum(d06$n_estab_total_2006, na.rm = TRUE)
+s_area06 <- sum(d06$area_total_ha_2006, na.rm = TRUE)
+s_seeg <- AGR$valor[AGR$indicador == "seeg_emissao_bruta" & AGR$grupo == "MT" & AGR$ano == 2024]
+s_afarea <- AGR$valor[AGR$indicador == "area_af" & AGR$grupo == "MT" & AGR$ano == 2017]
+```
+
+::: {.callout-note}
+## A soma dos municípios não fecha com o total estadual
+
+Os totais da página inicial são os estaduais oficiais. Somar os municípios dá números um pouco diferentes:
+
+- **Área dos estabelecimentos, 2017:** a soma dos municípios dá `r fmt_valor(s_area17, "int")` ha, contra `r fmt_valor(tt("tot_todos_area"), "int")` ha no total estadual; na agricultura familiar, `r fmt_valor(s_afarea, "int")` contra `r fmt_valor(tt("tot_af_area"), "int")` ha. É arredondamento do IBGE (Censo Agropecuário 2017).
+- **Emissões brutas, 2024:** os municípios somam `r fmt_valor(s_seeg / 1000, "dec2")` MtCO₂e, contra `r fmt_valor(tt("seeg_bruta_mt_2024"), "dec2")` MtCO₂e do estado. A diferença, cerca de `r fmt_valor(tt("seeg_bruta_mt_2024") - s_seeg / 1000, "dec2")` MtCO₂e, são emissões que o SEEG 13 não aloca a município.
+- **Censo Agropecuário 2006:** a soma dos municípios dá `r fmt_valor(s_est06, "int")` estabelecimentos e `r fmt_valor(s_area06 / 1e6, "dec2")` milhões de ha, contra 112.978 estabelecimentos e 47,81 milhões de ha na tabela estadual de comparação 2006–2017. A diferença de área é de cerca de 1,8%. A tabela de confronto dos Censos do IBGE (série histórica) bate com a soma dos municípios. Por isso, a dinâmica 2006–2017 vai sempre com esta nota.
+:::
+
+::: {.callout-note}
+## Uso e atribuição
+
+- **Sinais do IBGE.** X é sigilo (o dado foi omitido para não identificar o informante); – é zero absoluto; ... é dado não disponível. Nos arquivos, a célula do número traz o próprio sinal e a coluna de sinal repete o sinal. X e ... não são zero; o – é zero absoluto, mas aparece como –, não como 0. Em Araguainha, a irrigação não tem registro na API do SIDRA e aparece como ...
+- **Posse.** A categoria 46504 do Censo 2017 é "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)". Ela não equivale ao total de assentados da reforma agrária; compare com os dados do INCRA/SIPRA.
+- **Tipologia do Manuscrito 1.** Os rótulos dos tipos são provisórios, até a aprovação dos autores. Cite o Projeto RESA.
+- **SEEG 13.** Os dados municipais aparecem nas páginas, com a fonte, mas ficam fora dos downloads até a conferência da licença. Os dados estão em [seeg.eco.br](https://seeg.eco.br).
+- **PRODES.** O site usa só a série oficial do INPE (TerraBrasilis), baixada em 19/10/2026. Veja a nota de correção em [Emissões e desmatamento](../resultados/emissoes.qmd).
+- **MapBiomas.** Previsto para o OE1; ainda não usado nesta versão.
+- **Literatura.** Os arquivos trazem só metadados, sem resumos de terceiros.
+:::

@@ -1,0 +1,51 @@
+---
+title: "OE6 · Pacote Tecnológico"
+description: "Objetivo específico 6 do Projeto RESA: consolidar os resultados num banco de dados e num Pacote Tecnológico para políticas públicas. Objetivo, método previsto e situação"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objetivo
+
+Reunir todos os resultados e análises num banco de dados amplo e num **Pacote Tecnológico** prático, com ferramentas, métodos, modelos e recomendações validados. O pacote é o principal instrumento do projeto para dialogar com as famílias e com os gestores públicos e para apoiar políticas que mantenham a floresta em pé, em escala.
+
+```{r}
+bloco_situacao("OE6", list(
+  c("andamento", "Organização dos bancos de dados do projeto.", "Os dados secundários dos 141 municípios já estão organizados; este site mostra parte deles."),
+  c("previsto", "Versão preliminar do Pacote Tecnológico.", "Depende dos resultados dos OE1 a OE5."),
+  c("previsto", "Pacote Tecnológico validado nas áreas-piloto, sumários para gestores públicos, artigos e materiais didáticos.")))
+```
+
+## Método previsto
+
+- **Banco de dados e sistema** que reúnam o diagnóstico, as estratégias e os modelos dos objetivos anteriores.
+- **Validação nas áreas-piloto**, com as famílias e as lideranças, nas oficinas do OE5.
+- **Capacitação** dos produtores e plano de difusão para outros assentamentos de MT e da Amazônia Legal.
+- **Produtos para cada público:** relatórios técnicos e sumários para gestores públicos (*policy briefs*); relatórios de viabilidade para bancos e financiadores; cartilhas e vídeos para as famílias; artigos científicos.
+
+## Resultados esperados
+
+A proposta acompanha estas metas:
+
+- o Pacote Tecnológico "Floresta em Pé" validado e disponível como ferramenta de apoio;
+- uma base de dados integrada das áreas-piloto;
+- propostas de política pública baseadas no pacote, apresentadas a tomadores de decisão.
+
+O plano de disseminação da proposta prevê também painéis de dados on-line. Este site é uma versão preliminar, feita para a equipe do projeto.
+
+```{r}
+p(class = "nota-fonte", "Fonte: proposta do Projeto RESA (objetivos específicos, metodologia e plano de disseminação) e apresentação do projeto no Encontro RESA, em texto próprio.")
+```
+
+```{r}
+nav_oes("OE6")
+```
