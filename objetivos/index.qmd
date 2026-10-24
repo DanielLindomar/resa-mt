@@ -1,6 +1,6 @@
 ---
-title: "Os seis objetivos"
-description: "Os objetivos específicos do Projeto RESA, as fases do estudo, as entregas e a situação de cada um em 19/10/2026"
+title: "Objetivos específicos do projeto"
+description: "Objetivos específicos do Projeto RESA, fases do estudo, entregas previstas e situação de cada objetivo em 19/10/2026"
 ---
 
 ```{r}
@@ -14,28 +14,26 @@ estilo_paginas()
 faixa_versao()
 ```
 
-O Projeto RESA quer saber se a agricultura familiar dos assentamentos de Mato Grosso pode fazer a transição para uma economia de baixo carbono, com a floresta em pé, nos três biomas do estado. A análise junta território, produção, renda e ambiente. Ela busca o que favorece a redução das emissões, a adaptação ao clima e a sustentabilidade de longo prazo.
+O Projeto RESA tem como propósito verificar se a agricultura familiar dos assentamentos de Mato Grosso pode realizar a transição para uma economia de baixo carbono, com a floresta em pé, nos três biomas do estado. Para tanto, a análise integra as dimensões territorial, produtiva, de renda e ambiental, com o intuito de identificar os fatores que favorecem a redução das emissões, a adaptação ao clima e a sustentabilidade de longo prazo.
 
-O produto final é um **Pacote Tecnológico**: ferramentas, métodos, modelos e recomendações para apoiar políticas públicas. O trabalho se organiza em três fases e seis objetivos específicos (OE).
+O produto final do projeto consiste em um **Pacote Tecnológico**, isto é, um conjunto de ferramentas, métodos, modelos e recomendações destinado a apoiar políticas públicas. Nesse sentido, o trabalho organiza-se em três fases e seis objetivos específicos (OE). A Fase 1, **Diagnóstico e evidências**, compreende os OE1, OE2 e OE3 e abrange território, produção e renda, carbono, água e solo nas áreas-piloto. A Fase 2, **Estratégias e modelagem de viabilidade**, corresponde ao OE4 e reúne os cenários de baixo carbono avaliados por indicadores financeiros. Por fim, a Fase 3, **Pacote Tecnológico e articulação**, engloba os OE5 e OE6 e contempla as oficinas com as famílias, a consolidação do pacote, a capacitação e as propostas de política pública.
 
-- **Fase 1 · Diagnóstico e evidências** (OE1, OE2 e OE3): território, produção e renda, carbono, água e solo nas áreas-piloto.
-- **Fase 2 · Estratégias e modelagem de viabilidade** (OE4): cenários de baixo carbono com indicadores financeiros.
-- **Fase 3 · Pacote Tecnológico e articulação** (OE5 e OE6): oficinas com as famílias, consolidação do pacote, capacitação e propostas de política pública.
+## Objetivos específicos, perguntas de pesquisa e entregas
 
-## Objetivos, perguntas e entregas
+A tabela a seguir sintetiza, para cada objetivo específico, a fase a que pertence, a pergunta de pesquisa que o orienta, a entrega principal e a situação de execução.
 
 ```{r}
 tabela_oes()
 ```
 
 ```{r}
-p(class = "nota-fonte", "Fonte: proposta do Projeto RESA (objetivos específicos e metodologia) e apresentação do projeto no Encontro RESA, em texto próprio. ",
+p(class = "nota-fonte", "Fonte: Elaboração própria com base na proposta do Projeto RESA (objetivos específicos e metodologia) e na apresentação do projeto no Encontro RESA. ",
   "Situação: registro interno do projeto em 19/10/2026; os selos ainda serão validados pela coordenação.")
 ```
 
-## Linha do tempo
+## Cronograma de execução
 
-A proposta organiza o cronograma em marcos de janeiro, abril, agosto e dezembro de cada ano. Cada marco aparece abaixo com a situação em 19/10/2026. As datas são as do cronograma da proposta. Onde a etapa não tem data confirmada, o selo diz "previsto" e a nota explica por quê.
+A proposta organiza o cronograma em marcos situados nos meses de janeiro, abril, agosto e dezembro de cada ano. Na sequência, apresenta-se cada marco com a respectiva situação em 19/10/2026, e as datas correspondem às do cronograma da proposta. Ressalta-se que, quando a etapa não dispõe de data confirmada, o selo indica "previsto" e a nota correspondente explicita o motivo.
 
 ```{r}
 linha_tempo()
@@ -43,10 +41,12 @@ linha_tempo()
 
 ```{r}
 p(class = "nota-fonte", "Selos: ", selo_situacao("concluido"), " ", selo_situacao("andamento"), " ", selo_situacao("confirmar"), " ", selo_situacao("previsto"),
-  ". A cor do topo de cada marco segue a etapa menos avançada do marco. As datas de 2027 podem mudar com o andamento da coleta de campo.")
+  ". A cor da borda superior de cada marco corresponde à etapa menos avançada nele incluída. As datas de 2027 podem ser alteradas em função do andamento da coleta de campo.")
 ```
 
-## Onde ver cada objetivo
+## Páginas dos objetivos específicos
+
+Cada objetivo específico dispõe de página própria, que detalha o objetivo, a situação de execução e, quando houver, os resultados já publicados. Para acessá-la, selecione o cartão correspondente.
 
 ```{r}
 div(class = "cartoes", lapply(seq_len(nrow(OES)), function(i) { o <- OES[i, ]

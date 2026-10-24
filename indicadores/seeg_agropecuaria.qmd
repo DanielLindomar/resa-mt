@@ -1,6 +1,6 @@
 ---
 title: "Emissões da agropecuária"
-description: "Clima (SEEG 13) · mil tCO2e (GWP-AR5) · 1970–2024. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela dos 141 municípios. Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5)."
+description: "Indicador do tema Clima (SEEG 13). Unidade: mil tCO2e (GWP-AR5); referência: 1970–2024. Apresentam-se o mapa dos 141 municípios de Mato Grosso, a classificação no bioma e em MT e a tabela dos 141 municípios. Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5)."
 toc: false
 page-layout: full
 ---

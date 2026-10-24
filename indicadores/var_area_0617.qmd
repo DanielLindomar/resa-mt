@@ -1,6 +1,6 @@
 ---
 title: "Variação da área dos estabelecimentos agropecuários, 2006–2017"
-description: "Dinâmica 2006–2017 · % (2017 sobre 2006) · 2017. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE. Fonte: IBGE, Censos Agropecuários 2006 e 2017."
+description: "Indicador do tema Dinâmica 2006–2017. Unidade: % (2017 sobre 2006); referência: 2017. Apresentam-se o mapa dos 141 municípios de Mato Grosso, a classificação no bioma e em MT e a tabela com os sinais do IBGE. Fonte: IBGE, Censos Agropecuários 2006 e 2017."
 toc: false
 page-layout: full
 ---

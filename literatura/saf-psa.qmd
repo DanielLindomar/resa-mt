@@ -1,6 +1,6 @@
 ---
 title: "SAF e PSA em assentamentos"
-description: "Dominicis et al. (2023) como referência do OE4, os 38 estudos comparados (só local, público, arranjo e DOI) e as lacunas que o projeto ocupa"
+description: "O estudo de Dominicis et al. (2023) como referência do OE4, os 38 estudos comparados (identificados por local, público, arranjo e DOI) e as lacunas identificadas na literatura"
 page-layout: full
 toc: false
 ---
@@ -14,28 +14,28 @@ n_bioma <- function(b) sum(grepl(b, ES$bioma, fixed = TRUE))
 ```
 
 ```{r}
-faixa_versao("Versão preliminar para a equipe do projeto. A tabela traz só a identificação de cada estudo (local, bioma, público, arranjo e DOI), sem os resultados numéricos.")
+faixa_versao("Versão preliminar para a equipe do projeto. A tabela apresenta apenas a identificação de cada estudo (local, bioma, público, arranjo e DOI), sem os resultados numéricos.")
 ```
 
 ## O artigo de referência
 
-**Dominicis et al. (2023)**, publicado na revista *Forests* ([10.3390/f14102110](https://doi.org/10.3390/f14102110)), avalia a viabilidade financeira de sistemas agroflorestais (SAF) implantados por agricultores familiares, a maioria assentados da reforma agrária, na bacia do rio Descoberto (Distrito Federal, Cerrado). O estudo compara o resultado com e sem pagamento por serviços ambientais (PSA) e usa indicadores como o valor presente líquido (VPL) e a taxa interna de retorno (TIR).
+O estudo de Dominicis et al. (2023), publicado no periódico *Forests* ([10.3390/f14102110](https://doi.org/10.3390/f14102110)), avalia a viabilidade financeira de sistemas agroflorestais (SAF) implantados por agricultores familiares, em sua maioria assentados da reforma agrária, na bacia do rio Descoberto (Distrito Federal, Cerrado). Para tanto, os autores comparam o resultado obtido com e sem pagamento por serviços ambientais (PSA), com base em indicadores como o valor presente líquido (VPL) e a taxa interna de retorno (TIR).
 
-É o desenho que o OE4 vai reproduzir e ampliar nas três áreas-piloto do projeto, uma por bioma. A busca de estudos parecidos serve para escolher os métodos e para mostrar o que ainda falta na literatura.
+Esse desenho será reproduzido e ampliado pelo objetivo específico de cenários bioeconômicos (OE4) nas três áreas-piloto do projeto, uma em cada bioma. Nesse contexto, a busca de estudos semelhantes cumpre dupla função: subsidiar a escolha dos métodos e evidenciar o que ainda falta na literatura.
 
 ## Os `r nrow(ES)` estudos comparados
 
 ```{r}
 div(class = "kpi-grade",
   cartao_kpi("Estudos comparados", fmt_valor(nrow(ES), "int"), "busca de out/2026", sprintf("%d com DOI conferido no Crossref", sum(nzchar(ES$doi)))),
-  cartao_kpi("Na Amazônia", fmt_valor(n_bioma("Amazônia"), "int"), "estudos que citam o bioma", "inclui os de Amazônia e Cerrado"),
-  cartao_kpi("No Cerrado", fmt_valor(n_bioma("Cerrado"), "int"), "estudos que citam o bioma", "inclui transições"),
-  cartao_kpi("No Pantanal", fmt_valor(sum(ES$bioma == "Pantanal"), "int"), "estudos só do Pantanal",
+  cartao_kpi("Na Amazônia", fmt_valor(n_bioma("Amazônia"), "int"), "estudos que citam o bioma", "inclui os estudos de Amazônia e Cerrado"),
+  cartao_kpi("No Cerrado", fmt_valor(n_bioma("Cerrado"), "int"), "estudos que citam o bioma", "inclui as transições"),
+  cartao_kpi("No Pantanal", fmt_valor(sum(ES$bioma == "Pantanal"), "int"), "estudos exclusivamente do Pantanal",
              sprintf("%d na transição com o Cerrado", sum(grepl("Pantanal", ES$bioma) & ES$bioma != "Pantanal"))),
   cartao_kpi("Fora do Brasil", fmt_valor(sum(ES$bioma == "fora do Brasil"), "int"), "estudos de outros países", "pagamento por serviços ambientais e carbono"))
 ```
 
-A tabela traz só a identificação de cada estudo: local e bioma, público, arranjo e DOI. Use a busca, ou o filtro de bioma.
+A tabela a seguir apresenta apenas a identificação de cada estudo, isto é, o local e o bioma, o público, o arranjo e o identificador digital de objeto (DOI, do inglês *Digital Object Identifier*). Para localizar um estudo, utilize o campo de busca ou o filtro de bioma.
 
 ```{r}
 tab <- ES |> transmute(Estudo = estudo, Local = local, Bioma = bioma, Público = publico, Arranjo = arranjo, DOI = doi)
@@ -54,19 +54,17 @@ reactable(tab, elementId = "tab-saf", filterable = TRUE, searchable = TRUE, comp
 - [Baixar os `r nrow(ES)` estudos (CSV)](../arquivos/literatura/resa_estudos_saf_psa_oe4.csv) · [dicionário](../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv)
 
 ::: {.nota-fonte}
-Fonte: busca de estudos parecidos com Dominicis et al. (2023), Projeto RESA (15 e 16/10/2026). O bioma é o indicado no local de cada estudo. O DOI foi juntado pelo primeiro autor e pelo ano, só quando havia um único registro conferido no Crossref; um estudo com mais de um trabalho tem mais de um DOI. O DOI de Lucchesi et al. (2024) foi conferido à parte no Crossref, em 19/10/2026. Sem DOI não quer dizer sem publicação: relatórios e literatura técnica, em geral, não têm DOI. Quando a fonte não traz o local ou o público, a célula diz "não informado".
+Fonte: Elaboração própria com base na busca de estudos semelhantes ao de Dominicis et al. (2023), Projeto RESA (15 e 16/10/2026). Notas: o bioma corresponde ao indicado no local de cada estudo. O DOI foi associado pelo primeiro autor e pelo ano apenas quando havia um único registro conferido no Crossref, de modo que um estudo composto por mais de um trabalho apresenta mais de um DOI; o DOI de Lucchesi et al. (2024) foi conferido separadamente no Crossref, em 19/10/2026. A ausência de DOI não indica ausência de publicação, uma vez que relatórios e literatura técnica, em geral, não dispõem de DOI. Quando a fonte não informa o local ou o público, a célula registra "não informado".
 :::
 
-## O que falta na literatura
+## Lacunas na literatura
 
-A comparação dos estudos aponta cinco lacunas. O projeto trata cada uma de forma diferente:
+A comparação dos estudos permite identificar cinco lacunas na literatura, que o projeto trata de formas distintas, conforme o estatuto atribuído a cada uma: três são confirmadas, uma encontra-se preenchida em parte e outra não é afirmada. As duas primeiras, ambas confirmadas, referem-se à cobertura geográfica dos estudos. Em primeiro lugar, não foi encontrado estudo de viabilidade de SAF ou de restauração produtiva em assentamento de Mato Grosso (lacuna 1), e os estudos localizados no estado tratam de pequena propriedade fora de assentamento, de fazenda comercial ou de experimento. Do mesmo modo, não se encontrou estudo desse tipo no Pantanal (lacuna 2), razão pela qual os parâmetros mais próximos provêm do Cerrado de Mato Grosso do Sul, na transição com o Pantanal.
 
-1. **Assentamento de Mato Grosso** · confirmada. Não foi encontrado estudo de viabilidade de SAF ou de restauração produtiva em assentamento de Mato Grosso. O que existe no estado trata de pequena propriedade fora de assentamento, de fazenda comercial ou de experimento.
-2. **Pantanal** · confirmada. Não foi encontrado estudo desse tipo no Pantanal. Os parâmetros mais próximos vêm do Cerrado de Mato Grosso do Sul, na transição com o Pantanal.
-3. **Carbono a preço de mercado em assentamentos e na pequena produção** · preenchida em parte. Há estudos que põem o carbono no fluxo de caixa de pequenos produtores, a maioria fora do Brasil. No Brasil, os casos são poucos e parciais.
-4. **Diferenças entre famílias, PSA, carbono e risco no mesmo estudo** · confirmada. Nenhum estudo junta os quatro elementos. Essa combinação é a contribuição do OE4.
-5. **Dívida do crédito fundiário no fluxo de caixa** · não afirmada. A busca não foi dirigida a esse ponto, que importa para N. Sra. Aparecida (crédito fundiário). Antes de afirmar a lacuna, é preciso uma busca específica.
+No que se refere à incorporação do carbono a preço de mercado em assentamentos e na pequena produção, a lacuna encontra-se preenchida em parte (lacuna 3). Há estudos que incluem o carbono no fluxo de caixa de pequenos produtores, embora a maioria tenha sido realizada fora do Brasil; no país, os casos são poucos e parciais. Por outro lado, confirma-se a lacuna relativa ao tratamento conjunto das diferenças entre famílias, do PSA, do carbono e do risco no mesmo estudo (lacuna 4), visto que nenhum trabalho reúne os quatro elementos. Essa combinação constitui, portanto, a contribuição do OE4.
+
+Por fim, a lacuna referente à dívida do crédito fundiário no fluxo de caixa não é afirmada (lacuna 5). A busca não foi dirigida a esse ponto, que é relevante para o caso de N. Sra. Aparecida (crédito fundiário). Desse modo, a afirmação dessa lacuna depende, previamente, de uma busca específica.
 
 ::: {.nota-fonte}
-Lacunas: síntese do Projeto RESA sobre a busca de outubro de 2026, em texto próprio.
+Fonte: Elaboração própria com base na síntese do Projeto RESA sobre a busca de outubro de 2026, apresentada em texto próprio.
 :::

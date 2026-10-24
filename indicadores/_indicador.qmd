@@ -29,9 +29,9 @@ for (n in notas_indicador(IND_ID)) cat('::: {.callout-note appearance="simple"}\
 cartoes_indicador(IND_ID)
 ```
 
-## Por bioma e por tipo do M1
+## Agregados por bioma e por tipo do M1
 
-O agregado de cada grupo é a `r REGRA_TXT[[R_$agregacao]]`, só com os municípios que têm valor publicado; a mediana é a do município mediano do grupo. Biomas pelo IBGE 1:250 mil (2019); tipos do Manuscrito 1 (k = 5), com rótulos provisórios.
+O agregado de cada grupo corresponde à `r REGRA_TXT[[R_$agregacao]]`, calculada apenas com os municípios que têm valor publicado, e a mediana corresponde ao valor do município mediano do grupo. Os biomas seguem o mapeamento do IBGE na escala 1:250 mil (2019), e os tipos, a tipologia do Manuscrito 1 (M1, k = 5), cujos rótulos são provisórios.
 
 ```{r}
 tabela_agregados(IND_ID)
@@ -39,9 +39,9 @@ tabela_agregados(IND_ID)
 
 :::: {.perfil-topo}
 ::: {.perfil-texto}
-### Ranking
+### Classificação (*ranking*)
 
-As barras mostram os 20 maiores valores e, em laranja, os municípios-sede das áreas-piloto (Juara, Lucas do Rio Verde e Poconé).
+As barras representam os 20 maiores valores e destacam, em laranja, os municípios-sede das áreas-piloto (Juara, Lucas do Rio Verde e Poconé).
 
 ::: {.panel-tabset}
 
@@ -78,13 +78,13 @@ ranking(IND_ID, "bioma", "Pantanal")
 mapa_indicador(IND_ID, altura = 540)
 ```
 
-[Cores por quintis dos municípios com valor publicado (`r AR`); quando muitos municípios têm o mesmo valor, as classes se fundem e a legenda mostra menos de cinco. Cinza: X (sigilo IBGE). Cinza claro: ... (não disponível). – (zero absoluto) entra como zero. Contorno escuro: sedes das áreas-piloto. Clique em um município para abrir o perfil.]{.nota-fonte}
+[As cores correspondem aos quintis dos municípios com valor publicado (`r AR`); quando muitos municípios apresentam o mesmo valor, as classes se fundem e a legenda exibe menos de cinco classes. Em cinza, X (sigilo do IBGE); em cinza-claro, ... (não disponível); – (zero absoluto) é tratado como zero. O contorno escuro identifica as sedes das áreas-piloto, e o clique em um município abre o respectivo perfil.]{.nota-fonte}
 :::
 ::::
 
 ## Municípios-sede das áreas-piloto
 
-O valor do município dá o contexto da área-piloto; não mede a área-piloto.
+O valor do município fornece o contexto da área-piloto, mas não constitui medida da área-piloto.
 
 ```{r}
 cartoes_sedes(IND_ID)
@@ -93,23 +93,23 @@ cartoes_sedes(IND_ID)
 ```{r}
 #| results: asis
 if (isTRUE(R_$serie == 1)) {
-  cat("## Evolução no tempo\n\n",
-      "Série anual de ", sub("–", " a ", periodo_serie(IND_ID)), ". Por bioma e por tipo, a soma dos municípios do grupo, em MtCO2e (milhões de tCO2e); ",
-      "nos municípios-sede, em ", R_$unidade, ". Passe o cursor (ou toque) sobre um ponto para ver o ano e o valor. ", NOTA_1990, "\n\n", sep = "")
+  cat("## Evolução temporal\n\n",
+      "Os gráficos apresentam a série anual de ", sub("–", " a ", periodo_serie(IND_ID)), ". Por bioma e por tipo, representa-se a soma dos municípios do grupo, em MtCO2e (milhões de tCO2e); ",
+      "nos municípios-sede, o valor é expresso em ", R_$unidade, ". O ano e o valor de cada ponto são exibidos ao posicionar o cursor sobre ele (ou tocá-lo). ", NOTA_1990, "\n\n", sep = "")
   cat("::: {.panel-tabset}\n\n### Por bioma\n\n```{=html}\n", series_grupos(IND_ID, "bioma", incluir_mt = TRUE), "\n```\n\n", sep = "")
-  cat("### Por tipo do M1\n\nRótulos provisórios.\n\n```{=html}\n", series_grupos(IND_ID, "tipo"), "\n```\n\n", sep = "")
+  cat("### Por tipo do M1\n\nOs rótulos dos tipos são provisórios.\n\n```{=html}\n", series_grupos(IND_ID, "tipo"), "\n```\n\n", sep = "")
   cat("### Municípios-sede\n\n```{=html}\n", series_sedes(IND_ID), "\n```\n\n:::\n\n", sep = "")
 } else if (identical(R_$origem, "censo2006_2017")) {
-  cat("## Evolução no tempo\n\nO indicador já é uma variação entre os Censos Agropecuários de 2006 e 2017. Os anos intermediários não existem nessa fonte.\n\n")
+  cat("## Evolução temporal\n\nO indicador já expressa uma variação entre os Censos Agropecuários de 2006 e 2017, razão pela qual não há valores para os anos intermediários nessa fonte.\n\n")
 } else {
-  cat("## Evolução no tempo\n\nRetrato de um ano (", if (identical(R_$origem, "sipra")) "posição do SIPRA em 03/06/2025" else "Censo Agropecuário 2017",
-      "). Este indicador não tem série histórica no site.\n\n", sep = "")
+  cat("## Evolução temporal\n\nO indicador constitui o retrato de um único ano (", if (identical(R_$origem, "sipra")) "posição do SIPRA em 03/06/2025" else "Censo Agropecuário 2017",
+      "). Desse modo, o site não apresenta série histórica para ele.\n\n", sep = "")
 }
 ```
 
 ## Todos os municípios
 
-Busque pelo nome ou filtre por bioma, tipo ou sinal. O botão baixa só as linhas filtradas.
+A tabela permite a busca pelo nome do município e a filtragem por bioma, tipo ou sinal; o botão de download exporta apenas as linhas filtradas.
 
 ```{r}
 tabela_ind_recorte(IND_ID)

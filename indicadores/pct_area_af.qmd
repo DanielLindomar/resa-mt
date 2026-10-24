@@ -1,6 +1,6 @@
 ---
 title: "Participação da AF na área dos estabelecimentos"
-description: "Estrutura da agricultura familiar · % da área dos estabelecimentos agropecuários · 2017. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878."
+description: "Indicador do tema Estrutura da agricultura familiar. Unidade: % da área dos estabelecimentos agropecuários; referência: 2017. Apresentam-se o mapa dos 141 municípios de Mato Grosso, a classificação no bioma e em MT e a tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878."
 toc: false
 page-layout: full
 ---

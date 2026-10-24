@@ -131,16 +131,16 @@ fonte_ind <- function(ids, prefixo = "../")
   p(class = "nota-fonte", HTML(paste0(
     "Fonte: ", esc(paste(unique(IND$fonte[IND$id %in% ids]), collapse = "; ")),
     ". Bioma dominante: IBGE, Biomas 1:250 mil (2019). Tipos municipais: Manuscrito 1 do Projeto RESA (k = 5; rótulos provisórios). ",
-    "Agregados: ", TRACO, " (zero absoluto) conta como zero; X e ... ficam fora. Detalhes em <a href=\"", prefixo, "dados/index.html\">Dados</a>.")))
+    "Nos agregados, o sinal ", TRACO, " (zero absoluto) é computado como zero, e os sinais X e ... são excluídos. Detalhes na página <a href=\"", prefixo, "dados/index.html\">Dados</a>.")))
 
 # ids: os números do M1 citados no trecho (registro no código; não aparecem na página)
 fonte_m1 <- function(tabelas, ids = NULL, extra = NULL)
   p(class = "nota-fonte", paste0(
-    "Fonte: Manuscrito 1 do Projeto RESA (em preparação), ", tabelas, "; dados de IBGE, Censo Agropecuário 2017",
-    if (!is.null(extra)) extra, ". Números copiados dos resultados finais do manuscrito, sem recálculo."))
+    "Fonte: Manuscrito 1 do Projeto RESA (em preparação), ", tabelas, "; dados do IBGE, Censo Agropecuário 2017",
+    if (!is.null(extra)) extra, ". Os números foram transcritos dos resultados finais do manuscrito, sem recálculo."))
 
 FONTE_BENEF <- paste("INCRA, relação de beneficiários da reforma agrária em MT (Superintendência Regional SR-13;",
-                     "assentados e titulados homologados até 30/09/2017), usada só em contagens agregadas por município, sem dados pessoais")
+                     "assentados e titulados homologados até 30/09/2017), utilizada apenas em contagens agregadas por município, sem dados pessoais")
 
 # ---- Formatação --------------------------------------------------------------------
 txt_p <- function(p) ifelse(is.na(p), "—", ifelse(p < 0.001, "p < 0,001", paste("p =", num(p, 3))))
@@ -159,7 +159,7 @@ figura_res <- function(arquivo, legenda, nota = NULL, pasta = "figuras/")
               tags$figcaption(class = "figure-caption", legenda, if (!is.null(nota)) tags$span(class = "nota-fonte", tags$br(), nota)))
 
 nota_rotulos_figura <- function()
-  "Na legenda da figura, os tipos aparecem com outra redação de rótulo, também provisória. Os tipos são os mesmos (T1 a T5, com os mesmos municípios); neste site vale a redação da tabela, com o selo \"rótulo provisório\"."
+  "Nota: na legenda da figura, os tipos aparecem com outra redação de rótulo, igualmente provisória. Os tipos são os mesmos (T1 a T5, com os mesmos municípios); neste site, adota-se a redação da tabela, acompanhada do selo “rótulo provisório”."
 
 # ---- Tipologia: Tabela 3 -----------------------------------------------------------
 tabela_perfis_m1 <- function() {
@@ -175,7 +175,7 @@ tabela_perfis_m1 <- function() {
     list("Estab. da AF na categoria 46504", "% ponderado pelos estabelecimentos", um("T3_%s_PCT_ESTAB_46504_PONDERADA")),
     list("Estab. da AF na categoria 46504", "% média municipal (mediana)", par("T3_%s_PCT_ESTAB_46504_MEDIA_MUNICIPAL_TODOS", "T3_%s_PCT_ESTAB_46504_MEDIANA_MUNICIPAL")),
     list("Municípios com estab. na categoria 46504", "número (46504 > 0)", um("T3_%s_N_MUNIS_COM_ESTAB_46504")),
-    list("Área da AF na categoria 46504", "% ponderado, só municípios sem X", um("T3_%s_PCT_AREA_46504_PONDERADA_SEM_SIGILO")),
+    list("Área da AF na categoria 46504", "% ponderado, apenas municípios sem X", um("T3_%s_PCT_AREA_46504_PONDERADA_SEM_SIGILO")),
     list("Municípios com X na área 46504", "número", um("T3_%s_N_MUNIS_SIGILO_AREA_46504")),
     list("Área média da AF", "ha por estab.: ponderada (mediana municipal)", par("T3_%s_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA", "T3_%s_AREA_MEDIA_AF_HA_POR_ESTAB_MEDIANA_MUNICIPAL")),
     list("Estab. da AF por município", "média (mediana)", par("T3_%s_ESTAB_AF_POR_MUNICIPIO_MEDIA", "T3_%s_ESTAB_AF_POR_MUNICIPIO_MEDIANA")),
@@ -208,26 +208,26 @@ cartoes_tipos <- function() {
   sedes <- function(t) { s <- SEDES[SEDES$tipo_m1 == t, ]
     if (nrow(s)) p(class = "sub", paste0("Sede de área-piloto neste tipo: ", paste(s$municipio, collapse = ", "), ".")) }
   txt <- list(
-    T1 = c(sprintf("%s municípios. Todos os escores medianos são negativos; o porte agregado (F2) é o menor dos cinco (%s).", m1("T3_T1_N"), m1("T3_T1_F2_MEDIA_WINSOR")),
-           sprintf("%s%% dos estabelecimentos da AF na categoria 46504 (total de MT: %s%%).", m1("T3_T1_PCT_ESTAB_46504_PONDERADA"), m1("T3_MT_PCT_ESTAB_46504_PONDERADA")),
-           sprintf("\"Baixo porte agregado\" fala do total do município, não do tamanho do estabelecimento: a área média da AF é de %s ha (média de MT: %s ha).", m1("T3_T1_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA"), m1("T3_MT_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA"))),
-    T2 = c(sprintf("%s municípios. Maior escore de posse aguardando titulação (F5 = %s); F1 a F4 negativos.", m1("T3_T2_N"), m1("T3_T2_F5_MEDIA_WINSOR")),
-           sprintf("%s%% dos estabelecimentos da AF na categoria 46504, %s a média de MT.", m1("T3_T2_PCT_ESTAB_46504_PONDERADA"), m1x("RAZAO_T2_46504_VS_MT")),
-           sprintf("Nenhum município do tipo tem X na área da categoria 46504 (%s de %s).", m1("T3_T2_N_MUNIS_SIGILO_AREA_46504"), m1("T3_T2_N"))),
-    T3 = c(sprintf("%s municípios, %s deles na Amazônia. Maior porte agregado (F2 = %s).", m1("T3_T3_N"), m1("T3_T3_BIOMA250_AMAZONIA"), m1("T3_T3_F2_MEDIA_WINSOR")),
-           sprintf("Só %s%% dos estabelecimentos da AF na categoria 46504, mas %s beneficiários do INCRA por 100 estabelecimentos da AF (total de MT: %s).",
+    T1 = c(sprintf("Reúne %s municípios. Todos os escores medianos são negativos, e o porte agregado (F2) é o menor entre os cinco tipos (%s).", m1("T3_T1_N"), m1("T3_T1_F2_MEDIA_WINSOR")),
+           sprintf("%s%% dos estabelecimentos da AF estão na categoria 46504 (total de MT: %s%%).", m1("T3_T1_PCT_ESTAB_46504_PONDERADA"), m1("T3_MT_PCT_ESTAB_46504_PONDERADA")),
+           sprintf("O rótulo “Baixo porte agregado” refere-se ao total do município, e não ao tamanho do estabelecimento: a área média da AF é de %s ha (média de MT: %s ha).", m1("T3_T1_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA"), m1("T3_MT_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA"))),
+    T2 = c(sprintf("Reúne %s municípios e apresenta o maior escore de posse aguardando titulação (F5 = %s), com F1 a F4 negativos.", m1("T3_T2_N"), m1("T3_T2_F5_MEDIA_WINSOR")),
+           sprintf("%s%% dos estabelecimentos da AF estão na categoria 46504, proporção que corresponde a %s a média de MT.", m1("T3_T2_PCT_ESTAB_46504_PONDERADA"), m1x("RAZAO_T2_46504_VS_MT")),
+           sprintf("Nenhum município do tipo apresenta X na área da categoria 46504 (%s de %s).", m1("T3_T2_N_MUNIS_SIGILO_AREA_46504"), m1("T3_T2_N"))),
+    T3 = c(sprintf("Reúne %s municípios, %s dos quais na Amazônia, e apresenta o maior porte agregado (F2 = %s).", m1("T3_T3_N"), m1("T3_T3_BIOMA250_AMAZONIA"), m1("T3_T3_F2_MEDIA_WINSOR")),
+           sprintf("Apenas %s%% dos estabelecimentos da AF estão na categoria 46504; contudo, registram-se %s beneficiários do INCRA por 100 estabelecimentos da AF (total de MT: %s).",
                    m1("T3_T3_PCT_ESTAB_46504_PONDERADA"), m1("INCRA_T3_REF_POR100AF_PONDERADO"), m1("INCRA_MT_REF_POR100AF_PONDERADO")),
-           "A posse \"baixa\" é a declarada ao Censo. Ver a página sobre a posse."),
-    T4 = c(sprintf("%s municípios (%s na Amazônia, %s no Cerrado). Maior escore de lavoura temporária mecanizada (F1 = %s).", m1("T3_T4_N"),
+           "A posse “baixa” refere-se à condição declarada ao Censo, conforme se discute na página sobre a posse."),
+    T4 = c(sprintf("Reúne %s municípios (%s na Amazônia e %s no Cerrado) e apresenta o maior escore de lavoura temporária mecanizada (F1 = %s).", m1("T3_T4_N"),
                    m1("T3_T4_BIOMA250_AMAZONIA"), m1("T3_T4_BIOMA250_CERRADO"), m1("T3_T4_F1_MEDIA_WINSOR")),
-           sprintf("%s%% dos estabelecimentos da AF na categoria 46504, %s a média de MT.", m1("T3_T4_PCT_ESTAB_46504_PONDERADA"), m1x("RAZAO_T4_46504_VS_MT")),
-           sprintf("O número depende de Itanhangá: sem ele, cai para %s%% (%s a média).",
+           sprintf("%s%% dos estabelecimentos da AF estão na categoria 46504, proporção que corresponde a %s a média de MT.", m1("T3_T4_PCT_ESTAB_46504_PONDERADA"), m1x("RAZAO_T4_46504_VS_MT")),
+           sprintf("Essa proporção depende de Itanhangá: sem esse município, ela cai para %s%% (%s a média).",
                    trimws(strsplit(m1("PREV_SEM_ITANHANGA_T4"), "/")[[1]][2]), m1x("RAZAO_T4_46504_VS_MT_SEM_ITANHANGA"))),
-    T5 = c(sprintf("%s municípios. Maior escore de horticultura e irrigação (F3 = %s) e porte agregado alto (F2 = %s).", m1("T3_T5_N"),
+    T5 = c(sprintf("Reúne %s municípios e apresenta o maior escore de horticultura e irrigação (F3 = %s), além de porte agregado elevado (F2 = %s).", m1("T3_T5_N"),
                    m1("T3_T5_F3_MEDIA_WINSOR"), m1("T3_T5_F2_MEDIA_WINSOR")),
-           sprintf("A menor área média da AF: %s ha por estabelecimento. %s%% dos estabelecimentos da AF na categoria 46504.",
+           sprintf("Apresenta a menor área média da AF, de %s ha por estabelecimento, e %s%% dos estabelecimentos da AF na categoria 46504.",
                    m1("T3_T5_AREA_MEDIA_AF_HA_POR_ESTAB_PONDERADA"), m1("T3_T5_PCT_ESTAB_46504_PONDERADA")),
-           sprintf("O F4 do tipo depende de Colniza: sem ele, a média bruta cai para %s.", m1("OUT_T5_F4_SEM_COLNIZA"))))
+           sprintf("O F4 do tipo depende de Colniza: sem esse município, a média bruta cai para %s.", m1("OUT_T5_F4_SEM_COLNIZA"))))
   div(class = "cartoes cartoes-tipos", lapply(names(TIPOS), function(t)
     div(class = paste("cartao cartao-tipo", paste0("borda-", tolower(t))),
         div(class = "cartao-topo", rot_tipo(t)),
@@ -291,7 +291,7 @@ svg_regua_regra <- function() {
                  faixa(0.35, 0.5, "#fde4e1", "reformulação"), sx(0), sx(0.5), eixo,
                  linha(55, as.numeric(M1N$valor_bruto[M1N$id == "REGRA_M"]), m1_ic("REGRA_M_IC_BOOT_IID"), "#1F4D3A", "Oblimin (principal)"),
                  linha(95, as.numeric(M1N$valor_bruto[M1N$id == "REGRA_M_PROMAX"]), m1_ic("REGRA_M_IC_BOOT_IID_PROMAX"), "#6b7280", "Promax (sensibilidade)", FALSE))
-  tagList(HTML(sprintf('<figure class="grafico-svg">%s<figcaption class="legenda-svg">m = maior valor absoluto entre Φ posse × escala e Φ posse × mecanização. Ponto: estimativa; linha: IC 95%% por bootstrap (2.000 reamostras de municípios).</figcaption></figure>', svg)))
+  tagList(HTML(sprintf('<figure class="grafico-svg">%s<figcaption class="legenda-svg">Fonte: Elaboração própria com base no M1 do Projeto RESA (Tabelas A.2 e A.3). Nota: m corresponde ao maior valor absoluto entre Φ posse × escala e Φ posse × mecanização. Ponto: estimativa; linha: IC 95%% por <i>bootstrap</i> (2.000 reamostras de municípios).</figcaption></figure>', svg)))
 }
 
 # ---- Posse: validação com o INCRA ----------------------------------------------------
@@ -334,7 +334,7 @@ svg_cobertura_46504 <- function() {
                         '<rect x="%.1f" y="26" width="%.1f" height="34" fill="#d9d6ee" data-tip="Pelo menos %s estabelecimentos (%s%%) fora da categoria 46504"/>',
                         '<text x="%d" y="18" font-size="12" fill="#1f2937">No máximo %s (%s%%) na categoria 46504</text>',
                         '<text x="%d" y="18" font-size="12" fill="#1f2937" text-anchor="end">pelo menos %s (%s%%) fora dela</text>',
-                        '<text x="%d" y="80" font-size="11" fill="#6b7280">%s estabelecimentos da reforma agrária identificados no Censo 2017 pelo IBGE com o INCRA (Marques, 2021)</text></svg>'),
+                        '<text x="%d" y="80" font-size="11" fill="#6b7280">%s estabelecimentos da reforma agrária identificados no Censo 2017 pelo IBGE com o INCRA (MARQUES, 2021)</text></svg>'),
                  w, h, x0, xd - x0, m1("TOT_TODOS_46504_ESTAB"), m1("COBERTURA_MAX_46504_MARQUES"),
                  xd, x0 + L - xd, m1("INCRA_LIM_INF_RA_FORA_46504"), m1("INCRA_LIM_INF_RA_FORA_46504_PCT"),
                  x0, m1("TOT_TODOS_46504_ESTAB"), m1("COBERTURA_MAX_46504_MARQUES"),
@@ -507,9 +507,9 @@ svg_pontos <- function(series, titulo, w = 680, h = 280, unidade = "km²") {
 svg_prodes_taxa <- function() {
   t <- PRT[order(PRT$ano), ]; est <- t$status != "consolidada"
   s <- list(nome = "Taxa", cor = "#1F4D3A", larg = 2.2, x = t$ano, y = t$taxa_km2, oco = est, liga = !est,
-            tip = sprintf("%d: %s km²%s", t$ano, num(t$taxa_km2, 0), ifelse(est, " (taxa estimada; fora das contas)", "")))
+            tip = sprintf("%d: %s km²%s", t$ano, num(t$taxa_km2, 0), ifelse(est, " (taxa estimada; excluída dos cálculos)", "")))
   svg <- svg_pontos(list(s), "Taxa anual de desmatamento do PRODES em Mato Grosso, km²")
-  HTML(sprintf('<figure class="grafico-svg">%s<figcaption class="legenda-svg"><span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="#1F4D3A" stroke-width="2.2"/><circle cx="11" cy="5" r="2.8" fill="#1F4D3A"/></svg>taxa consolidada, %d–%d</span><span class="leg-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3.6" fill="#fff" stroke="#1F4D3A" stroke-width="1.6"/></svg>%s: taxa estimada (fora das contas)</span></figcaption></figure>',
+  HTML(sprintf('<figure class="grafico-svg">%s<figcaption class="legenda-svg"><span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="#1F4D3A" stroke-width="2.2"/><circle cx="11" cy="5" r="2.8" fill="#1F4D3A"/></svg>taxa consolidada, %d–%d</span><span class="leg-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3.6" fill="#fff" stroke="#1F4D3A" stroke-width="1.6"/></svg>%s: taxa estimada (excluída dos cálculos)</span></figcaption></figure>',
                svg, min(t$ano[!est]), max(t$ano[!est]), paste(t$ano[est], collapse = ", ")))
 }
 
@@ -519,12 +519,12 @@ svg_prodes_bioma <- function() {
     v <- x$desmat_km2 / x$n_anos
     list(nome = bi, cor = COR_BIOMA[[bi]], larg = 2, x = x$ano, y = v, oco = parc | !anual, liga = !parc,
          tip = sprintf("%s · %d: %s km²%s", bi, x$ano, num(v, 0),
-                       ifelse(parc, " (incremento parcial; fora das contas)",
+                       ifelse(parc, " (incremento parcial; excluído dos cálculos)",
                               ifelse(anual, "", sprintf(" por ano (média do período de %d anos encerrado em %d)", x$n_anos, x$ano))))) })
   svg <- svg_pontos(ser, "Incremento anual de desmatamento do PRODES em Mato Grosso, por bioma, km²")
   leg <- paste(vapply(BIOMAS, function(bi) sprintf('<span class="leg-item"><svg width="22" height="10"><line x1="0" x2="22" y1="5" y2="5" stroke="%s" stroke-width="2"/><circle cx="11" cy="5" r="2.8" fill="%s"/></svg>%s</span>',
                                                    COR_BIOMA[[bi]], COR_BIOMA[[bi]], bi), character(1)), collapse = "")
-  HTML(sprintf('<figure class="grafico-svg">%s<figcaption class="legenda-svg">%s<span class="leg-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3.6" fill="#fff" stroke="#6b7280" stroke-width="1.6"/></svg>ponto vazado: média anual de período de 2 a 4 anos, ou dado parcial de 2026 (sem linha, fora das contas)</span></figcaption></figure>', svg, leg))
+  HTML(sprintf('<figure class="grafico-svg">%s<figcaption class="legenda-svg">%s<span class="leg-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3.6" fill="#fff" stroke="#6b7280" stroke-width="1.6"/></svg>ponto vazado: média anual de período de 2 a 4 anos ou dado parcial de 2026 (sem linha, excluído dos cálculos)</span></figcaption></figure>', svg, leg))
 }
 
 # ---- Dinâmica 2006-2017 ----------------------------------------------------------------
@@ -586,7 +586,7 @@ svg_dinamica <- function() {
     sprintf('<text x="%.1f" y="14" font-size="12" font-weight="700" text-anchor="middle" fill="#1F4D3A">%s</text><line x1="%.1f" x2="%.1f" y1="%d" y2="%d" stroke="#9ca3af"/>%s',
             zero, met[[k]], zero, zero, top, h - 22, barras)
   }, character(1)), collapse = "")
-  HTML(sprintf('<figure class="grafico-svg"><svg viewBox="0 0 %d %d" width="100%%" role="img" aria-label="Variação 2006–2017 por tipo e por bioma">%s%s</svg><figcaption class="legenda-svg">Variação de 2017 sobre 2006, em %%, calculada sobre as somas dos municípios de cada grupo. Todos os estabelecimentos agropecuários. T1 a T5: tipos do Manuscrito 1 (rótulos provisórios na tabela acima).</figcaption></figure>',
+  HTML(sprintf('<figure class="grafico-svg"><svg viewBox="0 0 %d %d" width="100%%" role="img" aria-label="Variação 2006–2017 por tipo e por bioma">%s%s</svg><figcaption class="legenda-svg">Nota: variação de 2017 sobre 2006, em %%, calculada sobre as somas dos municípios de cada grupo, para o conjunto dos estabelecimentos agropecuários. T1 a T5: tipos do Manuscrito 1 (rótulos provisórios na tabela acima).</figcaption></figure>',
                w, h, nomes, paineis))
 }
 

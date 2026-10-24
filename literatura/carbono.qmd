@@ -1,6 +1,6 @@
 ---
 title: "Carbono, mercados e ESG"
-description: "Os seis blocos da revisão de literatura sobre carbono, mercados e ESG e as 115 referências com DOI verificado, só com metadados"
+description: "Blocos temáticos da revisão de literatura sobre carbono, mercados e ESG e as 115 referências com DOI verificado, apresentadas apenas por seus metadados"
 page-layout: full
 toc: false
 ---
@@ -14,30 +14,30 @@ RF <- ler_lit("refs_carbono.csv")
 ```
 
 ```{r}
-faixa_versao("Versão preliminar para a equipe do projeto. Esta página traz só metadados (autores, ano, título, periódico e DOI). A síntese dos achados entra em versão futura, em texto próprio.")
+faixa_versao("Versão preliminar para a equipe do projeto. Esta página apresenta apenas os metadados das referências (autores, ano, título, periódico e DOI). A síntese dos achados será apresentada em versão futura, em texto próprio.")
 ```
 
-A revisão organiza a literatura em seis blocos. Cada bloco tem um tema e uma pergunta. As `r fmt_valor(nrow(RF), "int")` referências têm DOI verificado no Crossref (set/2026). Elas servem aos objetivos de ambiente e carbono (OE3) e de cenários bioeconômicos (OE4).
+A revisão de literatura sobre carbono, mercados e ESG (do inglês *environmental, social and governance*) organiza-se em seis blocos temáticos, cada um definido por um tema e por uma pergunta. As `r fmt_valor(nrow(RF), "int")` referências que a compõem têm identificador digital de objeto (DOI, do inglês *Digital Object Identifier*) verificado no Crossref (set/2026) e subsidiam os objetivos específicos de ambiente e carbono (OE3) e de cenários bioeconômicos (OE4). Nesta página, apresentam-se, inicialmente, os seis blocos e, em seguida, a lista completa das referências, acompanhada dos arquivos para download.
 
-## Os seis blocos
+## Blocos temáticos da revisão
 
 ```{r}
 div(class = "cartoes", lapply(seq_len(nrow(BL)), function(i) {
   b <- BL[i, ]
   a(class = "cartao", href = sprintf("estudos.html#bloco=%s", b$bloco),
     div(class = "cartao-topo", tags$h4(style = "margin: 0;", paste0(b$bloco, " · ", b$tema)),
-        span(class = "selo", style = "white-space: nowrap;", sprintf("%d refs.", b$n_refs))),
+        span(class = "selo", style = "white-space: nowrap;", sprintf("%d referências", b$n_refs))),
     p(tags$i("Pergunta: "), b$pergunta))
 }))
 ```
 
 ::: {.nota-fonte}
-Temas e perguntas dos blocos: revisão de literatura do Projeto RESA, setembro de 2026. Clique num bloco para ver as referências dele na tabela dos estudos.
+Fonte: Elaboração própria com base na revisão de literatura do Projeto RESA (setembro de 2026). Para consultar as referências de um bloco na tabela dos estudos, selecione o cartão correspondente.
 :::
 
 ## As `r nrow(RF)` referências
 
-Use a busca para localizar autor, título ou periódico, e os filtros de bloco, ano e tipo. O DOI abre a página da publicação.
+Para localizar autor, título ou periódico, utilize o campo de busca; para restringir a lista por bloco, ano ou tipo, utilize os filtros das colunas. O DOI remete à página da publicação.
 
 ```{r}
 tab <- RF |> left_join(select(BL, bloco, tema), by = "bloco") |> transmute(Bloco = paste0(bloco, " · ", tema), Autores = autores, Ano = as.character(ano),
@@ -63,5 +63,5 @@ reactable(tab, elementId = "tab-carbono", searchable = TRUE, filterable = TRUE, 
 - [Baixar a lista completa da literatura em BibTeX](../arquivos/literatura/resa_literatura_estudos.bib), sem resumos
 
 ::: {.nota-fonte}
-Fonte: revisão de literatura do Projeto RESA (setembro de 2026), com DOI, título, autoria, ano e periódico conferidos no Crossref. O ano é o do registro da revisão; quando ausente, o do Crossref. O tipo fica como "—" quando o registro não o informa. Resumos de terceiros não são publicados.
+Fonte: Elaboração própria com base na revisão de literatura do Projeto RESA (setembro de 2026), com DOI, título, autoria, ano e periódico conferidos no Crossref. Nota: adota-se o ano do registro da revisão e, na ausência deste, o do Crossref; o tipo é indicado por "—" quando o registro não o informa. Os resumos de terceiros não são publicados.
 :::

@@ -1,6 +1,6 @@
 ---
 title: "Estudos do corpus"
-description: "As 115 referências sobre carbono, mercados e ESG e os 38 estudos comparados do OE4 numa tabela só, com busca, filtros e arquivos CSV e BibTeX"
+description: "As 115 referências sobre carbono, mercados e ESG e os 38 estudos comparados do OE4 reunidos em tabela única, com busca, filtros e arquivos em CSV e BibTeX"
 page-layout: full
 toc: false
 ---
@@ -15,10 +15,10 @@ n_bib <- length(grep("^@", readLines(file.path(RAIZ, "arquivos", "literatura", "
 ```
 
 ```{r}
-faixa_versao("Versão preliminar para a equipe do projeto. Só metadados: autores, ano, título, periódico, tipo e DOI. Resumos de terceiros não são publicados.")
+faixa_versao("Versão preliminar para a equipe do projeto. Apresentam-se apenas os metadados das referências (autores, ano, título, periódico, tipo e DOI), e os resumos de terceiros não são publicados.")
 ```
 
-A tabela junta as duas listas finais da literatura do projeto. A coluna **Corpus** diz de qual busca vem cada linha. Nos estudos do OE4, a coluna Autores traz o nome do estudo, e o título aparece quando o DOI foi conferido.
+Esta página reúne, em tabela única, as duas listas finais da literatura do Projeto RESA, a saber: a revisão sobre carbono, mercados e ESG (do inglês *environmental, social and governance*) e os estudos comparados do objetivo específico de cenários bioeconômicos (OE4). A coluna **Corpus** identifica a busca de origem de cada linha. Nos estudos do OE4, a coluna Autores registra a identificação do estudo, e o título é apresentado apenas quando o identificador digital de objeto (DOI, do inglês *Digital Object Identifier*) foi conferido.
 
 ```{r}
 div(class = "kpi-grade",
@@ -29,17 +29,17 @@ div(class = "kpi-grade",
              a(href = "saf-psa.html", "Ver local, público e arranjo →")))
 ```
 
-## Arquivos
+## Arquivos para download
 
 - [Tabela completa (CSV, `r nrow(TD)` linhas)](../arquivos/literatura/resa_literatura_estudos.csv) · [dicionário](../arquivos/literatura/dicionarios/resa_literatura_estudos.csv)
-- [Referências em BibTeX](../arquivos/literatura/resa_literatura_estudos.bib) (`r n_bib` entradas: as `r sum(TD$corpus == C1)` de carbono, mercados e ESG e os trabalhos do OE4 com DOI), para Zotero, Mendeley ou JabRef. Sem resumos.
+- [Referências em BibTeX](../arquivos/literatura/resa_literatura_estudos.bib) (`r n_bib` entradas, isto é, as `r sum(TD$corpus == C1)` referências sobre carbono, mercados e ESG e os trabalhos do OE4 com DOI), compatíveis com Zotero, Mendeley ou JabRef e sem resumos.
 - Por corpus: [carbono, mercados e ESG (CSV)](../arquivos/literatura/resa_refs_carbono_esg.csv) · [SAF e PSA, OE4 (CSV)](../arquivos/literatura/resa_estudos_saf_psa_oe4.csv)
 
-Os arquivos estão em UTF-8, separados por vírgula. Quando um estudo tem mais de um DOI, eles vêm separados por ponto e vírgula.
+Os arquivos encontram-se codificados em UTF-8, com campos separados por vírgula. Quando um estudo apresenta mais de um DOI, estes são separados por ponto e vírgula.
 
-## Estudos
+## Tabela dos estudos
 
-Use a busca para localizar autor, título ou periódico, e os filtros de corpus, grupo, ano e tipo. O DOI abre a página da publicação.
+Para localizar autor, título ou periódico, utilize o campo de busca; para restringir a tabela por corpus, grupo, ano ou tipo, utilize os filtros das colunas. O DOI remete à página da publicação.
 
 ```{r}
 tab <- TD |> transmute(Corpus = corpus, Grupo = grupo_curto(grupo), Autores = autores, Ano = ifelse(is.na(ano), "—", as.character(ano)),
@@ -81,5 +81,5 @@ reactable(tab, elementId = "tab-estudos", searchable = TRUE, filterable = TRUE, 
 ```
 
 ::: {.nota-fonte}
-Fontes: revisão de literatura sobre carbono, mercados e ESG (setembro de 2026) e busca de estudos parecidos com Dominicis et al. (2023) (outubro de 2026), do Projeto RESA. DOI, título, autoria, ano e periódico conferidos no Crossref. O tipo fica como "—" quando o registro não o informa.
+Fonte: Elaboração própria com base na revisão de literatura sobre carbono, mercados e ESG (setembro de 2026) e na busca de estudos semelhantes ao de Dominicis et al. (2023) (outubro de 2026), ambas do Projeto RESA, com DOI, título, autoria, ano e periódico conferidos no Crossref. Nota: o tipo é indicado por "—" quando o registro não o informa.
 :::

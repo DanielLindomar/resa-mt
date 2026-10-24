@@ -1,6 +1,6 @@
 ---
 title: "OE3 · Ambiente e carbono"
-description: "Objetivo específico 3 do Projeto RESA: balanço de carbono, água e solo. Situação, emissões de MT por setor (SEEG 13) e ressalvas"
+description: "Objetivo específico 3 do Projeto RESA: balanço de carbono, água e solo. Situação de execução, emissões de Mato Grosso por setor (SEEG 13) e ressalvas metodológicas"
 ---
 
 ```{r}
@@ -21,21 +21,21 @@ faixa_versao()
 
 ## Objetivo
 
-Medir os impactos socioambientais dos sistemas produtivos das áreas-piloto com indicadores. O OE3 estima o balanço de carbono, isto é, as emissões e as remoções de gases de efeito estufa, e avalia a situação da água e do solo. Os resultados orientam as diretrizes ambientais do Pacote Tecnológico e as políticas de mitigação e adaptação.
+O terceiro objetivo específico (OE3) consiste em mensurar, por meio de indicadores, os impactos socioambientais dos sistemas produtivos das áreas-piloto. Nesse sentido, o OE3 estima o balanço de carbono, isto é, as emissões e as remoções de gases de efeito estufa (GEE), e avalia a situação da água e do solo. Os resultados, por conseguinte, orientam as diretrizes ambientais do Pacote Tecnológico e as políticas de mitigação e adaptação.
 
-**Como.** A proposta prevê estimar os estoques de carbono na biomassa e no solo e as emissões e remoções ligadas às mudanças de uso da terra e ao manejo. O resultado é o balanço líquido de carbono de cada área-piloto.
+**Procedimentos.** A proposta prevê a estimação dos estoques de carbono na biomassa e no solo, bem como das emissões e remoções associadas às mudanças de uso da terra e ao manejo. Dessa estimação resulta o balanço líquido de carbono de cada área-piloto.
 
 ```{r}
 bloco_situacao("OE3", list(
   c("concluido", "Contexto estadual e municipal das emissões (SEEG 13) e do desmatamento (PRODES oficial)."),
-  c("concluido", "Validação do Artigo B recalculada com o PRODES oficial.", "O texto do artigo está em revisão."),
-  c("previsto", "Balanço de carbono por área-piloto.", "Depende do uso e cobertura da terra nas áreas-piloto (OE1)."),
+  c("concluido", "Validação do Artigo B recalculada com o PRODES oficial.", "O texto do artigo encontra-se em revisão."),
+  c("previsto", "Balanço de carbono por área-piloto.", "Depende do uso e da cobertura da terra nas áreas-piloto (OE1)."),
   c("previsto", "Indicadores de água e solo por área-piloto.")))
 ```
 
-## Emissões de Mato Grosso por setor (SEEG 13)
+## Emissões de gases de efeito estufa de Mato Grosso por setor (SEEG 13)
 
-Em 2024, as emissões brutas de MT somaram **`r num(bruta, 1)` MtCO2e**. A mudança de uso da terra e florestas respondeu por **`r num(100 * mut / bruta, 1)`%** (`r num(mut, 1)` MtCO2e), e a agropecuária, por **`r num(100 * agro / bruta, 1)`%** (`r num(agro, 1)` MtCO2e).
+Segundo o Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG), em 2024 as emissões brutas de Mato Grosso (MT) somaram **`r num(bruta, 1)` MtCO2e** (milhões de toneladas de dióxido de carbono equivalente). Observa-se que a mudança de uso da terra e florestas respondeu por **`r num(100 * mut / bruta, 1)`%** desse total (`r num(mut, 1)` MtCO2e), e a agropecuária, por **`r num(100 * agro / bruta, 1)`%** (`r num(agro, 1)` MtCO2e). A tabela e o gráfico a seguir apresentam, respectivamente, a composição setorial desse ano e a evolução da série histórica por setor.
 
 ```{r}
 div(class = "kpi-grade",
@@ -55,21 +55,20 @@ HTML(grafico_seeg_setor(1990))
 ```
 
 ```{r}
-p(class = "nota-fonte", "Fonte: SEEG 13, Observatório do Clima, emissões estaduais por setor (GWP-AR5), 1990–2024. O SEEG estima a mudança de uso da terra a partir de 1990.")
+p(class = "nota-fonte", "Fonte: Elaboração própria com base em SEEG 13, Observatório do Clima, emissões estaduais por setor (GWP-AR5), 1990–2024. Nota: o SEEG estima a mudança de uso da terra a partir de 1990.")
 ```
 
-### Ressalvas
+### Ressalvas metodológicas
 
-- **São estimativas.** O SEEG calcula as emissões com métodos e fatores próprios. Cada nova coleção revê a série inteira. Aqui está a coleção 13.
-- **Emissões brutas.** Os números acima não descontam as remoções de carbono pela vegetação. As remoções municipais estão nos indicadores de clima.
-- **Estado e município inteiros.** O SEEG mede o território, não a agricultura familiar nem os assentamentos.
-- **Soma dos municípios.** Em 2024, os municípios somam `r num(smun, 2)` MtCO2e, contra `r num(bruta, 2)` MtCO2e do estado. A diferença é a parte das emissões que o SEEG não atribui a município.
-- **Desmatamento.** A mudança de uso da terra acompanha o desmatamento, mas não é igual a ele. A série oficial do desmatamento está no [OE1](oe1.qmd).
-- **Licença.** Os dados municipais do SEEG aparecem nas páginas, mas ficam fora dos downloads até a conferência da licença.
+Os valores apresentados requerem algumas ressalvas. Em primeiro lugar, trata-se de estimativas: o SEEG calcula as emissões com métodos e fatores próprios, e cada nova coleção revê a série inteira; os valores aqui apresentados correspondem à coleção 13. Além disso, trata-se de emissões brutas, isto é, de valores que não descontam as remoções de carbono pela vegetação, cujos dados municipais se encontram nos indicadores de clima. Ademais, o SEEG mede o território do estado e dos municípios em sua totalidade, e não a agricultura familiar nem os assentamentos.
 
-## O que já é público e onde ver
+Quanto à soma dos municípios, observa-se que ela não coincide com o total estadual. Em 2024, os municípios somam `r num(smun, 2)` MtCO2e, contra `r num(bruta, 2)` MtCO2e do estado, e a diferença corresponde à parcela das emissões que o SEEG não atribui a município. Adicionalmente, a mudança de uso da terra acompanha o desmatamento, mas não equivale a ele; a série oficial do desmatamento encontra-se no [OE1](oe1.qmd). Por fim, os dados municipais do SEEG são exibidos nas páginas, mas permanecem fora dos downloads até a conferência da licença.
 
-- [Emissões e desmatamento](../resultados/emissoes.qmd): resultados do Artigo B pelos tipos municipais do Manuscrito 1, com a validação pelo PRODES oficial e a nota de correção.
+## Resultados já publicados e páginas relacionadas
+
+Os resultados relacionados ao OE3 que já se encontram disponíveis no site podem ser consultados nas páginas listadas a seguir.
+
+- [Emissões e desmatamento](../resultados/emissoes.qmd): resultados do Artigo B segundo os tipos municipais do Manuscrito 1, com a validação pelo PRODES oficial e a respectiva nota de correção.
 - Indicadores de clima por município:
 
 ```{r}

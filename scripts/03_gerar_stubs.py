@@ -130,17 +130,17 @@ def main():
         ini = "1990" if r["id"] in ("seeg_mut", "seeg_remocoes") else "1970"
         ano = "2025" if r["origem"] == "sipra" else (f"{ini}–{r['ano_ref']}" if r["serie"] == "1" else r["ano_ref"])
         tabela = "tabela com os sinais do IBGE" if r["origem"].startswith("censo") else "tabela dos 141 municípios"
-        desc = (f'{r["tema"]} · {r["unidade"]} · {ano}. Mapa dos 141 municípios de Mato Grosso, '
-                f'ranking no bioma e em MT e {tabela}. Fonte: {r["fonte"]}.')
+        desc = (f'Indicador do tema {r["tema"]}. Unidade: {r["unidade"]}; referência: {ano}. Apresentam-se o mapa dos 141 municípios de Mato Grosso, '
+                f'a classificação no bioma e em MT e a {tabela}. Fonte: {r["fonte"]}.')
         paginas_ind.append((r["id"], stub(r["rotulo"], desc, f'IND_ID <- "{r["id"]}"', "_indicador.qmd")))
 
     if a.municipios == "sedes":
         mun = [m for m in mun if m["sede_piloto"] == "True"]
     paginas_mun = []
     for m in mun:
-        sede = f' Sede da área-piloto {m["piloto"]}.' if m["sede_piloto"] == "True" else ""
-        desc = (f'Perfil do município de {m["municipio"]} (MT): bioma {m["bioma"]}, tipo {m["tipo_m1"]} do Manuscrito 1 '
-                f'(rótulo provisório), agricultura familiar no Censo 2017, posse, SIPRA, SEEG e dinâmica 2006–2017.{sede}')
+        sede = f' O município é sede da área-piloto {m["piloto"]}.' if m["sede_piloto"] == "True" else ""
+        desc = (f'Perfil do município de {m["municipio"]} (MT), de bioma dominante {m["bioma"]} e classificado no tipo {m["tipo_m1"]} do Manuscrito 1 '
+                f'(rótulo provisório), com indicadores da agricultura familiar no Censo 2017, da posse, do SIPRA, do SEEG e da dinâmica 2006–2017.{sede}')
         paginas_mun.append((m["slug"], stub(m["municipio"], desc, f'MUN_ID <- {int(m["id_municipio"])}L', "_perfil.qmd")))
 
     print("Gerando stubs:")

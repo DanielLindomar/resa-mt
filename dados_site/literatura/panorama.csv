@@ -1,8 +1,8 @@
 id,grupo,rotulo,valor,data,fonte
 scopus_total,carbono,registros no Scopus nas 4 consultas principais,3777,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
-scopus_bc,carbono_string,mercados regulados e preços de carbono,1877,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
-scopus_d,carbono_string,mercado voluntário e créditos florestais,1254,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
-scopus_e,carbono_string,emissões no Brasil,441,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
+scopus_bc,carbono_string,Mercados regulados e preços de carbono,1877,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
+scopus_d,carbono_string,Mercado voluntário e créditos florestais,1254,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
+scopus_e,carbono_string,Emissões no Brasil,441,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
 scopus_f,carbono_string,"ESG, risco climático e finanças",205,06/09/2026,"Scopus, pelo Portal de Periódicos da CAPES; artigos publicados de 2005 a 2026"
 refs_doi,carbono,referências com DOI verificado,115,set/2026,"Crossref (conferência de DOI, título, autoria, ano e periódico)"
 oa_colhidos,carbono_openalex,registros colhidos no OpenAlex,1201,07/09/2026,OpenAlex (API aberta)

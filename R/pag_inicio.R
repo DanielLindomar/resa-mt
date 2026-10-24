@@ -64,10 +64,10 @@ atalhos_inicio <- function() {
     value = if (existe_qmd(file.path("pilotos", PIL$slug[j]))) paste0("pilotos/", PIL$slug[j], ".html") else "pilotos/index.html",
     sprintf("%s (%s, %s)", PIL$piloto[j], PIL$municipio_sede[j], PIL$bioma[j])))
   div(class = "atalhos", style = "grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));",
-      lista_ir("ir-mun", "Ir para um município",
-               "Escolha um município…", mun),
-      lista_ir("ir-ind", "Ir para um indicador", sprintf("Escolha um dos %d indicadores…", nrow(IND)), ind),
-      lista_ir("ir-pil", "Ir para uma área-piloto", "Escolha uma das 3 áreas-piloto…", pil))
+      lista_ir("ir-mun", "Consulta por município",
+               "Selecione um município…", mun),
+      lista_ir("ir-ind", "Consulta por indicador", sprintf("Selecione um dos %d indicadores…", nrow(IND)), ind),
+      lista_ir("ir-pil", "Consulta por área-piloto", "Selecione uma das 3 áreas-piloto…", pil))
 }
 
 # ---- Os 8 números de Mato Grosso ---------------------------------------------------
@@ -76,12 +76,12 @@ tt <- function(id) { v <- TOT$valor[TOT$id == id]; if (length(v) != 1) stop("tot
 kpis_inicio <- function() {
   nb <- table(factor(MUN$bioma, BIOMAS))
   pr <- prodes_resumo()
-  f_censo <- "Fonte: IBGE, Censo Agropecuário 2017 (resultados definitivos); agricultura familiar pela Lei 11.326/2006."
+  f_censo <- "Fonte: IBGE, Censo Agropecuário 2017 (resultados definitivos); agricultura familiar conforme a Lei 11.326/2006."
   div(class = "kpi-grade",
     cartao_kpi("Municípios de Mato Grosso", fmt_valor(nrow(MUN), "int"),
-               sprintf("%d Amazônia · %d Cerrado · %d Pantanal, pelo bioma dominante (2019)",
+               sprintf("%d Amazônia · %d Cerrado · %d Pantanal, segundo o bioma dominante (2019)",
                        nb[["Amazônia"]], nb[["Cerrado"]], nb[["Pantanal"]]),
-               "Fonte: IBGE, Biomas do Brasil 1:250 mil (2019), sobre os 141 municípios do Censo Agropecuário 2017."),
+               "Fonte: IBGE, mapa Biomas do Brasil 1:250 mil (2019), sobreposto aos 141 municípios do Censo Agropecuário 2017."),
     cartao_kpi("Estabelecimentos da agricultura familiar (AF)", fmt_valor(tt("tot_af_estab"), "int"),
                sprintf("%s dos %s estabelecimentos de MT (Brasil: %s) · 2017", fmt_valor(tt("pct_af_estab_mt"), "pct1"),
                        fmt_valor(tt("tot_todos_estab"), "int"), fmt_valor(tt("pct_af_estab_br"), "pct1")), f_censo),
@@ -99,16 +99,16 @@ kpis_inicio <- function() {
                sprintf("%s famílias assentadas · posição de 03/06/2025", fmt_valor(tt("fam_pa_mt"), "int")),
                "Fonte: INCRA/SIPRA, Relatório 0227 (total estadual)."),
     cartao_kpi("Emissões brutas de gases de efeito estufa", paste(fmt_valor(tt("seeg_bruta_mt_2024"), "dec1"), "MtCO₂e"),
-               sprintf("2024 · %s de mudança de uso da terra e floresta e %s da agropecuária",
+               sprintf("2024 · %s provenientes de mudança de uso da terra e florestas e %s da agropecuária",
                        fmt_valor(100 * tt("seeg_mut_mt_2024") / tt("seeg_bruta_mt_2024"), "pct1"),
                        fmt_valor(100 * tt("seeg_agro_mt_2024") / tt("seeg_bruta_mt_2024"), "pct1")),
-               "Fonte: SEEG 13, Observatório do Clima (GWP-AR5), emissões do estado."),
+               "Fonte: SEEG 13, Observatório do Clima (GWP-AR5), emissões estaduais."),
     cartao_kpi("Desmatamento na Amazônia Legal em MT", paste(fmt_valor(pr$ult$taxa, "int"), "km²"),
-               sprintf("taxa consolidada de %d (ago/%d–jul/%d) · %s km² em %d · pico de %s km² em %d; queda de %s desde então",
+               sprintf("taxa consolidada de %d (ago/%d–jul/%d) · %s km² em %d · pico de %s km² em %d, com redução de %s desde então",
                        pr$ult$ano, pr$ult$ano - 1L, pr$ult$ano, fmt_valor(pr$ant$taxa, "int"), pr$ant$ano,
                        fmt_valor(pr$pico$taxa, "int"), pr$pico$ano, fmt_valor(pr$queda_pct, "pct1")),
                sprintf("Fonte: %s, formações florestais (acesso em %s; atualização do INPE em %s).%s", pr$fonte, pr$acesso,
-                       pr$atualizacao, if (!is.null(pr$estimada)) sprintf(" A taxa de %d é estimada e fica fora.", pr$estimada$ano) else "")))
+                       pr$atualizacao, if (!is.null(pr$estimada)) sprintf(" A taxa de %d, ainda estimada, não foi considerada.", pr$estimada$ano) else "")))
 }
 
 # ---- Mapas: tipo do M1 e bioma, lado a lado -----------------------------------------
@@ -121,7 +121,7 @@ legenda_mapa <- function(cor_por = c("tipo", "bioma")) {
     n <- table(factor(MUN$tipo_m1, names(TIPOS)))
     div(class = "nota-fonte", style = "display: flex; flex-wrap: wrap; gap: .35rem .6rem; margin: .4rem .2rem 0;",
         lapply(names(TIPOS), function(t) span(chip_tipo(t, rotulo = TRUE, provisorio = FALSE), sprintf("%d", n[[t]]))),
-        span("Rótulos provisórios, pendentes dos autores."))
+        span("Rótulos provisórios, pendentes de aprovação dos autores."))
   } else {
     n <- table(factor(MUN$bioma, BIOMAS))
     div(class = "nota-fonte", style = "display: flex; flex-wrap: wrap; gap: .35rem .6rem; margin: .4rem .2rem 0;",
@@ -157,15 +157,15 @@ cartoes_pilotos <- function(prefixo = "") {
 cartoes_secoes <- function() {
   c1 <- function(href, titulo, texto) a(class = "cartao", href = href, tags$h4(titulo), p(texto))
   div(class = "cartoes",
-    c1("municipios/index.html", "Municípios", "Os 141 municípios de MT em tabela e mapa, com o perfil de cada um."),
+    c1("municipios/index.html", "Municípios", "Os 141 municípios de MT, apresentados em tabela e mapa, com o perfil de cada um."),
     c1("indicadores/index.html", "Indicadores", sprintf("Os %d indicadores, com mapa dos 141 municípios, ranking e comparação por bioma e por tipo.", nrow(IND))),
     c1("resultados/tipologia.html", "Resultados", "Tipologia municipal da AF, posse no Censo e reforma agrária, emissões e desmatamento, dinâmica 2006–2017."),
-    c1("pilotos/index.html", "Áreas-piloto", "As três áreas do estudo de campo, uma por bioma, só com identificação."),
+    c1("pilotos/index.html", "Áreas-piloto", "As três áreas do estudo de campo, uma por bioma, apresentadas apenas com a identificação."),
     c1("objetivos/index.html", "Objetivos", "Os seis objetivos específicos (OE1 a OE6) e a situação de cada um."),
-    c1("literatura/index.html", "Literatura", "As buscas de literatura em números e as listas de referências, só com metadados."),
-    c1("dados/index.html", "Dados", "Explorador dos indicadores e downloads com dicionário, fontes e licenças."),
-    c1("biblioteca/index.html", "Biblioteca", "Leituras de base com link para o DOI ou a página oficial."),
-    c1("sobre.html", "Sobre", "O projeto, o recorte, as regras de conteúdo e como citar."))
+    c1("literatura/index.html", "Literatura", "Os resultados quantitativos das buscas de literatura e as listas de referências, restritas aos metadados."),
+    c1("dados/index.html", "Dados", "Explorador dos indicadores e arquivos para download, acompanhados de dicionário, fontes e licenças."),
+    c1("biblioteca/index.html", "Biblioteca", "Leituras de base, com link para o DOI ou para a página oficial."),
+    c1("sobre.html", "Sobre", "Apresentação do projeto, recorte da pesquisa, regras de conteúdo e forma de citação."))
 }
 
 # =============================================================================

@@ -1,7 +1,7 @@
 coluna,descricao,unidade,fonte
-estudo,Estudo (autoria e ano),,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
-local,Local do estudo,,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
-bioma,Bioma (tirado do parêntese do local); 'fora do Brasil' ou 'não informado' quando é o caso,,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
-publico,Público estudado (sem números),,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
-arranjo,Arranjo produtivo avaliado (sem números),,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
-doi,"DOI juntado por primeiro autor e ano, só quando inequívoco, ou conferido à parte no Crossref; vazio se não houver; mais de um separado por ';'",,"Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+estudo,Estudo (autoria e ano),,"Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+local,Local do estudo,,"Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+bioma,"Bioma, extraído do parêntese do campo local; 'fora do Brasil' ou 'não informado', quando for o caso",,"Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+publico,Público estudado (sem números),,"Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+arranjo,Arranjo produtivo avaliado (sem números),,"Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+doi,"DOI associado pelo primeiro autor e pelo ano, apenas quando a correspondência é inequívoca, ou conferido separadamente no Crossref; vazio quando inexistente; havendo mais de um, separados por ';'",,"Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"

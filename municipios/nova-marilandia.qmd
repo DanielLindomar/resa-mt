@@ -1,6 +1,6 @@
 ---
 title: "Nova Marilândia"
-description: "Perfil do município de Nova Marilândia (MT): bioma Amazônia, tipo T1 do Manuscrito 1 (rótulo provisório), agricultura familiar no Censo 2017, posse, SIPRA, SEEG e dinâmica 2006–2017."
+description: "Perfil do município de Nova Marilândia (MT), de bioma dominante Amazônia e classificado no tipo T1 do Manuscrito 1 (rótulo provisório), com indicadores da agricultura familiar no Censo 2017, da posse, do SIPRA, do SEEG e da dinâmica 2006–2017."
 toc: false
 page-layout: full
 ---

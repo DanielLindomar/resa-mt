@@ -1,6 +1,6 @@
 ---
 title: "Pessoal ocupado na agricultura familiar"
-description: "Estrutura da agricultura familiar · pessoas · 2017. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6884."
+description: "Indicador do tema Estrutura da agricultura familiar. Unidade: pessoas; referência: 2017. Apresentam-se o mapa dos 141 municípios de Mato Grosso, a classificação no bioma e em MT e a tabela com os sinais do IBGE. Fonte: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6884."
 toc: false
 page-layout: full
 ---

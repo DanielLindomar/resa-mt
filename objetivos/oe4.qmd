@@ -1,6 +1,6 @@
 ---
 title: "OE4 · Cenários bioeconômicos"
-description: "Objetivo específico 4 do Projeto RESA: cenários de viabilidade da transição de baixo carbono (VPL, TIR, payback, PSA, carbono e risco). Situação, estudo de referência e lacunas"
+description: "Objetivo específico 4 do Projeto RESA: cenários de viabilidade da transição de baixo carbono (VPL, TIR, payback, PSA, carbono e risco). Situação de execução, estudo de referência e lacunas na literatura"
 ---
 
 ```{r}
@@ -18,50 +18,50 @@ faixa_versao()
 
 ## Objetivo
 
-Simular cenários de viabilidade para a transição de baixo carbono nas áreas-piloto. O OE4 junta o valor do carbono e dos serviços ambientais a indicadores financeiros, para propor modelos de negócio e recomendações de política pública ao Pacote Tecnológico.
+O quarto objetivo específico (OE4) consiste em simular cenários de viabilidade para a transição de baixo carbono nas áreas-piloto. Para tanto, o OE4 integra o valor do carbono e dos serviços ambientais a indicadores financeiros, com o propósito de propor modelos de negócio e recomendações de política pública ao Pacote Tecnológico.
 
 ```{r}
 bloco_situacao("OE4", list(
-  c("concluido", "Revisão de literatura sobre carbono, mercados e ESG."),
+  c("concluido", "Revisão de literatura sobre carbono, mercados e critérios ambientais, sociais e de governança (ESG)."),
   c("concluido", "Busca e comparação de estudos semelhantes ao estudo de referência."),
   c("andamento", "Desenho dos cenários e do fluxo de caixa por área-piloto."),
   c("previsto", "Cálculo dos cenários por área-piloto.", "Depende dos dados de campo (OE2) e do balanço de carbono (OE3).")))
 ```
 
-## O que será calculado
+## Indicadores e cenários previstos
 
-Os cenários comparam o uso atual do lote com alternativas de baixo carbono, como sistemas agroflorestais (SAF) e integração lavoura-pecuária-floresta (ILPF), no mesmo lote, com e sem projeto.
+Os cenários comparam o uso atual do lote com alternativas de baixo carbono, como os sistemas agroflorestais (SAF) e a integração lavoura-pecuária-floresta (ILPF), no mesmo lote, nas situações com e sem projeto. Para essa comparação, serão empregados como indicadores financeiros o valor presente líquido (VPL), a taxa interna de retorno (TIR) e o tempo de retorno do investimento (*payback*), além da relação benefício/custo. Adicionalmente, serão considerados cenários com e sem pagamento por serviços ambientais (PSA), de modo a identificar o pagamento mínimo que torna a transição viável.
 
-- **Indicadores financeiros:** valor presente líquido (VPL), taxa interna de retorno (TIR) e tempo de retorno do investimento (*payback*), além de relação benefício/custo.
-- **Pagamento por serviços ambientais (PSA):** cenários com e sem pagamento, e o pagamento mínimo que torna a transição viável.
-- **Carbono:** receita de carbono com preços de fontes abertas, e o preço do carbono que equilibra a comparação.
-- **Risco e sensibilidade:** variação de preços, produtividade, perdas e taxa de desconto, com simulação de risco.
-- **Particularidades das áreas-piloto:** em N. Sra. Aparecida, que é do crédito fundiário (PNCF), a parcela paga pela terra entra no fluxo de caixa da família.
+No que se refere ao carbono, a receita será estimada com preços de fontes abertas, assim como o preço do carbono que equilibra a comparação. O risco e a sensibilidade serão avaliados por meio da variação de preços, produtividade, perdas e taxa de desconto, com simulação de risco. Por fim, serão incorporadas as particularidades das áreas-piloto: em N. Sra. Aparecida, que integra o Programa Nacional de Crédito Fundiário (PNCF), a parcela paga pela terra é incorporada ao fluxo de caixa da família.
 
 ## Estudo de referência
+
+O desenho dos cenários toma como referência o estudo descrito a seguir.
 
 ```{r}
 div(class = "bloco-situacao",
   p(style = "margin:0", tags$b("Dominicis et al. (2023), "), tags$i("Forests"), ", 14(10), 2110. DOI ",
     a(href = "https://doi.org/10.3390/f14102110", "10.3390/f14102110"), "."),
-  p(style = "margin:.4rem 0 0", "O estudo avalia a viabilidade financeira de sistemas agroflorestais de produtores, a maioria de assentamentos de reforma agrária, na Bacia do Descoberto (DF). ",
-    "Ele compara cenários com e sem pagamento por serviços ambientais (PSA) e usa indicadores como o valor presente líquido (VPL) e a taxa interna de retorno (TIR)."),
-  p(class = "nota-fonte", style = "margin:.4rem 0 0", "O OE4 reproduz o desenho do estudo nas três áreas-piloto e acrescenta o que falta nele: o resultado por família, o carbono e o risco."))
+  p(style = "margin:.4rem 0 0", "O estudo avalia a viabilidade financeira de SAF de produtores, em sua maioria de assentamentos de reforma agrária, na Bacia do Descoberto, no Distrito Federal. ",
+    "Os autores comparam cenários com e sem PSA e empregam indicadores como o VPL e a TIR."),
+  p(class = "nota-fonte", style = "margin:.4rem 0 0", "O OE4 reproduz o desenho do estudo nas três áreas-piloto e acrescenta os elementos nele ausentes: o resultado por família, o carbono e o risco."))
 ```
 
-## O que o RESA acrescenta: lacunas na literatura
+## Lacunas na literatura e contribuição do RESA
 
-A comparação com estudos semelhantes mostrou o que ainda não existe.
+A comparação com estudos semelhantes evidenciou as lacunas descritas a seguir. O selo de cada item indica se a lacuna foi confirmada ou se já se encontra preenchida em parte.
 
 ```{r}
 tags$ul(class = "lista-lacunas",
   tags$li(selo_lacuna("confirmada"), tags$b("1. "), "Não há estudo de viabilidade de SAF ou de restauração produtiva em assentamento de Mato Grosso."),
   tags$li(selo_lacuna("confirmada"), tags$b("2. "), "Não há estudo desse tipo no Pantanal."),
-  tags$li(selo_lacuna("parcial"), tags$b("3. "), "O carbono a preço de mercado em assentamento aparece só em parte: em estudos análogos de outros países e em estudos sem amostra de famílias."),
-  tags$li(selo_lacuna("confirmada"), tags$b("4. "), "Nenhum estudo junta, ao mesmo tempo, as diferenças entre famílias, o PSA, o carbono e o risco."))
+  tags$li(selo_lacuna("parcial"), tags$b("3. "), "O carbono a preço de mercado em assentamento aparece apenas em parte, em estudos análogos de outros países e em estudos sem amostra de famílias."),
+  tags$li(selo_lacuna("confirmada"), tags$b("4. "), "Nenhum estudo integra, simultaneamente, as diferenças entre famílias, o PSA, o carbono e o risco."))
 ```
 
-- [SAF e PSA em assentamentos](../literatura/saf-psa.qmd): os estudos comparados, com local, público, arranjo e DOI.
+Os estudos comparados e as referências da revisão de literatura encontram-se nas páginas listadas a seguir.
+
+- [SAF e PSA em assentamentos](../literatura/saf-psa.qmd): estudos comparados, com local, público, arranjo e DOI.
 - [Carbono, mercados e ESG](../literatura/carbono.qmd): referências da revisão de literatura.
 
 ```{r}

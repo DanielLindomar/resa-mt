@@ -1,7 +1,7 @@
 ---
 title: "Lambari"
 subtitle: "Área-piloto do Pantanal · município-sede: Poconé"
-description: "Área-piloto Lambari (Poconé, MT): Banco da Terra. Identificação e contexto do município-sede"
+description: "Área-piloto Lambari (Poconé, MT), vinculada ao Banco da Terra: identificação e contexto do município-sede"
 toc: false
 page-layout: full
 ---

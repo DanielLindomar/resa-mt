@@ -1,7 +1,7 @@
 ---
 title: "Quatá e N. Sra. Aparecida"
 subtitle: "Área-piloto do Cerrado · município-sede: Lucas do Rio Verde"
-description: "Área-piloto Quatá e N. Sra. Aparecida (Lucas do Rio Verde, MT). N. Sra. Aparecida é do crédito fundiário (PNCF). Identificação e contexto do município-sede"
+description: "Área-piloto Quatá e N. Sra. Aparecida (Lucas do Rio Verde, MT), em que N. Sra. Aparecida é projeto do crédito fundiário (PNCF): identificação e contexto do município-sede"
 toc: false
 page-layout: full
 ---

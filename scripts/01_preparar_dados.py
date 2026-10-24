@@ -274,19 +274,19 @@ checar(CEL["n_estab_AF_total"]["sinal"].eq("valor").all(), "n_estab_AF_total sem
 # ---------------------------------------------------------------------------
 print("\n3. Indicadores")
 T6878 = "IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878"
-NOTA_AF = "Agricultura familiar (AF) conforme a Lei 11.326/2006, na tipologia do Censo Agropecuário 2017."
-NOTA_46504 = ("Categoria 46504 do Censo 2017 (condição do produtor em relação às terras): concessionário(a) ou "
-              "assentado(a) aguardando titulação definitiva (Censo 2017). Não equivale ao total de assentados da "
-              "reforma agrária: assentados com título aparecem como proprietários.")
-NOTA_SIPRA = ("INCRA/SIPRA, Relatório 0227, posição de 03/06/2025. Cada projeto conta só no município-sede; "
-              "projetos que se estendem por mais de um município não são divididos.")
-NOTA_SEEG = ("O SEEG estima as emissões do município inteiro, não só da agricultura familiar. "
-             "SEEG 13, GWP-AR5. Nas emissões brutas, a soma dos municípios fica um pouco abaixo do total "
-             "estadual, porque uma parte das emissões de energia e de processos industriais não é atribuída "
-             "a município.")
-NOTA_SEEG_1990 = (" O SEEG só estima a mudança de uso da terra e florestas a partir de 1990; de 1970 a 1989 "
-                  "as células desse indicador levam o sinal ... (não disponível).")
-NOTA_DIN = ("Todos os estabelecimentos agropecuários (AF e não AF). A soma municipal de 2006 não fecha com a "
+NOTA_AF = "Agricultura familiar (AF) definida conforme a Lei 11.326/2006, segundo a tipologia do Censo Agropecuário 2017."
+NOTA_46504 = ("Na classificação da condição do produtor em relação às terras do Censo 2017, a categoria 46504 corresponde a concessionário(a) ou "
+              "assentado(a) aguardando titulação definitiva (Censo 2017). Contudo, não equivale ao total de assentados da "
+              "reforma agrária, uma vez que os assentados com título aparecem como proprietários.")
+NOTA_SIPRA = ("INCRA/SIPRA, Relatório 0227, posição de 03/06/2025. Cada projeto é contabilizado apenas no município-sede, "
+              "e os projetos que se estendem por mais de um município não são divididos.")
+NOTA_SEEG = ("O SEEG estima as emissões do município inteiro, e não apenas as da agricultura familiar "
+             "(SEEG 13, GWP-AR5). Nas emissões brutas, a soma dos municípios fica ligeiramente abaixo do total "
+             "estadual, porque parte das emissões de energia e de processos industriais não é atribuída "
+             "a nenhum município.")
+NOTA_SEEG_1990 = (" O SEEG estima a mudança de uso da terra e florestas apenas a partir de 1990; de 1970 a 1989, "
+                  "as células deste indicador recebem o sinal ... (não disponível).")
+NOTA_DIN = ("O indicador abrange todos os estabelecimentos agropecuários (AF e não AF). A soma municipal de 2006 não coincide com a "
             "tabela estadual: 112.987 contra 112.978 estabelecimentos e 48,69 contra 47,81 milhões de ha.")
 
 # campos: id, dim, rotulo, rotulo_curto, unidade, fmt, origem, fonte, arquivo, variavel, num, den, fator,
@@ -310,7 +310,7 @@ ind(id="pct_estab_af", dim="estrutura", rotulo="Participação da AF no número 
     rotulo_curto="% da AF nos estabelecimentos", unidade="% dos estabelecimentos agropecuários", fmt="pct1",
     origem="censo2017", fonte=T6878, arquivo=ARQ_SIDRA + "; C_base_dinamica_clusters_corrigido.csv",
     variavel="100 * n_estab_AF_total / n_estab_total_2017", num="n_estab_AF_total", den="n_estab_total_2017",
-    fator=100, agregacao="razao", kpi=1, nota="Denominador: todos os estabelecimentos agropecuários do município.")
+    fator=100, agregacao="razao", kpi=1, nota="O denominador corresponde a todos os estabelecimentos agropecuários do município.")
 ind(id="area_af", dim="estrutura", rotulo="Área dos estabelecimentos da agricultura familiar",
     rotulo_curto="Área da AF", unidade="hectares", fmt="int", origem="censo2017", fonte=T6878,
     arquivo=ARQ_SIDRA, variavel="area_AF_total", num="area_AF_total", agregacao="soma", soma=1, nota=NOTA_AF)
@@ -318,12 +318,12 @@ ind(id="pct_area_af", dim="estrutura", rotulo="Participação da AF na área dos
     rotulo_curto="% da AF na área", unidade="% da área dos estabelecimentos agropecuários", fmt="pct1",
     origem="censo2017", fonte=T6878, arquivo=ARQ_SIDRA + "; C_base_dinamica_clusters_corrigido.csv",
     variavel="100 * area_AF_total / area_total_ha_2017", num="area_AF_total", den="area_total_ha_2017",
-    fator=100, agregacao="razao", nota="Denominador: área de todos os estabelecimentos agropecuários do município.")
+    fator=100, agregacao="razao", nota="O denominador corresponde à área de todos os estabelecimentos agropecuários do município.")
 ind(id="area_media_af", dim="estrutura", rotulo="Área média dos estabelecimentos da AF",
     rotulo_curto="Área média da AF", unidade="hectares por estabelecimento", fmt="dec1", origem="censo2017",
     fonte=T6878, arquivo=ARQ_SIDRA, variavel="area_AF_total / n_estab_AF_total", num="area_AF_total",
     den="n_estab_AF_total", agregacao="razao", kpi=1,
-    nota="Nos agregados, área total dividida pelo total de estabelecimentos (média ponderada).")
+    nota="Nos agregados, utiliza-se a área total dividida pelo total de estabelecimentos (média ponderada).")
 ind(id="pessoal_af", dim="estrutura", rotulo="Pessoal ocupado na agricultura familiar",
     rotulo_curto="Pessoal ocupado na AF", unidade="pessoas", fmt="int", origem="censo2017",
     fonte="IBGE, Censo Agropecuário 2017, SIDRA, tabela 6884", arquivo=ARQ_SIDRA, variavel="pocupestagro",
@@ -332,13 +332,13 @@ ind(id="valor_prod_af", dim="estrutura", rotulo="Valor da produção da agricult
     rotulo_curto="Valor da produção da AF", unidade="R$ mil (valores de 2017)", fmt="brl_mil",
     origem="censo2017", fonte="IBGE, Censo Agropecuário 2017, SIDRA, tabela 6898", arquivo=ARQ_SIDRA,
     variavel="prodestagro_val", num="prodestagro_val", agregacao="soma", soma=1, kpi=1,
-    nota="Valor da produção em reais correntes de 2017.")
+    nota="O valor da produção está expresso em reais correntes de 2017.")
 ind(id="valor_prod_estab_af", dim="estrutura", rotulo="Valor da produção por estabelecimento da AF",
     rotulo_curto="Valor da produção por estabelecimento", unidade="R$ por estabelecimento (valores de 2017)",
     fmt="brl", origem="censo2017", fonte="IBGE, Censo Agropecuário 2017, SIDRA, tabelas 6898 e 6878",
     arquivo=ARQ_SIDRA, variavel="1000 * prodestagro_val / n_estab_AF_total", num="prodestagro_val",
     den="n_estab_AF_total", fator=1000, agregacao="razao",
-    nota="Valor da produção (R$ mil convertidos em R$) dividido por todos os estabelecimentos da AF.")
+    nota="Valor da produção (R$ mil convertidos em R$) dividido pelo total de estabelecimentos da AF.")
 ind(id="pct_valor_animal_af", dim="estrutura", rotulo="Participação da produção animal no valor da produção da AF",
     rotulo_curto="% animal no valor da produção", unidade="% do valor da produção da AF", fmt="pct1",
     origem="censo2017", fonte="IBGE, Censo Agropecuário 2017, SIDRA, tabela 6898", arquivo=ARQ_SIDRA,
@@ -350,10 +350,10 @@ for id_, v, tab, rot, curto, sent, nota in [
     ("pct_plantio_direto_af", "estagroplantdir", "6855", "Estabelecimentos da AF com plantio direto na palha",
      "% com plantio direto", 0, ""),
     ("pct_irrigacao_af", "estagroirri", "6857", "Estabelecimentos da AF com irrigação", "% com irrigação", 0,
-     "Araguainha não tem linha na resposta da API do SIDRA para esta variável (sem registro). O IBGE não "
-     "publicou sinal para essa célula; o site a mostra como ... (não disponível), nunca como zero."),
+     "O município de Araguainha não tem linha na resposta da interface de programação (API) do SIDRA para esta variável (sem registro). Como o IBGE não "
+     "publicou sinal para essa célula, o site a exibe como ... (não disponível), e nunca como zero."),
     ("pct_energia_af", "estagrorechidri", "6778", "Estabelecimentos da AF com energia elétrica",
-     "% com energia elétrica", 1, "Variável estagrorechidri: existência de energia elétrica (tabela 6778)."),
+     "% com energia elétrica", 1, "A variável estagrorechidri indica a existência de energia elétrica (tabela 6778)."),
 ]:
     ind(id=id_, dim="tecnologia", rotulo=rot, rotulo_curto=curto, unidade="% dos estabelecimentos da AF",
         fmt="pct1", origem="censo2017", fonte=f"IBGE, Censo Agropecuário 2017, SIDRA, tabelas {tab} e 6878",
@@ -373,12 +373,12 @@ for id_, v, rot, curto, tab in [
     ind(id=id_, dim="tecnologia", rotulo=rot, rotulo_curto=curto, unidade="% dos estabelecimentos da AF",
         fmt="pct1", origem="censo2017", fonte=f"IBGE, Censo Agropecuário 2017, SIDRA, tabelas {tab} e 6780",
         arquivo="financiamento_AF_MT.csv", variavel=f"100 * {v} / ot_total", num=v, den="ot_total", fator=100,
-        agregacao="razao", sentido=1, nota="Denominador: total de estabelecimentos da AF da tabela 6780.")
+        agregacao="razao", sentido=1, nota="O denominador corresponde ao total de estabelecimentos da AF da tabela 6780.")
 ind(id="pct_dap_af", dim="tecnologia", rotulo="Estabelecimentos da AF com DAP",
     rotulo_curto="% com DAP", unidade="% dos estabelecimentos da AF", fmt="pct1", origem="censo2017",
     fonte="IBGE, Censo Agropecuário 2017, SIDRA, tabela 6771", arquivo="financiamento_AF_MT.csv",
     variavel="100 * dap_sim_n_estab / dap_total_n_estab", num="dap_sim_n_estab", den="dap_total_n_estab",
-    fator=100, agregacao="razao", sentido=1, nota="DAP: Declaração de Aptidão ao Pronaf.")
+    fator=100, agregacao="razao", sentido=1, nota="A sigla DAP designa a Declaração de Aptidão ao Pronaf.")
 # ---- produção e alimentos (4)
 ind(id="pct_consumo_proprio_af", dim="alimentos",
     rotulo="Estabelecimentos da AF que produzem principalmente para consumo próprio",
@@ -387,7 +387,7 @@ ind(id="pct_consumo_proprio_af", dim="alimentos",
     arquivo="finalidade_producao_AF_MT.csv",
     variavel="100 * finalid_consumo_proprio_n_estab / finalid_total_n_estab",
     num="finalid_consumo_proprio_n_estab", den="finalid_total_n_estab", fator=100, agregacao="razao",
-    nota="Finalidade principal declarada: consumo próprio e de pessoas com laços de parentesco com o produtor.")
+    nota="Considera-se a finalidade principal declarada: consumo próprio e de pessoas com laços de parentesco com o produtor.")
 for id_, v, arq, tab, rot, curto in [
     ("pct_leite_af", "leite_n_estab", "leite_AF_MT.csv", "6912", "Estabelecimentos da AF que produzem leite de vaca",
      "% que produz leite"),
@@ -397,13 +397,13 @@ for id_, v, arq, tab, rot, curto in [
     ind(id=id_, dim="alimentos", rotulo=rot, rotulo_curto=curto, unidade="% dos estabelecimentos da AF",
         fmt="pct1", origem="censo2017", fonte=f"IBGE, Censo Agropecuário 2017, SIDRA, tabelas {tab} e 6780",
         arquivo=arq, variavel=f"100 * {v} / ot_total", num=v, den="ot_total", fator=100, agregacao="razao",
-        nota="Denominador: total de estabelecimentos da AF da tabela 6780.")
+        nota="O denominador corresponde ao total de estabelecimentos da AF da tabela 6780.")
 ind(id="pct_horticultura_af", dim="alimentos",
     rotulo="Estabelecimentos da AF no grupo de atividade horticultura e floricultura",
     rotulo_curto="% em horticultura e floricultura", unidade="% dos estabelecimentos da AF", fmt="pct1",
     origem="censo2017", fonte=T6878, arquivo=ARQ_SIDRA, variavel="100 * estagrohort / n_estab_AF_total",
     num="estagrohort", den="n_estab_AF_total", fator=100, agregacao="razao",
-    nota="Atividade econômica principal do estabelecimento.")
+    nota="A classificação baseia-se na atividade econômica principal do estabelecimento.")
 # ---- posse e reforma agrária (7)
 ROT46504 = "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)"
 ind(id="estab_af_46504", dim="posse", rotulo="Estabelecimentos da AF de " + ROT46504,
@@ -418,7 +418,7 @@ ind(id="pct_area_46504", dim="posse", rotulo="Área da AF de " + ROT46504 + ", e
     rotulo_curto="% da área da AF em 46504", unidade="% da área dos estabelecimentos da AF", fmt="pct1",
     origem="censo2017", fonte=T6878, arquivo=ARQ_SIDRA, variavel="100 * area_AF_assent / area_AF_total",
     num="area_AF_assent", den="area_AF_total", fator=100, agregacao="razao",
-    nota=NOTA_46504 + " A área tem X (sigilo) em muitos municípios; os agregados usam só os municípios sem X.")
+    nota=NOTA_46504 + " A área apresenta X (sigilo) em muitos municípios; por isso, os agregados consideram apenas os municípios sem X.")
 ind(id="pct_estab_prop_af", dim="posse", rotulo="Estabelecimentos da AF de produtor proprietário(a)",
     rotulo_curto="% da AF de proprietário(a)", unidade="% dos estabelecimentos da AF", fmt="pct1",
     origem="censo2017", fonte="IBGE, Censo Agropecuário 2017, SIDRA, tabelas 6753 e 6878", arquivo=ARQ_SIDRA,
@@ -437,7 +437,7 @@ ind(id="area_pa", dim="posse", rotulo="Área dos projetos de assentamento com se
     rotulo_curto="Área dos projetos", unidade="hectares", fmt="int", origem="sipra",
     fonte="INCRA/SIPRA, Relatório 0227 (posição de 03/06/2025)", arquivo="incra_pa_por_municipio.csv",
     variavel="area_ha", num="sipra_area_ha", agregacao="soma", soma=1,
-    nota=NOTA_SIPRA + " Área declarada no SIPRA, não a área dos polígonos.")
+    nota=NOTA_SIPRA + " Utiliza-se a área declarada no SIPRA, e não a área dos polígonos.")
 # ---- clima, SEEG 13 (4): séries 1970-2024
 # Totais absolutos: sentido 0 (contexto). Comparar o total de um município com a mediana do bioma
 # puniria ou premiaria o município só pelo tamanho.
@@ -451,10 +451,10 @@ for id_, rot, curto, sent, kpi in [
     if id_ == "seeg_mut":
         nota = NOTA_SEEG + NOTA_SEEG_1990
     if id_ == "seeg_remocoes":
-        nota = ("O SEEG registra as remoções com sinal negativo; aqui aparecem em valor absoluto. " + NOTA_SEEG
+        nota = ("O SEEG registra as remoções com sinal negativo; neste site, elas aparecem em valor absoluto. " + NOTA_SEEG
                 + NOTA_SEEG_1990)
     if id_ == "seeg_emissao_bruta":
-        nota = "Soma dos cinco setores do SEEG (agropecuária, energia, mudança de uso da terra, processos " \
+        nota = "Corresponde à soma dos cinco setores do SEEG (agropecuária, energia, mudança de uso da terra, processos " \
                "industriais e resíduos), sem as remoções. " + NOTA_SEEG
     ind(id=id_, dim="clima", rotulo=rot, rotulo_curto=curto, unidade="mil tCO2e (GWP-AR5)", fmt="dec1",
         origem="seeg", fonte="SEEG 13, Observatório do Clima, dados municipais (GWP-AR5)",
@@ -670,10 +670,10 @@ if am["valor"].iloc[0] > 5 * am["valor"].iloc[1]:
     nome1 = mun.loc[mun.id_municipio == i1, "municipio"].item()
     br_ = lambda v, d: f"{v:,.{d}f}".replace(",", "§").replace(".", ",").replace("§", ".")
     x_am = next(x for x in I if x["id"] == "area_media_af")
-    x_am["nota"] += (f" Valor atípico: {nome1} tem {br_(am['valor'].iloc[0], 1)} ha por estabelecimento "
+    x_am["nota"] += (f" Valor atípico: {nome1} apresenta {br_(am['valor'].iloc[0], 1)} ha por estabelecimento "
                      f"({br_(CEL['area_AF_total'].loc[i1, 'valor'], 0)} ha em {br_(CEL['n_estab_AF_total'].loc[i1, 'valor'], 0)} "
-                     f"estabelecimentos da AF), muito acima do segundo maior valor ({br_(am['valor'].iloc[1], 1)} ha). "
-                     "É o valor publicado pelo IBGE (SIDRA, tabela 6878).")
+                     f"estabelecimentos da AF), valor muito superior ao segundo maior ({br_(am['valor'].iloc[1], 1)} ha). "
+                     "Trata-se do valor publicado pelo IBGE (SIDRA, tabela 6878).")
     print(f"  nota de valor atípico em area_media_af: {nome1}")
 
 # ---------------------------------------------------------------------------
@@ -878,11 +878,11 @@ t3p = t3p[manter].rename(columns={"bioma250_Amazonia": "n_amazonia", "bioma250_C
                                   "bioma250_Pantanal": "n_pantanal"})
 gravar(t3p, DS / "m1_tipos_perfis.csv")
 gravar(pd.DataFrame([
-    ("F1", "Lavoura temporária mecanizada", "volume municipal de lavoura temporária mecanizada"),
-    ("F2", "Porte agregado", "totais municipais da AF (área, pessoal, produção animal, estabelecimentos com trator)"),
-    ("F3", "Horticultura e irrigação", "volume municipal de horticultura e irrigação"),
-    ("F4", "Lavoura permanente", "dominado por poucos municípios; muito X na área"),
-    ("F5", "Posse aguardando titulação (46504)", "estabelecimentos e pessoal na categoria 46504"),
+    ("F1", "Lavoura temporária mecanizada", "volume municipal da lavoura temporária mecanizada"),
+    ("F2", "Porte agregado", "totais municipais da AF (área, pessoal ocupado, produção animal e estabelecimentos com trator)"),
+    ("F3", "Horticultura e irrigação", "volume municipal da horticultura e da irrigação"),
+    ("F4", "Lavoura permanente", "fator dominado por poucos municípios, com elevada incidência do sinal X (sigilo) na área"),
+    ("F5", "Posse aguardando titulação (46504)", "estabelecimentos e pessoal ocupado na categoria 46504"),
 ], columns=["fator", "nome", "descricao"]), DS / "m1_fatores.csv")
 # Só as figuras PNG usadas nas páginas (as demais ficariam publicadas sem legenda nem selo de rótulo provisório)
 dest = REPO / "resultados" / "figuras" / "m1"
@@ -995,8 +995,8 @@ dic_id = [("id_municipio", "Código IBGE do município (7 dígitos)", "", "IBGE"
           ("rotulo_m1", "Rótulo do tipo (provisório: ver rotulo_status)", "", "Projeto RESA, Manuscrito 1"),
           ("rotulo_status", "Situação do rótulo: provisório, pendente de aprovação dos autores", "", "Projeto RESA")]
 NOTA_SINAL = "Coluna sinal_*: valor, X (sigilo do IBGE), – (zero absoluto) ou ... (não disponível). " \
-             "Quando não há número, a coluna do número traz o próprio sinal (X, – ou ...), como nas tabelas do " \
-             "IBGE; essas células nunca são zero."
+             "Quando não há número, a coluna do número registra o próprio sinal (X, – ou ...), à semelhança das tabelas do " \
+             "IBGE; as células com X ou ... não equivalem a zero, e o sinal – indica zero absoluto."
 # Nomes das colunas nos downloads: a categoria 46504 vai pelo código, não por "assentados"
 NOME_DL = {"n_estab_AF_assent": "n_estab_AF_46504", "area_AF_assent": "area_AF_46504", "pocup_assent": "pocup_46504"}
 
@@ -1058,7 +1058,7 @@ for v, rot, un, tab in VARS_DL:
     fonte = f"IBGE, Censo Agropecuário 2017, SIDRA, tabela {tab}" if tab.isdigit() else f"IBGE, {tab}"
     nota_v = NOTA_SINAL
     if v == "estagroirri":
-        nota_v += " Araguainha: sem registro na API do SIDRA; o IBGE não publicou sinal, e a célula vai como ..."
+        nota_v += " Araguainha: sem registro na API do SIDRA; como o IBGE não publicou sinal, a célula é registrada como ..."
     dic += [(col, rot + " (2017)", un, fonte), ("sinal_" + col, "Sinal da célula de " + col, "", nota_v)]
 gravar(cz, DD / "resa_censo2017_af_municipios.csv")
 dicionario("resa_censo2017_af_municipios.csv", dic)

@@ -1,9 +1,9 @@
 coluna,descricao,unidade,fonte
 corpus,"Corpus de origem: 'Carbono, mercados e ESG' (115) ou 'SAF e PSA em assentamentos (OE4)' (38)",,Projeto RESA
 grupo,Bloco (carbono) ou grupo da tabela comparativa (OE4),,Projeto RESA
-autores,"Autoria (no OE4, o nome do estudo)",,Projeto RESA
+autores,"Autoria (no corpus do OE4, a identificação do estudo)",,Projeto RESA
 ano,Ano de publicação,ano,Projeto RESA
-titulo,"Título (no OE4, só quando o DOI foi juntado)",,Crossref
+titulo,"Título (no corpus do OE4, apenas quando o DOI foi associado)",,Crossref
 periodico,"Periódico, editora ou série",,Crossref
 tipo,Tipo de publicação,,Crossref
 doi,DOI; mais de um separado por ';',,Crossref

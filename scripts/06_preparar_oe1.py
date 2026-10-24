@@ -2,8 +2,9 @@
 """
 06_preparar_oe1.py - Observatório RESA-MT
 
-Desmatamento por município de MT, pelo PRODES oficial do INPE (painel
-TerraBrasilis, cópia baixada em 19/10/2026), para a página do OE1.
+Prepara os dados de desmatamento por município de MT, segundo o PRODES
+oficial do INPE (painel TerraBrasilis, cópia obtida em 19/10/2026), para a
+página do OE1.
 
 Lê, na raiz do projeto RESA (2_Dados/Brutos/PRODES_TerraBrasilis/2026-10-19/):
   data_prodes_{amazon,cerrado,pantanal}.json      incremento por período e recorte
@@ -15,18 +16,18 @@ Grava, no repositório (objetivos/dados/):
   prodes_mt_municipios_resumo.csv  janelas 2017–2025 e 2025, por bioma e no total
   prodes_mt_municipios_fonte.csv   arquivo de origem, URL, versão, datas e sha256
 
-Regras:
-  - Só períodos consolidados de 2001 a 2025. O acumulado inicial (até 2000 ou
-    2007) e o período 2026, ainda parcial, ficam fora.
-  - Um município só tem linha nos biomas cuja máscara do PRODES o inclui. Dentro
-    da máscara, período sem registro = 0 km² (nenhum incremento mapeado), com
-    sem_registro = 1.
+Regras adotadas:
+  - Consideram-se apenas os períodos consolidados de 2001 a 2025; o acumulado
+    inicial (até 2000 ou 2007) e o período 2026, ainda parcial, são excluídos.
+  - Cada município recebe linhas apenas nos biomas cuja máscara do PRODES o
+    inclui. Dentro da máscara, o período sem registro equivale a 0 km² (nenhum
+    incremento mapeado), com sem_registro = 1.
   - Ano do PRODES = ano em que o período termina (ex.: 2025 = ago/2024 a jul/2025).
 
-A raiz do projeto vem de RESA_FONTES ou de config.local.toml (linha
-resa_fontes = "..."), como no script 01. Rodar na raiz do repositório:
+A raiz do projeto é obtida de RESA_FONTES ou de config.local.toml (linha
+resa_fontes = "..."), como no script 01. Execução, na raiz do repositório:
   RESA_FONTES="<raiz do projeto RESA>" python -I scripts/06_preparar_oe1.py
-O script para com erro se alguma checagem falhar.
+O script é interrompido com erro caso alguma checagem falhe.
 """
 
 import csv
@@ -53,7 +54,7 @@ def raiz_fontes() -> Path:
             import tomllib
             v = str(tomllib.loads(cfg.read_text(encoding="utf-8")).get("resa_fontes", "")).strip()
     if not v:
-        sys.exit("ERRO: defina RESA_FONTES (raiz do projeto RESA) ou crie config.local.toml "
+        sys.exit("ERRO: é necessário definir RESA_FONTES (raiz do projeto RESA) ou criar config.local.toml "
                  "com a linha resa_fontes = \"...\".")
     p = Path(v)
     if not (p / "2_Dados" / "Brutos").is_dir():
@@ -194,7 +195,7 @@ texto = json.dumps([longo, resumo, fonte], ensure_ascii=False)
 checar(not [r for r in RUINS if r in texto], "sem caminho local, e-mail, link do Drive ou base comercial")
 
 if ERROS:
-    sys.exit(f"ERRO: {len(ERROS)} checagem(ns) falharam; nada foi gravado.")
+    sys.exit(f"ERRO: {len(ERROS)} checagem(ns) falharam; nenhum arquivo foi gravado.")
 gravar("prodes_mt_municipios.csv", list(longo[0].keys()), longo)
 gravar("prodes_mt_municipios_resumo.csv", list(resumo[0].keys()), resumo)
 gravar("prodes_mt_municipios_fonte.csv", list(fonte[0].keys()), fonte)

@@ -217,8 +217,8 @@ esc <- function(x) { x <- gsub("&", "&amp;", x, fixed = TRUE); x <- gsub("<", "&
   x <- gsub(">", "&gt;", x, fixed = TRUE); gsub("\"", "&quot;", x, fixed = TRUE) }
 
 legenda_sinais <- function() div(class = "legenda-sinais",
-  "Sinais do IBGE: ", tags$b("X"), " sigilo (dado omitido para não identificar o informante) · ",
-  tags$b(TRACO), " zero absoluto · ", tags$b("..."), " não disponível. Nenhum deles é tratado como zero na exibição.")
+  "Sinais convencionais do IBGE: ", tags$b("X"), " sigilo (dado omitido para evitar a identificação do informante) · ",
+  tags$b(TRACO), " zero absoluto · ", tags$b("..."), " não disponível. Na exibição, nenhum desses sinais é tratado como zero.")
 
 # ---- Consultas -------------------------------------------------------------
 info_ind <- function(id) { r <- IND[IND$id == id, ]; if (nrow(r) != 1) stop("indicador desconhecido: ", id); r }
@@ -283,16 +283,16 @@ situacao <- function(valor, mediana, sentido) {
 
 # ---- Elementos de página -------------------------------------------------------
 faixa_versao <- function(texto = NULL) div(class = "faixa-versao",
-  if (is.null(texto)) "Versão preliminar para a equipe do projeto. Os resultados mudam à medida que as etapas do estudo são concluídas." else texto)
+  if (is.null(texto)) "Versão preliminar para a equipe do projeto. Os resultados estão sujeitos a alteração à medida que as etapas do estudo forem concluídas." else texto)
 
 aviso_municipio <- function() div(class = "aviso-municipio",
   tags$b("O município não é a área-piloto. "),
-  "Os indicadores descrevem o município inteiro (ou toda a sua agricultura familiar). Eles dão o contexto das áreas-piloto, não medem as áreas-piloto.")
+  "Os indicadores descrevem o município inteiro (ou o conjunto de sua agricultura familiar) e, portanto, fornecem o contexto das áreas-piloto, sem medi-las.")
 
 nota_correcao_prodes <- function() div(class = "nota-correcao",
   tags$b("Nota de correção (19/10/2026). "),
-  "A série do PRODES usada antes nos materiais do projeto tinha a Amazônia digitada à mão, acima da taxa oficial de MT de 2005 a 2024. ",
-  "O site usa só a série oficial do INPE (TerraBrasilis), baixada em 19/10/2026: a taxa anual de MT na Amazônia Legal e o incremento anual por bioma.")
+  "A série do PRODES utilizada anteriormente nos materiais do projeto continha a Amazônia digitada manualmente, com valores superiores à taxa oficial de MT de 2005 a 2024. ",
+  "O site passou a utilizar exclusivamente a série oficial do Instituto Nacional de Pesquisas Espaciais (INPE), disponível na plataforma TerraBrasilis e obtida em 19/10/2026, que compreende a taxa anual de MT na Amazônia Legal e o incremento anual por bioma.")
 
 chip_bioma <- function(b) span(class = paste0("chip chip-", c("Amazônia" = "amazonia", "Cerrado" = "cerrado", "Pantanal" = "pantanal")[[b]]), b)
 selo_provisorio <- function() span(class = "rotulo-provisorio", title = "Rótulo pendente de aprovação dos autores do Manuscrito 1", "rótulo provisório")
@@ -304,7 +304,7 @@ selo_situacao <- function(estado = c("concluido", "andamento", "confirmar", "pre
   span(class = paste0("selo-situacao selo-", estado),
        c(concluido = "concluído", andamento = "em andamento", confirmar = "a confirmar", previsto = "previsto")[[estado]])
 }
-selo_conciliacao <- function() span(class = "selo-conciliacao", title = "Famílias e áreas divergem entre as fontes; os números entram depois da conciliação", "números em conciliação")
+selo_conciliacao <- function() span(class = "selo-conciliacao", title = "Os números de famílias e de área divergem entre as fontes e serão incluídos após a conciliação", "números em conciliação")
 
 cartao_kpi <- function(rotulo, valor, meta = NULL, comp = NULL)
   div(class = "kpi", div(class = "kpi-rotulo", rotulo), div(class = "kpi-valor", valor),
@@ -348,9 +348,9 @@ fonte_rodape <- function(ids = NULL, prefixo = "../") {
             else unique(IND$fonte[IND$id %in% ids])
   # Um só nó HTML: com vários filhos, o htmltools quebra a linha entre eles e aparece espaço antes do ponto
   p(class = "nota-fonte", HTML(paste0(
-    "Fonte: ", esc(paste(fontes, collapse = "; ")), ". ",
+    "Fonte: Elaboração própria com base em ", esc(paste(fontes, collapse = "; ")), ". ",
     "Bioma dominante: IBGE, Biomas 1:250 mil (2019). Tipos municipais: Manuscrito 1 do Projeto RESA (k = 5; rótulos provisórios). ",
-    "Medianas e agregados no ano de referência de cada indicador; ", TRACO, " (zero absoluto) conta como zero; X e ... ficam fora. Detalhes em ",
+    "Medianas e agregados calculados no ano de referência de cada indicador; ", TRACO, " (zero absoluto) é tratado como zero, e X e ... são excluídos. Detalhes metodológicos em ",
     '<a href="', paste0(prefixo, "dados/index.html"), '">Dados</a>.')))
 }
 
@@ -461,7 +461,7 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
   com <- com[order(-com$valor_calc, order(ordem_pt(com$municipio))), ]
   com$pos <- seq_len(nrow(com))
   sem <- u[is.na(u$valor_calc), ]
-  if (nrow(com) == 0) return(p(class = "nota-fonte", "Nenhum município com valor publicado neste recorte."))
+  if (nrow(com) == 0) return(p(class = "nota-fonte", "Nenhum município apresenta valor publicado neste recorte."))
   mo <- com[com$pos <= n_max | com$id_municipio %in% destaque, ]
   # linhas, com um marcador "⋯" quando há posições puladas
   lin <- list(); prev <- 0
@@ -496,10 +496,10 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
                  if (recorte != "mt") ref(med_g * e$f, "#1F4D3A", paste("mediana", nome_g), 0) else "",
                  ref(med_mt * e$f, "#6b7280", "mediana MT", 13))
   notas <- lapply(c("X", "..."), function(si) { x <- sem$municipio[sem$sinal == si]
-    if (length(x)) p(class = "nota-fonte", sprintf("Sem valor por %s: %s.", SINAL_TXT[[si]], paste(sort_pt(x), collapse = ", "))) })
+    if (length(x)) p(class = "nota-fonte", sprintf("Sem valor em razão de %s: %s.", SINAL_TXT[[si]], paste(sort_pt(x), collapse = ", "))) })
   tagList(HTML(svg),
-          p(class = "nota-fonte", sprintf("%d municípios com valor%s. Em destaque, os municípios-sede das áreas-piloto.",
-                                          nrow(com), if (nrow(com) > n_max) sprintf("; aparecem os %d maiores e os destacados", n_max) else "")),
+          p(class = "nota-fonte", sprintf("%d municípios com valor publicado%s.",
+                                          nrow(com), if (nrow(com) > n_max) sprintf("; exibem-se os %d maiores valores e os municípios-sede das áreas-piloto", n_max) else "")),
           notas)
 }
 
@@ -535,9 +535,9 @@ tabela_dim <- function(dim, mun_id, nome_mun, prefixo = "../indicadores/") {
             details = function(i) {
               g <- if (d$serie_ok[i]) serie_mun_medianas(d$id[i], mun_id, nome_mun) else ""
               div(class = "detalhe-ind",
-                  if (nzchar(g)) HTML(g) else p(class = "sub", sprintf("Retrato de um ano (%s); sem série histórica neste site.", d$ano_txt[i])),
+                  if (nzchar(g)) HTML(g) else p(class = "sub", sprintf("Retrato de um único ano (%s); o site não apresenta série histórica para este indicador.", d$ano_txt[i])),
                   if (nzchar(d$nota_txt[i])) p(class = "nota-fonte", strong("Nota: "), d$nota_txt[i]),
-                  p(class = "nota-fonte", a(href = url_ind(d$id[i], prefixo), "Ver este indicador para todos os municípios →")))
+                  p(class = "nota-fonte", a(href = url_ind(d$id[i], prefixo), "Este indicador em todos os municípios →")))
             })
 }
 
@@ -573,8 +573,8 @@ tabela_agregados <- function(id, ano = NULL) {
                                    Mediana = colDef(align = "right", name = "Mediana municipal"),
                                    Municípios = colDef(align = "center", name = "Municípios usados"),
                                    X = colDef(align = "center", name = "Com X (sigilo)"))),
-          p(class = "nota-fonte", sprintf("Ano: %s. %s Os tipos do M1 têm rótulos provisórios.", a,
-                                          if (any(g$n_x > 0)) "Onde há X, o agregado usa só os municípios com valor publicado." else "")))
+          p(class = "nota-fonte", sprintf("Ano: %s.%s Os rótulos dos tipos do M1 são provisórios.", a,
+                                          if (any(g$n_x > 0)) " Nos grupos com X, o agregado considera apenas os municípios com valor publicado." else "")))
 }
 
 tabela_por_grupo <- function(ids, recorte = c("tipo", "bioma"), ano = NULL, incluir_mt = TRUE, prefixo = "../indicadores/") {
@@ -594,8 +594,8 @@ tabela_por_grupo <- function(ids, recorte = c("tipo", "bioma"), ano = NULL, incl
                                 style = list(fontWeight = 600))),
             setNames(lapply(ids, function(id) colDef(header = HTML(cab(id)), html = TRUE, align = "right", minWidth = 120)), ids))
   tagList(reactable(d, compact = TRUE, sortable = FALSE, pagination = FALSE, wrap = TRUE, columns = cols),
-          p(class = "nota-fonte", "Agregados: soma dos municípios para totais; razão das somas para proporções e médias; variação das somas para a dinâmica. ",
-            "* há municípios com X (sigilo) no grupo; o valor usa só os municípios com valor publicado."))
+          p(class = "nota-fonte", "Agregados: soma dos municípios, para os totais; razão das somas, para as proporções e médias; e variação das somas, para a dinâmica. ",
+            "* O grupo contém municípios com X (sigilo); o valor considera apenas os municípios com valor publicado."))
 }
 
 resumo_tema <- function(dim, prefixo = "../indicadores/") {
@@ -656,7 +656,7 @@ camadas_mun <- function(m, g, fill, rot, opac = 1) {
                                       weight = 0.6, label = lapply(rot[!perfil], HTML))
   if (any(perfil)) m <- addPolygons(m, data = g[perfil, ], layerId = ~slug, fillColor = fill[perfil], fillOpacity = opac,
                                      color = "#ffffff", weight = 1,
-                                     label = lapply(paste0(rot[perfil], "<br><i>clique para abrir o perfil</i>"), HTML))
+                                     label = lapply(paste0(rot[perfil], "<br><i>Clique para abrir o perfil.</i>"), HTML))
   sedes <- g[g$sede_piloto, ]
   addPolygons(m, data = sedes, fill = FALSE, color = "#111827", weight = 2.4, opacity = 1,
               options = pathOptions(interactive = FALSE))

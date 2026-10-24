@@ -318,32 +318,32 @@ gravar(refs, COL_REFS, ARQ / "resa_refs_carbono_esg.csv")
 gravar(estudos, COL_EST, ARQ / "resa_estudos_saf_psa_oe4.csv")
 gravar(todos, COL_TODOS, ARQ / "resa_literatura_estudos.csv")
 
-FT1 = "Projeto RESA, revisão carbono, mercados e ESG (set/2026); metadados conferidos no Crossref"
-FT2 = "Projeto RESA, busca de estudos similares a Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
+FT1 = "Projeto RESA, revisão de literatura sobre carbono, mercados e ESG (set/2026); metadados conferidos no Crossref"
+FT2 = "Projeto RESA, busca de estudos semelhantes ao de Dominicis et al. (2023) (out/2026); DOI conferido no Crossref"
 DIC = {
     "resa_refs_carbono_esg.csv": [
         ("bloco", "Bloco temático da revisão (A a F)", "", FT1),
         ("nome_bloco", "Nome do bloco temático", "", FT1),
-        ("autores", "Autoria como registrada no Crossref ou na verificação", "", FT1),
-        ("ano", "Ano de publicação (do registro; se ausente, do Crossref)", "ano", FT1),
+        ("autores", "Autoria, conforme registrada no Crossref ou na verificação", "", FT1),
+        ("ano", "Ano de publicação (o do registro da revisão ou, na ausência deste, o do Crossref)", "ano", FT1),
         ("titulo", "Título", "", FT1),
         ("periodico", "Periódico, editora ou série", "", FT1),
-        ("tipo", "Tipo de publicação (artigo, livro, relatório, texto para discussão); vazio quando o registro não informa", "", FT1),
-        ("doi", "DOI (abrir em https://doi.org/<DOI>)", "", FT1)],
+        ("tipo", "Tipo de publicação (artigo, livro, relatório ou texto para discussão); vazio quando o registro não o informa", "", FT1),
+        ("doi", "DOI (acessível em https://doi.org/<DOI>)", "", FT1)],
     "resa_estudos_saf_psa_oe4.csv": [
         ("estudo", "Estudo (autoria e ano)", "", FT2),
         ("local", "Local do estudo", "", FT2),
-        ("bioma", "Bioma (tirado do parêntese do local); 'fora do Brasil' ou 'não informado' quando é o caso", "", FT2),
+        ("bioma", "Bioma, extraído do parêntese do campo local; 'fora do Brasil' ou 'não informado', quando for o caso", "", FT2),
         ("publico", "Público estudado (sem números)", "", FT2),
         ("arranjo", "Arranjo produtivo avaliado (sem números)", "", FT2),
-        ("doi", "DOI juntado por primeiro autor e ano, só quando inequívoco, ou conferido à parte no Crossref; "
-                "vazio se não houver; mais de um separado por ';'", "", FT2)],
+        ("doi", "DOI associado pelo primeiro autor e pelo ano, apenas quando a correspondência é inequívoca, ou conferido "
+                "separadamente no Crossref; vazio quando inexistente; havendo mais de um, separados por ';'", "", FT2)],
     "resa_literatura_estudos.csv": [
         ("corpus", f"Corpus de origem: '{C1}' (115) ou '{C2}' (38)", "", "Projeto RESA"),
         ("grupo", "Bloco (carbono) ou grupo da tabela comparativa (OE4)", "", "Projeto RESA"),
-        ("autores", "Autoria (no OE4, o nome do estudo)", "", "Projeto RESA"),
+        ("autores", "Autoria (no corpus do OE4, a identificação do estudo)", "", "Projeto RESA"),
         ("ano", "Ano de publicação", "ano", "Projeto RESA"),
-        ("titulo", "Título (no OE4, só quando o DOI foi juntado)", "", "Crossref"),
+        ("titulo", "Título (no corpus do OE4, apenas quando o DOI foi associado)", "", "Crossref"),
         ("periodico", "Periódico, editora ou série", "", "Crossref"),
         ("tipo", "Tipo de publicação", "", "Crossref"),
         ("doi", "DOI; mais de um separado por ';'", "", "Crossref")],
@@ -409,8 +409,8 @@ print(f"  gravado arquivos/literatura/resa_literatura_estudos.bib ({n_bib} entra
 # ---------------------------------------------------------------------------
 print("4. Panorama (contagens)")
 sc = ler_json(CARB / "data" / "scopus_resultados.json")
-STR = [("BC_mercados_precos", "mercados regulados e preços de carbono"), ("D_voluntario", "mercado voluntário e créditos florestais"),
-       ("E_emissoes_brasil", "emissões no Brasil"), ("F_esg", "ESG, risco climático e finanças")]
+STR = [("BC_mercados_precos", "Mercados regulados e preços de carbono"), ("D_voluntario", "Mercado voluntário e créditos florestais"),
+       ("E_emissoes_brasil", "Emissões no Brasil"), ("F_esg", "ESG, risco climático e finanças")]
 tot_sc = sum(sc[k]["total"] for k, _ in STR)
 checar(tot_sc == 3777, f"Scopus: 3.777 registros nas 4 strings principais ({tot_sc})")
 checar(sc["meta"]["data_consulta"] == "2026-09-06", "Scopus consultado em 06/09/2026")

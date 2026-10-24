@@ -13,12 +13,12 @@ IDS_DL <- IND$id[IND$download == 1]
 ```
 
 ```{r}
-faixa_versao("Versão preliminar para a equipe do projeto. Bases congeladas em 19/10/2026. Os sinais do IBGE (X, – e ...) aparecem como publicados e nunca viram zero.")
+faixa_versao("Versão preliminar para a equipe do projeto. Bases congeladas em 19/10/2026. Os sinais do IBGE (X, – e ...) são apresentados como publicados e nunca são convertidos em zero.")
 ```
 
 ## Explorador de indicadores
 
-A tabela traz o valor de `r length(IDS_DL)` indicadores para os 141 municípios de Mato Grosso, no ano de referência de cada um. Use as listas para escolher município, bioma, tipo, tema ou indicador, e o botão para baixar o recorte em CSV. Para ver um indicador em mapa, use a página [Indicadores](../indicadores/index.qmd). Os `r sum(IND$download == 0)` indicadores de emissões (SEEG) aparecem só nas páginas do site, porque a licença de redistribuição ainda está em conferência.
+A tabela a seguir apresenta o valor de `r length(IDS_DL)` indicadores para os 141 municípios de Mato Grosso, no ano de referência de cada um. As listas de seleção permitem filtrar os registros por município, bioma, tipo, tema ou indicador, e o botão situado acima da tabela possibilita baixar o recorte filtrado em formato CSV. Para a visualização de um indicador em mapa, utiliza-se a página [Indicadores](../indicadores/index.qmd). Os `r sum(IND$download == 0)` indicadores de emissões do Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG) aparecem apenas nas páginas do site, uma vez que a licença de redistribuição ainda se encontra em conferência.
 
 ```{r}
 legenda_sinais()
@@ -71,23 +71,23 @@ tagList(
 ```
 
 ::: {.nota-fonte}
-Tipos do Manuscrito 1 (rótulos provisórios): `r paste(sprintf("%s · %s", names(TIPOS), TIPOS), collapse = "; ")`. Bioma dominante: IBGE 1:250 mil (2019). No CSV do recorte, o número fica em `Valor`, com ponto decimal. Quando o IBGE não publica o número, `Valor` traz o próprio sinal (X, – ou ...), como nas tabelas do IBGE, e a coluna `Sinal` repete o sinal; nenhuma dessas células é zero. É a mesma regra dos arquivos abaixo. A coluna `Fonte` vai no CSV.
+Tipos do Manuscrito 1 (M1), com rótulos provisórios: `r paste(sprintf("%s · %s", names(TIPOS), TIPOS), collapse = "; ")`. Bioma dominante: Instituto Brasileiro de Geografia e Estatística (IBGE), escala 1:250 mil (2019). No CSV do recorte, o número é registrado na coluna `Valor`, com ponto decimal. Quando o IBGE não publica o número, a coluna `Valor` traz o próprio sinal (X, – ou ...), tal como nas tabelas do IBGE, e a coluna `Sinal` o repete; as células com X ou ... não equivalem a zero, e o sinal – indica zero absoluto. Trata-se da mesma regra adotada nos arquivos disponibilizados a seguir. A coluna `Fonte` também é incluída no CSV.
 :::
 
-## Arquivos para baixar
+## Arquivos disponíveis para download
 
-Todos os arquivos estão em UTF-8, separados por vírgula, com ponto decimal. A chave `id_municipio` é o código IBGE de 7 dígitos. Cada base tem um dicionário (coluna, descrição, unidade e fonte). Nas bases do Censo, cada variável tem uma coluna `sinal_<variável>` com `valor`, X, – ou ...; quando não há número, a coluna da variável traz o próprio sinal, como nas tabelas do IBGE. Nos arquivos com o tipo do M1, a coluna `rotulo_status` lembra que o rótulo é provisório.
+Todos os arquivos estão codificados em UTF-8, com campos separados por vírgula e ponto decimal. A chave `id_municipio` corresponde ao código IBGE de 7 dígitos, e cada base é acompanhada de um dicionário com coluna, descrição, unidade e fonte. Nas bases do Censo, cada variável dispõe de uma coluna `sinal_<variável>`, preenchida com `valor`, X, – ou ...; quando não há número, a coluna da variável traz o próprio sinal, tal como nas tabelas do IBGE. Por fim, nos arquivos que contêm o tipo do M1, a coluna `rotulo_status` indica que o rótulo é provisório.
 
 ```{r}
 DESC <- c(
-  "resa_indicadores_municipios.csv" = "Os indicadores municipais do site, menos os do SEEG, em formato largo, com o sinal de cada célula",
-  "resa_censo2017_af_municipios.csv" = "Variáveis do Censo Agropecuário 2017 da agricultura familiar usadas nos indicadores, com o sinal de cada célula",
+  "resa_indicadores_municipios.csv" = "Indicadores municipais do site, exceto os do SEEG, em formato largo, com o sinal de cada célula",
+  "resa_censo2017_af_municipios.csv" = "Variáveis do Censo Agropecuário 2017 da agricultura familiar utilizadas nos indicadores, com o sinal de cada célula",
   "resa_tipologia_m1_municipios.csv" = "Tipo municipal da agricultura familiar no Manuscrito 1 (k = 5), com rótulo provisório e bioma",
   "resa_incra_sipra_municipios.csv" = "Projetos de assentamento, famílias, capacidade e área por município-sede (INCRA/SIPRA, posição de 03/06/2025)",
   "resa_dinamica_2006_2017_municipios.csv" = "Estabelecimentos e área (todos os estabelecimentos) em 2006 e 2017, por município",
-  "resa_refs_carbono_esg.csv" = "As 115 referências da revisão sobre carbono, mercados e ESG, só com metadados",
+  "resa_refs_carbono_esg.csv" = "As 115 referências da revisão sobre carbono, mercados e ESG, restritas aos metadados",
   "resa_estudos_saf_psa_oe4.csv" = "Os 38 estudos comparados do OE4: local, bioma, público, arranjo e DOI",
-  "resa_literatura_estudos.csv" = "As duas listas da literatura numa tabela só, com a coluna corpus",
+  "resa_literatura_estudos.csv" = "As duas listas da literatura reunidas em uma única tabela, com a coluna corpus",
   "resa_literatura_estudos.bib" = "As referências da literatura em BibTeX, sem resumos",
   "mt_municipios.geojson" = "Malha dos 141 municípios de MT (IBGE, Malha Municipal 2022), simplificada para a web, com bioma e tipo do M1 (rótulo provisório)",
   "fontes_licencas.csv" = "Fontes, uso no site e licenças",
@@ -103,7 +103,7 @@ info_arq <- function(pasta) {
     nl <- if (csv) length(readLines(p, encoding = "UTF-8", warn = FALSE)) - 1L else NA_integer_
     dic <- file.path(d, "dicionarios", sub("[.]geojson$", ".csv", f))
     tibble::tibble(Grupo = GRUPO[[pasta]], Arquivo = f, pasta = pasta,
-                   Descrição = if (f %in% names(DESC)) DESC[[f]] else "Ver o dicionário",
+                   Descrição = if (f %in% names(DESC)) DESC[[f]] else "Consultar o dicionário",
                    Linhas = nl, Colunas = if (csv) length(cab) else NA_integer_,
                    KB = round(file.size(p) / 1024, 1), dic = if (file.exists(dic)) paste0("../arquivos/", pasta, "/dicionarios/", basename(dic)) else "")
   }))
@@ -123,6 +123,8 @@ reactable(select(cat_a, -ord), compact = TRUE, striped = TRUE, pagination = FALS
 ```
 
 ## Fontes e licenças
+
+A tabela a seguir apresenta, para cada fonte, o órgão responsável, o produto, o uso no site, a licença, o endereço e a data de acesso.
 
 ```{r}
 fl <- ler(ds("fontes_licencas.csv"), colClasses = "character", na.strings = NULL) |>
@@ -147,23 +149,21 @@ s_afarea <- AGR$valor[AGR$indicador == "area_af" & AGR$grupo == "MT" & AGR$ano =
 ```
 
 ::: {.callout-note}
-## A soma dos municípios não fecha com o total estadual
+## Divergência entre a soma dos municípios e o total estadual
 
-Os totais da página inicial são os estaduais oficiais. Somar os municípios dá números um pouco diferentes:
+Os totais apresentados na página inicial correspondem aos totais estaduais oficiais, ao passo que a soma dos municípios resulta em valores ligeiramente diferentes. No caso da **área dos estabelecimentos em 2017**, a soma dos municípios alcança `r fmt_valor(s_area17, "int")` ha, contra `r fmt_valor(tt("tot_todos_area"), "int")` ha no total estadual; na agricultura familiar, os valores são de `r fmt_valor(s_afarea, "int")` e `r fmt_valor(tt("tot_af_area"), "int")` ha, respectivamente. Essa diferença decorre do arredondamento do IBGE (Censo Agropecuário 2017).
 
-- **Área dos estabelecimentos, 2017:** a soma dos municípios dá `r fmt_valor(s_area17, "int")` ha, contra `r fmt_valor(tt("tot_todos_area"), "int")` ha no total estadual; na agricultura familiar, `r fmt_valor(s_afarea, "int")` contra `r fmt_valor(tt("tot_af_area"), "int")` ha. É arredondamento do IBGE (Censo Agropecuário 2017).
-- **Emissões brutas, 2024:** os municípios somam `r fmt_valor(s_seeg / 1000, "dec2")` MtCO₂e, contra `r fmt_valor(tt("seeg_bruta_mt_2024"), "dec2")` MtCO₂e do estado. A diferença, cerca de `r fmt_valor(tt("seeg_bruta_mt_2024") - s_seeg / 1000, "dec2")` MtCO₂e, são emissões que o SEEG 13 não aloca a município.
-- **Censo Agropecuário 2006:** a soma dos municípios dá `r fmt_valor(s_est06, "int")` estabelecimentos e `r fmt_valor(s_area06 / 1e6, "dec2")` milhões de ha, contra 112.978 estabelecimentos e 47,81 milhões de ha na tabela estadual de comparação 2006–2017. A diferença de área é de cerca de 1,8%. A tabela de confronto dos Censos do IBGE (série histórica) bate com a soma dos municípios. Por isso, a dinâmica 2006–2017 vai sempre com esta nota.
+Quanto às **emissões brutas em 2024**, os municípios somam `r fmt_valor(s_seeg / 1000, "dec2")` MtCO₂e, contra `r fmt_valor(tt("seeg_bruta_mt_2024"), "dec2")` MtCO₂e do estado. A diferença, de cerca de `r fmt_valor(tt("seeg_bruta_mt_2024") - s_seeg / 1000, "dec2")` MtCO₂e, corresponde a emissões que o SEEG 13 não aloca a municípios.
+
+Por fim, no **Censo Agropecuário 2006**, a soma dos municípios resulta em `r fmt_valor(s_est06, "int")` estabelecimentos e `r fmt_valor(s_area06 / 1e6, "dec2")` milhões de ha, contra 112.978 estabelecimentos e 47,81 milhões de ha na tabela estadual de comparação 2006–2017, o que representa diferença de área de cerca de 1,8%. Por outro lado, a tabela de confronto dos Censos do IBGE (série histórica) coincide com a soma dos municípios. Por essa razão, a dinâmica 2006–2017 é sempre acompanhada desta nota.
 :::
 
 ::: {.callout-note}
-## Uso e atribuição
+## Condições de uso e atribuição
 
-- **Sinais do IBGE.** X é sigilo (o dado foi omitido para não identificar o informante); – é zero absoluto; ... é dado não disponível. Nos arquivos, a célula do número traz o próprio sinal e a coluna de sinal repete o sinal. X e ... não são zero; o – é zero absoluto, mas aparece como –, não como 0. Em Araguainha, a irrigação não tem registro na API do SIDRA e aparece como ...
-- **Posse.** A categoria 46504 do Censo 2017 é "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)". Ela não equivale ao total de assentados da reforma agrária; compare com os dados do INCRA/SIPRA.
-- **Tipologia do Manuscrito 1.** Os rótulos dos tipos são provisórios, até a aprovação dos autores. Cite o Projeto RESA.
-- **SEEG 13.** Os dados municipais aparecem nas páginas, com a fonte, mas ficam fora dos downloads até a conferência da licença. Os dados estão em [seeg.eco.br](https://seeg.eco.br).
-- **PRODES.** O site usa só a série oficial do INPE (TerraBrasilis), baixada em 19/10/2026. Veja a nota de correção em [Emissões e desmatamento](../resultados/emissoes.qmd).
-- **MapBiomas.** Previsto para o OE1; ainda não usado nesta versão.
-- **Literatura.** Os arquivos trazem só metadados, sem resumos de terceiros.
+Quanto aos **sinais do IBGE**, X indica sigilo, isto é, o dado foi omitido para não identificar o informante; – indica zero absoluto; e ... indica dado não disponível. Nos arquivos, a célula do número traz o próprio sinal, e a coluna de sinal o repete. Destaca-se que X e ... não equivalem a zero, ao passo que o – corresponde a zero absoluto, mas é apresentado como –, e não como 0. Em Araguainha, a irrigação não possui registro na interface de programação de aplicações (API, do inglês *application programming interface*) do Sistema IBGE de Recuperação Automática (SIDRA) e é apresentada com o sinal ... (dado não disponível).
+
+Em relação à **posse**, a categoria 46504 do Censo 2017 corresponde a "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)". Essa categoria não equivale ao total de assentados da reforma agrária, razão pela qual se recomenda compará-la com os dados do Sistema de Informações de Projetos de Reforma Agrária (SIPRA) do Instituto Nacional de Colonização e Reforma Agrária (INCRA). No que se refere à **tipologia do Manuscrito 1**, os rótulos dos tipos permanecem provisórios até a aprovação dos autores, e o seu uso requer a citação do Projeto RESA.
+
+Os dados municipais do **SEEG 13** aparecem nas páginas, com a indicação da fonte, mas permanecem fora dos downloads até a conferência da licença; esses dados podem ser consultados em [seeg.eco.br](https://seeg.eco.br). Quanto ao **PRODES**, sistema de monitoramento do desmatamento por satélite, o site utiliza exclusivamente a série oficial do Instituto Nacional de Pesquisas Espaciais (INPE), disponibilizada no TerraBrasilis e obtida em 19/10/2026; a respectiva nota de correção encontra-se em [Emissões e desmatamento](../resultados/emissoes.qmd). O **MapBiomas**, previsto para o OE1, ainda não foi utilizado nesta versão. Por fim, no caso da **literatura**, os arquivos trazem apenas metadados, sem resumos de terceiros.
 :::

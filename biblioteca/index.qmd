@@ -16,50 +16,50 @@ leitura <- function(titulo, ref, href, rotulo_link, uso, aviso = NULL)
 ```
 
 ```{r}
-faixa_versao("Versão preliminar para a equipe do projeto. A Biblioteca traz só referências com link para o DOI ou para a página oficial; os textos não são copiados para o site.")
+faixa_versao("Versão preliminar para a equipe do projeto. A Biblioteca reúne apenas referências com link para o DOI ou para a página oficial, sem reprodução dos textos no site.")
 ```
 
 ## Leituras de base
 
-Seis leituras orientam o eixo socioeconômico do projeto. Os links levam à publicação na fonte.
+Apresentam-se, a seguir, as seis leituras que orientam o eixo socioeconômico do projeto. Cada referência remete, por meio de link, à publicação na fonte original.
 
 ```{r}
 div(class = "cartoes",
   leitura("Dominicis et al. (2023)",
           "DOMINICIS, L. F. de <i>et al.</i> Payment for Environmental Services and the Financial Viability of Agroforestry Systems: an integrated analysis of socio-environmental projects in the Descoberto Basin—Federal District. <i>Forests</i>, v. 14, n. 10, 2110, 2023.",
           "https://doi.org/10.3390/f14102110", "DOI 10.3390/f14102110",
-          "Artigo de referência do OE4 (cenários bioeconômicos): SAF com e sem PSA em assentamentos do Distrito Federal."),
+          "Artigo de referência do OE4 (cenários bioeconômicos), que analisa sistemas agroflorestais (SAF) com e sem pagamento por serviços ambientais (PSA) em assentamentos do Distrito Federal."),
   leitura("Silva et al. (2026)",
           "SILVA, D. <i>et al.</i> Climate resilience through bioeconomy: a mixed-methods protocol for assessing adaptation policies in rural settlements on the Amazon. <i>PLOS ONE</i>, v. 21, n. 2, e0342911, 2026.",
           "https://doi.org/10.1371/journal.pone.0342911", "DOI 10.1371/journal.pone.0342911",
-          "Protocolo de métodos mistos para assentamentos na Amazônia; referência para os instrumentos de campo."),
-  leitura("Cabral, Santos e Simonino (2026)",
+          "Protocolo de métodos mistos para assentamentos na Amazônia, que serve de referência para os instrumentos de campo."),
+  leitura("Cabral et al. (2026)",
           "CABRAL, D. V.; SANTOS, L. F. dos; SIMONINO, C. T. Caracterização da agricultura familiar do estado de Minas Gerais por meio de seus fatores determinantes. <i>Revista Econômica do Nordeste</i>, v. 57, n. 3, e20262715, 2026.",
           "https://www.bnb.gov.br/revista/ren/article/view/2715", "Página do artigo na revista",
-          "Caracterização da agricultura familiar de Minas Gerais por fatores, com dados do Censo 2017; o projeto replica e estende o método para Mato Grosso. O DOI impresso (10.61673/ren.2026.2715) ainda não está registrado no Crossref (consulta em 19/10/2026).",
+          "Caracterização da agricultura familiar de Minas Gerais por meio de fatores, com dados do Censo 2017, cujo método o projeto replica e estende para Mato Grosso. O DOI impresso (10.61673/ren.2026.2715) ainda não está registrado no Crossref (consulta em 19/10/2026).",
           aviso = "DOI a confirmar"),
   leitura("Suela et al. (2026)",
           "SUELA, A. G. L. <i>et al.</i> Avaliação do pagamento por serviços ambientais para incentivar a conservação da mata nativa no bioma Cerrado: uma análise de equilíbrio geral computável. <i>Revista Econômica do Nordeste</i>, v. 57, n. 4, e20262748, 2026.",
           "https://doi.org/10.61673/ren.2026.2748", "DOI 10.61673/ren.2026.2748",
-          "Valor de PSA que compensa a conversão do excedente de reserva legal no Cerrado; referência externa para o OE4."),
+          "Valor de PSA que compensa a conversão do excedente de reserva legal no Cerrado, adotado como referência externa para o OE4."),
   leitura("Marques (2021)",
           "MARQUES, V. P. M. de A. <i>Estabelecimentos da reforma agrária no Censo Agropecuário 2017</i>. Porto Alegre: INCRA, 2021.",
           "https://www.gov.br/incra/pt-br/centrais-de-conteudos/publicacoes/assentamentos_censo_revisado.pdf", "Página oficial do INCRA (PDF)",
-          "Identificação dos estabelecimentos da reforma agrária no Censo 2017, por tabulação especial do IBGE com o INCRA. Mostra que a categoria do Censo não esgota a reforma agrária."),
+          "Identificação dos estabelecimentos da reforma agrária no Censo 2017, por meio de tabulação especial realizada pelo IBGE com o INCRA. O estudo evidencia que a categoria do Censo não esgota a reforma agrária."),
   leitura("IBGE (2019)",
           "INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). <i>Censo agropecuário 2017</i>: resultados definitivos. Rio de Janeiro: IBGE, 2019.",
           "https://biblioteca.ibge.gov.br/visualizacao/periodicos/3096/agro_2017_resultados_definitivos.pdf", "Biblioteca do IBGE (PDF)",
-          "Resultados definitivos do Censo 2017, com as categorias de condição do produtor em relação às terras, entre elas a de concessionário(a) ou assentado(a) aguardando titulação definitiva."))
+          "Resultados definitivos do Censo 2017, que incluem as categorias de condição do produtor em relação às terras, entre elas a de concessionário(a) ou assentado(a) aguardando titulação definitiva."))
 ```
 
 ::: {.nota-fonte}
-DOI de Dominicis et al. (2023), Silva et al. (2026) e Suela et al. (2026) conferidos no Crossref. A página de Cabral, Santos e Simonino (2026) foi conferida no site da revista em 19/10/2026.
+Os DOI de Dominicis et al. (2023), Silva et al. (2026) e Suela et al. (2026) foram conferidos no Crossref, e a página de Cabral et al. (2026) foi conferida no site da revista em 19/10/2026.
 :::
 
 ## Relatórios do projeto
 
-**Em preparação.** Os relatórios técnicos e as notas metodológicas do Projeto RESA entram aqui, em PDF e com "Como citar", depois da revisão pela coordenação. Até lá, os resultados aparecem nas páginas de [Resultados](../resultados/tipologia.qmd) e as listas de literatura em [Literatura](../literatura/index.qmd).
+**Em preparação.** Os relatórios técnicos e as notas metodológicas do Projeto RESA serão disponibilizados nesta seção, em PDF e com a indicação de "Como citar", após a revisão pela coordenação. Enquanto isso, os resultados podem ser consultados nas páginas de [Resultados](../resultados/tipologia.qmd), e as listas de literatura, na página [Literatura](../literatura/index.qmd).
 
 ## Como citar o site
 
-Veja [Sobre o projeto](../sobre.qmd#como-citar).
+A forma de citação do site encontra-se em [Sobre o projeto](../sobre.qmd#como-citar).

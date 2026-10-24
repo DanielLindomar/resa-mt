@@ -1,6 +1,6 @@
 ---
 title: "OE5 · Inovação e capital social"
-description: "Objetivo específico 5 do Projeto RESA: capacidade de inovação, difusão de conhecimento e capital social nas áreas-piloto. Objetivo, método previsto e situação"
+description: "Objetivo específico 5 do Projeto RESA: capacidade de inovação, difusão de conhecimento e capital social nas áreas-piloto. Objetivo, procedimentos previstos e situação de execução"
 ---
 
 ```{r}
@@ -16,35 +16,28 @@ faixa_versao()
 
 ## Objetivo
 
-Entender como as famílias das áreas-piloto inovam, trocam conhecimento e se organizam. O OE5 procura o que favorece o engajamento e como as famílias percebem as mudanças propostas. Com isso, a difusão do Pacote Tecnológico fica mais eficaz, e a rede entre famílias, pesquisadores e poder público se fortalece.
+O quinto objetivo específico (OE5) consiste em compreender de que modo as famílias das áreas-piloto inovam, trocam conhecimento e se organizam. Nesse sentido, o OE5 busca identificar os fatores que favorecem o engajamento e a forma como as famílias percebem as mudanças propostas. Espera-se, com isso, tornar mais eficaz a difusão do Pacote Tecnológico e fortalecer a rede entre famílias, pesquisadores e poder público.
 
 ```{r}
 bloco_situacao("OE5", list(
-  c("previsto", "Oficinas participativas nas áreas-piloto.", "Vêm depois do diagnóstico da Fase 1; sem data confirmada."),
+  c("previsto", "Oficinas participativas nas áreas-piloto.", "Realizam-se após o diagnóstico da Fase 1; sem data confirmada."),
   c("previsto", "Relatórios das oficinas e protocolos de engajamento comunitário.")))
 ```
 
-## Método previsto
+## Procedimentos metodológicos previstos
 
-- **Oficinas participativas** com agricultores e lideranças, para validar os resultados do diagnóstico e construir as recomendações em conjunto.
-- **Entrevistas semiestruturadas** com famílias e lideranças, para captar percepções e fatores de engajamento.
-- **Capacitação prática** nas áreas-piloto, em manejo de baixo carbono e acesso a mercados diferenciados, como o de créditos de carbono e o PSA.
-- **Plano de difusão**, com materiais em linguagem simples (cartilhas, vídeos curtos, mapas simplificados) e dias de campo.
+O método previsto compreende oficinas participativas com agricultores e lideranças, destinadas a validar os resultados do diagnóstico e a construir as recomendações em conjunto, e entrevistas semiestruturadas com famílias e lideranças, voltadas à captação de percepções e de fatores de engajamento. Além disso, prevê-se capacitação prática nas áreas-piloto em manejo de baixo carbono e em acesso a mercados diferenciados, como o de créditos de carbono e o de pagamento por serviços ambientais (PSA). Por fim, um plano de difusão deverá contemplar materiais em linguagem simples, como cartilhas, vídeos curtos e mapas simplificados, além de dias de campo.
 
 ## Resultados esperados
 
-A proposta acompanha três metas ligadas a este objetivo:
+A proposta acompanha três metas vinculadas a este objetivo, a saber: o grau de engajamento e de apropriação do Pacote Tecnológico pelas comunidades; o número de produtores familiares capacitados em tecnologias de baixo carbono; e as propostas de política pública apresentadas a tomadores de decisão.
 
-- o grau de engajamento e de apropriação do Pacote Tecnológico pelas comunidades;
-- o número de produtores familiares capacitados em tecnologias de baixo carbono;
-- as propostas de política pública apresentadas a tomadores de decisão.
+## Aspectos éticos
 
-## Cuidados com as pessoas
-
-As atividades com as famílias dependem da aprovação no Comitê de Ética em Pesquisa e do consentimento livre e esclarecido. O site não publica nomes, fotos de pessoas nem dados individuais. Os resultados das oficinas entram só de forma agregada.
+As atividades com as famílias dependem da aprovação do Comitê de Ética em Pesquisa e do consentimento livre e esclarecido dos participantes. Em consonância com esses cuidados, o site não publica nomes, fotografias de pessoas nem dados individuais, e os resultados das oficinas são apresentados apenas de forma agregada.
 
 ```{r}
-p(class = "nota-fonte", "Fonte: proposta do Projeto RESA (objetivos específicos, metodologia e plano de disseminação), em texto próprio.")
+p(class = "nota-fonte", "Fonte: Elaboração própria com base na proposta do Projeto RESA (objetivos específicos, metodologia e plano de disseminação).")
 ```
 
 ```{r}

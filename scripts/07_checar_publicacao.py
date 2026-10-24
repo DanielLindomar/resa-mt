@@ -829,7 +829,7 @@ print(f"  {n_links} links, {n_ancoras} âncoras e {n_cliques} cliques de mapa co
 # ---------------------------------------------------------------------------
 print("\n5. Elementos obrigatórios das páginas")
 RODAPE = ("Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · "
-          "Versão preliminar para a equipe do projeto · Atualizado em 19/10/2026")
+          "Versão preliminar para a equipe do projeto · Atualizado em 23/10/2026")
 SEM_FAIXA = set()   # páginas que não são principais (nenhuma hoje)
 RX_ROBOTS = re.compile(r'<meta\s+name="robots"\s+content="([^"]*)"', re.I)
 RX_RODAPE = re.compile(r'<footer class="footer">(.*?)</footer>', re.S)

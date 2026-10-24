@@ -1,7 +1,7 @@
 ---
 title: "Emissões e desmatamento por tipo municipal"
-subtitle: "Artigos A e B do projeto, recalculados com os tipos do Manuscrito 1"
-description: "Emissões do SEEG 13 e desmatamento do PRODES pelos cinco tipos municipais do Manuscrito 1, validação da proxy de desmatamento contra o PRODES oficial e a série do PRODES em Mato Grosso"
+subtitle: "Resultados dos Artigos A e B do projeto, recalculados com os tipos do Manuscrito 1"
+description: "Emissões do SEEG 13 e desmatamento do PRODES segundo os cinco tipos municipais do Manuscrito 1, validação da proxy de desmatamento com o PRODES oficial e série do PRODES em Mato Grosso"
 css: resultados.css
 ---
 
@@ -29,7 +29,7 @@ ult <- cons[nrow(cons), ]; pico <- cons[which.max(cons$taxa_km2), ]
 prb25 <- PRB[PRB$ano == ult$ano & PRB$status == "consolidado", ]
 meta_prodes <- sprintf("INPE/PRODES, TerraBrasilis, painel versão %s; acesso em %s; atualização do INPE em %s",
                        prt$versao_painel[1], data_br(prt$data_acesso[1]), data_br(prt$atualizacao_inpe[1]))
-fonte_seeg <- "Fonte: SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); cálculo do site."
+fonte_seeg <- "Fonte: Elaboração própria com base em SEEG 13, Observatório do Clima, dados municipais (GWP-AR5); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019)."
 # Artigo A refeito (PRODES municipal oficial, 2017–2025): frases conferidas contra os números
 DT <- function(rec, m, col) DESM_TES[[col]][DESM_TES$recorte == rec & DESM_TES$metrica == m]
 DG <- function(g, col) DESM_GR[[col]][DESM_GR$recorte == "tipo" & DESM_GR$grupo == g]
@@ -38,7 +38,7 @@ dtp <- DESM_GR[DESM_GR$recorte == "tipo" & DESM_GR$grupo != "MT", ]
 stopifnot(dtp$grupo[which.max(dtp$pct_mt)] == "T1", DT("tipo", "desmat_km2", "p") < 0.05, DT("tipo", "desmat_km2", "p") > 0.01,
           DT("tipo", "pct", "p") > 0.05, DR("desmat_km2", "p") > 0.05, DR("pct", "p") > 0.05,
           abs(sum(DESM$desmat_km2) - sum(vapply(BIOMAS, function(b) sum(PRB$desmat_km2[PRB$bioma == b & PRB$ano %in% 2017:2025 & PRB$n_anos == 1 & PRB$status == "consolidado"]), numeric(1)))) < 0.5)
-fonte_desm <- sprintf("Fonte: INPE, PRODES Amazônia, Cerrado e Pantanal, incremento anual por município, painel TerraBrasilis v%s (acesso em %s); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); área municipal calculada sobre a Malha Municipal 2022 do IBGE; cálculo do site.",
+fonte_desm <- sprintf("Fonte: Elaboração própria com base em INPE, PRODES Amazônia, Cerrado e Pantanal, incremento anual por município, painel TerraBrasilis v%s (acesso em %s); tipos do Manuscrito 1 do Projeto RESA (rótulos provisórios); bioma dominante IBGE 1:250 mil (2019); área municipal calculada sobre a Malha Municipal 2022 do IBGE.",
                       prt$versao_painel[1], data_br(prt$data_acesso[1]))
 ```
 
@@ -46,114 +46,182 @@ fonte_desm <- sprintf("Fonte: INPE, PRODES Amazônia, Cerrado e Pantanal, increm
 faixa_versao()
 ```
 
-Os Artigos A e B do projeto cruzaram o desmatamento e as emissões municipais com uma tipologia anterior da agricultura familiar. Esta página refaz as contas com os **cinco tipos do Manuscrito 1** (rótulos provisórios). Ela também mostra a validação da proxy de desmatamento dos artigos contra a **série oficial do PRODES**, corrigida em 19/10/2026.
+## Contextualização e objetivo
+
+Os Artigos A e B do projeto relacionaram o desmatamento e as emissões municipais estimadas pelo Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG) a uma tipologia anterior da agricultura familiar (AF). Nesse contexto, esta página recalcula esses resultados com os **cinco tipos do Manuscrito 1** (rótulos provisórios). Adicionalmente, apresenta-se a validação, corrigida em 19/10/2026, da *proxy* de desmatamento dos artigos em relação à **série oficial do PRODES**, sistema de monitoramento do desmatamento por satélite do Instituto Nacional de Pesquisas Espaciais (INPE).
 
 ::: {.aviso-municipio}
-**O SEEG mede o município inteiro**: agropecuária de todos os portes, desmatamento, energia, indústria e resíduos das cidades. Os números abaixo descrevem os municípios de cada tipo, não a agricultura familiar.
+**O SEEG mede o município inteiro**, o que abrange a agropecuária de todos os portes, o desmatamento, a energia, a indústria e os resíduos das cidades. Assim, os números apresentados a seguir descrevem os municípios de cada tipo, e não a agricultura familiar.
 :::
+
+## Dados e método
+
+Nas tabelas e nos testes por tipo e por bioma, as emissões provêm dos dados municipais do SEEG, do Observatório do Clima, e correspondem à média anual de `r ER("ano_ini")` a `r ER("ano_fim")`, período adotado no Artigo B; a série histórica e a coluna do ano mais recente são apresentadas à parte. As emissões brutas, expressas em dióxido de carbono equivalente segundo o potencial de aquecimento global do Quinto Relatório de Avaliação do Painel Intergovernamental sobre Mudanças Climáticas (GWP-AR5), resultam da soma dos cinco setores do SEEG, sem as remoções. O desmatamento, por sua vez, corresponde ao **incremento oficial do PRODES por município**, de 2017 a 2025; nesses nove anos, os três biomas do PRODES têm períodos anuais e consolidados, e o total de cada município soma as máscaras de Amazônia, Cerrado e Pantanal.
+
+Os Artigos A e B estimaram o desmatamento municipal por meio de uma *proxy*, obtida pela divisão das emissões de mudança de uso da terra do SEEG por `r num(R("fator_tco2e_ha"), 0)` toneladas de dióxido de carbono equivalente (tCO2e) por hectare. Esse fator constitui uma premissa do artigo, sem fonte primária, e encontra-se em revisão. Para avaliar a *proxy*, comparou-se essa estimativa com a **taxa oficial de desmatamento de Mato Grosso (MT)** do PRODES (Amazônia Legal, formações florestais). Por fim, as diferenças entre os tipos e entre os biomas são avaliadas pelo teste de Kruskal-Wallis, com tamanho de efeito épsilon ao quadrado (ε²), sem correção para a autocorrelação espacial.
 
 ## Emissões por tipo
 
-Média anual de `r ER("ano_ini")` a `r ER("ano_fim")`, o período do Artigo B. Emissões brutas são a soma dos cinco setores do SEEG, sem as remoções. Os `r sum(tp$n_mun)` municípios somam, em média, `r num(ER("total_municipios_media"), 1)` MtCO2e por ano; o total estadual do SEEG no mesmo período é de `r num(ER("total_estadual_media"), 1)` MtCO2e por ano, e a diferença (`r num(ER("nao_alocado_media"), 2)`) não é alocada a município.
+A @tbl-emissoes-tipo apresenta as emissões brutas por tipo. Em média, os `r sum(tp$n_mun)` municípios somam `r num(ER("total_municipios_media"), 1)` milhões de toneladas de dióxido de carbono equivalente (MtCO2e) por ano, ao passo que o total estadual do SEEG no mesmo período é de `r num(ER("total_estadual_media"), 1)` MtCO2e por ano; a diferença (`r num(ER("nao_alocado_media"), 2)`) não é alocada a município.
+
+::: {#tbl-emissoes-tipo}
 
 ```{r}
 tabela_emissoes("tipo")
-nf(fonte_seeg, " A coluna de 2024 vem dos agregados do site (soma dos municípios).")
+nf(fonte_seeg, " Nota: a coluna de 2024 provém dos agregados do site (soma dos municípios).")
 ```
 
+Emissões brutas por tipo municipal (rótulos provisórios)
+
+:::
+
 ::: {.achado}
-Os tipos diferem nas emissões brutas (Kruskal-Wallis: H = `r num(TS("tipo", "bruta", "H"), 2)`; `r txt_p(TS("tipo", "bruta", "p"))`; ε² = `r fmt_r(TS("tipo", "bruta", "epsilon2"), 2)`). A diferença acompanha o porte agregado dos tipos: o T3, de maior porte, tem a maior mediana municipal (`r num(E("T3", "bruta_mediana_municipal"), 2)` MtCO2e por ano) e, com `r E("T3", "n_mun")` municípios, responde por `r pct_txt(E("T3", "pct_do_total_municipal"))` das emissões dos municípios. O T1, com `r E("T1", "n_mun")` municípios, responde por `r pct_txt(E("T1", "pct_do_total_municipal"))`.
+Verifica-se que os tipos diferem nas emissões brutas (Kruskal-Wallis: H = `r num(TS("tipo", "bruta", "H"), 2)`; `r txt_p(TS("tipo", "bruta", "p"))`; ε² = `r fmt_r(TS("tipo", "bruta", "epsilon2"), 2)`). Essa diferença acompanha o porte agregado dos tipos: o T3, de maior porte agregado, apresenta a maior mediana municipal (`r num(E("T3", "bruta_mediana_municipal"), 2)` MtCO2e por ano) e, com `r E("T3", "n_mun")` municípios, responde por `r pct_txt(E("T3", "pct_do_total_municipal"))` das emissões dos municípios. O T1, com `r E("T1", "n_mun")` municípios, responde por `r pct_txt(E("T1", "pct_do_total_municipal"))`.
 :::
 
 ### Composição setorial
 
+::: {#fig-composicao-tipo fig-cap-location="top"}
+
 ```{r}
 svg_composicao("tipo")
-nf(fonte_seeg, " Participação de cada setor nas emissões brutas do grupo, média 2010–2020.")
+nf(fonte_seeg, " Nota: participação de cada setor nas emissões brutas do grupo, média 2010–2020.")
 ```
 
-A mudança de uso da terra e florestas é o maior setor em todos os tipos, de `r pct_txt(E("T5", "pct_mut"))` (T5) a `r pct_txt(E("T3", "pct_mut"))` (T3). O T5, que reúne Cuiabá, Rondonópolis e Sinop, tem a maior parte de energia (`r pct_txt(E("T5", "pct_energia"))`). As emissões da agropecuária são as que mais diferem entre os tipos (ε² = `r fmt_r(TS("tipo", "agro", "epsilon2"), 2)`).
+Composição setorial das emissões brutas, por tipo municipal
+
+:::
+
+Conforme a @fig-composicao-tipo, a mudança de uso da terra e florestas constitui o maior setor em todos os tipos, com participação que varia de `r pct_txt(E("T5", "pct_mut"))` (T5) a `r pct_txt(E("T3", "pct_mut"))` (T3). O T5, que reúne Cuiabá, Rondonópolis e Sinop, apresenta a maior participação da energia (`r pct_txt(E("T5", "pct_energia"))`). Adicionalmente, as emissões da agropecuária são as que mais diferem entre os tipos (ε² = `r fmt_r(TS("tipo", "agro", "epsilon2"), 2)`), conforme os testes da @tbl-testes-tipo.
 
 ### Testes de diferença entre os tipos
 
+::: {#tbl-testes-tipo}
+
 ```{r}
 tabela_testes(EMI_TES, "tipo", c("bruta", "mut", "agro", "energia"))
-nf("Kruskal-Wallis sobre as médias municipais de 2010–2020 (141 municípios, 5 tipos), sem correção para a autocorrelação espacial. ", fonte_seeg)
+nf("Nota: teste de Kruskal-Wallis sobre as médias municipais de 2010–2020 (141 municípios, 5 tipos), sem correção para a autocorrelação espacial. ", fonte_seeg)
 ```
 
-::: {.callout-note collapse="true" appearance="simple"}
-## Emissões por estabelecimento e por hectare da AF (ler com cautela)
+Testes de diferença das emissões entre os tipos
 
-O Artigo B dividiu as emissões do município pelos estabelecimentos e pela área da agricultura familiar. Como o SEEG mede o município inteiro, essas razões **não são a intensidade de emissão da AF**: servem só como contexto. Por estabelecimento da AF, as razões vão de `r num(E("T5", "t_por_estab_af"), 0)` tCO2e (T5) a `r num(E("T4", "t_por_estab_af"), 0)` tCO2e (T4) por ano. A diferença entre os tipos é fraca por estabelecimento (`r txt_p(TS("tipo", "t_por_estab_af", "p"))`; ε² = `r fmt_r(TS("tipo", "t_por_estab_af", "epsilon2"), 2)`) e não é significativa por hectare (`r txt_p(TS("tipo", "t_por_ha_af", "p"))`).
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Emissões por estabelecimento e por hectare da AF (leitura com cautela)
+
+O Artigo B dividiu as emissões do município pelos estabelecimentos e pela área da agricultura familiar. Como o SEEG mede o município inteiro, essas razões **não correspondem à intensidade de emissão da AF** e servem apenas como contexto. Por estabelecimento da AF, as razões variam de `r num(E("T5", "t_por_estab_af"), 0)` tCO2e (T5) a `r num(E("T4", "t_por_estab_af"), 0)` tCO2e (T4) por ano. A diferença entre os tipos é fraca por estabelecimento (`r txt_p(TS("tipo", "t_por_estab_af", "p"))`; ε² = `r fmt_r(TS("tipo", "t_por_estab_af", "epsilon2"), 2)`) e não é significativa por hectare (`r txt_p(TS("tipo", "t_por_ha_af", "p"))`), conforme a @tbl-intensidades.
+
+::: {#tbl-intensidades}
 
 ```{r}
 tabela_intensidades()
 tabela_testes(EMI_TES, "tipo", c("t_por_estab_af", "t_por_ha_af"))
 nf(fonte_seeg, " Estabelecimentos e área da AF: IBGE, Censo Agropecuário 2017, SIDRA, tabela 6878.")
 ```
+
+Razões de emissão por estabelecimento e por hectare da AF e testes de diferença entre os tipos (rótulos provisórios)
+
+:::
 :::
 
 ### Série histórica por tipo
 
-A série começa em 1990. O SEEG estima as emissões de mudança de uso da terra e florestas só a partir desse ano; antes dele, as emissões brutas não incluem o maior setor de MT e não se comparam com os anos seguintes.
+A @fig-serie-tipo apresenta a série histórica das emissões brutas por tipo, que se inicia em 1990, uma vez que o SEEG estima as emissões de mudança de uso da terra e florestas apenas a partir desse ano. Antes dele, as emissões brutas não incluem o maior setor de MT e, portanto, não são comparáveis às dos anos seguintes.
+
+::: {#fig-serie-tipo fig-cap-location="top"}
 
 ```{r}
 a <- AGR[AGR$indicador == "seeg_emissao_bruta" & AGR$recorte == "tipo" & AGR$ano >= 1990, ]
 HTML(svg_linhas(lapply(names(TIPOS), function(t) { x <- a[a$grupo == t, ]
   list(nome = paste0(t, " · ", TIPOS[[t]], " (rótulo provisório)"), cor = COR_TIPO[[t]], larg = 2.4, dash = "", x = x$ano, y = x$valor / 1000) }),
   fmt = "dec1", titulo = "Emissões brutas por tipo, MtCO2e, 1990–2024"))
-nf("Emissões brutas, MtCO2e por ano, 1990–2024: soma dos municípios de cada tipo. ", fonte_seeg)
+nf("Nota: emissões brutas, em MtCO2e por ano, de 1990 a 2024, correspondentes à soma dos municípios de cada tipo. ", fonte_seeg)
 ```
 
+Série histórica das emissões brutas, por tipo municipal
+
+:::
+
 ## Emissões por bioma
+
+A @tbl-emissoes-bioma apresenta as emissões brutas e a sua composição setorial por bioma dominante, e a @tbl-testes-bioma, os testes de diferença entre os biomas.
+
+::: {#tbl-emissoes-bioma}
 
 ```{r}
 tabela_emissoes("bioma")
 svg_composicao("bioma")
 ```
 
-Teste de diferença entre os biomas:
+Emissões brutas e composição setorial, por bioma dominante
+
+:::
+
+::: {#tbl-testes-bioma}
 
 ```{r}
 tabela_testes(EMI_TES, "bioma", c("bruta", "mut", "agro", "energia"))
 nf(fonte_seeg)
 ```
 
-A Amazônia responde por `r pct_txt(E("Amazônia", "pct_do_total_municipal"))` das emissões dos municípios, e nela a mudança de uso da terra é `r pct_txt(E("Amazônia", "pct_mut"))` do total. Nos `r E("Pantanal", "n_mun")` municípios do Pantanal, a agropecuária é o maior setor (`r pct_txt(E("Pantanal", "pct_agro"))`).
+Testes de diferença das emissões entre os biomas
 
-## Desmatamento por tipo (Artigo A refeito com o PRODES)
+:::
 
-O Artigo A comparou o desmatamento entre os tipos municipais com a proxy do SEEG (2010–2020), na tipologia anterior. A proxy fica muito acima do PRODES (veja a validação abaixo). Por isso, esta seção refaz a pergunta com o **incremento oficial do PRODES por município**, de 2017 a 2025, e com os cinco tipos do Manuscrito 1. Nesses nove anos, os três biomas do PRODES têm períodos anuais e consolidados. O total de cada município soma as máscaras de Amazônia, Cerrado e Pantanal.
+Observa-se que a Amazônia responde por `r pct_txt(E("Amazônia", "pct_do_total_municipal"))` das emissões dos municípios e que, nesse bioma, a mudança de uso da terra representa `r pct_txt(E("Amazônia", "pct_mut"))` do total. Nos `r E("Pantanal", "n_mun")` municípios do Pantanal, em contrapartida, a agropecuária constitui o maior setor (`r pct_txt(E("Pantanal", "pct_agro"))`).
+
+## Desmatamento por tipo: o Artigo A recalculado com o PRODES
+
+O Artigo A comparou o desmatamento entre os tipos municipais com a *proxy* do SEEG (2010–2020), na tipologia anterior. Como a *proxy* fica muito acima do PRODES, conforme se demonstra na validação apresentada adiante, esta seção retoma a questão com o incremento oficial do PRODES por município e com os cinco tipos do Manuscrito 1.
 
 ::: {.aviso-municipio}
-**O PRODES mede o município inteiro**, não a agricultura familiar. Os números descrevem os municípios de cada tipo.
+**O PRODES mede o município inteiro**, e não a agricultura familiar. Desse modo, os números descrevem os municípios de cada tipo.
 :::
+
+::: {#tbl-desmat-tipo}
 
 ```{r}
 tabela_desmat("tipo")
 nf(fonte_desm)
 ```
 
-::: {.achado}
-Os 141 municípios somam `r num(sum(DESM$desmat_km2), 0)` km² de desmatamento de 2017 a 2025. O T1, com `r DG("T1", "n_mun")` municípios, responde por `r pct_txt(DG("T1", "pct_mt"))`. Os tipos diferem pouco. No total desmatado, a diferença é fraca (Kruskal-Wallis: H = `r num(DT("tipo", "desmat_km2", "H"), 2)`; `r txt_p(DT("tipo", "desmat_km2", "p"))`; ε² = `r fmt_r(DT("tipo", "desmat_km2", "epsilon2"), 2)`). Em % do território, não é significativa (`r txt_p(DT("tipo", "pct", "p"))`).
+Desmatamento por tipo municipal, segundo o PRODES (rótulos provisórios)
+
 :::
 
-Como no Artigo A, o desmatamento não acompanha a parcela da agricultura familiar na categoria 46504 do Censo 2017. O ρ de Spearman é `r fmt_r(DR("desmat_km2", "rho"), 2)` (`r txt_p(DR("desmat_km2", "p"))`) com o total desmatado e `r fmt_r(DR("pct", "rho"), 2)` (`r txt_p(DR("pct", "p"))`) com a % do território, nos 141 municípios.
+::: {.achado}
+Conforme a @tbl-desmat-tipo, os 141 municípios somam `r num(sum(DESM$desmat_km2), 0)` km² de desmatamento de 2017 a 2025, e o T1, com `r DG("T1", "n_mun")` municípios, responde por `r pct_txt(DG("T1", "pct_mt"))`. Os tipos, contudo, diferem pouco: no total desmatado, a diferença é fraca (Kruskal-Wallis: H = `r num(DT("tipo", "desmat_km2", "H"), 2)`; `r txt_p(DT("tipo", "desmat_km2", "p"))`; ε² = `r fmt_r(DT("tipo", "desmat_km2", "epsilon2"), 2)`), e, em % do território, não é significativa (`r txt_p(DT("tipo", "pct", "p"))`).
+:::
+
+Assim como no Artigo A, o desmatamento não acompanha a parcela da agricultura familiar na categoria 46504 do Censo 2017. Conforme a @tbl-testes-desmat, nos 141 municípios, o ρ de Spearman é de `r fmt_r(DR("desmat_km2", "rho"), 2)` (`r txt_p(DR("desmat_km2", "p"))`) com o total desmatado e de `r fmt_r(DR("pct", "rho"), 2)` (`r txt_p(DR("pct", "p"))`) com a % do território.
+
+::: {#tbl-testes-desmat}
 
 ```{r}
 tabela_testes(DESM_TES, "tipo")
-nf("Kruskal-Wallis sobre os 141 municípios (5 tipos), sem correção para a autocorrelação espacial. ρ de Spearman entre o desmatamento e a % dos estabelecimentos da AF na categoria 46504 (IBGE, Censo Agropecuário 2017, tabela 6878). ", fonte_desm)
+nf("Nota: teste de Kruskal-Wallis sobre os 141 municípios (5 tipos), sem correção para a autocorrelação espacial; ρ de Spearman entre o desmatamento e a % dos estabelecimentos da AF na categoria 46504 (IBGE, Censo Agropecuário 2017, tabela 6878). ", fonte_desm)
 ```
 
-Por bioma dominante:
+Testes de diferença do desmatamento entre os tipos
+
+:::
+
+A @tbl-desmat-bioma apresenta o desmatamento por bioma dominante e os respectivos testes de diferença.
+
+::: {#tbl-desmat-bioma}
 
 ```{r}
 tabela_desmat("bioma")
 tabela_testes(DESM_TES, "bioma")
-nf(fonte_desm, " Aqui o grupo é o bioma dominante do município (IBGE 1:250 mil); o total de cada município soma todas as máscaras do PRODES, por isso os totais diferem do incremento de cada bioma do PRODES.")
+nf(fonte_desm, " Nota: o grupo corresponde ao bioma dominante do município (IBGE 1:250 mil); como o total de cada município soma todas as máscaras do PRODES, os totais diferem do incremento de cada bioma do PRODES.")
 ```
 
-O mapa e a tabela do desmatamento de cada município estão na página do [OE1](../objetivos/oe1.qmd).
+Desmatamento por bioma dominante, segundo o PRODES, e testes de diferença entre os biomas
+
+:::
+
+O mapa e a tabela do desmatamento de cada município encontram-se na página do primeiro objetivo específico do projeto ([OE1](../objetivos/oe1.qmd)).
 
 ## Validação da proxy de desmatamento
 
@@ -161,15 +229,15 @@ O mapa e a tabela do desmatamento de cada município estão na página do [OE1](
 div(class = "nota-correcao",
   tags$h4("Nota de correção (19/10/2026)"),
   tags$ul(
-    tags$li("A série do PRODES usada antes no projeto tinha a Amazônia digitada à mão, com o rótulo de série oficial. De 2005 a 2024, ela ficava acima da taxa oficial de Mato Grosso em todos os anos."),
-    tags$li("Essa série foi substituída pela série oficial do INPE, baixada do TerraBrasilis em 19/10/2026: a taxa anual de MT na Amazônia Legal e o incremento anual por bioma. O site não usa a série antiga."),
-    tags$li(paste0("No Artigo B, isso muda a validação: a proxy supera o PRODES em cerca de ", num(R("razao_total"), 0),
-                   " vezes no total estadual de 2010–2020 (antes, \"2,6 vezes\"), e a frase sobre \"fraca aderência interanual\" deixa de valer, porque o Pearson contra a taxa oficial é de ",
+    tags$li("A série do PRODES utilizada anteriormente no projeto continha os dados da Amazônia digitados manualmente, com o rótulo de série oficial. De 2005 a 2024, essa série situava-se acima da taxa oficial de Mato Grosso em todos os anos."),
+    tags$li("Essa série foi substituída pela série oficial do INPE, obtida no TerraBrasilis em 19/10/2026, que compreende a taxa anual de MT na Amazônia Legal e o incremento anual por bioma. O site não utiliza a série antiga."),
+    tags$li(paste0("No Artigo B, essa substituição altera a validação: a proxy supera o PRODES em cerca de ", num(R("razao_total"), 0),
+                   " vezes no total estadual de 2010–2020 (antes, “2,6 vezes”), e a afirmação sobre “fraca aderência interanual” deixa de ser válida, porque o coeficiente de Pearson em relação à taxa oficial é de ",
                    fmt_r(R("pearson"), 2), ".")),
-    tags$li("O texto do Artigo B ainda não foi reescrito; os números desta seção já usam a série oficial.")))
+    tags$li("O texto do Artigo B ainda não foi reescrito; os números desta seção, contudo, já utilizam a série oficial.")))
 ```
 
-Os Artigos A e B estimaram o desmatamento municipal dividindo as emissões de mudança de uso da terra do SEEG por `r num(R("fator_tco2e_ha"), 0)` tCO2e por hectare. Esse fator é uma premissa do artigo, sem fonte primária, e está em revisão. A proxy foi comparada com a **taxa oficial de desmatamento de MT** do PRODES (Amazônia Legal, formações florestais).
+Os cartões a seguir sintetizam a comparação entre a *proxy* e a taxa oficial no total estadual.
 
 ```{r}
 div(class = "kpi-grade",
@@ -180,30 +248,39 @@ div(class = "kpi-grade",
   cartao_kpi("Spearman, ano a ano", fmt_r(R("spearman"), 2), sprintf("%s · %d anos (2010–2020)", txt_p(R("spearman_p")), R("n_anos"))))
 ```
 
+A @fig-proxy-prodes detalha essa comparação ano a ano, com a série e os valores anuais.
+
+::: {#fig-proxy-prodes fig-cap-location="top"}
+
 ```{r}
 svg_proxy_prodes()
 tabela_proxy_estadual()
-nf("Fonte: proxy dos Artigos A e B (SEEG 13, emissões municipais de mudança de uso da terra ÷ ", num(R("fator_tco2e_ha"), 0),
-  " tCO2e/ha; soma dos 141 municípios); ", meta_prodes, ". Taxa de MT × 100 (km² para ha). Cálculo do site sobre a tabela de robustez do Artigo B, refeita em 19/10/2026.")
+nf("Fonte: Elaboração própria com base na proxy dos Artigos A e B (SEEG 13, emissões municipais de mudança de uso da terra ÷ ", num(R("fator_tco2e_ha"), 0),
+  " tCO2e/ha; soma dos 141 municípios) e em ", meta_prodes, ". Nota: taxa de MT × 100 (conversão de km² para ha). Os cálculos baseiam-se na tabela de robustez do Artigo B, refeita em 19/10/2026.")
 ```
 
-**Por bioma.** A proxy, somada pelos municípios de cada bioma dominante, foi comparada com o incremento anual do PRODES no bioma, só nos anos com período anual:
+Comparação anual entre a *proxy* de desmatamento dos Artigos A e B e a taxa oficial do PRODES em Mato Grosso
+
+:::
+
+**Por bioma.** A *proxy*, somada pelos municípios de cada bioma dominante, foi comparada com o incremento anual do PRODES no bioma, apenas nos anos com período anual, conforme a @tbl-proxy-bioma.
+
+::: {#tbl-proxy-bioma}
 
 ```{r}
 tabela_proxy_bioma()
-nf("Bioma dominante IBGE 1:250 mil (2019). Fonte: proxy dos Artigos A e B; ", meta_prodes, "; cálculo do site.")
+nf("Fonte: Elaboração própria com base na proxy dos Artigos A e B e em ", meta_prodes, ". Nota: bioma dominante IBGE 1:250 mil (2019).")
 ```
 
-Com a escala de bioma usada na robustez do Artigo B (mapa de 2004), os valores são próximos: Amazônia `r fmt_r(B04("Amazônia", "pearson"), 2)` (Pearson), `r fmt_r(B04("Amazônia", "spearman"), 2)` (Spearman) e razão `r num(B04("Amazônia", "razao"), 1)`; Cerrado `r fmt_r(B04("Cerrado", "pearson"), 2)`, `r fmt_r(B04("Cerrado", "spearman"), 2)` e `r num(B04("Cerrado", "razao"), 1)`.
+Validação da *proxy* de desmatamento por bioma dominante
 
-### O que isso significa
+:::
 
-- Na Amazônia, a proxy acompanha bem a variação de um ano para o outro (Spearman de `r fmt_r(B("Amazônia", "spearman"), 2)`), mas o nível fica `r num(B("Amazônia", "razao"), 1)` vezes acima do PRODES.
-- No Cerrado, o nível fica `r num(B("Cerrado", "razao"), 1)` vezes acima, e o ordenamento dos anos é fraco (Spearman de `r fmt_r(B("Cerrado", "spearman"), 2)`). No Pantanal, não há aderência.
-- O SEEG conta mais que o corte raso da floresta, e o fator de `r num(R("fator_tco2e_ha"), 0)` tCO2e/ha não tem fonte. Por isso, a proxy serve como **indicador relativo** entre municípios e tipos, não como área desmatada.
-- A validação da proxy foi feita no total estadual e por bioma. A comparação município a município ainda não foi feita. O PRODES por município (2017–2025) está na seção sobre o Artigo A, acima, e na página do [OE1](../objetivos/oe1.qmd).
+Com a escala de bioma utilizada na robustez do Artigo B (mapa de 2004), os valores mostram-se próximos: na Amazônia, `r fmt_r(B04("Amazônia", "pearson"), 2)` (Pearson), `r fmt_r(B04("Amazônia", "spearman"), 2)` (Spearman) e razão de `r num(B04("Amazônia", "razao"), 1)`; no Cerrado, `r fmt_r(B04("Cerrado", "pearson"), 2)`, `r fmt_r(B04("Cerrado", "spearman"), 2)` e `r num(B04("Cerrado", "razao"), 1)`.
 
-## A série oficial do PRODES em Mato Grosso
+## Série oficial do PRODES em Mato Grosso
+
+Os cartões e as figuras a seguir apresentam a série oficial do PRODES para o estado.
 
 ```{r}
 div(class = "kpi-grade",
@@ -214,17 +291,41 @@ div(class = "kpi-grade",
   cartao_kpi(sprintf("Incremento por bioma, %d", ult$ano), paste(num(sum(prb25$desmat_km2), 0), "km²"),
              paste(sprintf("%s %s", prb25$bioma, num(prb25$desmat_km2, 0)), collapse = " · ")),
   cartao_kpi(sprintf("Taxa estimada, %s", paste(estim$ano, collapse = ", ")), paste(num(estim$taxa_km2, 0), "km²"),
-             "estimativa do INPE; fora de todas as contas do site"))
+             "estimativa do INPE, excluída de todos os cálculos do site"))
 ```
+
+::: {#fig-prodes-taxa fig-cap-location="top"}
 
 ```{r}
 svg_prodes_taxa()
-nf("Taxa anual de desmatamento de Mato Grosso no PRODES Amazônia Legal (formações florestais), km². O ano do PRODES vai de agosto a julho. Fonte: ", meta_prodes, ".")
+nf("Fonte: Elaboração própria com base em ", meta_prodes, ". Nota: valores em km²; o ano do PRODES vai de agosto a julho.")
 ```
+
+Taxa anual de desmatamento de Mato Grosso no PRODES Amazônia Legal (formações florestais)
+
+:::
+
+::: {#fig-prodes-bioma fig-cap-location="top"}
 
 ```{r}
 svg_prodes_bioma()
-nf("Incremento anual de desmatamento em Mato Grosso por bioma, km². Amazônia desde 2008; Cerrado desde 2002, em períodos de 2 anos até 2012; Pantanal desde 2004, em períodos de 1 a 4 anos até 2016. Nos períodos plurianuais, o ponto mostra a média anual (valor do período ÷ número de anos). Fonte: ", meta_prodes, ".")
+nf("Fonte: Elaboração própria com base em ", meta_prodes, ". Nota: valores em km². Amazônia desde 2008; Cerrado desde 2002, em períodos de 2 anos até 2012; Pantanal desde 2004, em períodos de 1 a 4 anos até 2016. Nos períodos plurianuais, o ponto representa a média anual (valor do período ÷ número de anos).")
 ```
 
-A taxa de MT cobre só as formações florestais da Amazônia Legal, que inclui o estado inteiro. Ela não é a soma dos incrementos dos três biomas. Os dados de `r paste(unique(c(estim$ano, PRB$ano[PRB$status != "consolidado"])), collapse = ", ")` são estimativa ou incremento parcial e ficam fora de todas as contas.
+Incremento anual de desmatamento em Mato Grosso, por bioma
+
+:::
+
+Ressalta-se que a taxa de MT (@fig-prodes-taxa) abrange apenas as formações florestais da Amazônia Legal, que inclui o estado inteiro, e, portanto, não corresponde à soma dos incrementos dos três biomas (@fig-prodes-bioma). Os dados de `r paste(unique(c(estim$ano, PRB$ano[PRB$status != "consolidado"])), collapse = ", ")` constituem estimativa ou incremento parcial e foram excluídos de todos os cálculos.
+
+## Discussão
+
+Os resultados indicam que, na Amazônia, a *proxy* apresenta elevada aderência à variação interanual (Spearman de `r fmt_r(B("Amazônia", "spearman"), 2)`), embora o seu nível fique `r num(B("Amazônia", "razao"), 1)` vezes acima do PRODES. No Cerrado, o nível fica `r num(B("Cerrado", "razao"), 1)` vezes acima, e o ordenamento dos anos é fraco (Spearman de `r fmt_r(B("Cerrado", "spearman"), 2)`), ao passo que, no Pantanal, não há aderência. Cumpre destacar que o SEEG contabiliza mais que o corte raso da floresta e que o fator de `r num(R("fator_tco2e_ha"), 0)` tCO2e/ha não tem fonte. Por essa razão, a *proxy* serve como **indicador relativo** entre municípios e tipos, e não como medida de área desmatada.
+
+Cabe ressaltar, ainda, que a validação da *proxy* foi realizada no total estadual e por bioma e que a comparação município a município ainda não foi feita. O PRODES por município (2017–2025) encontra-se na seção sobre o Artigo A, acima, e na página do [OE1](../objetivos/oe1.qmd).
+
+## Considerações finais
+
+Esta página recalculou, com os cinco tipos municipais, os resultados dos Artigos A e B sobre emissões e desmatamento. Em síntese, os tipos diferem nas emissões brutas, em consonância com o seu porte agregado, e a mudança de uso da terra e florestas constitui o maior setor em todos eles. O desmatamento medido pelo PRODES, por outro lado, difere pouco entre os tipos e não acompanha a parcela da agricultura familiar na categoria censitária de posse aguardando titulação. Quanto à *proxy* dos artigos, a validação indica que ela fica muito acima do PRODES e que deve ser tratada apenas como indicador relativo.
+
+Como limitações, destaca-se que o SEEG e o PRODES medem o município inteiro, e não a agricultura familiar, e que os testes não corrigem a autocorrelação espacial. Além disso, a validação da *proxy* município a município ainda não foi feita, e o texto do Artigo B ainda não foi reescrito com a série oficial do PRODES.

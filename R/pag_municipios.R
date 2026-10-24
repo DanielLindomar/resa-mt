@@ -55,8 +55,8 @@
 ANO_INI_SERIE <- c(seeg_mut = 1990L, seeg_remocoes = 1990L)
 ano_ini <- function(id) if (id %in% names(ANO_INI_SERIE)) ANO_INI_SERIE[[id]] else 1970L
 periodo_serie <- function(id) sprintf("%d–%d", ano_ini(id), max(SER$ano[SER$indicador == id]))
-NOTA_1990 <- paste("O SEEG estima as emissões de mudança de uso da terra e florestas e as remoções só a partir de 1990.",
-                   "Por isso as emissões brutas dão um salto em 1990: antes desse ano, a série não inclui esse setor.")
+NOTA_1990 <- paste("Ressalta-se que o SEEG estima as emissões de mudança de uso da terra e florestas e as remoções apenas a partir de 1990.",
+                   "Por essa razão, as emissões brutas apresentam um salto em 1990, uma vez que, antes desse ano, a série não inclui esse setor.")
 SLUG_BIOMA <- c("Amazônia" = "amazonia", "Cerrado" = "cerrado", "Pantanal" = "pantanal")
 DEC_CSV <- c(int = 0, dec1 = 3, dec2 = 4, dec3 = 5, pct1 = 4, pct2 = 5, brl = 2, brl_mil = 3, usd = 2)
 
@@ -161,7 +161,7 @@ barra_biomas <- function(mun_id) {
   o <- order(-p); o <- o[p[o] > 0]
   txt <- paste(sprintf("%s %s", names(p)[o], fmt_valor(p[o], "pct1")), collapse = " · ")
   tagList(HTML(sprintf('<svg viewBox="0 0 100 10" preserveAspectRatio="none" width="100%%" height="10" style="max-width:320px;display:block;border-radius:3px;margin:.2rem 0" role="img" aria-label="%s">%s</svg>', esc(txt), seg)),
-          span(class = "sub", txt, " do território (IBGE, Biomas 1:250 mil, 2019). O bioma dominante define o grupo do município."))
+          span(class = "sub", txt, " do território (IBGE, Biomas 1:250 mil, 2019). O bioma dominante determina o grupo a que o município pertence."))
 }
 
 # ---- Perfil do município ---------------------------------------------------------
@@ -204,9 +204,9 @@ cabecalho_municipio <- function(mun_id) {
         span(class = "sub", style = "margin-left:.5rem;white-space:nowrap", sprintf("Código IBGE %d", m$id_municipio))),
       barra_biomas(mun_id),
       p(class = "sub", style = "margin-top:.3rem",
-        HTML(sprintf(paste0("Tipo municipal da agricultura familiar no Manuscrito 1 do Projeto RESA: %s, com %d municípios ",
-                            "(K-means, k = 5, sobre os escores da análise fatorial de 21 variáveis do Censo Agropecuário 2017). ",
-                            '<a href="../resultados/tipologia.html">Ver a tipologia</a>.'), m$tipo_m1, nt))))
+        HTML(sprintf(paste0("No Manuscrito 1 do Projeto RESA, o município integra o tipo municipal da agricultura familiar %s, que reúne %d municípios ",
+                            "(tipologia obtida por <i>k-means</i>, com k = 5, a partir dos escores da análise fatorial de 21 variáveis do Censo Agropecuário 2017). ",
+                            '<a href="../resultados/tipologia.html">Detalhes da tipologia</a>.'), m$tipo_m1, nt))))
 }
 
 aviso_sede <- function(mun_id) {
@@ -215,19 +215,19 @@ aviso_sede <- function(mun_id) {
   pl <- PIL[PIL$id_municipio == mun_id, ]
   div(class = "aviso-municipio",
       p(style = "margin-bottom:.35rem", tags$b(sprintf("Sede da área-piloto %s. ", m$piloto)), selo_conciliacao(), " ",
-        HTML(sprintf('Modalidade: %s. Bioma do piloto: %s (%s). Reconhecimento de campo: %s. <a href="%s">Página da área-piloto</a>.',
+        HTML(sprintf('Modalidade: %s. Bioma da área-piloto: %s (%s). Reconhecimento de campo: %s. <a href="%s">Página da área-piloto</a>.',
                      esc(pl$modalidade), pl$bioma, esc(sub(" \\(([0-9]{4})\\)", ", \\1", pl$bioma_fonte)), esc(pl$reconhecimento_campo),
                      link_piloto(m$piloto_slug)))),
       p(style = "margin-bottom:0", tags$b("O município não é a área-piloto. "),
-        "Os números desta página descrevem o município inteiro, ou toda a sua agricultura familiar. ",
-        "Dão o contexto da área-piloto, não medem a área-piloto. Famílias e área do piloto ficam fora até a conciliação das fontes."))
+        "Os números desta página descrevem o município inteiro ou o conjunto de sua agricultura familiar. ",
+        "Desse modo, fornecem o contexto da área-piloto, mas não a medem; os números de famílias e de área referentes à área-piloto somente serão publicados após a conciliação das fontes."))
 }
 
 variacao_txt <- function(id, mun_id) {
   u <- ultimo(id, mun_id)
-  if (!identical(u$sinal, "valor")) return(paste("teve variação", SINAL_TXT[[u$sinal]]))
+  if (!identical(u$sinal, "valor")) return(paste("apresentou variação", SINAL_TXT[[u$sinal]]))
   v <- u$valor
-  if (abs(v) < 0.05) "ficou estável" else if (v > 0) paste("cresceu", fmt_valor(v, "pct1")) else paste("caiu", fmt_valor(-v, "pct1"))
+  if (abs(v) < 0.05) "permaneceu estável" else if (v > 0) paste("cresceu", fmt_valor(v, "pct1")) else paste("diminuiu", fmt_valor(-v, "pct1"))
 }
 
 texto_perfil <- function(mun_id) {
@@ -236,17 +236,17 @@ texto_perfil <- function(mun_id) {
   P <- list()
   # 1. Estrutura
   P[[1]] <- sprintf(paste0(
-    "Em 2017, o Censo Agropecuário do IBGE contou <b>%s estabelecimentos da agricultura familiar</b> (AF) em %s, %s dos estabelecimentos agropecuários do município ",
-    "(total de MT: %s). A AF ocupava %s ha, %s da área dos estabelecimentos, com área média de <b>%s ha por estabelecimento</b> (%s: %s ha; média de MT: %s ha). ",
-    "O pessoal ocupado na AF somava %s pessoas."),
+    "Em 2017, o Censo Agropecuário do Instituto Brasileiro de Geografia e Estatística (IBGE) registrou <b>%s estabelecimentos da agricultura familiar</b> (AF) em %s, o que correspondia a %s dos estabelecimentos agropecuários do município ",
+    "(no conjunto de MT, essa participação era de %s). A AF ocupava %s ha, isto é, %s da área dos estabelecimentos, com área média de <b>%s ha por estabelecimento</b> (%s: %s ha; média de MT: %s ha). ",
+    "Além disso, o pessoal ocupado na AF somava %s pessoas."),
     tv("estab_af", mun_id), nome, tv("pct_estab_af", mun_id), fmt_valor(tt("pct_af_estab_mt"), "pct1"),
     tv("area_af", mun_id), tv("pct_area_af", mun_id), tv("area_media_af", mun_id), mb, med_txt("area_media_af", mun_id),
     fmt_valor(tt("area_media_af_mt"), "dec1"), tv("pessoal_af", mun_id))
   P[[1]] <- paste0(P[[1]], " ", if (tem_valor("valor_prod_af", mun_id))
-    sprintf("O valor da produção da AF somou <b>%s</b> (valores de 2017), ou %s por estabelecimento; %s.",
+    sprintf("O valor da produção da AF alcançou <b>%s</b> (valores de 2017), o equivalente a %s por estabelecimento; %s.",
             tv("valor_prod_af", mun_id), tv("valor_prod_estab_af", mun_id),
-            if (tem_valor("pct_valor_animal_af", mun_id)) sprintf("a produção animal respondeu por %s desse valor", tv("pct_valor_animal_af", mun_id))
-            else sprintf("a parcela da produção animal não é publicada: %s", tv("pct_valor_animal_af", mun_id)))
+            if (tem_valor("pct_valor_animal_af", mun_id)) sprintf("a produção animal, por sua vez, respondeu por %s desse valor", tv("pct_valor_animal_af", mun_id))
+            else sprintf("a parcela da produção animal, contudo, não é publicada: %s", tv("pct_valor_animal_af", mun_id)))
     else sprintf("O valor da produção da AF não é publicado para o município: %s.", tv("valor_prod_af", mun_id)))
   # 2. Tecnologia e alimentos
   # Frase com o valor ou, quando o sinal é – (zero absoluto), com "nenhum"
@@ -255,43 +255,43 @@ texto_perfil <- function(mun_id) {
     if (identical(u$sinal, TRACO)) sprintf(nenhum, paste0(TRACO, ", zero absoluto")) else sprintf(com_valor, tv(id, mun_id))
   }
   P[[2]] <- paste0(sprintf(paste0(
-    "Em 2017, %s dos estabelecimentos da AF tinham trator, %s recebiam orientação técnica e %s obtiveram financiamento ",
-    "(%s: %s, %s e %s). "),
+    "Quanto à tecnologia, à assistência e ao crédito, verifica-se que, em 2017, %s dos estabelecimentos da AF tinham trator, %s recebiam orientação técnica e %s obtiveram financiamento ",
+    "(%s: %s, %s e %s, respectivamente). "),
     tv("pct_trator_af", mun_id), tv("pct_orientacao_af", mun_id), tv("pct_financiamento_af", mun_id), sprintf("medianas dos municípios do bioma %s", b),
     med_txt("pct_trator_af", mun_id), med_txt("pct_orientacao_af", mun_id), med_txt("pct_financiamento_af", mun_id)),
-    frase_pct("pct_consumo_proprio_af", "A produção era principalmente para consumo próprio em %s dos estabelecimentos da AF",
-              "Nenhum estabelecimento da AF produzia principalmente para consumo próprio (%s)"),
-    frase_pct("pct_leite_af", ", e %s produziam leite de vaca.", "; nenhum produzia leite de vaca (%s)."))
+    frase_pct("pct_consumo_proprio_af", "Observa-se, ainda, que %s dos estabelecimentos da AF produziam principalmente para consumo próprio",
+              "Observa-se, ainda, que nenhum estabelecimento da AF produzia principalmente para consumo próprio (%s)"),
+    frase_pct("pct_leite_af", " e que %s produziam leite de vaca.", " e que nenhum estabelecimento da AF produzia leite de vaca (%s)."))
   # 3. Posse
   e46 <- ultimo("estab_af_46504", mun_id)
   txt46 <- if (identical(e46$sinal, "valor") && isTRUE(e46$valor > 0))
-    sprintf("Na categoria 46504 do Censo 2017, de concessionário(a) ou assentado(a) aguardando titulação definitiva, %s, %s da AF do município (total de MT: %s).",
-            if (e46$valor == 1) "estava <b>1 estabelecimento da AF</b>" else sprintf("estavam <b>%s estabelecimentos da AF</b>", tv("estab_af_46504", mun_id)),
+    sprintf("Em relação à posse, a categoria 46504 do Censo 2017, que corresponde à condição de concessionário(a) ou assentado(a) aguardando titulação definitiva, reunia %s, o que representava %s da AF do município (no conjunto de MT, %s).",
+            if (e46$valor == 1) "<b>1 estabelecimento da AF</b>" else sprintf("<b>%s estabelecimentos da AF</b>", tv("estab_af_46504", mun_id)),
             tv("pct_estab_46504", mun_id), fmt_valor(tt("pct_46504_estab_mt"), "pct1"))
   else if (identical(e46$sinal, TRACO) || (identical(e46$sinal, "valor") && isTRUE(e46$valor == 0)))
-    sprintf("O Censo 2017 não registrou estabelecimento da AF na categoria 46504, de concessionário(a) ou assentado(a) aguardando titulação definitiva: o valor é %s.",
+    sprintf("Em relação à posse, o Censo 2017 não registrou estabelecimento da AF na categoria 46504, que corresponde à condição de concessionário(a) ou assentado(a) aguardando titulação definitiva; o valor publicado é %s.",
             tv("estab_af_46504", mun_id))
-  else sprintf("O número de estabelecimentos da AF na categoria 46504, de concessionário(a) ou assentado(a) aguardando titulação definitiva, não é publicado: %s.",
+  else sprintf("Em relação à posse, o número de estabelecimentos da AF na categoria 46504, que corresponde à condição de concessionário(a) ou assentado(a) aguardando titulação definitiva, não é publicado: %s.",
                tv("estab_af_46504", mun_id))
   npa <- ultimo("n_pa", mun_id)$valor
   txtpa <- if (isTRUE(npa > 0))
-    sprintf("No SIPRA do INCRA, %s sede no município, com %s famílias assentadas e %s ha (Relatório 0227, posição de 03/06/2025; cada projeto conta só no município-sede).",
+    sprintf("No Sistema de Informações de Projetos de Reforma Agrária (SIPRA) do Instituto Nacional de Colonização e Reforma Agrária (INCRA), %s sede no município, com %s famílias assentadas e %s ha (Relatório 0227, posição de 03/06/2025; cada projeto é contabilizado apenas no município-sede).",
             if (npa == 1) "1 projeto de assentamento tem" else sprintf("%s projetos de assentamento têm", tv("n_pa", mun_id)),
             tv("fam_pa", mun_id), tv("area_pa", mun_id))
-  else "O SIPRA do INCRA não registra projeto de assentamento com sede no município (Relatório 0227, posição de 03/06/2025)."
+  else "O Sistema de Informações de Projetos de Reforma Agrária (SIPRA) do Instituto Nacional de Colonização e Reforma Agrária (INCRA) não registra projeto de assentamento com sede no município (Relatório 0227, posição de 03/06/2025)."
   sub46 <- if (isTRUE(npa > 0) && !(identical(e46$sinal, "valor") && isTRUE(e46$valor > 0)))
-    "A ausência na categoria 46504 não quer dizer ausência de assentados: a categoria sub-registra a reforma agrária, porque quem já tem título aparece como proprietário(a)."
-  else "A categoria 46504 sub-registra a reforma agrária, porque quem já tem título aparece como proprietário(a)."
-  P[[3]] <- paste(txt46, txtpa, sub46, '<a href="../resultados/posse.html">Ver Posse no Censo e reforma agrária</a>.')
+    "Ressalta-se que a ausência de registro na categoria 46504 não implica ausência de famílias assentadas, uma vez que a categoria sub-registra a reforma agrária: o produtor que já obteve o título aparece como proprietário(a)."
+  else "Cabe ressaltar que a categoria 46504 sub-registra a reforma agrária, uma vez que o produtor que já obteve o título aparece como proprietário(a)."
+  P[[3]] <- paste(txt46, txtpa, sub46, 'O tema é discutido em <a href="../resultados/posse.html">Posse no Censo e reforma agrária</a>.')
   # 4. Clima e dinâmica
   ub <- ultimo("seeg_emissao_bruta", mun_id)
   P[[4]] <- if (identical(ub$sinal, "valor") && isTRUE(ub$valor > 0)) {
     pm <- 100 * ultimo("seeg_mut", mun_id)$valor / ub$valor; pa <- 100 * ultimo("seeg_agropecuaria", mun_id)$valor / ub$valor
-    sprintf(paste0("Em 2024, o SEEG 13 estimou <b>%s mil tCO2e</b> de emissões brutas para o município inteiro, não só para a AF (GWP-AR5): %s vieram da mudança de uso da terra e florestas e %s da agropecuária. ",
-                   "As remoções somaram %s mil tCO2e."),
+    sprintf(paste0("Para 2024, o Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG 13) estimou emissões brutas de <b>%s mil tCO2e</b> (GWP-AR5) no município inteiro, e não apenas na AF. Desse total, %s provieram da mudança de uso da terra e florestas e %s, da agropecuária. ",
+                   "As remoções, no mesmo ano, somaram %s mil tCO2e."),
             tv("seeg_emissao_bruta", mun_id), fmt_valor(pm, "pct1"), fmt_valor(pa, "pct1"), tv("seeg_remocoes", mun_id))
-  } else sprintf("Emissões brutas em 2024 (SEEG 13, município inteiro): %s mil tCO2e.", tv("seeg_emissao_bruta", mun_id))
-  P[[4]] <- paste(P[[4]], sprintf(paste0("Entre os Censos Agropecuários de 2006 e 2017, o número de estabelecimentos agropecuários do município (AF e não AF) %s, e a área %s."),
+  } else sprintf("Emissões brutas estimadas para 2024 pelo Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG 13), no município inteiro: %s mil tCO2e.", tv("seeg_emissao_bruta", mun_id))
+  P[[4]] <- paste(P[[4]], sprintf(paste0("Por fim, entre os Censos Agropecuários de 2006 e 2017, o número de estabelecimentos agropecuários do município (AF e não AF) %s, e a área %s."),
                                   variacao_txt("var_estab_0617", mun_id), variacao_txt("var_area_0617", mun_id)))
   tagList(lapply(P, function(x) p(HTML(x))))
 }
@@ -400,16 +400,16 @@ meta_indicador <- function(id) {
   ano <- if (identical(r$origem, "sipra")) "2025 (posição de 03/06/2025)"
          else if (isTRUE(r$serie == 1)) sprintf("%s (série %s)", r$ano_ref, periodo_serie(id))
          else if (identical(r$origem, "censo2006_2017")) "2006 e 2017 (variação entre os Censos)" else as.character(r$ano_ref)
-  sentido <- c("-1" = "menor é mais favorável", "0" = "indicador de contexto, sem sentido de melhor ou pior", "1" = "maior é mais favorável")[[as.character(r$sentido)]]
+  sentido <- c("-1" = "valores menores são mais favoráveis", "0" = "indicador de contexto, sem sentido de melhor ou pior", "1" = "valores maiores são mais favoráveis")[[as.character(r$sentido)]]
   linha <- function(rot, ...) tagList(tags$dt(style = "font-weight:600;color:#4b5563", rot), tags$dd(style = "margin:0", ...))
   div(class = "meta-ind",
       tags$dl(style = "display:grid;grid-template-columns:minmax(7.5rem,max-content) 1fr;gap:.25rem 1rem;font-size:.92rem;margin:0 0 1rem",
               linha("Tema", a(href = paste0("index.html#", r$dim), r$tema)),
-              linha("Unidade", r$unidade, if (identical(r$fmt, "brl_mil")) span(class = "sub", " · na tela, em reais (mil, mi, bi); no CSV, em R$ mil")),
+              linha("Unidade", r$unidade, if (identical(r$fmt, "brl_mil")) span(class = "sub", " · exibida em reais (mil, mi, bi); no CSV, em R$ mil")),
               linha("Ano de referência", ano),
               linha("Fonte", links_sidra(r$fonte)),
               linha("Cálculo", r$calculo,
-                    span(class = "sub", sprintf(" · agregados por %s · %s. Nomes das variáveis no dicionário dos downloads.", REGRA_TXT[[r$agregacao]], sentido))),
+                    span(class = "sub", sprintf(" · agregados por %s · %s. Os nomes das variáveis constam do dicionário dos downloads.", REGRA_TXT[[r$agregacao]], sentido))),
               if (!is.na(r$nota) && nzchar(r$nota)) linha("Nota", r$nota)))
 }
 
@@ -421,21 +421,21 @@ notas_indicador <- function(id) {
     comp <- ""
     if (id %in% names(est)) {
       tot <- 1000 * tt(est[[id]]); dif <- tot - soma
-      comp <- if (abs(dif) < 0.05) sprintf(" Em 2024, os municípios somam %s mil tCO2e, o mesmo que o total estadual do SEEG.", fmt_valor(soma, "dec1"))
-              else sprintf(" Em 2024, os municípios somam %s mil tCO2e, e o total estadual do SEEG é de %s mil tCO2e; a diferença, de %s mil tCO2e, não é atribuída a município.",
+      comp <- if (abs(dif) < 0.05) sprintf(" Em 2024, a soma dos municípios atinge %s mil tCO2e, valor igual ao total estadual do SEEG.", fmt_valor(soma, "dec1"))
+              else sprintf(" Em 2024, a soma dos municípios atinge %s mil tCO2e, ao passo que o total estadual do SEEG é de %s mil tCO2e; a diferença, de %s mil tCO2e, não é atribuída a nenhum município.",
                            fmt_valor(soma, "dec1"), fmt_valor(tot, "dec1"), fmt_valor(dif, "dec1"))
     }
-    n <- c(n, paste0("**O SEEG mede o município inteiro, não a agricultura familiar.** As estimativas cobrem todas as atividades do território municipal (SEEG 13, Observatório do Clima, GWP-AR5).", comp,
-                     " Os dados municipais do SEEG não estão nos downloads do site até a conferência da licença; a fonte é o portal do SEEG. ", NOTA_1990))
+    n <- c(n, paste0("**O SEEG mede o município inteiro, e não a agricultura familiar.** As estimativas do Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG 13, Observatório do Clima, GWP-AR5) abrangem todas as atividades do território municipal.", comp,
+                     " Os dados municipais do SEEG não integram os downloads do site até a conferência da licença; para obtê-los, deve-se recorrer ao portal do SEEG. ", NOTA_1990))
   }
   if (identical(r$origem, "censo2006_2017"))
-    n <- c(n, "**Dinâmica 2006–2017: todos os estabelecimentos agropecuários (AF e não AF).** A soma municipal de 2006 não fecha com a tabela estadual do IBGE: 112.987 contra 112.978 estabelecimentos e 48,69 contra 47,81 milhões de ha. Leia as variações municipais com essa ressalva.")
+    n <- c(n, "**Dinâmica 2006–2017: todos os estabelecimentos agropecuários (AF e não AF).** A soma municipal de 2006 não coincide com a tabela estadual do Instituto Brasileiro de Geografia e Estatística (IBGE): 112.987 contra 112.978 estabelecimentos e 48,69 contra 47,81 milhões de ha. Por essa razão, as variações municipais devem ser interpretadas com essa ressalva.")
   if (grepl("46504", id))
-    n <- c(n, "**A categoria 46504 sub-registra a reforma agrária.** Ela reúne só os produtores na condição de concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017); quem já tem título aparece como proprietário(a). Não equivale ao total de assentados. Ver [Posse no Censo e reforma agrária](../resultados/posse.qmd).")
+    n <- c(n, "**A categoria 46504 sub-registra a reforma agrária.** A categoria reúne apenas os produtores na condição de concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017); o produtor que já obteve o título, por sua vez, aparece como proprietário(a). Portanto, a categoria não equivale ao total de assentados. O tema é discutido em [Posse no Censo e reforma agrária](../resultados/posse.qmd).")
   if (identical(r$origem, "sipra"))
-    n <- c(n, "**O SIPRA conta cada projeto no município-sede** (INCRA, Relatório 0227, posição de 03/06/2025). Projetos que se estendem por mais de um município não são divididos, e as áreas-piloto de crédito fundiário não são projetos do INCRA.")
+    n <- c(n, "**O Sistema de Informações de Projetos de Reforma Agrária (SIPRA) contabiliza cada projeto no município-sede** (INCRA, Relatório 0227, posição de 03/06/2025). Os projetos que se estendem por mais de um município não são divididos entre eles; além disso, as áreas-piloto de crédito fundiário não constituem projetos do INCRA.")
   if (identical(r$origem, "censo2017") && !grepl("46504", id))
-    n <- c(n, "Agricultura familiar conforme a Lei 11.326/2006, na tipologia do Censo Agropecuário 2017. X é sigilo do IBGE, não zero.")
+    n <- c(n, "A agricultura familiar segue a definição da Lei 11.326/2006, na tipologia do Censo Agropecuário 2017. O sinal X indica dado sob sigilo do Instituto Brasileiro de Geografia e Estatística (IBGE), e não zero.")
   n
 }
 
@@ -458,7 +458,7 @@ cartoes_indicador <- function(id) {
                  sprintf("%d de %d municípios com valor publicado", ag$n_usados, ag$n_mun)),
       oficial,
       cartao_kpi("Mediana dos municípios de MT", fmt_valor(ag$mediana * e$f, e$fmt), paste0(unid(r), " · ", ag$ano),
-                 sprintf("%s conta como zero; X e ... ficam fora", TRACO)),
+                 sprintf("%s é tratado como zero; X e ... são excluídos", TRACO)),
       cartao_kpi("Sinais do IBGE nos 141 municípios", HTML(sprintf('%d <span class="sub">com valor</span>', cont[["valor"]])),
                  HTML(sprintf('<span class="sinal sinal-x">X</span> %d · <span class="sinal sinal-zero">%s</span> %d · <span class="sinal sinal-nd">...</span> %d',
                               cont[["X"]], TRACO, cont[[TRACO]], cont[["..."]])),
@@ -523,7 +523,7 @@ tabela_ind_recorte <- function(id, prefixo = "../municipios/") {
                 onclick = sprintf("Reactable.downloadDataCSV('%s', 'resa_%s.csv', {columnIds: [%s]})", id_tab, id,
                                   paste0("'", dl, "'", collapse = ", ")),
                 "Baixar o recorte filtrado (CSV)")
-  else p(class = "nota-fonte", "Os dados municipais do SEEG não estão disponíveis para download no site até a conferência da licença.")
+  else p(class = "nota-fonte", "Os dados municipais do SEEG não estão disponíveis para download no site até a conclusão da conferência da licença.")
   tagList(
     botao,
     reactable(d, elementId = id_tab, filterable = TRUE, searchable = TRUE, compact = TRUE, striped = TRUE, highlight = TRUE,
@@ -546,9 +546,9 @@ tabela_ind_recorte <- function(id, prefixo = "../municipios/") {
                                    filterMethod = filtro_igual,
                                    style = function(v) if (!identical(v, "valor publicado")) list(fontWeight = 600) else list(color = "#6b7280")),
                 ano = colDef(name = "Ano", align = "center", minWidth = 60, filterable = FALSE))),
-    p(class = "nota-fonte", "O CSV traz uma linha por município, com o valor (ponto decimal) e o sinal. Quando o sinal é X (sigilo), ",
-      TRACO, " (zero absoluto) ou ... (não disponível), a coluna do valor traz o próprio sinal, como nas tabelas do IBGE; não leia essas células como zero.",
-      if (isTRUE(r$download == 1)) tagList(" Todos os indicadores juntos, com dicionário: ",
+    p(class = "nota-fonte", "O arquivo CSV contém uma linha por município, com o valor (separador decimal em ponto) e o sinal. Quando o sinal é X (sigilo), ",
+      TRACO, " (zero absoluto) ou ... (não disponível), a coluna do valor registra o próprio sinal, à semelhança das tabelas do IBGE. As células com X ou ... não equivalem a zero, e o sinal – indica zero absoluto.",
+      if (isTRUE(r$download == 1)) tagList(" O conjunto completo dos indicadores, acompanhado de dicionário, encontra-se no arquivo ",
                                            a(href = "../arquivos/dados/resa_indicadores_municipios.csv", download = NA, "resa_indicadores_municipios.csv"),
                                            " (", a(href = "../dados/index.html", "Dados"), ")."))
   )

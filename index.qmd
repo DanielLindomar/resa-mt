@@ -11,10 +11,10 @@ source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "pag_inicio.R"))
 ```
 
 ```{r}
-faixa_versao("Versão preliminar para a equipe do projeto. Os resultados mudam à medida que as etapas do estudo são concluídas. Os rótulos dos tipos municipais são provisórios.")
+faixa_versao("Versão preliminar para a equipe do projeto. Os resultados podem ser alterados à medida que as etapas do estudo forem concluídas, e os rótulos dos tipos municipais permanecem provisórios.")
 ```
 
-Os assentamentos rurais de Mato Grosso podem ser economicamente viáveis com a floresta em pé? O Projeto RESA busca essa resposta nos três biomas do estado (Amazônia, Cerrado e Pantanal), a partir dos 141 municípios e de três áreas-piloto.
+O Projeto RESA investiga se os assentamentos rurais de Mato Grosso podem ser economicamente viáveis com a floresta em pé, nos três biomas do estado (Amazônia, Cerrado e Pantanal), com base na análise dos 141 municípios e de três áreas-piloto.
 
 ```{r}
 atalhos_inicio()
@@ -22,17 +22,19 @@ atalhos_inicio()
 
 ## Mato Grosso em números
 
+Os cartões a seguir sintetizam indicadores da agricultura familiar (AF), dos assentamentos, das emissões e do desmatamento em Mato Grosso, com a indicação da fonte, da unidade e do ano de cada número.
+
 ```{r}
 kpis_inicio()
 ```
 
 ::: {.nota-fonte}
-A série do PRODES é a oficial do INPE. Ela substitui uma série usada antes nos materiais do projeto; veja a nota de correção em [Emissões e desmatamento](resultados/emissoes.qmd). Os totais são estaduais e oficiais; a soma dos municípios pode diferir um pouco (ver [Dados](dados/index.qmd)).
+Utiliza-se a série oficial do PRODES, sistema de monitoramento do desmatamento por satélite do Instituto Nacional de Pesquisas Espaciais (INPE), que substitui a série empregada anteriormente nos materiais do projeto, conforme a nota de correção apresentada em [Emissões e desmatamento](resultados/emissoes.qmd). Os totais apresentados são estaduais e oficiais, e a soma dos municípios pode diferir ligeiramente deles (ver [Dados](dados/index.qmd)).
 :::
 
-## Os 141 municípios
+## Distribuição dos 141 municípios por tipo e bioma
 
-O primeiro mapa mostra o tipo municipal da agricultura familiar no Manuscrito 1 do projeto; o segundo, o bioma dominante. As sedes das três áreas-piloto têm contorno escuro. Passe o cursor (ou toque) para ver o nome; clique num município para abrir o perfil.
+Os mapas a seguir apresentam, respectivamente, o tipo municipal da agricultura familiar definido no Manuscrito 1 do projeto e o bioma dominante de cada município. As sedes das três áreas-piloto são destacadas com contorno escuro. O nome de cada município é exibido ao se posicionar o cursor sobre ele (ou ao tocá-lo), e o respectivo perfil é aberto ao se clicar no município.
 
 ```{r}
 mapas_inicio(altura = 380)
@@ -42,15 +44,15 @@ mapas_inicio(altura = 380)
 aviso_municipio()
 ```
 
-## As três áreas-piloto
+## Áreas-piloto
 
-Uma área por bioma. Os números de famílias e de área ainda divergem entre as fontes e entram depois da conciliação.
+Adotou-se uma área-piloto por bioma para o estudo de campo. Os números de famílias e de área ainda divergem entre as fontes e, por esse motivo, serão incorporados somente após a conciliação entre elas.
 
 ```{r}
 cartoes_pilotos()
 ```
 
-## O que há no site
+## Seções do observatório
 
 ```{r}
 cartoes_secoes()
@@ -58,13 +60,15 @@ cartoes_secoes()
 
 ## Novidades
 
-**19/10/2026 — Versão 0.1.** É a primeira versão para a equipe do projeto. Entram:
+**23/10/2026 — Versão 0.1.1.** Os textos das páginas foram revistos em linguagem científica, sem alteração de números, fontes ou resultados.
 
-- os 141 municípios, com `r nrow(IND)` indicadores e os sinais do IBGE à vista;
-- as fontes dos indicadores: Censo Agropecuário 2017 da agricultura familiar, INCRA/SIPRA, SEEG 13 e dinâmica 2006–2017;
+**19/10/2026 — Versão 0.1.** Trata-se da primeira versão destinada à equipe do projeto, que contempla:
+
+- os 141 municípios, com `r nrow(IND)` indicadores e a exibição dos sinais do IBGE;
+- as fontes dos indicadores, a saber, o Censo Agropecuário 2017 da agricultura familiar, o INCRA/SIPRA, o SEEG 13 e a dinâmica 2006–2017;
 - a tipologia municipal do Manuscrito 1 (k = 5, rótulos provisórios);
 - a posse no Censo e a reforma agrária;
-- emissões e desmatamento por tipo, com a série oficial do PRODES e a nota de correção;
-- as três áreas-piloto, só com identificação, e os seis objetivos;
-- a literatura, só com metadados: 115 referências sobre carbono, mercados e ESG e 38 estudos comparados do OE4;
-- os dados para baixar, com dicionário, fontes e licenças.
+- as emissões e o desmatamento por tipo, com a série oficial do PRODES e a nota de correção;
+- as três áreas-piloto, apresentadas apenas com a identificação, e os seis objetivos específicos;
+- a literatura, restrita aos metadados, com 115 referências sobre carbono, mercados e ESG e 38 estudos comparados do OE4;
+- os dados para download, acompanhados de dicionário, fontes e licenças.

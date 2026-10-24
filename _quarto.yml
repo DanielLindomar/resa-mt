@@ -72,9 +72,12 @@ website:
         text: Sobre
   page-footer:
     left: |
-      Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 19/10/2026
+      Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 23/10/2026
     right: |
       ![UNEMAT](/assets/logo-unemat.png){height=40}
+
+crossref:
+  title-delim: " –"
 
 format:
   html:

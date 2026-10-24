@@ -41,7 +41,7 @@ mapa_municipio(M$id_municipio, altura = 340, prefixo = "../municipios/")
 ```
 
 ```{r}
-p(class = "nota-fonte", sprintf("%s em destaque entre os municípios de MT, por bioma dominante (IBGE, Biomas 1:250 mil, 2019). O mapa não mostra o perímetro da área-piloto.", M$municipio))
+p(class = "nota-fonte", sprintf("%s em destaque entre os municípios de MT, classificados por bioma dominante (IBGE, Biomas 1:250 mil, 2019). Ressalta-se que o mapa não representa o perímetro da área-piloto.", M$municipio))
 ```
 ::::
 :::
@@ -50,7 +50,7 @@ p(class = "nota-fonte", sprintf("%s em destaque entre os municípios de MT, por 
 homonimos(PIL_SLUG)
 ```
 
-## O município de `r M$municipio` no contexto de MT
+## O município de `r M$municipio` no contexto de Mato Grosso
 
 ```{r}
 aviso_municipio()
@@ -68,20 +68,20 @@ legenda_sinais()
 #| results: asis
 if (identical(s46504$sinal, TRACO)) {
   cat(sprintf(paste0(
-    "No Censo Agropecuário 2017, %s aparece com %s (zero absoluto) em estabelecimentos da agricultura familiar de ",
-    "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017). Isso não quer dizer que não haja assentados no município. ",
-    "A categoria mede como o produtor declarou a sua condição em relação às terras: quem já tem título aparece como proprietário, ",
-    "e ela não coincide com o cadastro do INCRA. Veja [Posse no Censo e reforma agrária](../resultados/posse.qmd).\n"),
+    "No Censo Agropecuário 2017, %s apresenta %s (zero absoluto) em estabelecimentos da agricultura familiar na categoria ",
+    "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017). Esse registro não implica a inexistência de assentados no município, ",
+    "uma vez que a categoria mede a condição declarada pelo produtor em relação às terras: o produtor que já dispõe de título aparece como proprietário, ",
+    "e a categoria não coincide com o cadastro do INCRA. O tema é discutido em [Posse no Censo e reforma agrária](../resultados/posse.qmd).\n"),
     M$municipio, TRACO))
 }
 ```
 
 ```{r}
-p("Perfil completo, com todos os indicadores, posição no bioma e em MT: ",
+p("O perfil completo do município, com todos os indicadores e a posição no bioma e em MT, encontra-se na página do ",
   a(href = url_mun(M$slug), paste("município de", M$municipio, "→")))
 ```
 
-## O que vem e quando
+## Próximas etapas
 
 ```{r}
 o_que_vem()

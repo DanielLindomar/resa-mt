@@ -1,6 +1,6 @@
 ---
 title: "Indicadores"
-description: "Os 34 indicadores municipais do Observatório RESA-MT, em seis temas, com mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela com os sinais do IBGE"
+description: "Apresentação dos 34 indicadores municipais do Observatório RESA-MT, organizados em seis temas, com mapa dos 141 municípios de Mato Grosso, classificação no bioma e em MT e tabela com os sinais do IBGE"
 toc: false
 page-layout: full
 ---
@@ -10,28 +10,28 @@ page-layout: full
 source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "R", "funcoes.R"))
 source(file.path(RAIZ, "R", "pag_municipios.R"))
 TXT_TEMA <- c(
-  estrutura  = "Tamanho e peso da agricultura familiar (AF) no município: estabelecimentos, área, pessoal ocupado e valor da produção. IBGE, Censo Agropecuário 2017.",
-  tecnologia = "Máquinas, práticas, energia elétrica, orientação técnica, financiamento e DAP nos estabelecimentos da AF. IBGE, Censo Agropecuário 2017.",
-  alimentos  = "Para que e o que a AF produz: consumo próprio, leite de vaca, mandioca e horticultura. IBGE, Censo Agropecuário 2017.",
-  posse      = paste("Condição do produtor em relação às terras (IBGE, Censo Agropecuário 2017) e projetos de assentamento do INCRA (SIPRA, Relatório 0227, posição de 03/06/2025).",
-                     "A categoria 46504 sub-registra a reforma agrária, e o SIPRA conta cada projeto só no município-sede."),
-  clima      = "Emissões e remoções de gases de efeito estufa estimadas pelo SEEG 13 para o município inteiro, não só para a AF (GWP-AR5): de 1970 a 2024 nas emissões brutas e da agropecuária; de 1990 a 2024 na mudança de uso da terra e nas remoções.",
-  dinamica   = "Variação do número e da área de todos os estabelecimentos agropecuários (AF e não AF) entre os Censos de 2006 e 2017. A soma municipal de 2006 não fecha com a tabela estadual.")
+  estrutura  = "Os indicadores deste tema dimensionam o tamanho e o peso da agricultura familiar (AF) no município, com base no número de estabelecimentos, na área, no pessoal ocupado e no valor da produção (IBGE, Censo Agropecuário 2017).",
+  tecnologia = "Este tema descreve a presença de máquinas, de práticas agrícolas, de energia elétrica, de orientação técnica, de financiamento e da Declaração de Aptidão ao Pronaf (DAP) nos estabelecimentos da AF (IBGE, Censo Agropecuário 2017).",
+  alimentos  = "Neste tema, caracterizam-se a finalidade e a composição da produção da AF, isto é, o consumo próprio, o leite de vaca, a mandioca e a horticultura (IBGE, Censo Agropecuário 2017).",
+  posse      = paste("Reúnem-se aqui a condição do produtor em relação às terras (IBGE, Censo Agropecuário 2017) e os projetos de assentamento do Instituto Nacional de Colonização e Reforma Agrária (INCRA), registrados no Sistema de Informações de Projetos de Reforma Agrária (SIPRA, Relatório 0227, posição de 03/06/2025).",
+                     "Ressalta-se que a categoria 46504 sub-registra a reforma agrária e que o SIPRA contabiliza cada projeto apenas no município-sede."),
+  clima      = "Este tema compreende as emissões e remoções de gases de efeito estufa estimadas pelo SEEG 13 para o município inteiro, e não apenas para a AF (GWP-AR5). As séries cobrem o período de 1970 a 2024 nas emissões brutas e da agropecuária e o de 1990 a 2024 na mudança de uso da terra e nas remoções.",
+  dinamica   = "Os indicadores deste tema medem a variação do número e da área de todos os estabelecimentos agropecuários (AF e não AF) entre os Censos de 2006 e 2017. Cabe ressaltar, contudo, que a soma municipal de 2006 não coincide com a tabela estadual.")
 ```
 
 ```{r}
 faixa_versao()
 ```
 
-São `r nrow(IND)` indicadores para os 141 municípios de Mato Grosso, em seis temas. Cada indicador tem uma página com:
+O observatório reúne `r nrow(IND)` indicadores para os 141 municípios de Mato Grosso (MT), organizados em seis temas. A página de cada indicador contém os seguintes componentes:
 
-- o **mapa por cores** dos 141 municípios, por quintis, com X em cinza;
-- o **ranking** no bioma e em MT, com as três sedes das áreas-piloto em destaque;
-- a **série** no tempo, quando há (SEEG);
-- os agregados por bioma e por tipo do Manuscrito 1;
-- a **tabela completa**, com a coluna de sinal e o download do recorte.
+- o **mapa coroplético** dos 141 municípios, com classes definidas por quintis e X em cinza;
+- a **classificação** (*ranking*) no bioma e em MT, com destaque para as três sedes das áreas-piloto;
+- a **série temporal**, quando disponível, nos indicadores do Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG);
+- os agregados por bioma e por tipo do Manuscrito 1 (M1);
+- a **tabela completa**, com a coluna de sinal do Instituto Brasileiro de Geografia e Estatística (IBGE) e o download do recorte.
 
-Cada cartão mostra o valor de Mato Grosso: a soma dos municípios, nos totais; a razão das somas, nas proporções e médias; a variação das somas, na dinâmica. Os indicadores-chave levam o selo [chave]{.selo}.
+Cada cartão informa o valor de Mato Grosso, calculado como a soma dos municípios, nos totais; como a razão das somas, nas proporções e médias; e como a variação das somas, nos indicadores de dinâmica. Os indicadores-chave são identificados pelo selo [chave]{.selo}.
 
 ```{r}
 legenda_sinais()
@@ -41,14 +41,14 @@ legenda_sinais()
 #| results: asis
 for (d in names(TEMAS)) {
   n <- sum(IND$dim == d)
-  cat(sprintf("## %s {#%s}\n\n%s %d indicadores.\n\n", TEMAS[[d]], d, TXT_TEMA[[d]], n))
+  cat(sprintf("## %s {#%s}\n\n%s O tema reúne %d indicadores.\n\n", TEMAS[[d]], d, TXT_TEMA[[d]], n))
   cat("```{=html}\n", as.character(cartoes_tema(d)), "\n```\n\n", sep = "")
 }
 ```
 
 ## Comparação por bioma e por tipo do M1
 
-Agregados de cada indicador no ano de referência. Biomas pelo IBGE 1:250 mil (2019); tipos do Manuscrito 1 (k = 5), com rótulos provisórios. Onde há X, o agregado usa só os municípios com valor publicado.
+As tabelas a seguir apresentam os agregados de cada indicador no ano de referência. Os biomas seguem o mapeamento do IBGE na escala 1:250 mil (2019), e os tipos, a tipologia do Manuscrito 1 (k = 5), cujos rótulos são provisórios. Nos grupos com X, o agregado considera apenas os municípios com valor publicado.
 
 ::: {.panel-tabset}
 

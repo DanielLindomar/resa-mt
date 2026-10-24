@@ -1,6 +1,6 @@
 ---
 title: "Área dos projetos de assentamento com sede no município"
-description: "Posse e reforma agrária · hectares · 2025. Mapa dos 141 municípios de Mato Grosso, ranking no bioma e em MT e tabela dos 141 municípios. Fonte: INCRA/SIPRA, Relatório 0227 (posição de 03/06/2025)."
+description: "Indicador do tema Posse e reforma agrária. Unidade: hectares; referência: 2025. Apresentam-se o mapa dos 141 municípios de Mato Grosso, a classificação no bioma e em MT e a tabela dos 141 municípios. Fonte: INCRA/SIPRA, Relatório 0227 (posição de 03/06/2025)."
 toc: false
 page-layout: full
 ---

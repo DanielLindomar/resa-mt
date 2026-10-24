@@ -50,7 +50,7 @@
 #   ident_piloto(slug)              -> lista de identificação da área
 #   homonimos(slug = NULL)          -> aviso de homônimos (de uma área ou de todas)
 #   kpi_mun(id, mun_id)             -> cartão de um indicador, rotulado como do município
-#   o_que_vem()                     -> lista "O que vem e quando", sem datas
+#   o_que_vem()                     -> lista das próximas etapas, sem datas
 # =============================================================================
 
 # ---- Estilo ----------------------------------------------------------------------
@@ -127,22 +127,22 @@ OES <- tibble::tribble(
   ~oe,   ~nome,                          ~fase, ~pergunta,
   ~entrega, ~situacao,
   "OE1", "Território e uso da terra",    "1",
-  "Como mudaram o uso e a cobertura da terra e a paisagem nas áreas-piloto?",
+  "De que modo se alteraram o uso e a cobertura da terra e a estrutura da paisagem nas áreas-piloto?",
   "Mapas de uso e cobertura da terra e análise de métricas de paisagem", "andamento",
   "OE2", "Produção e renda",             "1",
-  "Quanto custam, rendem e empregam os sistemas produtivos das famílias?",
+  "Quais são os custos, a renda e o emprego gerados pelos sistemas produtivos das famílias?",
   "Banco de dados de desempenho técnico e econômico; relatórios de diagnóstico socioeconômico e produtivo", "andamento",
   "OE3", "Ambiente e carbono",           "1",
-  "Qual é o saldo de carbono desses sistemas e como estão a água e o solo?",
+  "Qual é o balanço de carbono desses sistemas e qual é a situação da água e do solo?",
   "Relatórios de balanço de carbono por área-piloto e indicadores socioambientais", "andamento",
   "OE4", "Cenários bioeconômicos",       "2",
-  "A transição para práticas de baixo carbono se paga, com e sem pagamento por serviços ambientais e carbono?",
+  "A transição para práticas de baixo carbono é financeiramente viável, com e sem pagamento por serviços ambientais e receita de carbono?",
   "Relatórios de cenários e de análise bioeconômica; ferramentas de avaliação de projetos", "andamento",
   "OE5", "Inovação e capital social",    "3",
-  "O que leva as famílias a adotar e difundir inovações, e como fortalecer a rede de atores?",
+  "Quais fatores levam as famílias a adotar e difundir inovações, e de que modo se pode fortalecer a rede de atores?",
   "Relatórios das oficinas participativas; protocolos de engajamento comunitário", "previsto",
   "OE6", "Pacote Tecnológico",           "3",
-  "Como reunir os resultados num pacote útil para famílias e gestores públicos?",
+  "De que modo os resultados podem ser reunidos em um pacote útil para as famílias e os gestores públicos?",
   "Pacote Tecnológico “Floresta em Pé”; banco de dados curado; sumários para gestores, artigos e materiais didáticos", "previsto"
 )
 OES$pagina <- tolower(OES$oe)
@@ -154,7 +154,7 @@ tabela_oes <- function(prefixo = "") {
             tags$td(selo_situacao(o$situacao)))
   })
   rolagem(tags$table(class = "tabela-oe",
-                     tags$thead(tags$tr(tags$th("Objetivo"), tags$th("Fase"), tags$th("Pergunta"),
+                     tags$thead(tags$tr(tags$th("Objetivo"), tags$th("Fase"), tags$th("Pergunta de pesquisa"),
                                         tags$th("Entrega principal"), tags$th("Situação em 19/10/2026"))),
                      tags$tbody(linhas)))
 }
@@ -167,9 +167,9 @@ MARCOS <- tibble::tribble(
             "Dados secundários dos 141 municípios e revisão de literatura.",
   2026, 4,  "Modelagem do banco de dados", "andamento", "",
   2026, 8,  "Visita às áreas-piloto e reuniões com representantes das famílias", "confirmar",
-            "Situação a confirmar pela coordenação: falta confirmar se o reconhecimento de campo de agosto foi feito nas áreas-piloto.",
+            "Situação a confirmar pela coordenação: resta verificar se o reconhecimento de campo de agosto foi realizado nas áreas-piloto.",
   2026, 12, "Levantamento de dados em campo", "previsto",
-            "Sem data confirmada: depende da aprovação do questionário no Comitê de Ética em Pesquisa.",
+            "Sem data confirmada, uma vez que depende da aprovação do questionário pelo Comitê de Ética em Pesquisa.",
   2026, 12, "Modelagem dos bancos de dados", "andamento", "",
   2027, 1,  "Planejamento das oficinas de cocriação; bancos de dados preliminares", "previsto", "",
   2027, 4,  "Modelos de simulação; refinamento dos bancos de dados", "previsto", "",
@@ -202,7 +202,7 @@ bloco_situacao <- function(oe, itens) {
       tags$ul(lapply(itens, function(x) tags$li(selo_situacao(x[[1]]), " ", x[[2]],
                                                  if (length(x) > 2) span(class = "nota-marco", x[[3]])))),
       p(class = "nota-fonte", style = "margin:.4rem 0 0",
-        "Selos atribuídos a partir do registro interno do projeto; ainda serão validados pela coordenação."))
+        "Os selos foram atribuídos com base no registro interno do projeto e ainda serão validados pela coordenação."))
 }
 
 nav_oes <- function(oe) {
@@ -227,7 +227,7 @@ AREA_MUN <- tibble::tibble(id_municipio = GEO$id_municipio,
 
 fonte_prodes_mun <- function() {
   f <- PRODES_FONTE[1, ]
-  sprintf("Fonte: INPE, PRODES Amazônia, Cerrado e Pantanal (bioma), incremento anual de desmatamento por município, painel TerraBrasilis v%s; acesso em %s; atualização do INPE em %s. Área municipal: cálculo próprio sobre a Malha Municipal 2022 do IBGE.",
+  sprintf("Fonte: Elaboração própria com base em INPE, PRODES Amazônia, Cerrado e Pantanal (bioma), incremento anual de desmatamento por município, painel TerraBrasilis v%s (acesso em %s; atualização do INPE em %s). Área municipal: cálculo próprio sobre a Malha Municipal 2022 do IBGE.",
           f$versao_painel, format(as.Date(f$data_acesso), "%d/%m/%Y"), format(as.Date(f$atualizacao_inpe), "%d/%m/%Y"))
 }
 
@@ -267,7 +267,7 @@ prodes_largo <- function() {
 
 tabela_prodes_mun <- function(prefixo = "../municipios/") {
   d <- prodes_largo() |> arrange(desc(j_tot))
-  na_txt <- '<span class="nao-se-aplica" title="Não se aplica: o município não está na máscara deste bioma no PRODES">n.a.</span>'
+  na_txt <- '<span class="nao-se-aplica" title="Não se aplica: o município não integra a máscara deste bioma no PRODES">n.a.</span>'
   t <- tibble::tibble(
     Municipio = ifelse(d$sede_piloto, paste0(esc(d$municipio), '<span class="tag-sede" title="Município-sede de área-piloto">sede</span>'), esc(d$municipio)),
     slug = d$slug, Bioma = d$bioma,
@@ -287,9 +287,9 @@ tabela_prodes_mun <- function(prefixo = "../municipios/") {
                 ult = colnum("Total", 74)),
               columnGroups = list(colGroup(name = "2017–2025 (km²)", columns = c("amz", "cer", "pan", "tot", "pct")),
                                   colGroup(name = "2025 (km²)", columns = "ult"))),
-    p(class = "nota-fonte", "Bioma: bioma dominante do município (IBGE, 1:250 mil, 2019). Amazônia, Cerrado e Pantanal: incremento em cada máscara do PRODES. ",
-      "n.a.: não se aplica (o município não está na máscara daquele bioma). % território: total de 2017–2025 sobre a área do município. ",
-      "Dentro da máscara, o PRODES só lista o município no ano em que mapeou incremento; ano sem registro conta como 0 km² (nenhum incremento mapeado)."))
+    p(class = "nota-fonte", "Nota: a coluna Bioma indica o bioma dominante do município (IBGE, 1:250 mil, 2019), e as colunas Amazônia, Cerrado e Pantanal apresentam o incremento em cada máscara do PRODES. ",
+      "n.a.: não se aplica (o município não integra a máscara daquele bioma). % território: razão entre o total de 2017–2025 e a área do município. ",
+      "Dentro da máscara, o PRODES lista o município apenas nos anos em que mapeou incremento; o ano sem registro é contabilizado como 0 km² (nenhum incremento mapeado)."))
 }
 
 mapa_prodes_mun <- function(campo = c("km2", "pct"), altura = 440, prefixo = "../municipios/") {
@@ -366,17 +366,17 @@ url_piloto <- function(slug, prefixo = "") paste0(prefixo, PIL_PAGINA[[slug]], "
 PIL_INFO <- list(
   "vale-do-arinos" = list(
     modalidade = "Projeto de assentamento (PA) do INCRA, código MT0641000, criado em 09/09/2003.",
-    homonimos = c("O PCA Arinos, também em Juara, é outro projeto. Não é este piloto."),
-    notas = c("O bioma informado é o do município-sede. O bioma do próprio assentamento será conferido com o perímetro validado.")),
+    homonimos = c("O PCA Arinos, também situado em Juara, constitui outro projeto e não corresponde à área-piloto Vale do Arinos."),
+    notas = c("O bioma informado corresponde ao do município-sede; o bioma do próprio assentamento será conferido com base no perímetro validado.")),
   "quata-nsa-aparecida" = list(
-    modalidade = "N. Sra. Aparecida: projeto do crédito fundiário (Programa Nacional de Crédito Fundiário, PNCF), em que a família paga pela terra. Quatá: modalidade a confirmar.",
-    homonimos = c("Há projetos de assentamento chamados N. Sra. Aparecida em Diamantino, Várzea Grande e Alta Floresta. Nenhum deles é este piloto.",
-                  "O assentamento N. Sra. Aparecida do MST, em Campo Novo do Parecis, também é outra área."),
-    notas = c("Por ser do crédito fundiário, N. Sra. Aparecida não é projeto de assentamento do INCRA. Nos cenários do OE4, a parcela paga pela terra entra no fluxo de caixa da família.")),
+    modalidade = "N. Sra. Aparecida: projeto do crédito fundiário (Programa Nacional de Crédito Fundiário, PNCF), modalidade em que a família paga pela terra. Quatá: modalidade a confirmar.",
+    homonimos = c("Há projetos de assentamento denominados N. Sra. Aparecida em Diamantino, Várzea Grande e Alta Floresta, e nenhum deles corresponde à área-piloto Quatá e N. Sra. Aparecida.",
+                  "O assentamento N. Sra. Aparecida do Movimento dos Trabalhadores Rurais Sem Terra (MST), em Campo Novo do Parecis, também constitui área distinta."),
+    notas = c("Por pertencer ao crédito fundiário, N. Sra. Aparecida não constitui projeto de assentamento do INCRA. Desse modo, nos cenários do OE4, a parcela paga pela terra integra o fluxo de caixa da família.")),
   "lambari" = list(
     modalidade = "Banco da Terra (crédito fundiário).",
-    homonimos = c("A Fazenda Lambari, de Jaciara, é outra área. Não é este piloto.",
-                  "O município de Lambari D'Oeste também não é este piloto."),
+    homonimos = c("A Fazenda Lambari, de Jaciara, constitui outra área e não corresponde à área-piloto Lambari.",
+                  "O município de Lambari D'Oeste tampouco corresponde à área-piloto Lambari."),
     notas = character(0))
 )
 
@@ -399,7 +399,7 @@ tabela_pilotos <- function(prefixo = "") {
               tags$td(chip_bioma(P$bioma)), tags$td(PIL_INFO[[P$slug]]$modalidade),
               tags$td(selo_conciliacao()), tags$td(P$reconhecimento_campo))
     }))),
-    p(class = "nota-fonte", "Bioma: o do município-sede (bioma dominante, IBGE, Biomas 1:250 mil, 2019). Modalidade e código do projeto: registros do projeto e INCRA. Famílias e área divergem entre as fontes e só entram depois da conciliação."))
+    p(class = "nota-fonte", "Nota: o bioma corresponde ao bioma dominante do município-sede (IBGE, Biomas 1:250 mil, 2019). Modalidade e código do projeto: registros do projeto e do INCRA. Os números de famílias e de área divergem entre as fontes e somente serão incluídos após a conciliação."))
 }
 
 ident_piloto <- function(slug) {
@@ -410,16 +410,16 @@ ident_piloto <- function(slug) {
     tags$dt("Bioma"), tags$dd(chip_bioma(P$bioma), span(class = "sub", " bioma dominante do município-sede (IBGE, Biomas 1:250 mil, 2019)")),
     tags$dt("Modalidade"), tags$dd(PIL_INFO[[slug]]$modalidade),
     tags$dt("Tipo do município no M1"), tags$dd(chip_tipo(M$tipo_m1)),
-    tags$dt("Famílias e área"), tags$dd(selo_conciliacao(), span(class = "sub", " as fontes divergem; os números entram depois da conciliação")),
+    tags$dt("Famílias e área"), tags$dd(selo_conciliacao(), span(class = "sub", " as fontes divergem, e os números serão incluídos após a conciliação")),
     tags$dt("Reconhecimento de campo"), tags$dd(P$reconhecimento_campo),
-    tags$dt("Perímetro"), tags$dd("Não publicado. O mapa mostra só o município-sede."))
+    tags$dt("Perímetro"), tags$dd("Não publicado; o mapa apresenta apenas o município-sede."))
 }
 
 homonimos <- function(slug = NULL) {
   sl <- if (is.null(slug)) PIL$slug else slug
   itens <- unlist(lapply(sl, function(s) PIL_INFO[[s]]$homonimos))
-  div(class = "aviso-homonimo", tags$b("Cuidado com os homônimos. "),
-      if (is.null(slug)) "Outras áreas com nomes parecidos não são os pilotos do projeto:" else NULL,
+  div(class = "aviso-homonimo", tags$b("Atenção aos homônimos. "),
+      if (is.null(slug)) "As áreas de nome semelhante listadas a seguir não correspondem às áreas-piloto do projeto:" else NULL,
       tags$ul(lapply(itens, tags$li)))
 }
 
@@ -435,11 +435,11 @@ kpi_mun <- function(id, mun_id, prefixo = "../indicadores/") {
 
 o_que_vem <- function() {
   itens <- list(
-    c("previsto", "Quadro “fonte × número” com famílias e área de cada piloto, depois da conciliação entre as fontes."),
-    c("previsto", "Perímetro de cada área, validado pela equipe de SIG do projeto."),
-    c("previsto", "Uso e cobertura da terra e métricas de paisagem nas áreas-piloto (OE1). Depende do perímetro validado."),
-    c("previsto", "Diagnóstico socioeconômico e produtivo com dados de campo (OE2). Depende da aprovação do questionário no Comitê de Ética em Pesquisa."),
+    c("previsto", "Quadro “fonte × número” com as famílias e a área de cada área-piloto, após a conciliação entre as fontes."),
+    c("previsto", "Perímetro de cada área, validado pela equipe de sistemas de informação geográfica (SIG) do projeto."),
+    c("previsto", "Uso e cobertura da terra e métricas de paisagem nas áreas-piloto (OE1), etapa que depende do perímetro validado."),
+    c("previsto", "Diagnóstico socioeconômico e produtivo com dados de campo (OE2), etapa que depende da aprovação do questionário pelo Comitê de Ética em Pesquisa."),
     c("previsto", "Balanço de carbono (OE3) e cenários de viabilidade (OE4) por área-piloto."))
   tagList(tags$ul(class = "lista-lacunas", lapply(itens, function(x) tags$li(selo_situacao(x[[1]]), " ", x[[2]]))),
-          p(class = "nota-fonte", "Nenhuma dessas etapas tem data confirmada. O reconhecimento de campo nas áreas-piloto está a confirmar."))
+          p(class = "nota-fonte", "Nenhuma dessas etapas dispõe de data confirmada, e o reconhecimento de campo nas áreas-piloto encontra-se a confirmar."))
 }
