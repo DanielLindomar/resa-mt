@@ -268,22 +268,22 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="cell">
 <div class="cell-output-display">
-<div class="faixa-versao">Versão preliminar para a equipe do projeto. Bases congeladas em 19/10/2026. Os sinais do IBGE (X, – e ...) aparecem como publicados e nunca viram zero.</div>
+<div class="faixa-versao">Versão preliminar para a equipe do projeto. Bases congeladas em 19/10/2026. Os sinais do IBGE (X, – e ...) são apresentados como publicados e nunca são convertidos em zero.</div>
 </div>
 </div>
 <section id="explorador-de-indicadores" class="level2">
 <h2 class="anchored" data-anchor-id="explorador-de-indicadores">Explorador de indicadores</h2>
-<p>A tabela traz o valor de 30 indicadores para os 141 municípios de Mato Grosso, no ano de referência de cada um. Use as listas para escolher município, bioma, tipo, tema ou indicador, e o botão para baixar o recorte em CSV. Para ver um indicador em mapa, use a página <a href="../indicadores/index.html">Indicadores</a>. Os 4 indicadores de emissões (SEEG) aparecem só nas páginas do site, porque a licença de redistribuição ainda está em conferência.</p>
+<p>A tabela a seguir apresenta o valor de 30 indicadores para os 141 municípios de Mato Grosso, no ano de referência de cada um. As listas de seleção permitem filtrar os registros por município, bioma, tipo, tema ou indicador, e o botão situado acima da tabela possibilita baixar o recorte filtrado em formato CSV. Para a visualização de um indicador em mapa, utiliza-se a página <a href="../indicadores/index.html">Indicadores</a>. Os 4 indicadores de emissões do Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (SEEG) aparecem apenas nas páginas do site, uma vez que a licença de redistribuição ainda se encontra em conferência.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="legenda-sinais">
-Sinais do IBGE: 
+Sinais convencionais do IBGE: 
 <b>X</b>
- sigilo (dado omitido para não identificar o informante) · 
+ sigilo (dado omitido para evitar a identificação do informante) · 
 <b>–</b>
  zero absoluto · 
 <b>...</b>
- não disponível. Nenhum deles é tratado como zero na exibição.
+ não disponível. Na exibição, nenhum desses sinais é tratado como zero.
 </div>
 </div>
 </div>
@@ -295,25 +295,26 @@ Sinais do IBGE:
 </div>
 </div>
 <div class="nota-fonte">
-<p>Tipos do Manuscrito 1 (rótulos provisórios): T1 · Baixo porte agregado; T2 · Posse aguardando titulação, sem especialização; T3 · Grande porte agregado; T4 · Mecanizado com posse aguardando titulação; T5 · Hortícola-irrigado. Bioma dominante: IBGE 1:250 mil (2019). No CSV do recorte, o número fica em <code>Valor</code>, com ponto decimal. Quando o IBGE não publica o número, <code>Valor</code> traz o próprio sinal (X, – ou …), como nas tabelas do IBGE, e a coluna <code>Sinal</code> repete o sinal; nenhuma dessas células é zero. É a mesma regra dos arquivos abaixo. A coluna <code>Fonte</code> vai no CSV.</p>
+<p>Tipos do Manuscrito 1 (M1), com rótulos provisórios: T1 · Baixo porte agregado; T2 · Posse aguardando titulação, sem especialização; T3 · Grande porte agregado; T4 · Mecanizado com posse aguardando titulação; T5 · Hortícola-irrigado. Bioma dominante: Instituto Brasileiro de Geografia e Estatística (IBGE), escala 1:250 mil (2019). No CSV do recorte, o número é registrado na coluna <code>Valor</code>, com ponto decimal. Quando o IBGE não publica o número, a coluna <code>Valor</code> traz o próprio sinal (X, – ou …), tal como nas tabelas do IBGE, e a coluna <code>Sinal</code> o repete; as células com X ou … não equivalem a zero, e o sinal – indica zero absoluto. Trata-se da mesma regra adotada nos arquivos disponibilizados a seguir. A coluna <code>Fonte</code> também é incluída no CSV.</p>
 </div>
 </section>
-<section id="arquivos-para-baixar" class="level2">
-<h2 class="anchored" data-anchor-id="arquivos-para-baixar">Arquivos para baixar</h2>
-<p>Todos os arquivos estão em UTF-8, separados por vírgula, com ponto decimal. A chave <code>id_municipio</code> é o código IBGE de 7 dígitos. Cada base tem um dicionário (coluna, descrição, unidade e fonte). Nas bases do Censo, cada variável tem uma coluna <code>sinal_&lt;variável&gt;</code> com <code>valor</code>, X, – ou …; quando não há número, a coluna da variável traz o próprio sinal, como nas tabelas do IBGE. Nos arquivos com o tipo do M1, a coluna <code>rotulo_status</code> lembra que o rótulo é provisório.</p>
+<section id="arquivos-disponíveis-para-download" class="level2">
+<h2 class="anchored" data-anchor-id="arquivos-disponíveis-para-download">Arquivos disponíveis para download</h2>
+<p>Todos os arquivos estão codificados em UTF-8, com campos separados por vírgula e ponto decimal. A chave <code>id_municipio</code> corresponde ao código IBGE de 7 dígitos, e cada base é acompanhada de um dicionário com coluna, descrição, unidade e fonte. Nas bases do Censo, cada variável dispõe de uma coluna <code>sinal_&lt;variável&gt;</code>, preenchida com <code>valor</code>, X, – ou …; quando não há número, a coluna da variável traz o próprio sinal, tal como nas tabelas do IBGE. Por fim, nos arquivos que contêm o tipo do M1, a coluna <code>rotulo_status</code> indica que o rótulo é provisório.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-d6d515db6f3e65aefb3c" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d6d515db6f3e65aefb3c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["Dados municipais","Dados municipais","Dados municipais","Dados municipais","Dados municipais","Dados municipais","Dados municipais","Literatura","Literatura","Literatura","Literatura","Malha municipal"],"Arquivo":["resa_indicadores_municipios.csv","resa_censo2017_af_municipios.csv","resa_tipologia_m1_municipios.csv","resa_incra_sipra_municipios.csv","resa_dinamica_2006_2017_municipios.csv","fontes_licencas.csv","catalogo_downloads.csv","resa_refs_carbono_esg.csv","resa_estudos_saf_psa_oe4.csv","resa_literatura_estudos.csv","resa_literatura_estudos.bib","mt_municipios.geojson"],"pasta":["dados","dados","dados","dados","dados","dados","dados","literatura","literatura","literatura","literatura","geo"],"Descrição":["Os indicadores municipais do site, menos os do SEEG, em formato largo, com o sinal de cada célula","Variáveis do Censo Agropecuário 2017 da agricultura familiar usadas nos indicadores, com o sinal de cada célula","Tipo municipal da agricultura familiar no Manuscrito 1 (k = 5), com rótulo provisório e bioma","Projetos de assentamento, famílias, capacidade e área por município-sede (INCRA/SIPRA, posição de 03/06/2025)","Estabelecimentos e área (todos os estabelecimentos) em 2006 e 2017, por município","Fontes, uso no site e licenças","Catálogo das bases de dados (linhas, colunas e tamanho)","As 115 referências da revisão sobre carbono, mercados e ESG, só com metadados","Os 38 estudos comparados do OE4: local, bioma, público, arranjo e DOI","As duas listas da literatura numa tabela só, com a coluna corpus","As referências da literatura em BibTeX, sem resumos","Malha dos 141 municípios de MT (IBGE, Malha Municipal 2022), simplificada para a web, com bioma e tipo do M1 (rótulo provisório)"],"Linhas":[141,141,141,141,141,10,7,115,38,153,"NA","NA"],"Colunas":[66,58,6,6,8,6,5,8,6,8,"NA","NA"],"KB":[72.2,41.1,13.5,5.8,9,2,0.5,25.9,5,38.3,47.1,329.8],"dic":["../arquivos/dados/dicionarios/resa_indicadores_municipios.csv","../arquivos/dados/dicionarios/resa_censo2017_af_municipios.csv","../arquivos/dados/dicionarios/resa_tipologia_m1_municipios.csv","../arquivos/dados/dicionarios/resa_incra_sipra_municipios.csv","../arquivos/dados/dicionarios/resa_dinamica_2006_2017_municipios.csv","","","../arquivos/literatura/dicionarios/resa_refs_carbono_esg.csv","../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv","../arquivos/literatura/dicionarios/resa_literatura_estudos.csv","","../arquivos/geo/dicionarios/mt_municipios.csv"]},"columns":[{"id":"Grupo","name":"Grupo","type":"character","minWidth":130},{"id":"Arquivo","name":"Arquivo","type":"character","cell":[{"name":"a","attribs":{"href":"../arquivos/dados/resa_indicadores_municipios.csv","download":"resa_indicadores_municipios.csv"},"children":["resa_indicadores_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_censo2017_af_municipios.csv","download":"resa_censo2017_af_municipios.csv"},"children":["resa_censo2017_af_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_tipologia_m1_municipios.csv","download":"resa_tipologia_m1_municipios.csv"},"children":["resa_tipologia_m1_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_incra_sipra_municipios.csv","download":"resa_incra_sipra_municipios.csv"},"children":["resa_incra_sipra_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_dinamica_2006_2017_municipios.csv","download":"resa_dinamica_2006_2017_municipios.csv"},"children":["resa_dinamica_2006_2017_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/fontes_licencas.csv","download":"fontes_licencas.csv"},"children":["fontes_licencas.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/catalogo_downloads.csv","download":"catalogo_downloads.csv"},"children":["catalogo_downloads.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_refs_carbono_esg.csv","download":"resa_refs_carbono_esg.csv"},"children":["resa_refs_carbono_esg.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_estudos_saf_psa_oe4.csv","download":"resa_estudos_saf_psa_oe4.csv"},"children":["resa_estudos_saf_psa_oe4.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_literatura_estudos.csv","download":"resa_literatura_estudos.csv"},"children":["resa_literatura_estudos.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_literatura_estudos.bib","download":"resa_literatura_estudos.bib"},"children":["resa_literatura_estudos.bib"]},{"name":"a","attribs":{"href":"../arquivos/geo/mt_municipios.geojson","download":"mt_municipios.geojson"},"children":["mt_municipios.geojson"]}],"minWidth":230},{"id":"pasta","name":"pasta","type":"character","show":false},{"id":"Descrição","name":"Descrição","type":"character","minWidth":300},{"id":"Linhas","name":"Linhas","type":"numeric","cell":["141","141","141","141","141","10","7","115","38","153","—","—"],"minWidth":70,"align":"right"},{"id":"Colunas","name":"Colunas","type":"numeric","cell":["66","58","6","6","8","6","5","8","6","8","—","—"],"minWidth":75,"align":"right"},{"id":"KB","name":"KB","type":"numeric","cell":["72,2","41,1","13,5","5,8","9,0","2,0","0,5","25,9","5,0","38,3","47,1","329,8"],"minWidth":70,"align":"right"},{"id":"dic","name":"Dicionário","type":"character","cell":[{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_indicadores_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_censo2017_af_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_tipologia_m1_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_incra_sipra_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_dinamica_2006_2017_municipios.csv"},"children":["dicionário"]},"—","—",{"name":"a","attribs":{"href":"../arquivos/literatura/dicionarios/resa_refs_carbono_esg.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/literatura/dicionarios/resa_literatura_estudos.csv"},"children":["dicionário"]},"—",{"name":"a","attribs":{"href":"../arquivos/geo/dicionarios/mt_municipios.csv"},"children":["dicionário"]}],"minWidth":95}],"groupBy":["Grupo"],"pagination":false,"defaultExpanded":true,"striped":true,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"4de9c11dae6af8e2351a6e19a07c0c96"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-59e2e55d1c88ffe88171" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-59e2e55d1c88ffe88171">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["Dados municipais","Dados municipais","Dados municipais","Dados municipais","Dados municipais","Dados municipais","Dados municipais","Literatura","Literatura","Literatura","Literatura","Malha municipal"],"Arquivo":["resa_indicadores_municipios.csv","resa_censo2017_af_municipios.csv","resa_tipologia_m1_municipios.csv","resa_incra_sipra_municipios.csv","resa_dinamica_2006_2017_municipios.csv","fontes_licencas.csv","catalogo_downloads.csv","resa_refs_carbono_esg.csv","resa_estudos_saf_psa_oe4.csv","resa_literatura_estudos.csv","resa_literatura_estudos.bib","mt_municipios.geojson"],"pasta":["dados","dados","dados","dados","dados","dados","dados","literatura","literatura","literatura","literatura","geo"],"Descrição":["Indicadores municipais do site, exceto os do SEEG, em formato largo, com o sinal de cada célula","Variáveis do Censo Agropecuário 2017 da agricultura familiar utilizadas nos indicadores, com o sinal de cada célula","Tipo municipal da agricultura familiar no Manuscrito 1 (k = 5), com rótulo provisório e bioma","Projetos de assentamento, famílias, capacidade e área por município-sede (INCRA/SIPRA, posição de 03/06/2025)","Estabelecimentos e área (todos os estabelecimentos) em 2006 e 2017, por município","Fontes, uso no site e licenças","Catálogo das bases de dados (linhas, colunas e tamanho)","As 115 referências da revisão sobre carbono, mercados e ESG, restritas aos metadados","Os 38 estudos comparados do OE4: local, bioma, público, arranjo e DOI","As duas listas da literatura reunidas em uma única tabela, com a coluna corpus","As referências da literatura em BibTeX, sem resumos","Malha dos 141 municípios de MT (IBGE, Malha Municipal 2022), simplificada para a web, com bioma e tipo do M1 (rótulo provisório)"],"Linhas":[141,141,141,141,141,10,7,115,38,153,"NA","NA"],"Colunas":[66,58,6,6,8,6,5,8,6,8,"NA","NA"],"KB":[72.2,41.1,13.5,5.8,9,2,0.5,25.9,5,38.3,47.1,329.8],"dic":["../arquivos/dados/dicionarios/resa_indicadores_municipios.csv","../arquivos/dados/dicionarios/resa_censo2017_af_municipios.csv","../arquivos/dados/dicionarios/resa_tipologia_m1_municipios.csv","../arquivos/dados/dicionarios/resa_incra_sipra_municipios.csv","../arquivos/dados/dicionarios/resa_dinamica_2006_2017_municipios.csv","","","../arquivos/literatura/dicionarios/resa_refs_carbono_esg.csv","../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv","../arquivos/literatura/dicionarios/resa_literatura_estudos.csv","","../arquivos/geo/dicionarios/mt_municipios.csv"]},"columns":[{"id":"Grupo","name":"Grupo","type":"character","minWidth":130},{"id":"Arquivo","name":"Arquivo","type":"character","cell":[{"name":"a","attribs":{"href":"../arquivos/dados/resa_indicadores_municipios.csv","download":"resa_indicadores_municipios.csv"},"children":["resa_indicadores_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_censo2017_af_municipios.csv","download":"resa_censo2017_af_municipios.csv"},"children":["resa_censo2017_af_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_tipologia_m1_municipios.csv","download":"resa_tipologia_m1_municipios.csv"},"children":["resa_tipologia_m1_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_incra_sipra_municipios.csv","download":"resa_incra_sipra_municipios.csv"},"children":["resa_incra_sipra_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/resa_dinamica_2006_2017_municipios.csv","download":"resa_dinamica_2006_2017_municipios.csv"},"children":["resa_dinamica_2006_2017_municipios.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/fontes_licencas.csv","download":"fontes_licencas.csv"},"children":["fontes_licencas.csv"]},{"name":"a","attribs":{"href":"../arquivos/dados/catalogo_downloads.csv","download":"catalogo_downloads.csv"},"children":["catalogo_downloads.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_refs_carbono_esg.csv","download":"resa_refs_carbono_esg.csv"},"children":["resa_refs_carbono_esg.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_estudos_saf_psa_oe4.csv","download":"resa_estudos_saf_psa_oe4.csv"},"children":["resa_estudos_saf_psa_oe4.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_literatura_estudos.csv","download":"resa_literatura_estudos.csv"},"children":["resa_literatura_estudos.csv"]},{"name":"a","attribs":{"href":"../arquivos/literatura/resa_literatura_estudos.bib","download":"resa_literatura_estudos.bib"},"children":["resa_literatura_estudos.bib"]},{"name":"a","attribs":{"href":"../arquivos/geo/mt_municipios.geojson","download":"mt_municipios.geojson"},"children":["mt_municipios.geojson"]}],"minWidth":230},{"id":"pasta","name":"pasta","type":"character","show":false},{"id":"Descrição","name":"Descrição","type":"character","minWidth":300},{"id":"Linhas","name":"Linhas","type":"numeric","cell":["141","141","141","141","141","10","7","115","38","153","—","—"],"minWidth":70,"align":"right"},{"id":"Colunas","name":"Colunas","type":"numeric","cell":["66","58","6","6","8","6","5","8","6","8","—","—"],"minWidth":75,"align":"right"},{"id":"KB","name":"KB","type":"numeric","cell":["72,2","41,1","13,5","5,8","9,0","2,0","0,5","25,9","5,0","38,3","47,1","329,8"],"minWidth":70,"align":"right"},{"id":"dic","name":"Dicionário","type":"character","cell":[{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_indicadores_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_censo2017_af_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_tipologia_m1_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_incra_sipra_municipios.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/dados/dicionarios/resa_dinamica_2006_2017_municipios.csv"},"children":["dicionário"]},"—","—",{"name":"a","attribs":{"href":"../arquivos/literatura/dicionarios/resa_refs_carbono_esg.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv"},"children":["dicionário"]},{"name":"a","attribs":{"href":"../arquivos/literatura/dicionarios/resa_literatura_estudos.csv"},"children":["dicionário"]},"—",{"name":"a","attribs":{"href":"../arquivos/geo/dicionarios/mt_municipios.csv"},"children":["dicionário"]}],"minWidth":95}],"groupBy":["Grupo"],"pagination":false,"defaultExpanded":true,"striped":true,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"01c5c60b75ae7dcf4cdaef67227269b4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="fontes-e-licenças" class="level2">
 <h2 class="anchored" data-anchor-id="fontes-e-licenças">Fontes e licenças</h2>
+<p>A tabela a seguir apresenta, para cada fonte, o órgão responsável, o produto, o uso no site, a licença, o endereço e a data de acesso.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-a2f778e386c9a86b7e77" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-a2f778e386c9a86b7e77">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Órgão":["IBGE","IBGE","IBGE","IBGE","INCRA","Observatório do Clima","INPE","INPE","MapBiomas","Projeto RESA"],"Produto":["Censo Agropecuário 2017 (SIDRA, API de agregados v3)","Censo Agropecuário 2006 (resultados municipais)","Biomas do Brasil, escala 1:250 mil (2019)","Malha Municipal 2022 (141 municípios de MT), simplificada para a web","SIPRA, Relatório 0227 (posição de 03/06/2025)","SEEG 13, emissões e remoções municipais e estaduais (GWP-AR5)","PRODES, painel TerraBrasilis v3.5.10: taxa anual de MT e incremento anual por bioma","PRODES Amazônia, Cerrado e Pantanal, painel TerraBrasilis v3.5.10: incremento anual por município","Coleção de cobertura e uso da terra, estatísticas municipais","Manuscrito 1 (em preparação): tipologia municipal k = 5"],"Uso no site":["indicadores da AF, posse (categoria 46504)","dinâmica 2006–2017 (todos os estabelecimentos)","bioma dominante de cada município","mapas do site e malha GeoJSON","projetos, famílias e área por município-sede","indicadores de clima","desmatamento oficial de MT","desmatamento por município (OE1) e por tipo do M1 (Artigo A refeito); fora dos downloads","previsto (OE1); ainda não usado","tipos dos municípios (rótulos provisórios)"],"Licença":["dados públicos; citar a fonte","dados públicos; citar a fonte","dados públicos; citar a fonte","dados públicos; citar a fonte","dados públicos; citar a fonte","licença a conferir; dados municipais fora dos downloads até a conferência","dados públicos; licença a conferir","dados públicos; licença a conferir","CC BY 4.0 (a conferir)","resultado do projeto; citar o projeto"],"Endereço":["https://sidra.ibge.gov.br","https://sidra.ibge.gov.br","https://www.ibge.gov.br/geociencias","https://www.ibge.gov.br/geociencias","https://www.gov.br/incra","https://seeg.eco.br","https://terrabrasilis.dpi.inpe.br","https://terrabrasilis.dpi.inpe.br","https://brasil.mapbiomas.org",""],"Acesso":["16/09/2026","fev/2026 (data do arquivo baixado)","16/09/2026","mar/2026","16/09/2026","abr/2026 (data do arquivo baixado)","19/10/2026","19/10/2026","não se aplica (ainda não usado)","19/10/2026"]},"columns":[{"id":"Órgão","name":"Órgão","type":"character","minWidth":110,"style":{"fontWeight":600}},{"id":"Produto","name":"Produto","type":"character","minWidth":230},{"id":"Uso no site","name":"Uso no site","type":"character","minWidth":200},{"id":"Licença","name":"Licença","type":"character","minWidth":200},{"id":"Endereço","name":"Endereço","type":"character","cell":[{"name":"a","attribs":{"href":"https://sidra.ibge.gov.br","target":"_blank","rel":"noopener"},"children":["sidra.ibge.gov.br"]},{"name":"a","attribs":{"href":"https://sidra.ibge.gov.br","target":"_blank","rel":"noopener"},"children":["sidra.ibge.gov.br"]},{"name":"a","attribs":{"href":"https://www.ibge.gov.br/geociencias","target":"_blank","rel":"noopener"},"children":["www.ibge.gov.br/geociencias"]},{"name":"a","attribs":{"href":"https://www.ibge.gov.br/geociencias","target":"_blank","rel":"noopener"},"children":["www.ibge.gov.br/geociencias"]},{"name":"a","attribs":{"href":"https://www.gov.br/incra","target":"_blank","rel":"noopener"},"children":["www.gov.br/incra"]},{"name":"a","attribs":{"href":"https://seeg.eco.br","target":"_blank","rel":"noopener"},"children":["seeg.eco.br"]},{"name":"a","attribs":{"href":"https://terrabrasilis.dpi.inpe.br","target":"_blank","rel":"noopener"},"children":["terrabrasilis.dpi.inpe.br"]},{"name":"a","attribs":{"href":"https://terrabrasilis.dpi.inpe.br","target":"_blank","rel":"noopener"},"children":["terrabrasilis.dpi.inpe.br"]},{"name":"a","attribs":{"href":"https://brasil.mapbiomas.org","target":"_blank","rel":"noopener"},"children":["brasil.mapbiomas.org"]},"—"],"minWidth":160},{"id":"Acesso","name":"Acesso","type":"character","minWidth":90,"align":"center"}],"pagination":false,"striped":true,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"c379355de1191584edd8231064abb122"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-8831d954385761d1ddf8" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8831d954385761d1ddf8">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Órgão":["IBGE","IBGE","IBGE","IBGE","INCRA","Observatório do Clima","INPE","INPE","MapBiomas","Projeto RESA"],"Produto":["Censo Agropecuário 2017 (SIDRA, API de agregados v3)","Censo Agropecuário 2006 (resultados municipais)","Biomas do Brasil, escala 1:250 mil (2019)","Malha Municipal 2022 (141 municípios de MT), simplificada para a web","SIPRA, Relatório 0227 (posição de 03/06/2025)","SEEG 13, emissões e remoções municipais e estaduais (GWP-AR5)","PRODES, painel TerraBrasilis v3.5.10: taxa anual de MT e incremento anual por bioma","PRODES Amazônia, Cerrado e Pantanal, painel TerraBrasilis v3.5.10: incremento anual por município","Coleção de cobertura e uso da terra, estatísticas municipais","Manuscrito 1 (em preparação): tipologia municipal k = 5"],"Uso no site":["indicadores da AF, posse (categoria 46504)","dinâmica 2006–2017 (todos os estabelecimentos)","bioma dominante de cada município","mapas do site e malha GeoJSON","projetos, famílias e área por município-sede","indicadores de clima","desmatamento oficial de MT","desmatamento por município (OE1) e por tipo do M1 (Artigo A refeito); fora dos downloads","previsto (OE1); ainda não usado","tipos dos municípios (rótulos provisórios)"],"Licença":["dados públicos; citar a fonte","dados públicos; citar a fonte","dados públicos; citar a fonte","dados públicos; citar a fonte","dados públicos; citar a fonte","licença a conferir; dados municipais fora dos downloads até a conferência","dados públicos; licença a conferir","dados públicos; licença a conferir","CC BY 4.0 (a conferir)","resultado do projeto; citar o projeto"],"Endereço":["https://sidra.ibge.gov.br","https://sidra.ibge.gov.br","https://www.ibge.gov.br/geociencias","https://www.ibge.gov.br/geociencias","https://www.gov.br/incra","https://seeg.eco.br","https://terrabrasilis.dpi.inpe.br","https://terrabrasilis.dpi.inpe.br","https://brasil.mapbiomas.org",""],"Acesso":["16/09/2026","fev/2026 (data do arquivo baixado)","16/09/2026","mar/2026","16/09/2026","abr/2026 (data do arquivo baixado)","19/10/2026","19/10/2026","não se aplica (ainda não usado)","19/10/2026"]},"columns":[{"id":"Órgão","name":"Órgão","type":"character","minWidth":110,"style":{"fontWeight":600}},{"id":"Produto","name":"Produto","type":"character","minWidth":230},{"id":"Uso no site","name":"Uso no site","type":"character","minWidth":200},{"id":"Licença","name":"Licença","type":"character","minWidth":200},{"id":"Endereço","name":"Endereço","type":"character","cell":[{"name":"a","attribs":{"href":"https://sidra.ibge.gov.br","target":"_blank","rel":"noopener"},"children":["sidra.ibge.gov.br"]},{"name":"a","attribs":{"href":"https://sidra.ibge.gov.br","target":"_blank","rel":"noopener"},"children":["sidra.ibge.gov.br"]},{"name":"a","attribs":{"href":"https://www.ibge.gov.br/geociencias","target":"_blank","rel":"noopener"},"children":["www.ibge.gov.br/geociencias"]},{"name":"a","attribs":{"href":"https://www.ibge.gov.br/geociencias","target":"_blank","rel":"noopener"},"children":["www.ibge.gov.br/geociencias"]},{"name":"a","attribs":{"href":"https://www.gov.br/incra","target":"_blank","rel":"noopener"},"children":["www.gov.br/incra"]},{"name":"a","attribs":{"href":"https://seeg.eco.br","target":"_blank","rel":"noopener"},"children":["seeg.eco.br"]},{"name":"a","attribs":{"href":"https://terrabrasilis.dpi.inpe.br","target":"_blank","rel":"noopener"},"children":["terrabrasilis.dpi.inpe.br"]},{"name":"a","attribs":{"href":"https://terrabrasilis.dpi.inpe.br","target":"_blank","rel":"noopener"},"children":["terrabrasilis.dpi.inpe.br"]},{"name":"a","attribs":{"href":"https://brasil.mapbiomas.org","target":"_blank","rel":"noopener"},"children":["brasil.mapbiomas.org"]},"—"],"minWidth":160},{"id":"Acesso","name":"Acesso","type":"character","minWidth":90,"align":"center"}],"pagination":false,"striped":true,"compact":true,"language":{"sortLabel":"Ordenar por {name}","filterPlaceholder":"Filtrar","filterLabel":"Filtrar {name}","searchPlaceholder":"Buscar","searchLabel":"Buscar na tabela","noData":"Nenhum registro encontrado","pageNext":"Próxima","pagePrevious":"Anterior","pageNumbers":"{page} de {pages}","pageInfo":"{rowStart}–{rowEnd} de {rows} linhas","pageSizeOptions":"Mostrar {rows}","pageNextLabel":"Próxima página","pagePreviousLabel":"Página anterior","pageNumberLabel":"Página {page}","pageJumpLabel":"Ir para a página","pageSizeOptionsLabel":"Linhas por página","groupExpandLabel":"Expandir grupo","detailsExpandLabel":"Mostrar detalhes","selectAllRowsLabel":"Selecionar todas as linhas","selectAllSubRowsLabel":"Selecionar todas as linhas do grupo","selectRowLabel":"Selecionar linha"},"dataKey":"c379355de1191584edd8231064abb122"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -325,16 +326,13 @@ Sinais do IBGE:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>A soma dos municípios não fecha com o total estadual
+<span class="screen-reader-only">Nota</span>Divergência entre a soma dos municípios e o total estadual
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Os totais da página inicial são os estaduais oficiais. Somar os municípios dá números um pouco diferentes:</p>
-<ul>
-<li><strong>Área dos estabelecimentos, 2017:</strong> a soma dos municípios dá 54.922.849 ha, contra 54.922.850 ha no total estadual; na agricultura familiar, 5.131.101 contra 5.131.104 ha. É arredondamento do IBGE (Censo Agropecuário 2017).</li>
-<li><strong>Emissões brutas, 2024:</strong> os municípios somam 230,98 MtCO₂e, contra 231,17 MtCO₂e do estado. A diferença, cerca de 0,19 MtCO₂e, são emissões que o SEEG 13 não aloca a município.</li>
-<li><strong>Censo Agropecuário 2006:</strong> a soma dos municípios dá 112.987 estabelecimentos e 48,69 milhões de ha, contra 112.978 estabelecimentos e 47,81 milhões de ha na tabela estadual de comparação 2006–2017. A diferença de área é de cerca de 1,8%. A tabela de confronto dos Censos do IBGE (série histórica) bate com a soma dos municípios. Por isso, a dinâmica 2006–2017 vai sempre com esta nota.</li>
-</ul>
+<p>Os totais apresentados na página inicial correspondem aos totais estaduais oficiais, ao passo que a soma dos municípios resulta em valores ligeiramente diferentes. No caso da <strong>área dos estabelecimentos em 2017</strong>, a soma dos municípios alcança 54.922.849 ha, contra 54.922.850 ha no total estadual; na agricultura familiar, os valores são de 5.131.101 e 5.131.104 ha, respectivamente. Essa diferença decorre do arredondamento do IBGE (Censo Agropecuário 2017).</p>
+<p>Quanto às <strong>emissões brutas em 2024</strong>, os municípios somam 230,98 MtCO₂e, contra 231,17 MtCO₂e do estado. A diferença, de cerca de 0,19 MtCO₂e, corresponde a emissões que o SEEG 13 não aloca a municípios.</p>
+<p>Por fim, no <strong>Censo Agropecuário 2006</strong>, a soma dos municípios resulta em 112.987 estabelecimentos e 48,69 milhões de ha, contra 112.978 estabelecimentos e 47,81 milhões de ha na tabela estadual de comparação 2006–2017, o que representa diferença de área de cerca de 1,8%. Por outro lado, a tabela de confronto dos Censos do IBGE (série histórica) coincide com a soma dos municípios. Por essa razão, a dinâmica 2006–2017 é sempre acompanhada desta nota.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -343,19 +341,13 @@ Sinais do IBGE:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Uso e atribuição
+<span class="screen-reader-only">Nota</span>Condições de uso e atribuição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li><strong>Sinais do IBGE.</strong> X é sigilo (o dado foi omitido para não identificar o informante); – é zero absoluto; … é dado não disponível. Nos arquivos, a célula do número traz o próprio sinal e a coluna de sinal repete o sinal. X e … não são zero; o – é zero absoluto, mas aparece como –, não como 0. Em Araguainha, a irrigação não tem registro na API do SIDRA e aparece como …</li>
-<li><strong>Posse.</strong> A categoria 46504 do Censo 2017 é “concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)”. Ela não equivale ao total de assentados da reforma agrária; compare com os dados do INCRA/SIPRA.</li>
-<li><strong>Tipologia do Manuscrito 1.</strong> Os rótulos dos tipos são provisórios, até a aprovação dos autores. Cite o Projeto RESA.</li>
-<li><strong>SEEG 13.</strong> Os dados municipais aparecem nas páginas, com a fonte, mas ficam fora dos downloads até a conferência da licença. Os dados estão em <a href="https://seeg.eco.br">seeg.eco.br</a>.</li>
-<li><strong>PRODES.</strong> O site usa só a série oficial do INPE (TerraBrasilis), baixada em 19/10/2026. Veja a nota de correção em <a href="../resultados/emissoes.html">Emissões e desmatamento</a>.</li>
-<li><strong>MapBiomas.</strong> Previsto para o OE1; ainda não usado nesta versão.</li>
-<li><strong>Literatura.</strong> Os arquivos trazem só metadados, sem resumos de terceiros.</li>
-</ul>
+<p>Quanto aos <strong>sinais do IBGE</strong>, X indica sigilo, isto é, o dado foi omitido para não identificar o informante; – indica zero absoluto; e … indica dado não disponível. Nos arquivos, a célula do número traz o próprio sinal, e a coluna de sinal o repete. Destaca-se que X e … não equivalem a zero, ao passo que o – corresponde a zero absoluto, mas é apresentado como –, e não como 0. Em Araguainha, a irrigação não possui registro na interface de programação de aplicações (API, do inglês <em>application programming interface</em>) do Sistema IBGE de Recuperação Automática (SIDRA) e é apresentada com o sinal … (dado não disponível).</p>
+<p>Em relação à <strong>posse</strong>, a categoria 46504 do Censo 2017 corresponde a “concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)”. Essa categoria não equivale ao total de assentados da reforma agrária, razão pela qual se recomenda compará-la com os dados do Sistema de Informações de Projetos de Reforma Agrária (SIPRA) do Instituto Nacional de Colonização e Reforma Agrária (INCRA). No que se refere à <strong>tipologia do Manuscrito 1</strong>, os rótulos dos tipos permanecem provisórios até a aprovação dos autores, e o seu uso requer a citação do Projeto RESA.</p>
+<p>Os dados municipais do <strong>SEEG 13</strong> aparecem nas páginas, com a indicação da fonte, mas permanecem fora dos downloads até a conferência da licença; esses dados podem ser consultados em <a href="https://seeg.eco.br">seeg.eco.br</a>. Quanto ao <strong>PRODES</strong>, sistema de monitoramento do desmatamento por satélite, o site utiliza exclusivamente a série oficial do Instituto Nacional de Pesquisas Espaciais (INPE), disponibilizada no TerraBrasilis e obtida em 19/10/2026; a respectiva nota de correção encontra-se em <a href="../resultados/emissoes.html">Emissões e desmatamento</a>. O <strong>MapBiomas</strong>, previsto para o OE1, ainda não foi utilizado nesta versão. Por fim, no caso da <strong>literatura</strong>, os arquivos trazem apenas metadados, sem resumos de terceiros.</p>
 </div>
 </div>
 
@@ -364,215 +356,110 @@ Sinais do IBGE:
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> De volta ao topo</a></main> <!-- /main -->
 <script>
-
 // Siglas explicadas ao passar o cursor (ou tocar, no celular). Aplica-se a parágrafos, listas e legendas.
-
 (function () {
-
   var G = {
-
     "AF": "Agricultura familiar, conforme a Lei 11.326/2006 e o Censo Agropecuário 2017",
-
     "PA": "Projeto de Assentamento da reforma agrária",
-
     "PAs": "Projetos de Assentamento da reforma agrária",
-
     "INCRA": "Instituto Nacional de Colonização e Reforma Agrária",
-
     "SIPRA": "Sistema de Informações de Projetos de Reforma Agrária (INCRA)",
-
-    "PNCF": "Programa Nacional de Crédito Fundiário (terra comprada com financiamento)",
-
+    "PNCF": "Programa Nacional de Crédito Fundiário (aquisição de terra mediante financiamento)",
     "PRONAF": "Programa Nacional de Fortalecimento da Agricultura Familiar",
-
     "DAP": "Declaração de Aptidão ao Pronaf",
-
     "SEEG": "Sistema de Estimativas de Emissões e Remoções de Gases de Efeito Estufa (Observatório do Clima)",
-
-    "PRODES": "Monitoramento do desmatamento por satélite (INPE)",
-
+    "PRODES": "Sistema de monitoramento do desmatamento por satélite do INPE",
     "INPE": "Instituto Nacional de Pesquisas Espaciais",
-
     "GEE": "Gases de efeito estufa",
-
-    "CO2e": "Dióxido de carbono equivalente: soma dos gases ponderada pelo potencial de aquecimento",
-
-    "GWP-AR5": "Potencial de aquecimento global do 5º Relatório do IPCC, usado pelo SEEG para somar os gases",
-
+    "CO2e": "Dióxido de carbono equivalente, isto é, soma dos gases de efeito estufa ponderada pelo respectivo potencial de aquecimento",
+    "GWP-AR5": "Potencial de aquecimento global do 5º Relatório de Avaliação do IPCC, utilizado pelo SEEG para agregar os gases",
     "SAF": "Sistema agroflorestal",
-
     "PSA": "Pagamento por serviços ambientais",
-
-    "ESG": "Critérios ambientais, sociais e de governança",
-
-    "REDD+": "Redução de emissões por desmatamento e degradação florestal",
-
+    "ESG": "Critérios ambientais, sociais e de governança (do inglês environmental, social and governance)",
+    "REDD+": "Redução de emissões provenientes do desmatamento e da degradação florestal",
     "VPL": "Valor presente líquido",
-
     "TIR": "Taxa interna de retorno",
-
-    "PAF": "Fatoração pelo eixo principal (análise fatorial exploratória)",
-
+    "PAF": "Análise fatorial por eixos principais (do inglês principal axis factoring), método de extração da análise fatorial exploratória",
     "OE": "Objetivo específico do projeto",
-
     "iCS": "Instituto Clima e Sociedade",
-
     "UNEMAT": "Universidade do Estado de Mato Grosso",
-
     "MapBiomas": "Mapeamento anual da cobertura e do uso da terra no Brasil",
-
     "CAR": "Cadastro Ambiental Rural",
-
-    "KMO": "Medida de adequação dos dados à análise fatorial, de 0 a 1 (acima de 0,8 é boa)",
-
-    "ARI": "Índice de Rand ajustado: concordância entre duas classificações dos mesmos municípios (1 = iguais; 0 = acaso)",
-
-    "Jaccard": "Estabilidade de um grupo nas reamostras: 1 quando o grupo se repete sempre igual",
-
-    "clusterboot": "Rotina do R (pacote fpc) que mede a estabilidade dos grupos por reamostragem",
-
-    "silhueta": "Medida de separação dos grupos, de −1 a 1: quanto maior, mais nítidos os grupos",
-
-    "Calinski-Harabasz": "Índice de qualidade do agrupamento: quanto maior, mais separados os grupos",
-
-    "Davies-Bouldin": "Índice de qualidade do agrupamento: quanto menor, mais separados os grupos",
-
-    "gap": "Critério que compara o agrupamento com dados ao acaso para escolher o número de grupos",
-
-    "Kruskal-Wallis": "Teste de diferença entre grupos que usa a ordem dos valores, não os valores",
-
-    "ε²": "Tamanho de efeito do Kruskal-Wallis: parte da variação explicada pelo grupo, de 0 a 1",
-
-    "Spearman": "Correlação pela ordem dos valores, de −1 a 1",
-
-    "Pearson": "Correlação linear entre os valores, de −1 a 1",
-
-    "Dutilleul": "Correção do teste de correlação para a semelhança entre municípios vizinhos",
-
-    "symlog": "Escala logarítmica que aceita o zero",
-
-    "Φ": "Correlação entre dois fatores numa rotação oblíqua",
-
-    "AFOLU": "Agricultura, florestas e outros usos da terra (setor do inventário de emissões)",
-
-    "banking": "Guardar permissões de emissão de um período para usar depois",
-
-    "spillover": "Efeito de transbordamento: o que acontece num mercado afeta outro",
-
+    "KMO": "Medida de Kaiser-Meyer-Olkin, que avalia a adequação dos dados à análise fatorial e varia de 0 a 1 (valores acima de 0,8 indicam boa adequação)",
+    "ARI": "Índice de Rand ajustado, que mede a concordância entre duas classificações dos mesmos municípios (1 = classificações iguais; 0 = concordância atribuível ao acaso)",
+    "Jaccard": "Coeficiente de estabilidade de um grupo nas reamostras, igual a 1 quando o grupo se repete sempre de forma idêntica",
+    "clusterboot": "Rotina do R (pacote fpc) que avalia a estabilidade dos grupos por reamostragem",
+    "silhueta": "Medida de separação dos grupos, que varia de −1 a 1; quanto maior o valor, mais nítidos os grupos",
+    "Calinski-Harabasz": "Índice de qualidade do agrupamento; quanto maior o valor, maior a separação entre os grupos",
+    "Davies-Bouldin": "Índice de qualidade do agrupamento; quanto menor o valor, maior a separação entre os grupos",
+    "gap": "Critério que compara o agrupamento obtido com o de dados gerados ao acaso, com vistas à escolha do número de grupos",
+    "Kruskal-Wallis": "Teste de diferença entre grupos baseado na ordem dos valores, e não nos valores em si",
+    "ε²": "Tamanho de efeito do teste de Kruskal-Wallis, que expressa a parcela da variação explicada pelo grupo, de 0 a 1",
+    "Spearman": "Coeficiente de correlação baseado na ordem dos valores, que varia de −1 a 1",
+    "Pearson": "Coeficiente de correlação linear entre os valores, que varia de −1 a 1",
+    "Dutilleul": "Correção do teste de correlação que considera a semelhança entre municípios vizinhos",
+    "symlog": "Escala logarítmica que admite o valor zero",
+    "Φ": "Correlação entre dois fatores em uma rotação oblíqua",
+    "AFOLU": "Agricultura, florestas e outros usos da terra (do inglês agriculture, forestry and other land use), setor do inventário de emissões",
+    "banking": "Acúmulo de permissões de emissão de um período para utilização posterior",
+    "spillover": "Efeito de transbordamento, pelo qual o que ocorre em um mercado afeta outro",
     "cointegração": "Relação de longo prazo entre séries de preços"
-
   };
-
   var chaves = Object.keys(G).sort(function (a, b) { return b.length - a.length; });
-
   var re = new RegExp("(^|[^\\wÀ-ú-])(" + chaves.map(function (k) { return k.replace(/[-+.]/g, "\\$&"); }).join("|") + ")(?![\\wÀ-ú-])");
-
   function marcar(el) {
-
     var usados = {};
-
     var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-
       acceptNode: function (n) {
-
         var p = n.parentNode;
-
         while (p && p !== el) { if (/^(A|ABBR|CODE|SCRIPT|STYLE|SVG|BUTTON|SELECT|OPTION)$/i.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
-
         return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-
       }
-
     });
-
     var nos = []; while (w.nextNode()) nos.push(w.currentNode);
-
     nos.forEach(function (n) {
-
       var m = n.nodeValue.match(re); if (!m || usados[m[2]]) return;
-
       usados[m[2]] = true;
-
       var i = m.index + m[1].length, depois = n.splitText(i); depois.splitText(m[2].length);
-
       var ab = document.createElement("abbr"); ab.title = G[m[2]]; ab.tabIndex = 0; ab.textContent = m[2];
-
       depois.parentNode.replaceChild(ab, depois);
-
     });
-
   }
-
   document.addEventListener("DOMContentLoaded", function () {
-
     document.querySelectorAll("main p, main li, main figcaption, main .kpi-rotulo, main .kpi-meta").forEach(marcar);
-
   });
-
 })();
-
 </script>
-
 <div id="dica-grafico" role="tooltip" aria-hidden="true"></div>
-
 <script>
-
 // Dica imediata para elementos com data-tip (pontos, barras e linhas dos gráficos SVG; selos).
-
 (function () {
-
   var dica = document.getElementById("dica-grafico");
-
   function mostrar(el, x, y) {
-
     dica.textContent = el.getAttribute("data-tip");
-
     dica.style.display = "block";
-
     var w = dica.offsetWidth, h = dica.offsetHeight;
-
     var left = Math.min(x + 12, window.innerWidth - w - 8), top = y - h - 12;
-
     if (top < 4) top = y + 16;
-
     dica.style.left = left + "px"; dica.style.top = top + "px";
-
   }
-
   function esconder() { dica.style.display = "none"; }
-
   document.addEventListener("mouseover", function (e) {
-
     var el = e.target.closest && e.target.closest("[data-tip]"); if (el) mostrar(el, e.clientX, e.clientY);
-
   });
-
   document.addEventListener("mousemove", function (e) {
-
     var el = e.target.closest && e.target.closest("[data-tip]"); if (el && dica.style.display === "block") mostrar(el, e.clientX, e.clientY);
-
   });
-
   document.addEventListener("mouseout", function (e) {
-
     if (e.target.closest && e.target.closest("[data-tip]")) esconder();
-
   });
-
   document.addEventListener("touchstart", function (e) {
-
     var el = e.target.closest && e.target.closest("[data-tip]"); var t = e.touches[0];
-
     if (el) mostrar(el, t.clientX, t.clientY); else esconder();
-
   }, { passive: true });
-
   window.addEventListener("scroll", esconder, { passive: true });
-
 })();
-
 </script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -982,7 +869,7 @@ Sinais do IBGE:
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 19/10/2026</p>
+<p>Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 23/10/2026</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
