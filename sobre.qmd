@@ -103,7 +103,7 @@ Adicionalmente, permanecem **fora do site** os dados pessoais de produtores e be
 
 ## Como citar
 
-> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *Observatório RESA-MT*: agricultura familiar, assentamentos e carbono nos três biomas de Mato Grosso. Versão 0.1.3 (preliminar). Projeto RESA nº 115, com apoio do Instituto Clima e Sociedade (iCS), Doação D-25-02928. 2026. Disponível em: https://daniellindomar.github.io/resa-mt/. Acesso em: dia mês ano.
+> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *Observatório RESA-MT*: agricultura familiar, assentamentos e carbono nos três biomas de Mato Grosso. Versão 0.1.4 (preliminar). Projeto RESA nº 115, com apoio do Instituto Clima e Sociedade (iCS), Doação D-25-02928. 2026. Disponível em: https://daniellindomar.github.io/resa-mt/. Acesso em: dia mês ano.
 
 Para os tipos municipais, recomenda-se citar também o Manuscrito 1 do Projeto RESA (em preparação). No caso dos dados públicos, deve-se citar a fonte original indicada em cada número.
 

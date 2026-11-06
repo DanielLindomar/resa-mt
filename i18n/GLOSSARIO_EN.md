@@ -57,7 +57,7 @@ A ordem das orações na frase e das frases no parágrafo; dividir ou juntar fra
 
 - **O conteúdo:** fatos, números, datas, unidades, ressalvas e a força de cada afirmação ("may" continua "may"; "not detected" não vira "no difference"). Nada de explicação nova, exemplo novo ou informação cortada. Erro do original não se corrige aqui: relata-se.
 - **A estrutura:** seções, parágrafos, tabelas, links, referências cruzadas, negritos dos mesmos conceitos, código.
-- **Termos do M1:** rótulos T1 a T5 e F1 a F5; "grantee or settler awaiting a definitive title"; "2017 Agricultural Census"; "tenure awaiting title"; "suppressed"; "true zero"; "provisional label"; "not supported"; "decision rule"; "partial independence"; "mandatory reformulation". O texto "X (IBGE suppression)" é lido pelo conferidor de publicação.
+- **Termos do M1:** rótulos T1 a T5 e F1 a F5; "grantee or settler awaiting a definitive title"; "2017 Agricultural Census"; "tenure awaiting title"; "suppressed"; "true zero"; "provisional label"; "not supported"; "decision rule"; "partial independence"; "reformulation". O texto "X (IBGE suppression)" é lido pelo conferidor de publicação.
 
 ### 4.3. Marcas de tradução a eliminar
 
@@ -114,11 +114,18 @@ Prevalecem sobre as tabelas das seções 5 e 6.
 | Dados e método | Data and method | Data and methods |
 | Posse no Censo (Agropecuário) e reforma agrária | Census tenure and agrarian reform | Census tenure data and agrarian reform; no título da página, Agricultural Census tenure data and agrarian reform |
 | Estudos do corpus | Corpus studies | Studies in the corpus |
+| hipótese 1; hipótese 2 | (novo, alinhamento ao Draft v5) | Hypothesis 1; Hypothesis 2 |
+| reestimação oblíqua | (novo) | oblique re-estimation |
+| construto de assentados | (novo) | settler construct |
+| evidência a partir de indicador sem sigilo | Results that do not depend on suppression | Evidence from an indicator free of suppression |
+| convenção de pré-processamento; condição de execução do teste | (novo) | pre-processing convention; condition for running the test |
+| veredito; veredito pontual | (novo) | verdict; point verdict |
+| fracamente identificado | (novo) | weakly identified |
 
 Textos fixos:
 
 - Faixa das páginas: "English translation under review. If the two versions differ, the Portuguese text prevails."
-- Rodapé: "RESA Project no. 115 · Supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928 · Implemented by UNEMAT · Preliminary version for the project team · Last updated 5 November 2026" (também em `RODAPE_EN`, no script 07).
+- Rodapé: "RESA Project no. 115 · Supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928 · Implemented by UNEMAT · Preliminary version for the project team · Last updated 6 November 2026" (também em `RODAPE_EN`, no script 07).
 
 ## 5. Termos
 
@@ -187,7 +194,7 @@ Textos fixos:
 | escores; cargas; comunalidade; rotação oblíqua | scores; loadings; communality; oblique rotation |
 | análise paralela; silhueta | parallel analysis; silhouette |
 | intervalo de confiança (IC) | confidence interval (CI) |
-| regra de decisão; independência parcial; reformulação obrigatória | decision rule; partial independence; mandatory reformulation |
+| regra de decisão; independência parcial; reformulação | decision rule; partial independence; reformulation |
 | não sustentada | not supported |
 | sigilo; célula com sigilo | suppression; suppressed cell |
 | Região Geográfica Imediata (RGI) | Immediate Geographic Region (RGI) |

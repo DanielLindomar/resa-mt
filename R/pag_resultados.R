@@ -178,8 +178,8 @@ figura_res <- function(arquivo, legenda, nota = NULL, pasta = "figuras/")
               tags$figcaption(class = "figure-caption", legenda, if (!is.null(nota)) tags$span(class = "nota-fonte", tags$br(), nota)))
 
 nota_rotulos_figura <- function()
-  tr("Nota: na legenda da figura, os tipos aparecem com outra redação de rótulo, igualmente provisória. Os tipos são os mesmos (T1 a T5, com os mesmos municípios); neste site, adota-se a redação da tabela, acompanhada do selo “rótulo provisório”.",
-     "Note: the figure legend uses different wording for the type labels, which is equally provisional. The types themselves are the same (T1 to T5, with the same municipalities). This website uses the wording in the table, marked with the “provisional label” badge.")
+  tr("Nota: os tipos da figura (T1 a T5) são os mesmos da tabela, com os mesmos rótulos provisórios.",
+     "Note: the types in the figure (T1 to T5) are the same as in the table and carry the same provisional labels.")
 
 # ---- Tipologia: Tabela 3 -----------------------------------------------------------
 tabela_perfis_m1 <- function() {
@@ -246,8 +246,8 @@ cartoes_tipos <- function() {
            sprintf(tr("Apenas %s%% dos estabelecimentos da AF estão na categoria 46504; contudo, registram-se %s beneficiários do INCRA por 100 estabelecimentos da AF (total de MT: %s).",
                       "Only %s%% of family farms are in category 46504, yet %s INCRA beneficiaries are recorded per 100 family farms (Mato Grosso as a whole: %s)."),
                    m1("T3_T3_PCT_ESTAB_46504_PONDERADA"), m1("INCRA_T3_REF_POR100AF_PONDERADO"), m1("INCRA_MT_REF_POR100AF_PONDERADO")),
-           tr("A posse “baixa” refere-se à condição declarada ao Censo, conforme se discute na página sobre a posse.",
-              "“Low” tenure refers to the status declared to the Census, as discussed on the tenure page.")),
+           tr("A baixa prevalência da categoria refere-se à condição declarada ao Censo, e não à ausência de reforma agrária, conforme se discute na página sobre a posse.",
+              "The low prevalence of the category refers to the status declared to the Census, not to an absence of agrarian reform, as discussed on the tenure page.")),
     T4 = c(sprintf(tr("Reúne %s municípios (%s na Amazônia e %s no Cerrado) e apresenta o maior escore de lavoura temporária mecanizada (F1 = %s).",
                       "This type has %s municipalities (%s in the Amazon and %s in the Cerrado) and the highest score for mechanised temporary crops (F1 = %s)."), m1("T3_T4_N"),
                    m1("T3_T4_BIOMA250_AMAZONIA"), m1("T3_T4_BIOMA250_CERRADO"), m1("T3_T4_F1_MEDIA_WINSOR")),
@@ -327,8 +327,8 @@ svg_regua_regra <- function() {
                         '">%s%s%s<line x1="%.1f" x2="%.1f" y1="122" y2="122" stroke="#6b7280"/>%s%s%s</svg>'),
                  w, h, faixa(0, 0.20, "#eef6f1", tr("independência", "independence")), faixa(0.20, 0.35, "#fff4d6", tr("independência parcial", "partial independence")),
                  faixa(0.35, 0.5, "#fde4e1", tr("reformulação", "reformulation")), sx(0), sx(0.5), eixo,
-                 linha(55, as.numeric(M1N$valor_bruto[M1N$id == "REGRA_M"]), m1_ic("REGRA_M_IC_BOOT_IID"), "#1F4D3A", tr("Oblimin (principal)", "Oblimin (main)")),
-                 linha(95, as.numeric(M1N$valor_bruto[M1N$id == "REGRA_M_PROMAX"]), m1_ic("REGRA_M_IC_BOOT_IID_PROMAX"), "#6b7280", tr("Promax (sensibilidade)", "Promax (sensitivity)"), FALSE))
+                 linha(55, as.numeric(M1N$valor_bruto[M1N$id == "REGRA_M"]), m1_ic("REGRA_M_IC_BOOT_IID"), "#1F4D3A", "Oblimin"),
+                 linha(95, as.numeric(M1N$valor_bruto[M1N$id == "REGRA_M_PROMAX"]), m1_ic("REGRA_M_IC_BOOT_IID_PROMAX"), "#1F4D3A", "Promax"))
   tagList(HTML(sprintf(tr('<figure class="grafico-svg">%s<figcaption class="legenda-svg">Fonte: Elaboração própria com base no M1 do Projeto RESA (Tabelas A.2 e A.3). Nota: m corresponde ao maior valor absoluto entre Φ posse × escala e Φ posse × mecanização. Ponto: estimativa; linha: IC 95%% por <i>bootstrap</i> (2.000 reamostras de municípios).</figcaption></figure>',
                           '<figure class="grafico-svg">%s<figcaption class="legenda-svg">Source: authors’ calculations based on RESA Project M1 (Tables A.2 and A.3). Note: m is the larger of the absolute values of Φ tenure × scale and Φ tenure × mechanisation. Point: estimate; line: 95%% bootstrap CI (2,000 resamples of municipalities).</figcaption></figure>'), svg)))
 }

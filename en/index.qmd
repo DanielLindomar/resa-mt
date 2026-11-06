@@ -60,6 +60,8 @@ cartoes_secoes()
 
 ## What's new
 
+**6 November 2026 — Version 0.1.4.** Aligned the [Municipal typology of family farming](resultados/tipologia.qmd) page with the current version of Manuscript 1, with no change to the numerical results. The page now states the two hypotheses, explains that they were fixed after an exploratory analysis of the same data and declares that Hypothesis 1 is not supported in the form stated. The oblimin and promax rotations now have the same standing, and caveats on Hypothesis 2, suppression and the silhouette have been added. On the [Agricultural Census tenure data and agrarian reform](resultados/posse.qmd) page, corrected the reference to "low" tenure in the T3 label.
+
 **5 November 2026 — Version 0.1.3.** Corrected the ranks of tied municipalities in the ranking charts, which now match those on the profiles and cards, and the wording of the area card on this page, which refers to the area of establishments rather than of the state.
 
 **5 November 2026 — Version 0.1.2.** Added an English version of the website, available via the flags in the menu bar, and listed the project team in [About](sobre.qmd).
