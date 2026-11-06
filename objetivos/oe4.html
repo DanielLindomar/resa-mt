@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8fe2a179c4b423cce90f4f9afe7be56d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-75937f77c8eced8121ff577113ffd035.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -528,6 +528,49 @@ Nenhum estudo integra, simultaneamente, as diferenças entre famílias, o PSA, o
   window.addEventListener("scroll", esconder, { passive: true });
 })();
 </script>
+<script>
+// Seletor de idioma na barra de menu: as bandeiras levam à mesma página no outro idioma.
+// Os dois sites têm os mesmos nomes de arquivo; a versão em inglês fica em en/ (projeto Quarto próprio).
+// Bandeiras em SVG porque o Windows não desenha os emojis de bandeira (mostra "BR" e "GB").
+(function () {
+  var barra = document.querySelector(".navbar-container");
+  var meta = document.querySelector('meta[name="quarto:offset"]');
+  if (!barra || !meta) return;
+  var offset = meta.getAttribute("content");
+  var emIngles = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+
+  // Caminho da página a partir da raiz do idioma atual: o offset diz quantas pastas há acima dela.
+  var niveis = (offset.match(/\.\.\//g) || []).length;
+  var partes = window.location.pathname.split("/");
+  var arquivo = partes.pop() || "index.html";
+  var pagina = partes.slice(partes.length - niveis).concat(arquivo).join("/");
+  var noOutroIdioma = offset + (emIngles ? "../" : "en/") + pagina;
+
+  var BR = '<svg viewBox="0 0 60 42" width="26" height="18" aria-hidden="true"><rect width="60" height="42" fill="#009b3a"/>' +
+    '<path d="M30 4.5 55 21 30 37.5 5 21z" fill="#fedf00"/><circle cx="30" cy="21" r="10" fill="#002776"/>' +
+    '<path d="M20.6 18.2c6.6-1 13.6.6 18.8 4.5" fill="none" stroke="#fff" stroke-width="1.6"/></svg>';
+  var GB = '<svg viewBox="0 0 60 42" width="26" height="18" aria-hidden="true"><rect width="60" height="42" fill="#012169"/>' +
+    '<path d="M0 0 60 42M60 0 0 42" stroke="#fff" stroke-width="8"/><path d="M0 0 60 42M60 0 0 42" stroke="#c8102e" stroke-width="3"/>' +
+    '<path d="M30 0v42M0 21h60" stroke="#fff" stroke-width="13"/><path d="M30 0v42M0 21h60" stroke="#c8102e" stroke-width="8"/></svg>';
+
+  function bandeira(svg, nome, codigo, atual, href) {
+    return atual
+      ? '<span class="bandeira atual" title="' + nome + '" aria-label="' + nome + '" aria-current="true" lang="' + codigo + '">' + svg + '</span>'
+      : '<a class="bandeira" href="' + href + '" hreflang="' + codigo + '" lang="' + codigo + '" title="' + nome + '" aria-label="' + nome + '">' + svg + '</a>';
+  }
+
+  var seletor = document.createElement("div");
+  seletor.className = "seletor-idioma";
+  seletor.setAttribute("role", "group");
+  seletor.setAttribute("aria-label", emIngles ? "Language" : "Idioma");
+  seletor.innerHTML = bandeira(BR, "Português (Brasil)", "pt-BR", !emIngles, noOutroIdioma) +
+                      bandeira(GB, "English", "en", emIngles, noOutroIdioma);
+
+  // Fora do menu recolhível, para continuar visível no celular.
+  var busca = barra.querySelector("#quarto-search");
+  barra.insertBefore(seletor, busca || barra.querySelector(".navbar-toggler"));
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -937,7 +980,7 @@ Nenhum estudo integra, simultaneamente, as diferenças entre famílias, o PSA, o
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 23/10/2026</p>
+<p>Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · Versão preliminar para a equipe do projeto · Atualizado em 05/11/2026</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

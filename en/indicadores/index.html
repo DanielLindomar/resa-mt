@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="The 34 municipal indicators of the RESA-MT Observatory, grouped into six themes, with a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table showing the IBGE symbols">
+
+<title>Indicators – RESA-MT Observatory</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-75937f77c8eced8121ff577113ffd035.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="robots" content="noindex, nofollow">
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+
+<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+
+<link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+
+<script src="../site_libs/reactable-binding-0.4.5/reactable.js"></script>
+
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo-unemat-branco.png" alt="UNEMAT — Mato Grosso State University" class="navbar-logo light-content">
+    <img src="../assets/logo-unemat-branco.png" alt="UNEMAT — Mato Grosso State University" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RESA-MT Observatory</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../municipios/index.html"> 
+<span class="menu-text">Municipalities</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../indicadores/index.html" aria-current="page"> 
+<span class="menu-text">Indicators</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-results" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Results</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-results">    
+        <li>
+    <a class="dropdown-item" href="../resultados/tipologia.html">
+ <span class="dropdown-text">Municipal typology of family farming</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/posse.html">
+ <span class="dropdown-text">Census tenure data and agrarian reform</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/emissoes.html">
+ <span class="dropdown-text">Emissions and deforestation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../resultados/dinamica.html">
+ <span class="dropdown-text">2006–2017 dynamics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../pilotos/index.html"> 
+<span class="menu-text">Pilot areas</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-objectives" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Objectives</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-objectives">    
+        <li>
+    <a class="dropdown-item" href="../objetivos/index.html">
+ <span class="dropdown-text">All six objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe1.html">
+ <span class="dropdown-text">SO1 · Territory and land use</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe2.html">
+ <span class="dropdown-text">SO2 · Production and income</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe3.html">
+ <span class="dropdown-text">SO3 · Environment and carbon</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe4.html">
+ <span class="dropdown-text">SO4 · Bioeconomic scenarios</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe5.html">
+ <span class="dropdown-text">SO5 · Innovation and social capital</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../objetivos/oe6.html">
+ <span class="dropdown-text">SO6 · Technology Package</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-literature" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Literature</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-literature">    
+        <li>
+    <a class="dropdown-item" href="../literatura/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/carbono.html">
+ <span class="dropdown-text">Carbon, markets and ESG</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/saf-psa.html">
+ <span class="dropdown-text">AFS and PES in settlements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../literatura/estudos.html">
+ <span class="dropdown-text">Studies in the corpus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../dados/index.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../biblioteca/index.html"> 
+<span class="menu-text">Library</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sobre.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Indicators</h1>
+</div>
+
+<div>
+  <div class="description">
+    The 34 municipal indicators of the RESA-MT Observatory, grouped into six themes, with a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table showing the IBGE symbols
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<div class="faixa-versao">
+Preliminary version for the project team. Results may change as the study progresses.
+ English translation under review. If the two versions differ, the Portuguese text prevails.
+</div>
+</div>
+</div>
+<p>The observatory covers 34 indicators, grouped into six themes, for the 141 municipalities of Mato Grosso (MT). Each indicator page has:</p>
+<ul>
+<li>a <strong>choropleth map</strong> of the 141 municipalities, with classes based on quintiles and X shown in grey;</li>
+<li>a <strong>ranking</strong> within each biome and across Mato Grosso, highlighting the three pilot-area host municipalities;</li>
+<li>a <strong>time series</strong>, where available, for indicators from the Greenhouse Gas Emissions and Removals Estimation System (SEEG);</li>
+<li>aggregates by biome and by Manuscript 1 (M1) type;</li>
+<li>the <strong>full table</strong>, with a column for the symbols used by the Brazilian Institute of Geography and Statistics (IBGE) and an option to download the filtered rows.</li>
+</ul>
+<p>Each card shows the value for Mato Grosso: the municipal sum for totals, the ratio of sums for proportions and means, and the change in sums for dynamics indicators. Key indicators carry the <span class="selo">key</span> badge.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="legenda-sinais">
+IBGE standard symbols: 
+<b>X</b>
+ suppressed (value withheld to avoid identifying the respondent) · 
+<b>–</b>
+ true zero · 
+<b>...</b>
+ not available. None of these symbols is shown as zero.
+</div>
+</div>
+</div>
+<section id="estrutura" class="level2">
+<h2 class="anchored" data-anchor-id="estrutura">Structure of family farming</h2>
+<p>These indicators use the number of establishments, area, persons employed and value of production to measure the size and relative importance of family farming in each municipality (IBGE, 2017 Agricultural Census). Indicators in this theme: 9.</p>
+<div class="lista-ind">
+  <a class="cartao cartao-ind" href="estab_af.html">
+    <h4 class="anchored">
+      Family farms
+      <span class="selo">key</span>
+    </h4>
+    <p>establishments · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>81,635</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_estab_af.html">
+    <h4 class="anchored">
+      Family-farm share of establishments
+      <span class="selo">key</span>
+    </h4>
+    <p>% of agricultural establishments · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>68.8%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="area_af.html">
+    <h4 class="anchored">Family-farm area</h4>
+    <p>hectares · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>5,131,101</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_area_af.html">
+    <h4 class="anchored">Family-farm share of area</h4>
+    <p>% of the area of agricultural establishments · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>9.3%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="area_media_af.html">
+    <h4 class="anchored">
+      Mean family-farm area
+      <span class="selo">key</span>
+    </h4>
+    <p>hectares per establishment · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>62.9</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pessoal_af.html">
+    <h4 class="anchored">Persons employed on family farms</h4>
+    <p>persons · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>215,693</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="valor_prod_af.html">
+    <h4 class="anchored">
+      Value of family-farm production
+      <span class="selo">key</span>
+    </h4>
+    <p>R$ (2017 values) · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>R$3.8 billion</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+    <p class="sub">1 municipality with X (suppressed)</p>
+  </a>
+  <a class="cartao cartao-ind" href="valor_prod_estab_af.html">
+    <h4 class="anchored">Value of production per family farm</h4>
+    <p>R$ per establishment (2017 values) · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>R$46.4 thousand</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+    <p class="sub">1 municipality with X (suppressed)</p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_valor_animal_af.html">
+    <h4 class="anchored">% of value from animal production</h4>
+    <p>% of the value of family-farm production · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>67.8%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+    <p class="sub">3 municipalities with X (suppressed)</p>
+  </a>
+</div>
+</section>
+<section id="tecnologia" class="level2">
+<h2 class="anchored" data-anchor-id="tecnologia">Technology, technical assistance and credit</h2>
+<p>This theme shows how widespread machinery, farming practices, electricity, technical guidance, financing and the PRONAF Eligibility Declaration (DAP) are among family farms (IBGE, 2017 Agricultural Census). Indicators in this theme: 8.</p>
+<div class="lista-ind">
+  <a class="cartao cartao-ind" href="pct_trator_af.html">
+    <h4 class="anchored">% with tractor</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>15.4%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_plantio_direto_af.html">
+    <h4 class="anchored">% using no-till</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>5.2%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_irrigacao_af.html">
+    <h4 class="anchored">% with irrigation</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>4.2%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_energia_af.html">
+    <h4 class="anchored">% with electricity</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>89.5%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_orientacao_af.html">
+    <h4 class="anchored">% with technical guidance</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>12.5%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_financiamento_af.html">
+    <h4 class="anchored">% with financing</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>15.9%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_pronaf_af.html">
+    <h4 class="anchored">% with PRONAF</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>5.7%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_dap_af.html">
+    <h4 class="anchored">% with DAP</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>25.2%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+</div>
+</section>
+<section id="alimentos" class="level2">
+<h2 class="anchored" data-anchor-id="alimentos">Production and food</h2>
+<p>This theme describes the purpose and composition of family-farm production: own consumption, cow’s milk, cassava and horticulture (IBGE, 2017 Agricultural Census). Indicators in this theme: 4.</p>
+<div class="lista-ind">
+  <a class="cartao cartao-ind" href="pct_consumo_proprio_af.html">
+    <h4 class="anchored">% producing for own consumption</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>28.2%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_leite_af.html">
+    <h4 class="anchored">% producing milk</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>34.3%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_mandioca_af.html">
+    <h4 class="anchored">% producing cassava</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>14.7%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_horticultura_af.html">
+    <h4 class="anchored">% in horticulture and floriculture</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>2.0%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+</div>
+</section>
+<section id="posse" class="level2">
+<h2 class="anchored" data-anchor-id="posse">Tenure and agrarian reform</h2>
+<p>This theme covers the producer’s land tenure status (IBGE, 2017 Agricultural Census) and the settlement projects of the National Institute for Colonisation and Agrarian Reform (INCRA). The projects are recorded in the Agrarian Reform Projects Information System (SIPRA, Report 0227, as at 3 June 2025). Category 46504 understates the extent of agrarian reform, and SIPRA counts each project only in its host municipality. Indicators in this theme: 7.</p>
+<div class="lista-ind">
+  <a class="cartao cartao-ind" href="estab_af_46504.html">
+    <h4 class="anchored">Family farms in 46504</h4>
+    <p>establishments · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>8,834</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_estab_46504.html">
+    <h4 class="anchored">
+      % of family farms in 46504
+      <span class="selo">key</span>
+    </h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>10.8%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_area_46504.html">
+    <h4 class="anchored">% of family-farm area in 46504</h4>
+    <p>% of family-farm area · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>11.3%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+    <p class="sub">52 municipalities with X (suppressed)</p>
+  </a>
+  <a class="cartao cartao-ind" href="pct_estab_prop_af.html">
+    <h4 class="anchored">% run by owners</h4>
+    <p>% of family farms · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>84.8%</b>
+      <span class="sub"> MT, ratio of municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="n_pa.html">
+    <h4 class="anchored">Settlement projects</h4>
+    <p>projects · 2025</p>
+    <p style="margin-top:.25rem">
+      <b>575</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="fam_pa.html">
+    <h4 class="anchored">
+      Settled families
+      <span class="selo">key</span>
+    </h4>
+    <p>families · 2025</p>
+    <p style="margin-top:.25rem">
+      <b>85,653</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="area_pa.html">
+    <h4 class="anchored">Project area</h4>
+    <p>hectares · 2025</p>
+    <p style="margin-top:.25rem">
+      <b>6,539,004</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+</div>
+</section>
+<section id="clima" class="level2">
+<h2 class="anchored" data-anchor-id="clima">Climate (SEEG 13)</h2>
+<p>This theme covers greenhouse gas emissions and removals estimated by SEEG 13 (GWP-AR5) for the whole municipality, not only for family farming. The series run from 1970 to 2024 for gross emissions and for agriculture and livestock emissions, and from 1990 to 2024 for land-use change and removals. Indicators in this theme: 4.</p>
+<div class="lista-ind">
+  <a class="cartao cartao-ind" href="seeg_emissao_bruta.html">
+    <h4 class="anchored">
+      Gross emissions
+      <span class="selo">key</span>
+    </h4>
+    <p>thousand tCO2e (GWP-AR5) · 1970–2024</p>
+    <p style="margin-top:.25rem">
+      <b>230,981.8</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="seeg_agropecuaria.html">
+    <h4 class="anchored">Agriculture and livestock emissions</h4>
+    <p>thousand tCO2e (GWP-AR5) · 1970–2024</p>
+    <p style="margin-top:.25rem">
+      <b>88,866.4</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="seeg_mut.html">
+    <h4 class="anchored">Land-use change emissions</h4>
+    <p>thousand tCO2e (GWP-AR5) · 1990–2024</p>
+    <p style="margin-top:.25rem">
+      <b>125,813.4</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="seeg_remocoes.html">
+    <h4 class="anchored">Removals</h4>
+    <p>thousand tCO2e (GWP-AR5) · 1990–2024</p>
+    <p style="margin-top:.25rem">
+      <b>59,261.5</b>
+      <span class="sub"> MT, municipal sum</span>
+    </p>
+  </a>
+</div>
+</section>
+<section id="dinamica" class="level2">
+<h2 class="anchored" data-anchor-id="dinamica">2006–2017 dynamics</h2>
+<p>These indicators measure the change in the number and area of all agricultural establishments (family and non-family farms) between the 2006 and 2017 Censuses. The 2006 municipal sum does not, however, match the state table. Indicators in this theme: 2.</p>
+<div class="lista-ind">
+  <a class="cartao cartao-ind" href="var_estab_0617.html">
+    <h4 class="anchored">
+      Change in establishments, 2006–2017
+      <span class="selo">key</span>
+    </h4>
+    <p>% (2017 relative to 2006) · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>5.0%</b>
+      <span class="sub"> MT, change in municipal sums</span>
+    </p>
+  </a>
+  <a class="cartao cartao-ind" href="var_area_0617.html">
+    <h4 class="anchored">Change in area, 2006–2017</h4>
+    <p>% (2017 relative to 2006) · 2017</p>
+    <p style="margin-top:.25rem">
+      <b>12.8%</b>
+      <span class="sub"> MT, change in municipal sums</span>
+    </p>
+  </a>
+</div>
+</section>
+<section id="comparison-by-biome-and-by-m1-type" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-by-biome-and-by-m1-type">Comparison by biome and by M1 type</h2>
+<p>The tables below give the aggregates for each indicator in its reference year. Biomes follow the IBGE 1:250,000 map (2019) and types follow the Manuscript 1 typology (k = 5), whose labels are provisional. In groups with X, the aggregate covers only municipalities with a published value.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Structure</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Technology</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Food</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Tenure</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Climate</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">Dynamics</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-9296e7759c514c125721" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9296e7759c514c125721">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["<a href=\"estab_af.html\">Family farms<\/a><div class=\"sub\">establishments<\/div>","<a href=\"pct_estab_af.html\">Family-farm share of agricultural establishments<\/a><div class=\"sub\">% of agricultural establishments<\/div>","<a href=\"area_af.html\">Family-farm area<\/a><div class=\"sub\">hectares<\/div>","<a href=\"pct_area_af.html\">Family-farm share of the area of agricultural establishments<\/a><div class=\"sub\">% of the area of agricultural establishments<\/div>","<a href=\"area_media_af.html\">Mean area of family farms<\/a><div class=\"sub\">hectares per establishment<\/div>","<a href=\"pessoal_af.html\">Persons employed on family farms<\/a><div class=\"sub\">persons<\/div>","<a href=\"valor_prod_af.html\">Value of family-farm production<\/a><div class=\"sub\">R$ (2017 values)<\/div>","<a href=\"valor_prod_estab_af.html\">Value of production per family farm<\/a><div class=\"sub\">R$ per establishment (2017 values)<\/div>","<a href=\"pct_valor_animal_af.html\">Animal production as a share of the value of family-farm production<\/a><div class=\"sub\">% of the value of family-farm production<\/div>"],"Ano":["2017","2017","2017","2017","2017","2017","2017","2017","2017"],"MT":["81,635","68.8%","5,131,101","9.3%","62.9","215,693","R$3.8 billion","R$46.4 thousand","67.8%"],"Amazônia":["51,037","73.3%","3,602,725","12.2%","70.6","136,896","R$2.6 billion","R$51.6 thousand","69.8%"],"Cerrado":["24,217","60.9%","1,284,103","6.1%","53.0","63,605","R$1.0 billion","R$41.9 thousand","62.1%"],"Pantanal":["6,381","68.7%","244,273","5.9%","38.3","15,192","R$136.9 million","R$21.5 thousand","71.0%"],"X":[0,0,0,0,0,0,1,1,3]},"columns":[{"id":"Indicador","name":"Indicator","type":"character","html":true,"minWidth":240},{"id":"Ano","name":"Year","type":"character","minWidth":60,"align":"center"},{"id":"MT","name":"Mato Grosso","type":"character","align":"right"},{"id":"Amazônia","name":"Amazon","type":"character","align":"right"},{"id":"Cerrado","name":"Cerrado","type":"character","align":"right"},{"id":"Pantanal","name":"Pantanal","type":"character","align":"right"},{"id":"X","name":"Municipalities with X","type":"numeric","align":"center"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"8108f1b424b168ae0d58d8ce03e61665"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-caedd77adc600f450dca" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-caedd77adc600f450dca">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Low aggregate scale","T2 · Tenure awaiting title, unspecialised","T3 · High aggregate scale","T4 · Mechanised with tenure awaiting title","T5 · Horticultural-irrigated"],"estab_af":["22,872","12,597","23,756","4,619","17,791"],"pct_estab_af":["66.4%","62.8%","75.3%","62.4%","70.6%"],"area_af":["1,488,827","722,030","1,800,447","337,035","782,762"],"pct_area_af":["7.2%","7.2%","15.2%","6.1%","11.7%"],"area_media_af":["65.1","57.3","75.8","73.0","44.0"],"pessoal_af":["65,140","32,085","60,190","12,868","45,410"],"valor_prod_af":["R$1.0 billion*","R$449.3 million","R$1.1 billion","R$560.7 million","R$668.0 million"],"valor_prod_estab_af":["R$44.3 thousand*","R$35.7 thousand","R$46.0 thousand","R$121.4 thousand","R$37.5 thousand"],"pct_valor_animal_af":["71.2%*","77.7%","85.7%","19.5%","67.3%"]},"columns":[{"id":"Grupo","name":"M1 type (provisional label)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"estab_af","name":"estab_af","type":"character","header":"<a href=\"estab_af.html\">Family farms<\/a><div class=\"sub\">establishments · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_estab_af","name":"pct_estab_af","type":"character","header":"<a href=\"pct_estab_af.html\">Family-farm share of establishments<\/a><div class=\"sub\">% of agricultural establishments · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"area_af","name":"area_af","type":"character","header":"<a href=\"area_af.html\">Family-farm area<\/a><div class=\"sub\">hectares · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_area_af","name":"pct_area_af","type":"character","header":"<a href=\"pct_area_af.html\">Family-farm share of area<\/a><div class=\"sub\">% of the area of agricultural establishments · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"area_media_af","name":"area_media_af","type":"character","header":"<a href=\"area_media_af.html\">Mean family-farm area<\/a><div class=\"sub\">hectares per establishment · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pessoal_af","name":"pessoal_af","type":"character","header":"<a href=\"pessoal_af.html\">Persons employed on family farms<\/a><div class=\"sub\">persons · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"valor_prod_af","name":"valor_prod_af","type":"character","header":"<a href=\"valor_prod_af.html\">Value of family-farm production<\/a><div class=\"sub\">R$ (2017 values) · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"valor_prod_estab_af","name":"valor_prod_estab_af","type":"character","header":"<a href=\"valor_prod_estab_af.html\">Value of production per family farm<\/a><div class=\"sub\">R$ per establishment (2017 values) · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_valor_animal_af","name":"pct_valor_animal_af","type":"character","header":"<a href=\"pct_valor_animal_af.html\">% of value from animal production<\/a><div class=\"sub\">% of the value of family-farm production · 2017<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"e5fc6c54cb836c7823916936bf19304e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. 
+* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.
+</p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-42f9f475aaab01c84da7" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-42f9f475aaab01c84da7">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["<a href=\"pct_trator_af.html\">Family farms with a tractor<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_plantio_direto_af.html\">Family farms using no-till with straw cover<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_irrigacao_af.html\">Family farms with irrigation<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_energia_af.html\">Family farms with electricity<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_orientacao_af.html\">Family farms receiving technical guidance<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_financiamento_af.html\">Family farms that obtained financing<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_pronaf_af.html\">Family farms with PRONAF financing<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_dap_af.html\">Family farms holding a DAP<\/a><div class=\"sub\">% of family farms<\/div>"],"Ano":["2017","2017","2017","2017","2017","2017","2017","2017"],"MT":["15.4%","5.2%","4.2%","89.5%","12.5%","15.9%","5.7%","25.2%"],"Amazônia":["15.9%","5.2%","3.3%","87.4%","12.3%","18.2%","6.2%","27.9%"],"Cerrado":["15.9%","5.8%","5.6%","92.5%","14.3%","12.0%","4.5%","21.2%"],"Pantanal":["9.4%","2.6%","5.5%","94.9%","7.5%","12.5%","5.9%","17.9%"],"X":[0,0,0,0,0,0,0,0]},"columns":[{"id":"Indicador","name":"Indicator","type":"character","html":true,"minWidth":240},{"id":"Ano","name":"Year","type":"character","minWidth":60,"align":"center"},{"id":"MT","name":"Mato Grosso","type":"character","align":"right"},{"id":"Amazônia","name":"Amazon","type":"character","align":"right"},{"id":"Cerrado","name":"Cerrado","type":"character","align":"right"},{"id":"Pantanal","name":"Pantanal","type":"character","align":"right"},{"id":"X","name":"Municipalities with X","type":"numeric","align":"center"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"bc41a5136078088ae2ea6544c17e2e12"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0e3b60b679cc5dd1bbd1" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0e3b60b679cc5dd1bbd1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Low aggregate scale","T2 · Tenure awaiting title, unspecialised","T3 · High aggregate scale","T4 · Mechanised with tenure awaiting title","T5 · Horticultural-irrigated"],"pct_trator_af":["13.7%","13.6%","16.6%","33.1%","12.6%"],"pct_plantio_direto_af":["4.4%","2.1%","2.6%","32.5%","4.8%"],"pct_irrigacao_af":["3.1%","3.8%","2.5%","6.8%","7.4%"],"pct_energia_af":["88.8%","92.6%","88.3%","90.3%","89.5%"],"pct_orientacao_af":["13.0%","12.0%","10.6%","31.3%","9.8%"],"pct_financiamento_af":["14.4%","13.7%","19.9%","21.0%","12.8%"],"pct_pronaf_af":["5.7%","5.8%","7.1%","4.8%","3.8%"],"pct_dap_af":["24.6%","22.1%","30.5%","33.5%","18.7%"]},"columns":[{"id":"Grupo","name":"M1 type (provisional label)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"pct_trator_af","name":"pct_trator_af","type":"character","header":"<a href=\"pct_trator_af.html\">% with tractor<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_plantio_direto_af","name":"pct_plantio_direto_af","type":"character","header":"<a href=\"pct_plantio_direto_af.html\">% using no-till<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_irrigacao_af","name":"pct_irrigacao_af","type":"character","header":"<a href=\"pct_irrigacao_af.html\">% with irrigation<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_energia_af","name":"pct_energia_af","type":"character","header":"<a href=\"pct_energia_af.html\">% with electricity<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_orientacao_af","name":"pct_orientacao_af","type":"character","header":"<a href=\"pct_orientacao_af.html\">% with technical guidance<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_financiamento_af","name":"pct_financiamento_af","type":"character","header":"<a href=\"pct_financiamento_af.html\">% with financing<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_pronaf_af","name":"pct_pronaf_af","type":"character","header":"<a href=\"pct_pronaf_af.html\">% with PRONAF<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_dap_af","name":"pct_dap_af","type":"character","header":"<a href=\"pct_dap_af.html\">% with DAP<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"3ecd991073ecc21b045d9761a73b67c9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. 
+* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.
+</p>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-7c2e5843b38a7ab8996b" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7c2e5843b38a7ab8996b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["<a href=\"pct_consumo_proprio_af.html\">Family farms producing mainly for own consumption<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_leite_af.html\">Family farms producing cow’s milk<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_mandioca_af.html\">Family farms producing cassava<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_horticultura_af.html\">Family farms in the horticulture and floriculture activity group<\/a><div class=\"sub\">% of family farms<\/div>"],"Ano":["2017","2017","2017","2017"],"MT":["28.2%","34.3%","14.7%","2.0%"],"Amazônia":["19.2%","36.0%","11.3%","1.4%"],"Cerrado":["38.8%","33.2%","20.4%","3.0%"],"Pantanal":["60.6%","25.1%","20.4%","2.7%"],"X":[0,0,0,0]},"columns":[{"id":"Indicador","name":"Indicator","type":"character","html":true,"minWidth":240},{"id":"Ano","name":"Year","type":"character","minWidth":60,"align":"center"},{"id":"MT","name":"Mato Grosso","type":"character","align":"right"},{"id":"Amazônia","name":"Amazon","type":"character","align":"right"},{"id":"Cerrado","name":"Cerrado","type":"character","align":"right"},{"id":"Pantanal","name":"Pantanal","type":"character","align":"right"},{"id":"X","name":"Municipalities with X","type":"numeric","align":"center"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"615dfb4574590603c3e2b2c7498b2fdc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4a6830ed381fd2dd6527" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4a6830ed381fd2dd6527">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Low aggregate scale","T2 · Tenure awaiting title, unspecialised","T3 · High aggregate scale","T4 · Mechanised with tenure awaiting title","T5 · Horticultural-irrigated"],"pct_consumo_proprio_af":["29.2%","39.8%","17.9%","23.9%","33.7%"],"pct_leite_af":["34.7%","33.7%","38.4%","22.1%","31.9%"],"pct_mandioca_af":["13.1%","24.6%","9.4%","12.1%","17.5%"],"pct_horticultura_af":["1.7%","1.7%","1.2%","2.1%","3.4%"]},"columns":[{"id":"Grupo","name":"M1 type (provisional label)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"pct_consumo_proprio_af","name":"pct_consumo_proprio_af","type":"character","header":"<a href=\"pct_consumo_proprio_af.html\">% producing for own consumption<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_leite_af","name":"pct_leite_af","type":"character","header":"<a href=\"pct_leite_af.html\">% producing milk<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_mandioca_af","name":"pct_mandioca_af","type":"character","header":"<a href=\"pct_mandioca_af.html\">% producing cassava<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_horticultura_af","name":"pct_horticultura_af","type":"character","header":"<a href=\"pct_horticultura_af.html\">% in horticulture and floriculture<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"8dc88f31fbd6558e9530df54f67ddda2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. 
+* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.
+</p>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0cdde6a17b887e3bde03" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0cdde6a17b887e3bde03">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["<a href=\"estab_af_46504.html\">Family farms run by a grantee or settler awaiting a definitive title (2017 Census)<\/a><div class=\"sub\">establishments<\/div>","<a href=\"pct_estab_46504.html\">Family farms run by a grantee or settler awaiting a definitive title (2017 Census), as a percentage of family farms<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"pct_area_46504.html\">Area of family farms run by a grantee or settler awaiting a definitive title (2017 Census), as a percentage of family-farm area<\/a><div class=\"sub\">% of family-farm area<\/div>","<a href=\"pct_estab_prop_af.html\">Family farms run by their owners<\/a><div class=\"sub\">% of family farms<\/div>","<a href=\"n_pa.html\">Settlement projects based in the municipality<\/a><div class=\"sub\">projects<\/div>","<a href=\"fam_pa.html\">Settled families in projects based in the municipality<\/a><div class=\"sub\">families<\/div>","<a href=\"area_pa.html\">Area of settlement projects based in the municipality<\/a><div class=\"sub\">hectares<\/div>"],"Ano":["2017","2017","2017","2017","2025","2025","2025"],"MT":["8,834","10.8%","11.3%","84.8%","575","85,653","6,539,004"],"Amazônia":["5,157","10.1%","12.7%","85.9%","281","55,102","4,582,496"],"Cerrado":["3,174","13.1%","9.2%","80.8%","241","26,597","1,798,616"],"Pantanal":["503","7.9%","6.2%","90.2%","53","3,954","157,892"],"X":[0,0,52,0,0,0,0]},"columns":[{"id":"Indicador","name":"Indicator","type":"character","html":true,"minWidth":240},{"id":"Ano","name":"Year","type":"character","minWidth":60,"align":"center"},{"id":"MT","name":"Mato Grosso","type":"character","align":"right"},{"id":"Amazônia","name":"Amazon","type":"character","align":"right"},{"id":"Cerrado","name":"Cerrado","type":"character","align":"right"},{"id":"Pantanal","name":"Pantanal","type":"character","align":"right"},{"id":"X","name":"Municipalities with X","type":"numeric","align":"center"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"cc68addf8b39019de8901f3872175e3d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-9a4c57b9401197c2d81e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9a4c57b9401197c2d81e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Low aggregate scale","T2 · Tenure awaiting title, unspecialised","T3 · High aggregate scale","T4 · Mechanised with tenure awaiting title","T5 · Horticultural-irrigated"],"estab_af_46504":["851","3,053","751","1,611","2,568"],"pct_estab_46504":["3.7%","24.2%","3.2%","34.9%","14.4%"],"pct_area_46504":["0.4%*","18.0%","3.5%*","36.3%*","13.0%*"],"pct_estab_prop_af":["91.6%","71.0%","92.9%","61.2%","81.0%"],"n_pa":["164","148","125","42","96"],"fam_pa":["21,522","13,782","31,141","7,587","11,621"],"area_pa":["1,594,237","768,067","2,605,919","755,717","815,064"]},"columns":[{"id":"Grupo","name":"M1 type (provisional label)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"estab_af_46504","name":"estab_af_46504","type":"character","header":"<a href=\"estab_af_46504.html\">Family farms in 46504<\/a><div class=\"sub\">establishments · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_estab_46504","name":"pct_estab_46504","type":"character","header":"<a href=\"pct_estab_46504.html\">% of family farms in 46504<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_area_46504","name":"pct_area_46504","type":"character","header":"<a href=\"pct_area_46504.html\">% of family-farm area in 46504<\/a><div class=\"sub\">% of family-farm area · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"pct_estab_prop_af","name":"pct_estab_prop_af","type":"character","header":"<a href=\"pct_estab_prop_af.html\">% run by owners<\/a><div class=\"sub\">% of family farms · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"n_pa","name":"n_pa","type":"character","header":"<a href=\"n_pa.html\">Settlement projects<\/a><div class=\"sub\">projects · 2025<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"fam_pa","name":"fam_pa","type":"character","header":"<a href=\"fam_pa.html\">Settled families<\/a><div class=\"sub\">families · 2025<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"area_pa","name":"area_pa","type":"character","header":"<a href=\"area_pa.html\">Project area<\/a><div class=\"sub\">hectares · 2025<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"022fa42c6756e81a186e1ed96362792e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. 
+* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.
+</p>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f234daba7ff9384066ff" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f234daba7ff9384066ff">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["<a href=\"seeg_emissao_bruta.html\">Gross greenhouse gas emissions<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5)<\/div>","<a href=\"seeg_agropecuaria.html\">Agriculture and livestock emissions<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5)<\/div>","<a href=\"seeg_mut.html\">Land-use change and forestry emissions<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5)<\/div>","<a href=\"seeg_remocoes.html\">Greenhouse gas removals (land-use change and forestry)<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5)<\/div>"],"Ano":["2024","2024","2024","2024"],"MT":["230,981.8","88,866.4","125,813.4","59,261.5"],"Amazônia":["154,912.9","51,170.3","98,495.4","40,022.4"],"Cerrado":["68,047.0","31,976.4","25,376.0","17,285.9"],"Pantanal":["8,022.0","5,719.7","1,942.1","1,953.2"],"X":[0,0,0,0]},"columns":[{"id":"Indicador","name":"Indicator","type":"character","html":true,"minWidth":240},{"id":"Ano","name":"Year","type":"character","minWidth":60,"align":"center"},{"id":"MT","name":"Mato Grosso","type":"character","align":"right"},{"id":"Amazônia","name":"Amazon","type":"character","align":"right"},{"id":"Cerrado","name":"Cerrado","type":"character","align":"right"},{"id":"Pantanal","name":"Pantanal","type":"character","align":"right"},{"id":"X","name":"Municipalities with X","type":"numeric","align":"center"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"eee131916600360fa0e75123b6750d0a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-61d8d6ea32af98351891" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-61d8d6ea32af98351891">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Low aggregate scale","T2 · Tenure awaiting title, unspecialised","T3 · High aggregate scale","T4 · Mechanised with tenure awaiting title","T5 · Horticultural-irrigated"],"seeg_emissao_bruta":["85,021.9","43,815.9","52,290.1","18,235.7","31,618.3"],"seeg_agropecuaria":["32,055.7","13,408.3","22,412.5","8,011.4","12,978.4"],"seeg_mut":["48,264.3","28,238.9","28,185.4","7,392.2","13,732.6"],"seeg_remocoes":["24,046.7","9,499.1","12,734.0","4,081.1","8,900.7"]},"columns":[{"id":"Grupo","name":"M1 type (provisional label)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"seeg_emissao_bruta","name":"seeg_emissao_bruta","type":"character","header":"<a href=\"seeg_emissao_bruta.html\">Gross emissions<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5) · 2024<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"seeg_agropecuaria","name":"seeg_agropecuaria","type":"character","header":"<a href=\"seeg_agropecuaria.html\">Agriculture and livestock emissions<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5) · 2024<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"seeg_mut","name":"seeg_mut","type":"character","header":"<a href=\"seeg_mut.html\">Land-use change emissions<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5) · 2024<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"seeg_remocoes","name":"seeg_remocoes","type":"character","header":"<a href=\"seeg_remocoes.html\">Removals<\/a><div class=\"sub\">thousand tCO2e (GWP-AR5) · 2024<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"ee2c1fd68997d3cdb20a5467cb2b6068"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. 
+* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.
+</p>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-976c5fd26652218822f5" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-976c5fd26652218822f5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Indicador":["<a href=\"var_estab_0617.html\">Change in the number of agricultural establishments, 2006–2017<\/a><div class=\"sub\">% (2017 relative to 2006)<\/div>","<a href=\"var_area_0617.html\">Change in the area of agricultural establishments, 2006–2017<\/a><div class=\"sub\">% (2017 relative to 2006)<\/div>"],"Ano":["2017","2017"],"MT":["5.0%","12.8%"],"Amazônia":["0.6%","14.4%"],"Cerrado":["7.5%","6.8%"],"Pantanal":["37.8%","38.2%"],"X":[0,0]},"columns":[{"id":"Indicador","name":"Indicator","type":"character","html":true,"minWidth":240},{"id":"Ano","name":"Year","type":"character","minWidth":60,"align":"center"},{"id":"MT","name":"Mato Grosso","type":"character","align":"right"},{"id":"Amazônia","name":"Amazon","type":"character","align":"right"},{"id":"Cerrado","name":"Cerrado","type":"character","align":"right"},{"id":"Pantanal","name":"Pantanal","type":"character","align":"right"},{"id":"X","name":"Municipalities with X","type":"numeric","align":"center"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"7e33fe51a976b1eb2c07e183488d4784"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-c75ea9f73784589045fb" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c75ea9f73784589045fb">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Grupo":["T1 · Low aggregate scale","T2 · Tenure awaiting title, unspecialised","T3 · High aggregate scale","T4 · Mechanised with tenure awaiting title","T5 · Horticultural-irrigated"],"var_estab_0617":["1.2%","9.3%","-1.3%","-8.6%","22.8%"],"var_area_0617":["11.3%","7.2%","16.9%","9.8%","22.5%"]},"columns":[{"id":"Grupo","name":"M1 type (provisional label)","type":"character","minWidth":220,"style":{"fontWeight":600}},{"id":"var_estab_0617","name":"var_estab_0617","type":"character","header":"<a href=\"var_estab_0617.html\">Change in establishments, 2006–2017<\/a><div class=\"sub\">% (2017 relative to 2006) · 2017<\/div>","html":true,"minWidth":120,"align":"right"},{"id":"var_area_0617","name":"var_area_0617","type":"character","header":"<a href=\"var_area_0617.html\">Change in area, 2006–2017<\/a><div class=\"sub\">% (2017 relative to 2006) · 2017<\/div>","html":true,"minWidth":120,"align":"right"}],"sortable":false,"pagination":false,"compact":true,"dataKey":"3c6909eabb4c1f67a6e08219153fb8d9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p class="nota-fonte">
+Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. 
+* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p class="nota-fonte">Source: authors’ calculations based on IBGE (2006 and 2017 Agricultural Censuses); INCRA/SIPRA; SEEG 13 (Observatório do Clima); INPE/PRODES (TerraBrasilis). Dominant biome: IBGE, Biomes 1:250,000 (2019). Municipal types: RESA Project Manuscript 1 (k = 5; provisional labels). Medians and aggregates are calculated for each indicator’s reference year, with – (true zero) treated as zero, and X and ... excluded. For methodological details, see <a href="../dados/index.html">Data</a>.</p>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script>
+// Siglas explicadas ao passar o cursor (ou tocar, no celular). Aplica-se a parágrafos, listas e legendas.
+(function () {
+  var G = {
+    "FF": "Family farming, as defined by Law 11.326/2006 and the 2017 Agricultural Census",
+    "PA": "Agrarian-reform settlement project",
+    "PAs": "Agrarian-reform settlement projects",
+    "INCRA": "National Institute for Colonisation and Agrarian Reform",
+    "SIPRA": "Agrarian Reform Projects Information System (INCRA)",
+    "PNCF": "National Land Credit Programme (financing for land purchase)",
+    "PRONAF": "National Programme for Strengthening Family Farming",
+    "DAP": "PRONAF Eligibility Declaration",
+    "SEEG": "Greenhouse Gas Emissions and Removals Estimation System (Observatório do Clima)",
+    "PRODES": "INPE's satellite-based deforestation monitoring system",
+    "INPE": "National Institute for Space Research",
+    "GHG": "Greenhouse gases",
+    "CO2e": "Carbon dioxide equivalent: the sum of greenhouse gases, each weighted by its warming potential",
+    "GWP-AR5": "Global warming potential values from the IPCC Fifth Assessment Report, used by SEEG to aggregate the gases",
+    "AFS": "Agroforestry system",
+    "PES": "Payment for environmental services",
+    "ESG": "Environmental, social and governance criteria",
+    "REDD+": "Reducing emissions from deforestation and forest degradation",
+    "NPV": "Net present value",
+    "IRR": "Internal rate of return",
+    "EFA": "Exploratory factor analysis",
+    "PAF": "Principal axis factoring, an extraction method used in exploratory factor analysis",
+    "CI": "Confidence interval",
+    "M1": "Manuscript 1 of the RESA Project (in preparation)",
+    "SO": "Specific objective of the project",
+    "iCS": "Instituto Clima e Sociedade",
+    "UNEMAT": "Mato Grosso State University",
+    "MapBiomas": "Annual mapping of land use and land cover in Brazil",
+    "CAR": "Rural Environmental Registry",
+    "KMO": "Kaiser-Meyer-Olkin measure of the adequacy of the data for factor analysis, ranging from 0 to 1 (values above 0.8 indicate good adequacy)",
+    "ARI": "Adjusted Rand index, a measure of agreement between two classifications of the same municipalities (1 = identical classifications; 0 = agreement no better than chance)",
+    "Jaccard": "Coefficient measuring a group's stability across resamples; it equals 1 when the group recurs unchanged every time",
+    "clusterboot": "R function (fpc package) that assesses group stability by resampling",
+    "silhouette": "Measure of how well separated the groups are, ranging from −1 to 1; the higher the value, the more distinct the groups",
+    "Calinski-Harabasz": "Clustering quality index; the higher the value, the better separated the groups",
+    "Davies-Bouldin": "Clustering quality index; the lower the value, the better separated the groups",
+    "gap criterion": "Criterion for choosing the number of groups by comparing the clustering obtained with that of randomly generated data",
+    "Kruskal-Wallis": "Test for differences between groups based on the rank order of the values rather than the values themselves",
+    "ε²": "Effect size for the Kruskal-Wallis test: the share of variation explained by the group, from 0 to 1",
+    "Spearman": "Correlation coefficient based on the rank order of the values, ranging from −1 to 1",
+    "Pearson": "Linear correlation coefficient between the values, ranging from −1 to 1",
+    "Dutilleul": "Correction to the correlation test that takes account of the similarity between neighbouring municipalities",
+    "symlog": "Logarithmic scale that accommodates zero values",
+    "Φ": "Correlation between two factors in an oblique rotation",
+    "AFOLU": "Agriculture, forestry and other land use, a sector of the emissions inventory",
+    "banking": "Saving emission allowances from one period for later use",
+    "spillover": "Effect whereby what happens in one market affects another",
+    "cointegration": "Long-run relationship between price series"
+  };
+  var chaves = Object.keys(G).sort(function (a, b) { return b.length - a.length; });
+  var re = new RegExp("(^|[^\\wÀ-ú-])(" + chaves.map(function (k) { return k.replace(/[-+.]/g, "\\$&"); }).join("|") + ")(?![\\wÀ-ú-])");
+  function marcar(el) {
+    var usados = {};
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        while (p && p !== el) { if (/^(A|ABBR|CODE|SCRIPT|STYLE|SVG|BUTTON|SELECT|OPTION)$/i.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
+        return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+    var nos = []; while (w.nextNode()) nos.push(w.currentNode);
+    nos.forEach(function (n) {
+      var m = n.nodeValue.match(re); if (!m || usados[m[2]]) return;
+      usados[m[2]] = true;
+      var i = m.index + m[1].length, depois = n.splitText(i); depois.splitText(m[2].length);
+      var ab = document.createElement("abbr"); ab.title = G[m[2]]; ab.tabIndex = 0; ab.textContent = m[2];
+      depois.parentNode.replaceChild(ab, depois);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("main p, main li, main figcaption, main .kpi-rotulo, main .kpi-meta").forEach(marcar);
+  });
+})();
+</script>
+<div id="dica-grafico" role="tooltip" aria-hidden="true"></div>
+<script>
+// Dica imediata para elementos com data-tip (pontos, barras e linhas dos gráficos SVG; selos).
+(function () {
+  var dica = document.getElementById("dica-grafico");
+  function mostrar(el, x, y) {
+    dica.textContent = el.getAttribute("data-tip");
+    dica.style.display = "block";
+    var w = dica.offsetWidth, h = dica.offsetHeight;
+    var left = Math.min(x + 12, window.innerWidth - w - 8), top = y - h - 12;
+    if (top < 4) top = y + 16;
+    dica.style.left = left + "px"; dica.style.top = top + "px";
+  }
+  function esconder() { dica.style.display = "none"; }
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el) mostrar(el, e.clientX, e.clientY);
+  });
+  document.addEventListener("mousemove", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el && dica.style.display === "block") mostrar(el, e.clientX, e.clientY);
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (e.target.closest && e.target.closest("[data-tip]")) esconder();
+  });
+  document.addEventListener("touchstart", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); var t = e.touches[0];
+    if (el) mostrar(el, t.clientX, t.clientY); else esconder();
+  }, { passive: true });
+  window.addEventListener("scroll", esconder, { passive: true });
+})();
+</script>
+<script>
+// Seletor de idioma na barra de menu: as bandeiras levam à mesma página no outro idioma.
+// Os dois sites têm os mesmos nomes de arquivo; a versão em inglês fica em en/ (projeto Quarto próprio).
+// Bandeiras em SVG porque o Windows não desenha os emojis de bandeira (mostra "BR" e "GB").
+(function () {
+  var barra = document.querySelector(".navbar-container");
+  var meta = document.querySelector('meta[name="quarto:offset"]');
+  if (!barra || !meta) return;
+  var offset = meta.getAttribute("content");
+  var emIngles = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+
+  // Caminho da página a partir da raiz do idioma atual: o offset diz quantas pastas há acima dela.
+  var niveis = (offset.match(/\.\.\//g) || []).length;
+  var partes = window.location.pathname.split("/");
+  var arquivo = partes.pop() || "index.html";
+  var pagina = partes.slice(partes.length - niveis).concat(arquivo).join("/");
+  var noOutroIdioma = offset + (emIngles ? "../" : "en/") + pagina;
+
+  var BR = '<svg viewBox="0 0 60 42" width="26" height="18" aria-hidden="true"><rect width="60" height="42" fill="#009b3a"/>' +
+    '<path d="M30 4.5 55 21 30 37.5 5 21z" fill="#fedf00"/><circle cx="30" cy="21" r="10" fill="#002776"/>' +
+    '<path d="M20.6 18.2c6.6-1 13.6.6 18.8 4.5" fill="none" stroke="#fff" stroke-width="1.6"/></svg>';
+  var GB = '<svg viewBox="0 0 60 42" width="26" height="18" aria-hidden="true"><rect width="60" height="42" fill="#012169"/>' +
+    '<path d="M0 0 60 42M60 0 0 42" stroke="#fff" stroke-width="8"/><path d="M0 0 60 42M60 0 0 42" stroke="#c8102e" stroke-width="3"/>' +
+    '<path d="M30 0v42M0 21h60" stroke="#fff" stroke-width="13"/><path d="M30 0v42M0 21h60" stroke="#c8102e" stroke-width="8"/></svg>';
+
+  function bandeira(svg, nome, codigo, atual, href) {
+    return atual
+      ? '<span class="bandeira atual" title="' + nome + '" aria-label="' + nome + '" aria-current="true" lang="' + codigo + '">' + svg + '</span>'
+      : '<a class="bandeira" href="' + href + '" hreflang="' + codigo + '" lang="' + codigo + '" title="' + nome + '" aria-label="' + nome + '">' + svg + '</a>';
+  }
+
+  var seletor = document.createElement("div");
+  seletor.className = "seletor-idioma";
+  seletor.setAttribute("role", "group");
+  seletor.setAttribute("aria-label", emIngles ? "Language" : "Idioma");
+  seletor.innerHTML = bandeira(BR, "Português (Brasil)", "pt-BR", !emIngles, noOutroIdioma) +
+                      bandeira(GB, "English", "en", emIngles, noOutroIdioma);
+
+  // Fora do menu recolhível, para continuar visível no celular.
+  var busca = barra.querySelector("#quarto-search");
+  barra.insertBefore(seletor, busca || barra.querySelector(".navbar-toggler"));
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>RESA Project no. 115 · Supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928 · Implemented by UNEMAT · Preliminary version for the project team · Last updated 5 November 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="..\assets/logo-unemat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="UNEMAT"><img src="..\assets/logo-unemat.png" height="40" alt="UNEMAT" class="figure-img"></a></p>
+<figcaption>UNEMAT</figcaption>
+</figure>
+</div>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
