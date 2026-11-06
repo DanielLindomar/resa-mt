@@ -60,6 +60,8 @@ cartoes_secoes()
 
 ## What's new
 
+**5 November 2026 — Version 0.1.3.** Corrected the ranks of tied municipalities in the ranking charts, which now match those on the profiles and cards, and the wording of the area card on this page, which refers to the area of establishments rather than of the state.
+
 **5 November 2026 — Version 0.1.2.** Added an English version of the website, available via the flags in the menu bar, and listed the project team in [About](sobre.qmd).
 
 **23 October 2026 — Version 0.1.1.** Revised the page text to use scientific language, with no change to figures, sources or results.

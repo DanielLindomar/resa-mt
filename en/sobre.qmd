@@ -103,7 +103,7 @@ The following are **not published on the website**: personal data of producers a
 
 ## How to cite {#como-citar}
 
-> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *RESA-MT Observatory*: family farming, settlements and carbon in the three biomes of Mato Grosso. Version 0.1.2 (preliminary). RESA Project no. 115, supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928. 2026. Available at: https://daniellindomar.github.io/resa-mt/en/. Accessed: day month year.
+> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *RESA-MT Observatory*: family farming, settlements and carbon in the three biomes of Mato Grosso. Version 0.1.3 (preliminary). RESA Project no. 115, supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928. 2026. Available at: https://daniellindomar.github.io/resa-mt/en/. Accessed: day month year.
 
 When using the municipal types, please also cite RESA Project Manuscript 1 (in preparation). For public data, cite the original source given for each figure.
 

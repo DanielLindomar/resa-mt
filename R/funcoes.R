@@ -496,15 +496,16 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
     left_join(select(MUN, id_municipio, municipio, slug), by = "id_municipio")
   com <- u[!is.na(u$valor_calc), ]
   com <- com[order(-com$valor_calc, order(ordem_pt(com$municipio))), ]
-  com$pos <- seq_len(nrow(com))
+  com$fila <- seq_len(nrow(com))   # ordem das barras
+  com$pos <- rank(-com$valor_calc, ties.method = "min")   # posição mostrada: empatados ficam com a mesma, como em resumo_ind()
   sem <- u[is.na(u$valor_calc), ]
   if (nrow(com) == 0) return(p(class = "nota-fonte", tr("Nenhum município apresenta valor publicado neste recorte.", "No municipality in this breakdown has a published value.")))
-  mo <- com[com$pos <= n_max | com$id_municipio %in% destaque, ]
+  mo <- com[com$fila <= n_max | com$id_municipio %in% destaque, ]
   # linhas, com um marcador "⋯" quando há posições puladas
   lin <- list(); prev <- 0
   for (i in seq_len(nrow(mo))) {
-    if (mo$pos[i] > prev + 1) lin[[length(lin) + 1]] <- list(gap = TRUE)
-    lin[[length(lin) + 1]] <- c(as.list(mo[i, ]), gap = FALSE); prev <- mo$pos[i]
+    if (mo$fila[i] > prev + 1) lin[[length(lin) + 1]] <- list(gap = TRUE)
+    lin[[length(lin) + 1]] <- c(as.list(mo[i, ]), gap = FALSE); prev <- mo$fila[i]
   }
   if (prev < nrow(com)) lin[[length(lin) + 1]] <- list(gap = TRUE)
   med_g <- median(com$valor_calc); med_mt <- median(ULT$ultimos$valor_calc[ULT$ultimos$indicador == id], na.rm = TRUE)
@@ -535,9 +536,10 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
   notas <- lapply(c("X", "..."), function(si) { x <- sem$municipio[sem$sinal == si]
     if (length(x)) p(class = "nota-fonte", sprintf(tr("Sem valor em razão de %s: %s.", "No value owing to %s: %s."), SINAL_TXT[[si]], paste(sort_pt(x), collapse = ", "))) })
   tagList(HTML(svg),
-          p(class = "nota-fonte", sprintf(tr("%d municípios com valor publicado%s.", "Municipalities with a published value: %d%s."),
+          p(class = "nota-fonte", sprintf(tr("%d municípios com valor publicado%s.%s", "Municipalities with a published value: %d%s.%s"),
                                           nrow(com), if (nrow(com) > n_max) sprintf(tr("; exibem-se os %d maiores valores e os municípios-sede das áreas-piloto",
-                                                                                       "; the chart shows the %d largest values and the pilot-area host municipalities"), n_max) else "")),
+                                                                                       "; the chart shows the %d largest values and the pilot-area host municipalities"), n_max) else "",
+                                          if (anyDuplicated(com$valor_calc) > 0) tr(" Municípios empatados recebem a mesma posição.", " Tied municipalities share the same rank.") else "")),
           notas)
 }
 

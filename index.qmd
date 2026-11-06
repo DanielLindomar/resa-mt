@@ -60,6 +60,8 @@ cartoes_secoes()
 
 ## Novidades
 
+**05/11/2026 — Versão 0.1.3.** Corrigiram-se as posições dos municípios empatados nos gráficos de classificação, que passaram a coincidir com as dos perfis e dos cartões, e a descrição do cartão de área desta página, que se refere à área dos estabelecimentos, não à do estado.
+
 **05/11/2026 — Versão 0.1.2.** Incluíram-se a versão em inglês do site, acessível pelas bandeiras da barra de menu, e a equipe do projeto em [Sobre](sobre.qmd).
 
 **23/10/2026 — Versão 0.1.1.** Os textos das páginas foram revistos em linguagem científica, sem alteração de números, fontes ou resultados.

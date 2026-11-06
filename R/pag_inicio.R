@@ -90,7 +90,7 @@ kpis_inicio <- function() {
                sprintf(tr("%s dos %s estabelecimentos de MT (Brasil: %s) · 2017", "%s of the %s agricultural establishments in MT (Brazil: %s) · 2017"), fmt_valor(tt("pct_af_estab_mt"), "pct1"),
                        fmt_valor(tt("tot_todos_estab"), "int"), fmt_valor(tt("pct_af_estab_br"), "pct1")), f_censo),
     cartao_kpi(tr("Área dos estabelecimentos da AF", "Family-farm area"), fmt_valor(tt("pct_af_area_mt"), "pct1"),
-               sprintf(tr("%s de %s hectares de MT · 2017", "%s of %s hectares in MT · 2017"), fmt_valor(tt("tot_af_area"), "int"), fmt_valor(tt("tot_todos_area"), "int")),
+               sprintf(tr("%s de %s hectares dos estabelecimentos de MT · 2017", "%s of the %s hectares of agricultural establishments in MT · 2017"), fmt_valor(tt("tot_af_area"), "int"), fmt_valor(tt("tot_todos_area"), "int")),
                f_censo),
     cartao_kpi(tr("Pessoal ocupado na AF", "Persons employed on family farms"), fmt_valor(100 * tt("tot_af_pessoal") / tt("pessoal_total_mt"), "pct1"),
                sprintf(tr("%s de %s pessoas ocupadas nos estabelecimentos de MT · 2017", "%s of %s persons employed on agricultural establishments in MT · 2017"), fmt_valor(tt("tot_af_pessoal"), "int"),

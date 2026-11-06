@@ -45,6 +45,10 @@ res <- c(
                                                   nzchar(series_agregados("seeg_mut", "bioma", incluir_mt = TRUE)))),
   ok("ranking MT, bioma e tipo", html_de(tagList(ranking("pct_area_46504"), ranking("estab_af", "bioma", "Pantanal"),
                                                  ranking("var_estab_0617", "tipo", "T4")))),
+  ok("ranking dá aos empatados a mesma posição de resumo_ind", for (id in unique(ULT$ultimos$indicador)) { h <- html_de(ranking(id))
+       for (i in seq_len(nrow(SEDES))) { s <- resumo_ind(id, SEDES$id_municipio[i])
+         if (!is.na(s$pos_mt)) stopifnot(grepl(sprintf(">%s %s<", ordinal(s$pos_mt), SEDES$municipio[i]), h, fixed = TRUE),
+                                         grepl(sprintf(">%s %s<", ordinal(s$pos_bioma), SEDES$municipio[i]), html_de(ranking(id, "bioma", s$bioma)), fixed = TRUE)) } }),
   ok("tabela_dim (todos os temas)", for (t in names(TEMAS)) html_de(tabela_dim(t, JUARA, "Juara"))),
   ok("tabela_indicador", html_de(tabela_indicador("pct_area_46504"))),
   ok("tabela_agregados", html_de(tabela_agregados("pct_area_46504"))),
