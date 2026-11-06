@@ -60,6 +60,8 @@ cartoes_secoes()
 
 ## Novidades
 
+**06/11/2026 — Versão 0.1.5.** Passou-se a publicar o Observatório também na conta do projeto no GitHub, e a citação recomendada na página [Sobre](sobre.qmd#como-citar) passou a indicar esse endereço. Os resultados não se alteraram.
+
 **06/11/2026 — Versão 0.1.4.** Alinhou-se a página [Tipologia municipal da agricultura familiar](resultados/tipologia.qmd) à versão atual do Manuscrito 1, sem alteração dos resultados numéricos. A página passou a enunciar as duas hipóteses, a informar que foram fixadas depois de uma análise exploratória dos mesmos dados e a declarar que a hipótese 1 não se sustenta na forma enunciada; além disso, as rotações oblimin e promax passaram a ter o mesmo estatuto, e incluíram-se as ressalvas sobre a hipótese 2, o sigilo e a silhueta. Em [Posse no Censo Agropecuário e reforma agrária](resultados/posse.qmd), corrigiu-se a menção a uma posse "baixa" no rótulo do T3.
 
 **05/11/2026 — Versão 0.1.3.** Corrigiram-se as posições dos municípios empatados nos gráficos de classificação, que passaram a coincidir com as dos perfis e dos cartões, e a descrição do cartão de área desta página, que se refere à área dos estabelecimentos, não à do estado.

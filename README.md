@@ -2,7 +2,7 @@
 
 Site de resultados do Projeto RESA nº 115, *Viabilidade Econômica de Assentamentos Rurais nos Três Biomas de Mato Grosso: Análise Integrada de Sustentabilidade, Carbono e Dinâmica Territorial*. Execução: UNEMAT. Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928.
 
-Endereço previsto: https://daniellindomar.github.io/resa-mt/ (versão preliminar para a equipe; todas as páginas levam `noindex, nofollow`, o `robots.txt` pede `Disallow: /` e o site não gera `sitemap.xml`).
+Endereços: https://resa-unemat.github.io/resa-mt/ (conta do projeto) e https://daniellindomar.github.io/resa-mt/. Os dois publicam o mesmo conteúdo. É uma versão preliminar para a equipe: todas as páginas levam `noindex, nofollow`, o `robots.txt` pede `Disallow: /` e o site não gera `sitemap.xml`.
 
 ## Como atualizar
 
@@ -76,7 +76,15 @@ Os falsos positivos legítimos ficam na lista `EXCECOES` do script, cada um com 
 
 ### 4. Publicar (só com o aval da coordenação)
 
-`quarto publish gh-pages`. Registre a mudança em "Novidades" (`index.qmd`) e faça commit no ramo `main`.
+Registre a mudança em "Novidades" (`index.qmd`), faça commit no ramo `main` e publique **nos dois endereços**:
+
+```bash
+git push origin main
+quarto publish gh-pages --no-render --no-prompt --no-browser
+git push resa-unemat main gh-pages
+```
+
+O `--no-render` é necessário porque, sem ele, o Quarto renderiza a raiz de novo e apaga `_site/en/`. O `quarto publish` envia para o `origin` (`DanielLindomar/resa-mt`) e atualiza o ramo local `gh-pages`; o último comando leva os dois ramos para `resa-unemat/resa-mt`, com a conta do projeto. Quem clonar o repositório adiciona esse remoto com `git remote add resa-unemat https://resa-unemat@github.com/resa-unemat/resa-mt.git`.
 
 O `.gitignore` deixa fora do controle de versão, por padrão, os dados com licença de redistribuição em conferência: `dados_site/valores.csv`, `dados_site/serie.rds`, `dados_site/ultimos.rds` (têm a série municipal do SEEG) e `objetivos/dados/` (PRODES por município). Eles são gerados pelos passos 01, 02 e 06; por isso, quem clonar o repositório precisa rodar o passo 1 antes do render. Se o repositório for privado, a coordenação pode tirar essas linhas do `.gitignore`.
 
