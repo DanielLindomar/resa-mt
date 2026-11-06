@@ -1,0 +1,15 @@
+---
+title: "Mean area of family farms"
+description: "Indicator theme: Structure of family farming. Unit: hectares per establishment. Reference period: 2017. This page has a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table showing the IBGE symbols. Source: IBGE, 2017 Agricultural Census, SIDRA, table 6878."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "area_media_af"
+```
+
+{{< include _indicador.qmd >}}

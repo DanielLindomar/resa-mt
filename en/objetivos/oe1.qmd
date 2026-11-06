@@ -1,0 +1,103 @@
+---
+title: "SO1 · Territory and land use"
+description: "Specific objective 1 of the RESA Project: territorial and ecological assessment of the pilot areas. Implementation status, the official PRODES series for Mato Grosso and deforestation by municipality"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+J <- 2017:2025
+sb <- vapply(BIOMAS, prodes_soma, numeric(1), anos = J)
+d  <- prodes_largo()
+top <- d[order(-d$j_tot), ][1:3, ]
+sed <- d[d$sede_piloto, ]; sed <- sed[match(SEDES$id_municipio, sed$id_municipio), ]
+tx <- PRODES_TAXA[PRODES_TAXA$status == "consolidada", ]
+tx_ult <- tx[which.max(tx$ano), ]; tx_est <- PRODES_TAXA[PRODES_TAXA$status == "estimada", ]
+f <- PRODES_FONTE[1, ]
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objective
+
+The first specific objective (SO1) is to produce a territorial and ecological assessment of the pilot areas using geospatial technologies. It maps changes in land use and land cover over time and measures landscape structure in terms of attributes such as the fragmentation and connectivity of native vegetation. This gives the Technology Package its technical and visual basis for discussions with families and public authorities about keeping the forest standing.
+
+**Analysis period.** The proposal specifies the period from 1980 to 2023. However, the source of land use and land cover data planned for SO1 (MapBiomas, public data) has not yet been incorporated into this version. The period ultimately covered will depend on which collection is used.
+
+```{r}
+bloco_situacao("OE1", list(
+  c("concluido", "Official PRODES series for Mato Grosso (annual rate and increment by biome) and increment by municipality, retrieved from TerraBrasilis on 19 October 2026."),
+  c("andamento", "Clipping land use and land cover data to the pilot areas.", "Depends on the project’s geographic information systems (GIS) team validating the boundaries."),
+  c("previsto", "Municipal land use and land cover statistics (MapBiomas, public data)."),
+  c("previsto", "Landscape metrics and maps of land use and land cover by pilot area.")))
+```
+
+## Deforestation in Mato Grosso: the official PRODES series
+
+```{r}
+nota_correcao_prodes()
+```
+
+The annual deforestation rate for Mato Grosso (MT) comes from PRODES Legal Amazon, the programme run by the National Institute for Space Research (INPE) that measures clear-cutting of forest formations. In `r tx_ult$ano`, the latest year with a consolidated rate, deforestation reached **`r num(tx_ult$taxa_km2)` km²**, a figure covering August `r tx_ult$ano - 1` to July `r tx_ult$ano`. The `r tx_est$ano` figure (`r num(tx_est$taxa_km2)` km²) is still an estimate and is therefore not included in the chart below.
+
+```{r}
+HTML(grafico_prodes_taxa())
+```
+
+As well as the rate, PRODES measures the deforestation increment in each biome, using a mask and method specific to that biome. The increment by biome is therefore not directly comparable with the Legal Amazon rate. The chart below shows annual periods only. PRODES publishes data for periods of two years or more in the Cerrado up to 2012 and in the Pantanal in some years up to 2016, and these have been excluded.
+
+```{r}
+HTML(grafico_prodes_bioma())
+```
+
+```{r}
+p(class = "nota-fonte", sprintf("Source: authors’ calculations based on INPE, PRODES (Legal Amazon: annual rate by state; Amazon, Cerrado and Pantanal: annual increment in the biome, in MT), TerraBrasilis dashboard v%s (accessed on %s; updated by INPE on %s). Note: the PRODES year runs from August of the previous year to July of the year indicated.",
+  f$versao_painel, data_en(f$data_acesso), data_en(f$atualizacao_inpe)))
+```
+
+## PRODES deforestation by municipality (2017–2025)
+
+PRODES also publishes the deforestation increment for each municipality, broken down by biome. In Mato Grosso, between 2017 and 2025 (PRODES years, covering August 2016 to July 2025), the programme mapped **`r num(sb[["Amazônia"]])` km² in the Amazon**, **`r num(sb[["Cerrado"]])` km² in the Cerrado** and **`r num(sb[["Pantanal"]])` km² in the Pantanal**. Over these nine years, the data for all three biomes are annual and consolidated.
+
+The municipalities with the most deforestation over the period were `r top$municipio[1]` (`r num(top$j_tot[1])` km²), `r top$municipio[2]` (`r num(top$j_tot[2])` km²) and `r top$municipio[3]` (`r num(top$j_tot[3])` km²). In the pilot-area host municipalities, the totals were `r num(sed$j_tot[1], 1)` km² in `r sed$municipio[1]`, `r num(sed$j_tot[2], 1)` km² in `r sed$municipio[2]` and `r num(sed$j_tot[3], 1)` km² in `r sed$municipio[3]`. These figures refer to the entire municipal territory, not to the pilot areas.
+
+The maps below show each municipality's increment over the period, in square kilometres and as a proportion of its territory. The table that follows breaks the values down by biome.
+
+::: {.panel-tabset}
+### In km²
+
+```{r}
+mapa_prodes_mun("km2")
+```
+
+### As % of municipal territory
+
+```{r}
+mapa_prodes_mun("pct")
+```
+:::
+
+```{r}
+p(class = "nota-fonte", fonte_prodes_mun(),
+  " Note: classes are defined by quintiles. A municipality may fall within more than one PRODES mask, in which case the total is the sum of the biomes.")
+```
+
+```{r}
+tabela_prodes_mun()
+```
+
+## Results published so far and related pages
+
+For the SO1 results already available on this website, see the pages below.
+
+- [Emissions and deforestation](../resultados/emissoes.qmd): PRODES deforestation by M1 municipal type, with Article A recalculated, and validation of the proxy used in Articles A and B against official PRODES data.
+- [Climate indicators](../indicadores/index.qmd): land-use change emissions and removals by municipality, from the Greenhouse Gas Emissions and Removals Estimation System (SEEG 13).
+- [SO3 · Environment and carbon](oe3.qmd): Mato Grosso's emissions by sector.
+
+```{r}
+nav_oes("OE1")
+```

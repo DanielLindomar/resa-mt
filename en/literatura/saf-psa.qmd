@@ -1,0 +1,72 @@
+---
+title: "AFS and PES in settlements"
+description: "Dominicis et al. (2023) as the reference study for SO4, the 38 studies compared (identified by location, target group, arrangement and DOI) and the gaps identified in the literature"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_inicio.R"))
+ES <- ler_lit("estudos_saf_psa.csv")
+n_bioma <- function(b) sum(grepl(b, ES$bioma, fixed = TRUE))
+# As contagens por bioma usam os valores originais (ES); a tabela usa a versão em inglês (ES_EN).
+ES_EN <- sobrepor_en(ES, "estudos_saf_psa_en.csv", "estudo")
+```
+
+```{r}
+faixa_versao("Preliminary version for the project team. The table only identifies each study (location, biome, target group, arrangement and DOI) and gives no numerical results.")
+```
+
+## The reference study
+
+The study by Dominicis et al. (2023), published in *Forests* ([10.3390/f14102110](https://doi.org/10.3390/f14102110)), assesses the financial viability of agroforestry systems (AFS) established by family farmers, most of them agrarian-reform settlers, in the Descoberto River basin (Federal District, Cerrado). The authors compare results with and without payment for environmental services (PES), using indicators such as net present value (NPV) and internal rate of return (IRR).
+
+The specific objective on bioeconomic scenarios (SO4) will replicate and extend this design in the project's three pilot areas, one in each biome. The search for similar studies serves a dual purpose: to inform the choice of methods and to show what is still missing from the literature.
+
+## The `r nrow(ES)` studies compared
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Studies compared", fmt_valor(nrow(ES), "int"), "Oct 2026 search", sprintf("%d with a DOI checked against Crossref", sum(nzchar(ES$doi)))),
+  cartao_kpi("In the Amazon", fmt_valor(n_bioma("Amazônia"), "int"), "studies that mention this biome", "including studies covering both the Amazon and the Cerrado"),
+  cartao_kpi("In the Cerrado", fmt_valor(n_bioma("Cerrado"), "int"), "studies that mention this biome", "including transition zones"),
+  cartao_kpi("In the Pantanal", fmt_valor(sum(ES$bioma == "Pantanal"), "int"), "studies solely on the Pantanal",
+             sprintf("%d in the transition zone with the Cerrado", sum(grepl("Pantanal", ES$bioma) & ES$bioma != "Pantanal"))),
+  cartao_kpi("Outside Brazil", fmt_valor(sum(ES$bioma == "fora do Brasil"), "int"), "studies from other countries", "payment for environmental services and carbon"))
+```
+
+The table below identifies each study only by its location and biome, target group, arrangement and digital object identifier (DOI). To find a study, use the search box or the biome filter.
+
+```{r}
+tab <- ES_EN |> transmute(Estudo = dic(estudo), Local = local, Bioma = bioma, Público = publico, Arranjo = arranjo, DOI = doi)
+reactable(tab, elementId = "tab-saf", filterable = TRUE, searchable = TRUE, compact = TRUE, wrap = TRUE, striped = TRUE,
+  defaultPageSize = 38, pagination = FALSE,
+  language = reactableLang(searchPlaceholder = "Search study, location, target group or arrangement", noData = "No studies found"),
+  columns = list(
+    Estudo = colDef(name = "Study", minWidth = 170, filterable = FALSE, style = list(fontWeight = 600)),
+    Local = colDef(name = "Location", minWidth = 170, filterable = FALSE),
+    Bioma = colDef(name = "Biome", minWidth = 120, filterInput = filtro_lista_lit("tab-saf"), filterMethod = filtro_igual_lit),
+    Público = colDef(name = "Target group", minWidth = 180, filterable = FALSE),
+    Arranjo = colDef(name = "Arrangement", minWidth = 180, filterable = FALSE),
+    DOI = colDef(minWidth = 160, filterable = FALSE, style = list(fontSize = "0.78rem", wordBreak = "break-all"), cell = function(v) link_doi(v))))
+```
+
+- [Download the `r nrow(ES)` studies (CSV)](../../arquivos/literatura/resa_estudos_saf_psa_oe4.csv) · [data dictionary](../../arquivos/literatura/dicionarios/resa_estudos_saf_psa_oe4.csv)
+
+::: {.nota-fonte}
+Source: compiled by the authors from the search for studies similar to Dominicis et al. (2023), RESA Project (15 and 16 October 2026). Notes: each study's biome is the one indicated for its location. DOIs were matched by first author and year, and only where there was a single record checked against Crossref. A study made up of more than one work therefore has more than one DOI. The DOI for Lucchesi et al. (2024) was checked separately against Crossref on 19 October 2026. A missing DOI does not mean the work is unpublished, since reports and technical literature generally have no DOI. Where the source does not state the location or target group, the cell reads "not stated".
+:::
+
+## Gaps in the literature
+
+Comparing the studies points to five gaps in the literature. The project treats them differently, depending on the status assigned to each: three are confirmed, one is partly filled and one is not asserted. The first two, both confirmed, concern geographical coverage. The search found no viability study of AFS or productive restoration in a settlement in Mato Grosso (gap 1), and the studies conducted in the state deal with smallholdings outside settlements, commercial farms or experiments. Nor did it find any such study in the Pantanal (gap 2), so the closest parameters come from the Cerrado of Mato Grosso do Sul, in the transition zone with the Pantanal.
+
+Gap 3, on valuing carbon at market prices in settlements and small-scale production, is partly filled. Some studies include carbon in the cash flow of small producers, although most were conducted outside Brazil; in Brazil itself, cases are few and partial. By contrast, gap 4, on treating PES, carbon, risk and differences between families together in the same study, is confirmed, as no study combines all four elements. This combination is therefore SO4's contribution.
+
+Finally, gap 5, on land credit debt in the cash flow, is not asserted. The search did not target this point, which is relevant to the N. Sra. Aparecida case (land credit). A dedicated search is therefore needed before this gap can be asserted.
+
+::: {.nota-fonte}
+Source: compiled by the authors from the RESA Project's synthesis of the October 2026 search, set out in a separate text.
+:::

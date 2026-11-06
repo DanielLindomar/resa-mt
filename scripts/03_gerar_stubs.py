@@ -8,21 +8,23 @@ dados_site/, no mesmo padrão do DSIP-MT:
   municipios/_perfil.qmd     ->  municipios/<slug>.qmd    (perfis; os 141 ou só as 3 sedes)
   indicadores/_indicador.qmd ->  indicadores/<id>.qmd     (uma página por indicador de indicadores.csv)
 
+e o mesmo em en/ (versão em inglês), com os rótulos de i18n/indicadores_en.csv.
+
 Cada stub só tem o front matter, um bloco que define a chave (MUN_ID, inteiro,
 ou IND_ID, texto) e {{< include _modelo.qmd >}}. O conteúdo fica no modelo.
 
 Regras de segurança:
-  - só escreve em municipios/ e indicadores/;
+  - só escreve em municipios/, indicadores/, en/municipios/ e en/indicadores/;
   - nunca toca index.qmd, arquivos que começam com "_" nem arquivos sem a marca
     de stub (a deste script ou a de scripts/03_gerar_paginas.py);
   - apaga os stubs com marca que não estão mais na lista (por exemplo, ao
     passar de --municipios todos para --municipios sedes).
-Lê só dados_site/municipios.csv e dados_site/indicadores.csv.
+Lê só dados_site/municipios.csv, dados_site/indicadores.csv e i18n/indicadores_en.csv.
 
 Rodar a partir da raiz do repositório, depois dos scripts 01 e 02:
   python -I scripts/03_gerar_stubs.py                       # 141 perfis e 34 indicadores
   python -I scripts/03_gerar_stubs.py --municipios sedes    # perfis só das 3 sedes
-Depois: quarto render municipios indicadores
+Depois: quarto render municipios indicadores (e o mesmo dentro de en/)
 """
 
 import argparse
@@ -107,6 +109,31 @@ def gerar(pasta, modelo, paginas):
     return len(novos)
 
 
+def gerar_en(ind, mun):
+    """Stubs de en/: mesmos nomes de arquivo; títulos e descrições em inglês."""
+    with open(REPO / "i18n" / "indicadores_en.csv", encoding="utf-8", newline="") as f:
+        en = {r["id"]: r for r in csv.DictReader(f)}
+    paginas_ind = []
+    for r in sorted(ind, key=lambda r: int(r["ordem"])):
+        e = en[r["id"]]
+        ini = "1990" if r["id"] in ("seeg_mut", "seeg_remocoes") else "1970"
+        ano = "2025" if r["origem"] == "sipra" else (f"{ini}–{r['ano_ref']}" if r["serie"] == "1" else r["ano_ref"])
+        tabela = "a table showing the IBGE symbols" if r["origem"].startswith("censo") else "a table of the 141 municipalities"
+        desc = (f'Indicator theme: {e["tema"]}. Unit: {e["unidade"]}. Reference period: {ano}. This page has a map of the 141 municipalities of Mato Grosso, '
+                f'rankings within each biome and across the state, and {tabela}. Source: {e["fonte"]}.')
+        paginas_ind.append((r["id"], stub(e["rotulo"], desc, f'IND_ID <- "{r["id"]}"', "_indicador.qmd")))
+    paginas_mun = []
+    for m in mun:
+        bioma = {"Amazônia": "Amazon"}.get(m["bioma"], m["bioma"])
+        piloto = m["piloto"].replace("Quatá e ", "Quatá and ")
+        sede = f' The municipality hosts the {piloto} pilot area.' if m["sede_piloto"] == "True" else ""
+        desc = (f'Profile of the municipality of {m["municipio"]} (MT). Its dominant biome is the {bioma}, and Manuscript 1 classifies it as type {m["tipo_m1"]} '
+                f'(provisional label). Indicators cover family farming and tenure in the 2017 Census, SIPRA and SEEG data, and 2006–2017 dynamics.{sede}')
+        paginas_mun.append((m["slug"], stub(m["municipio"], desc, f'MUN_ID <- {int(m["id_municipio"])}L', "_perfil.qmd")))
+    gerar("en/indicadores", "_indicador.qmd", paginas_ind)
+    gerar("en/municipios", "_perfil.qmd", paginas_mun)
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -146,6 +173,7 @@ def main():
     print("Gerando stubs:")
     gerar("indicadores", "_indicador.qmd", paginas_ind)
     gerar("municipios", "_perfil.qmd", paginas_mun)
+    gerar_en(ind, mun)
 
 
 if __name__ == "__main__":

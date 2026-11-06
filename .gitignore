@@ -20,3 +20,4 @@ config.local.toml
 /objetivos/dados/
 
 /.quarto/
+/en/.quarto/

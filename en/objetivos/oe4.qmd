@@ -1,0 +1,69 @@
+---
+title: "SO4 · Bioeconomic scenarios"
+description: "Specific objective 4 of the RESA Project: viability scenarios for the low-carbon transition (NPV, IRR, payback, PES, carbon and risk). Implementation status, the reference study and gaps in the literature"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+selo_lacuna <- function(estado) span(class = paste("selo-lacuna", c(confirmada = "lacuna-confirmada", parcial = "lacuna-parcial")[[estado]]),
+                                     c(confirmada = "confirmed", parcial = "partly filled")[[estado]])
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objective
+
+The fourth specific objective (SO4) is to simulate viability scenarios for the low-carbon transition in the pilot areas. SO4 builds the value of carbon and environmental services into financial indicators in order to propose business models and public policy recommendations for the Technology Package.
+
+```{r}
+bloco_situacao("OE4", list(
+  c("concluido", "Literature review on carbon, markets and ESG (environmental, social and governance) criteria."),
+  c("concluido", "Search for studies similar to the reference study, and comparison of those found."),
+  c("andamento", "Scenario and cash flow design for each pilot area."),
+  c("previsto", "Scenario calculations for each pilot area.", "Depends on field data (SO2) and the carbon balance (SO3).")))
+```
+
+## Planned indicators and scenarios
+
+The scenarios will compare a plot's current use with low-carbon alternatives such as agroforestry systems (AFS) and integrated crop-livestock-forest systems (ICLF) on the same plot, with and without the project. The financial indicators for this comparison will be net present value (NPV), internal rate of return (IRR), the investment payback period and the benefit/cost ratio. Scenarios with and without payment for environmental services (PES) will also be considered, in order to identify the minimum payment that makes the transition viable.
+
+Using publicly available prices, the project will estimate both carbon revenue and the carbon price at which the options being compared break even. Risk and sensitivity will be assessed by varying prices, productivity, losses and the discount rate, and by risk simulation. Finally, the scenarios will take account of the specific features of the pilot areas. In N. Sra. Aparecida, which falls under the National Land Credit Programme (PNCF), the instalments paid for the land will be included in each family's cash flow.
+
+## Reference study
+
+The scenario design uses the study below as its reference.
+
+```{r}
+div(class = "bloco-situacao",
+  p(style = "margin:0", tags$b("Dominicis et al. (2023), "), tags$i("Forests"), ", 14(10), 2110. DOI ",
+    a(href = "https://doi.org/10.3390/f14102110", "10.3390/f14102110"), "."),
+  p(style = "margin:.4rem 0 0", "The study assesses the financial viability of AFS run by producers, most of them from agrarian-reform settlements, in the Descoberto Basin, Federal District. ",
+    "The authors compare scenarios with and without PES, using indicators such as NPV and IRR."),
+  p(class = "nota-fonte", style = "margin:.4rem 0 0", "SO4 will replicate the study’s design in the three pilot areas and add the elements missing from it: results per family, carbon and risk."))
+```
+
+## Gaps in the literature and RESA's contribution
+
+Comparison with similar studies revealed the gaps listed below. The badge on each item shows whether the gap has been confirmed or is already partly filled.
+
+```{r}
+tags$ul(class = "lista-lacunas",
+  tags$li(selo_lacuna("confirmada"), tags$b("1. "), "There is no viability study of AFS or productive restoration in a settlement in Mato Grosso."),
+  tags$li(selo_lacuna("confirmada"), tags$b("2. "), "There is no study of this kind in the Pantanal."),
+  tags$li(selo_lacuna("parcial"), tags$b("3. "), "Valuing carbon at market prices in settlements has been addressed only in part, in analogous studies from other countries and in studies without a sample of families."),
+  tags$li(selo_lacuna("confirmada"), tags$b("4. "), "No single study integrates differences between families, PES, carbon and risk."))
+```
+
+See the pages below for the studies compared and the references from the literature review.
+
+- [AFS and PES in settlements](../literatura/saf-psa.qmd): studies compared, with location, target group, arrangement and DOI.
+- [Carbon, markets and ESG](../literatura/carbono.qmd): references from the literature review.
+
+```{r}
+nav_oes("OE4")
+```

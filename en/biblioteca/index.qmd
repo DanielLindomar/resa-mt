@@ -1,0 +1,65 @@
+---
+title: "Library"
+description: "Core readings for the RESA Project, each linked to its DOI or official page, and the project reports"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+leitura <- function(titulo, ref, href, rotulo_link, uso, aviso = NULL)
+  div(class = "cartao", style = "cursor: default;",
+      tags$h4(titulo),
+      p(HTML(ref)),
+      p(style = "margin-top: .35rem;", a(href = href, target = "_blank", rel = "noopener", rotulo_link),
+        if (!is.null(aviso)) span(class = "rotulo-provisorio", aviso)),
+      p(class = "nota-fonte", style = "margin-top: .35rem;", uso))
+```
+
+```{r}
+faixa_versao("Preliminary version for the project team. The Library lists references only, each linked to its DOI or official page; the texts themselves are not reproduced on the website.")
+```
+
+## Core readings
+
+The six readings below guide the project's socioeconomic strand. Each reference links to the publication at its original source.
+
+```{r}
+div(class = "cartoes",
+  leitura("Dominicis et al. (2023)",
+          "DOMINICIS, L. F. de <i>et al.</i> Payment for Environmental Services and the Financial Viability of Agroforestry Systems: an integrated analysis of socio-environmental projects in the Descoberto Basin—Federal District. <i>Forests</i>, v. 14, n. 10, 2110, 2023.",
+          "https://doi.org/10.3390/f14102110", "DOI 10.3390/f14102110",
+          "Reference study for SO4 (bioeconomic scenarios), analysing agroforestry systems (AFS) with and without payment for environmental services (PES) in settlements in the Federal District."),
+  leitura("Silva et al. (2026)",
+          "SILVA, D. <i>et al.</i> Climate resilience through bioeconomy: a mixed-methods protocol for assessing adaptation policies in rural settlements on the Amazon. <i>PLOS ONE</i>, v. 21, n. 2, e0342911, 2026.",
+          "https://doi.org/10.1371/journal.pone.0342911", "DOI 10.1371/journal.pone.0342911",
+          "Mixed-methods protocol for settlements in the Amazon, used as a reference for the field instruments."),
+  leitura("Cabral et al. (2026)",
+          "CABRAL, D. V.; SANTOS, L. F. dos; SIMONINO, C. T. Caracterização da agricultura familiar do estado de Minas Gerais por meio de seus fatores determinantes. <i>Revista Econômica do Nordeste</i>, v. 57, n. 3, e20262715, 2026.",
+          "https://www.bnb.gov.br/revista/ren/article/view/2715", "Article page on the journal’s website",
+          "Factor-based characterisation of family farming in Minas Gerais using 2017 Census data. The project replicates the method and extends it to Mato Grosso. The printed DOI (10.61673/ren.2026.2715) is not yet registered with Crossref (checked on 19 October 2026).",
+          aviso = "DOI to be confirmed"),
+  leitura("Suela et al. (2026)",
+          "SUELA, A. G. L. <i>et al.</i> Avaliação do pagamento por serviços ambientais para incentivar a conservação da mata nativa no bioma Cerrado: uma análise de equilíbrio geral computável. <i>Revista Econômica do Nordeste</i>, v. 57, n. 4, e20262748, 2026.",
+          "https://doi.org/10.61673/ren.2026.2748", "DOI 10.61673/ren.2026.2748",
+          "PES value that offsets the returns from converting the legal reserve surplus in the Cerrado, used as an external reference for SO4."),
+  leitura("Marques (2021)",
+          "MARQUES, V. P. M. de A. <i>Estabelecimentos da reforma agrária no Censo Agropecuário 2017</i>. Porto Alegre: INCRA, 2021.",
+          "https://www.gov.br/incra/pt-br/centrais-de-conteudos/publicacoes/assentamentos_censo_revisado.pdf", "Official INCRA page (PDF)",
+          "Identifies agrarian-reform establishments in the 2017 Census using a special tabulation produced by IBGE with INCRA. The study shows that the Census category does not cover the whole of agrarian reform."),
+  leitura("IBGE (2019)",
+          "INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). <i>Censo agropecuário 2017</i>: resultados definitivos. Rio de Janeiro: IBGE, 2019.",
+          "https://biblioteca.ibge.gov.br/visualizacao/periodicos/3096/agro_2017_resultados_definitivos.pdf", "IBGE Library (PDF)",
+          "Final results of the 2017 Census, including the categories of the producer’s land tenure status, such as grantee or settler awaiting a definitive title."))
+```
+
+::: {.nota-fonte}
+The DOIs for Dominicis et al. (2023), Silva et al. (2026) and Suela et al. (2026) were checked against Crossref. The page for Cabral et al. (2026) was checked on the journal's website on 19 October 2026.
+:::
+
+## Project reports
+
+**In preparation.** Technical reports and methodological notes from the RESA Project will appear in this section as PDFs, each with a "How to cite" note, once the project coordination team has reviewed them. Until then, see the [Results](../resultados/tipologia.qmd) pages for the results and the [Literature](../literatura/index.qmd) page for the literature lists.
+
+## How to cite this website
+
+See [About the project](../sobre.qmd#como-citar) for citation details.

@@ -1,0 +1,14 @@
+---
+title: "Vale do Arinos"
+subtitle: "Amazon pilot area · host municipality: Juara"
+description: "Vale do Arinos pilot area (Juara, MT), an INCRA settlement project (code MT0641000): key details of the area and context on the host municipality"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+PIL_SLUG <- "vale-do-arinos"
+```
+
+{{< include _modelo_piloto.qmd >}}

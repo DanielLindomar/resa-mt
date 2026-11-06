@@ -1,0 +1,14 @@
+---
+title: "Quatá and N. Sra. Aparecida"
+subtitle: "Cerrado pilot area · host municipality: Lucas do Rio Verde"
+description: "Quatá and N. Sra. Aparecida pilot area (Lucas do Rio Verde, MT), where N. Sra. Aparecida is a land credit project (PNCF): key details of the area and context on the host municipality"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+PIL_SLUG <- "quata-nsa-aparecida"
+```
+
+{{< include _modelo_piloto.qmd >}}

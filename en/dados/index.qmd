@@ -1,0 +1,172 @@
+---
+title: "Data"
+description: "Indicator explorer for the 141 municipalities of Mato Grosso, and files for download with data dictionaries, sources and licences"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_inicio.R"))
+IDS_DL <- IND$id[IND$download == 1]
+```
+
+```{r}
+faixa_versao("Preliminary version for the project team. Databases frozen on 19 October 2026. IBGE symbols (X, – and ...) are shown as published and are never converted to zero.")
+```
+
+## Indicator explorer
+
+The table below gives values for `r length(IDS_DL)` indicators across the 141 municipalities of Mato Grosso, with each indicator shown for its own reference year. Use the drop-down lists to filter the table by municipality, biome, type, theme or indicator, and the button above it to download the filtered rows as a CSV file. To view an indicator on a map, see the [Indicators](../indicadores/index.qmd) page. The `r sum(IND$download == 0)` emissions indicators from the Greenhouse Gas Emissions and Removals Estimation System (SEEG) appear only on the website's pages, because the redistribution licence is still being checked.
+
+```{r}
+legenda_sinais()
+```
+
+```{r}
+DEC <- c(int = 0, dec1 = 1, dec2 = 2, dec3 = 3, pct1 = 1, pct2 = 2, brl = 0, brl_mil = 0, usd = 0)
+I2 <- IND[IND$id %in% IDS_DL, ] |> arrange(ordem)
+ex <- ULT$ultimos |>
+  filter(indicador %in% IDS_DL) |>
+  left_join(select(I2, indicador = id, ordem, dim, rotulo, unidade, fmt, fonte), by = "indicador") |>
+  left_join(select(MUN, id_municipio, municipio, bioma, tipo_m1), by = "id_municipio") |>
+  mutate(tema = unname(TEMAS[dim]),
+         ordem_valor = ifelse(sinal == "valor", mapply(function(v, f) round(v, DEC[[f]]), valor, fmt), NA_real_),
+         # no CSV, a célula do número traz o próprio sinal quando não há número (X, – ou ...), como nas tabelas do IBGE
+         valor_csv = ifelse(sinal == "valor", mapply(function(v, f) num_csv(v, DEC[[f]]), valor, fmt), sinal),
+         exibir = ifelse(sinal == "valor", mapply(function(v, f) num(v, DEC[[f]]), valor, fmt),
+                         html_celula(NA_real_, sinal, "int")))
+ex <- ex[order(ex$ordem, ordem_pt(ex$municipio) |> order()), ] |>
+  transmute(Município = municipio, `Código IBGE` = id_municipio, Bioma = nome_bioma(bioma), `Tipo (M1)` = tipo_m1, Tema = tema,
+            Indicador = rotulo, Ordem = ordem_valor, Valor = valor_csv, Sinal = sinal, Unidade = unidade, Ano = ano, Fonte = fonte, exibir)
+stopifnot(nrow(ex) == 141 * length(IDS_DL), all(!is.na(ex$Ordem) | ex$Sinal != "valor"), all(is.na(ex$Ordem[ex$Sinal != "valor"])),
+          all(ex$Valor[ex$Sinal != "valor"] == ex$Sinal[ex$Sinal != "valor"]), all(nzchar(ex$Valor)))
+
+col_csv <- c("Município", "Código IBGE", "Bioma", "Tipo (M1)", "Tema", "Indicador", "Valor", "Sinal", "Unidade", "Ano", "Fonte")
+js_csv <- sprintf("Reactable.downloadDataCSV('explorador', 'resa-mt_indicadores_recorte.csv', {columnIds: [%s]})",
+                  paste0("'", col_csv, "'", collapse = ", "))
+tagList(
+  tags$button(class = "btn btn-sm btn-outline-primary mb-2", onclick = js_csv, "Download filtered rows (CSV)"),
+  reactable(ex, elementId = "explorador", filterable = TRUE, searchable = TRUE, compact = TRUE, striped = TRUE,
+            defaultPageSize = 20, showPageSizeOptions = TRUE, pageSizeOptions = c(20, 50, 141, 500),
+            columns = list(
+              Município = colDef(name = "Municipality", minWidth = 150, filterInput = filtro_lista_lit("explorador"), filterMethod = filtro_igual_lit),
+              `Código IBGE` = colDef(name = "IBGE code", minWidth = 90, filterable = FALSE),
+              Bioma = colDef(name = "Biome", minWidth = 105, filterInput = filtro_lista_lit("explorador", nome_bioma(BIOMAS)), filterMethod = filtro_igual_lit),
+              `Tipo (M1)` = colDef(name = "Type (M1)", minWidth = 95, align = "center", filterInput = filtro_lista_lit("explorador", names(TIPOS)),
+                                   filterMethod = filtro_igual_lit,
+                                   cell = function(v) span(title = paste0(TIPOS[[v]], " (provisional label)"), v)),
+              Tema = colDef(name = "Theme", minWidth = 160, filterInput = filtro_lista_lit("explorador", unname(TEMAS)), filterMethod = filtro_igual_lit),
+              Indicador = colDef(name = "Indicator", minWidth = 230, filterInput = filtro_lista_lit("explorador", I2$rotulo), filterMethod = filtro_igual_lit),
+              Ordem = colDef(name = "Value", align = "right", minWidth = 95, filterable = FALSE, sortNALast = TRUE, html = TRUE,
+                             cell = function(v, i) ex$exibir[i]),
+              Valor = colDef(name = "Value", show = FALSE),
+              Sinal = colDef(name = "Symbol", minWidth = 95, align = "center", filterInput = filtro_lista_lit("explorador", c("valor", "X", TRACO, "...")),
+                             filterMethod = filtro_igual_lit,
+                             # só na tela, como na lista do filtro; o dado e o CSV continuam com "valor"
+                             cell = function(v) if (v == "valor") "value" else v),
+              Unidade = colDef(name = "Unit", minWidth = 150, filterable = FALSE, style = list(color = "#6b7280", fontSize = "0.85em")),
+              Ano = colDef(name = "Year", align = "center", minWidth = 60, filterable = FALSE),
+              Fonte = colDef(name = "Source", show = FALSE),
+              exibir = colDef(show = FALSE))))
+```
+
+::: {.nota-fonte}
+Manuscript 1 (M1) types, with provisional labels: `r paste(sprintf("%s · %s", names(TIPOS), TIPOS), collapse = "; ")`. Dominant biome: Brazilian Institute of Geography and Statistics (IBGE), 1:250,000 scale (2019). In the CSV file of filtered rows, the `Valor` column records numbers with a decimal point. Where IBGE does not publish a number, the `Valor` column shows the symbol itself (X, – or ...), as in the IBGE tables, and the `Sinal` column repeats it. Cells with X or ... do not mean zero, and the symbol – indicates a true zero. The files listed below follow the same rule. The CSV file also includes the `Fonte` column.
+:::
+
+## Files for download
+
+All files are comma-separated and UTF-8 encoded, with a point as the decimal separator. Their headers and data dictionaries are in Portuguese. The `id_municipio` key is the 7-digit IBGE code, and each database has a data dictionary listing every column with its description, unit and source. In the Census databases, each variable has a `sinal_<variable>` column containing `valor`, X, – or ...; where there is no number, the variable's own column shows the symbol, as in the IBGE tables. In files that include the M1 type, the `rotulo_status` column indicates that the label is provisional.
+
+```{r}
+DESC <- c(
+  "resa_indicadores_municipios.csv" = "Municipal indicators shown on the website (excluding SEEG), in wide format, with the symbol for each cell",
+  "resa_censo2017_af_municipios.csv" = "Family-farm variables from the 2017 Agricultural Census used in the indicators, with the symbol for each cell",
+  "resa_tipologia_m1_municipios.csv" = "Municipal types of family farming from Manuscript 1 (k = 5), with provisional labels and biomes",
+  "resa_incra_sipra_municipios.csv" = "Settlement projects, families, capacity and area by host municipality (INCRA/SIPRA, as at 3 June 2025)",
+  "resa_dinamica_2006_2017_municipios.csv" = "Number and area of all establishments in 2006 and 2017, by municipality",
+  "resa_refs_carbono_esg.csv" = "The 115 references from the literature review on carbon, markets and ESG (metadata only)",
+  "resa_estudos_saf_psa_oe4.csv" = "The 38 studies compared for SO4: location, biome, target group, arrangement and DOI",
+  "resa_literatura_estudos.csv" = "The two literature lists combined in a single table, with a corpus column",
+  "resa_literatura_estudos.bib" = "The literature references in BibTeX format, without abstracts",
+  "mt_municipios.geojson" = "Boundaries of the 141 municipalities of MT (IBGE, 2022 Municipal Mesh), simplified for the web, with biome and M1 type (provisional label)",
+  "fontes_licencas.csv" = "Sources, use on the website and licences",
+  "catalogo_downloads.csv" = "Catalogue of databases (rows, columns and size)")
+GRUPO <- c(dados = "Municipal data", literatura = "Literature", geo = "Municipal boundaries")
+info_arq <- function(pasta) {
+  d <- file.path(RAIZ, "arquivos", pasta)
+  fs <- list.files(d, pattern = "\\.(csv|bib|geojson)$")
+  if (!length(fs)) return(NULL)
+  bind_rows(lapply(fs, function(f) {
+    p <- file.path(d, f); csv <- grepl("\\.csv$", f)
+    cab <- if (csv) names(data.table::fread(p, nrows = 0, encoding = "UTF-8")) else character(0)
+    nl <- if (csv) length(readLines(p, encoding = "UTF-8", warn = FALSE)) - 1L else NA_integer_
+    dic <- file.path(d, "dicionarios", sub("[.]geojson$", ".csv", f))
+    tibble::tibble(Grupo = GRUPO[[pasta]], Arquivo = f, pasta = pasta,
+                   Descrição = if (f %in% names(DESC)) DESC[[f]] else "See the data dictionary",
+                   Linhas = nl, Colunas = if (csv) length(cab) else NA_integer_,
+                   KB = round(file.size(p) / 1024, 1), dic = if (file.exists(dic)) paste0("../../arquivos/", pasta, "/dicionarios/", basename(dic)) else "")
+  }))
+}
+cat_a <- bind_rows(info_arq("dados"), info_arq("literatura"), info_arq("geo")) |>
+  mutate(ord = match(Arquivo, c(names(DESC)))) |> arrange(match(Grupo, GRUPO), Arquivo %in% c("fontes_licencas.csv", "catalogo_downloads.csv"), ord, Arquivo)
+reactable(select(cat_a, -ord), compact = TRUE, striped = TRUE, pagination = FALSE, wrap = TRUE, groupBy = "Grupo", defaultExpanded = TRUE,
+          columns = list(
+            Grupo = colDef(name = "Group", minWidth = 130),
+            Arquivo = colDef(name = "File", minWidth = 230, cell = function(v, i) a(href = paste0("../../arquivos/", cat_a$pasta[i], "/", v), download = v, v)),
+            pasta = colDef(show = FALSE),
+            Descrição = colDef(name = "Description", minWidth = 300),
+            Linhas = colDef(name = "Rows", align = "right", minWidth = 70, cell = function(v) if (is.na(v)) "—" else fmt_valor(v, "int")),
+            Colunas = colDef(name = "Columns", align = "right", minWidth = 75, cell = function(v) if (is.na(v)) "—" else fmt_valor(v, "int")),
+            KB = colDef(align = "right", minWidth = 70, cell = function(v) fmt_valor(v, "dec1")),
+            dic = colDef(name = "Data dictionary", minWidth = 95, cell = function(v) if (nzchar(v)) a(href = v, "data dictionary") else "—")))
+```
+
+## Sources and licences
+
+The table below lists the responsible organisation, product, use on the website, licence, web address and access date for each source.
+
+```{r}
+fl <- ler(ds("fontes_licencas.csv"), colClasses = "character", na.strings = NULL) |>
+  mutate(across(everything(), ~ ifelse(is.na(.x), "", .x))) |>
+  sobrepor_en("fontes_licencas_en.csv", "produto") |>
+  transmute(Órgão = orgao, Produto = produto, `Uso no site` = uso_no_site, Licença = licenca, Endereço = url,
+            Acesso = ifelse(nzchar(data_acesso), data_acesso, "—"))
+reactable(fl, compact = TRUE, striped = TRUE, pagination = FALSE, wrap = TRUE,
+          columns = list(Órgão = colDef(name = "Organisation", minWidth = 110, style = list(fontWeight = 600)), Produto = colDef(name = "Product", minWidth = 230),
+                         `Uso no site` = colDef(name = "Use on the website", minWidth = 200), Licença = colDef(name = "Licence", minWidth = 200),
+                         Endereço = colDef(name = "Web address", minWidth = 160, cell = function(v) if (nzchar(v)) a(href = v, target = "_blank", rel = "noopener", sub("^https?://", "", v)) else "—"),
+                         Acesso = colDef(name = "Accessed", minWidth = 90, align = "center")))
+```
+
+## Notes on the figures
+
+```{r}
+d06 <- ler(ds("dinamica_2006_2017.csv"))
+s_area17 <- sum(d06$area_total_ha_2017, na.rm = TRUE); s_est06 <- sum(d06$n_estab_total_2006, na.rm = TRUE)
+s_area06 <- sum(d06$area_total_ha_2006, na.rm = TRUE)
+s_seeg <- AGR$valor[AGR$indicador == "seeg_emissao_bruta" & AGR$grupo == "MT" & AGR$ano == 2024]
+s_afarea <- AGR$valor[AGR$indicador == "area_af" & AGR$grupo == "MT" & AGR$ano == 2017]
+```
+
+::: {.callout-note}
+## Discrepancy between the municipal sum and the state total
+
+The totals on the home page are the official state totals; the municipal sum gives slightly different values. For the **area of establishments in 2017**, the municipal sum is `r fmt_valor(s_area17, "int")` ha, compared with a state total of `r fmt_valor(tt("tot_todos_area"), "int")` ha. For family farms, the corresponding figures are `r fmt_valor(s_afarea, "int")` ha and `r fmt_valor(tt("tot_af_area"), "int")` ha. These differences are due to IBGE rounding (2017 Agricultural Census).
+
+For **gross emissions in 2024**, the municipalities add up to `r fmt_valor(s_seeg / 1000, "dec2")` MtCO₂e, compared with `r fmt_valor(tt("seeg_bruta_mt_2024"), "dec2")` MtCO₂e for the state. The difference of about `r fmt_valor(tt("seeg_bruta_mt_2024") - s_seeg / 1000, "dec2")` MtCO₂e represents emissions that SEEG 13 does not allocate to municipalities.
+
+In the **2006 Agricultural Census**, the municipal sum gives `r fmt_valor(s_est06, "int")` establishments and `r fmt_valor(s_area06 / 1e6, "dec2")` million ha, compared with 112,978 establishments and 47.81 million ha in the 2006–2017 state comparison table. The difference in area is about 1.8%. The IBGE Census comparison table (historical series), by contrast, matches the municipal sum. For this reason, figures on the 2006–2017 dynamics always carry this note.
+:::
+
+::: {.callout-note}
+## Terms of use and attribution
+
+Of the **IBGE symbols**, X indicates suppression: the value has been withheld so that the respondent cannot be identified. The symbol – indicates a true zero, and ... indicates a value that is not available. In the files, the symbol appears in place of the number and is repeated in the symbol column. X and ... do not mean zero. The symbol – does mean a true zero, but it is shown as –, not as 0. The application programming interface (API) of the IBGE Automatic Retrieval System (SIDRA) holds no irrigation record for Araguainha, so irrigation there is shown with the symbol ... (value not available).
+
+For **tenure**, category 46504 of the 2017 Census is "grantee or settler awaiting a definitive title (2017 Census)". This category is not equivalent to the total number of agrarian-reform settlers. It should therefore be compared with data from the Agrarian Reform Projects Information System (SIPRA) of the National Institute for Colonisation and Agrarian Reform (INCRA). For the **Manuscript 1 typology**, the type labels remain provisional until the authors approve them, and anyone using them must cite the RESA Project.
+
+Municipal data from **SEEG 13** are shown on the pages, with their source, but are excluded from the downloads until the licence has been checked. They can be found at [seeg.eco.br](https://seeg.eco.br). For **PRODES**, the satellite-based deforestation monitoring system, the website uses only the official series from the National Institute for Space Research (INPE), published on TerraBrasilis and retrieved on 19 October 2026. The related correction note is on the [Emissions and deforestation](../resultados/emissoes.qmd) page. **MapBiomas**, planned for SO1, is not yet used in this version. For the **literature**, the files contain metadata only, with no third-party abstracts.
+:::

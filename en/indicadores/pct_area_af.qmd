@@ -1,0 +1,15 @@
+---
+title: "Family-farm share of the area of agricultural establishments"
+description: "Indicator theme: Structure of family farming. Unit: % of the area of agricultural establishments. Reference period: 2017. This page has a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table showing the IBGE symbols. Source: IBGE, 2017 Agricultural Census, SIDRA, table 6878."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "pct_area_af"
+```
+
+{{< include _indicador.qmd >}}

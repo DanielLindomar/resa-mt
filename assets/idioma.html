@@ -1,0 +1,43 @@
+<script>
+// Seletor de idioma na barra de menu: as bandeiras levam à mesma página no outro idioma.
+// Os dois sites têm os mesmos nomes de arquivo; a versão em inglês fica em en/ (projeto Quarto próprio).
+// Bandeiras em SVG porque o Windows não desenha os emojis de bandeira (mostra "BR" e "GB").
+(function () {
+  var barra = document.querySelector(".navbar-container");
+  var meta = document.querySelector('meta[name="quarto:offset"]');
+  if (!barra || !meta) return;
+  var offset = meta.getAttribute("content");
+  var emIngles = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+
+  // Caminho da página a partir da raiz do idioma atual: o offset diz quantas pastas há acima dela.
+  var niveis = (offset.match(/\.\.\//g) || []).length;
+  var partes = window.location.pathname.split("/");
+  var arquivo = partes.pop() || "index.html";
+  var pagina = partes.slice(partes.length - niveis).concat(arquivo).join("/");
+  var noOutroIdioma = offset + (emIngles ? "../" : "en/") + pagina;
+
+  var BR = '<svg viewBox="0 0 60 42" width="26" height="18" aria-hidden="true"><rect width="60" height="42" fill="#009b3a"/>' +
+    '<path d="M30 4.5 55 21 30 37.5 5 21z" fill="#fedf00"/><circle cx="30" cy="21" r="10" fill="#002776"/>' +
+    '<path d="M20.6 18.2c6.6-1 13.6.6 18.8 4.5" fill="none" stroke="#fff" stroke-width="1.6"/></svg>';
+  var GB = '<svg viewBox="0 0 60 42" width="26" height="18" aria-hidden="true"><rect width="60" height="42" fill="#012169"/>' +
+    '<path d="M0 0 60 42M60 0 0 42" stroke="#fff" stroke-width="8"/><path d="M0 0 60 42M60 0 0 42" stroke="#c8102e" stroke-width="3"/>' +
+    '<path d="M30 0v42M0 21h60" stroke="#fff" stroke-width="13"/><path d="M30 0v42M0 21h60" stroke="#c8102e" stroke-width="8"/></svg>';
+
+  function bandeira(svg, nome, codigo, atual, href) {
+    return atual
+      ? '<span class="bandeira atual" title="' + nome + '" aria-label="' + nome + '" aria-current="true" lang="' + codigo + '">' + svg + '</span>'
+      : '<a class="bandeira" href="' + href + '" hreflang="' + codigo + '" lang="' + codigo + '" title="' + nome + '" aria-label="' + nome + '">' + svg + '</a>';
+  }
+
+  var seletor = document.createElement("div");
+  seletor.className = "seletor-idioma";
+  seletor.setAttribute("role", "group");
+  seletor.setAttribute("aria-label", emIngles ? "Language" : "Idioma");
+  seletor.innerHTML = bandeira(BR, "Português (Brasil)", "pt-BR", !emIngles, noOutroIdioma) +
+                      bandeira(GB, "English", "en", emIngles, noOutroIdioma);
+
+  // Fora do menu recolhível, para continuar visível no celular.
+  var busca = barra.querySelector("#quarto-search");
+  barra.insertBefore(seletor, busca || barra.querySelector(".navbar-toggler"));
+})();
+</script>

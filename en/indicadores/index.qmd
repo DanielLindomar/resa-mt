@@ -1,0 +1,101 @@
+---
+title: "Indicators"
+description: "The 34 municipal indicators of the RESA-MT Observatory, grouped into six themes, with a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table showing the IBGE symbols"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_municipios.R"))
+TXT_TEMA <- c(
+  estrutura  = "These indicators use the number of establishments, area, persons employed and value of production to measure the size and relative importance of family farming in each municipality (IBGE, 2017 Agricultural Census).",
+  tecnologia = "This theme shows how widespread machinery, farming practices, electricity, technical guidance, financing and the PRONAF Eligibility Declaration (DAP) are among family farms (IBGE, 2017 Agricultural Census).",
+  alimentos  = "This theme describes the purpose and composition of family-farm production: own consumption, cow’s milk, cassava and horticulture (IBGE, 2017 Agricultural Census).",
+  posse      = paste("This theme covers the producer’s land tenure status (IBGE, 2017 Agricultural Census) and the settlement projects of the National Institute for Colonisation and Agrarian Reform (INCRA). The projects are recorded in the Agrarian Reform Projects Information System (SIPRA, Report 0227, as at 3 June 2025).",
+                     "Category 46504 understates the extent of agrarian reform, and SIPRA counts each project only in its host municipality."),
+  clima      = "This theme covers greenhouse gas emissions and removals estimated by SEEG 13 (GWP-AR5) for the whole municipality, not only for family farming. The series run from 1970 to 2024 for gross emissions and for agriculture and livestock emissions, and from 1990 to 2024 for land-use change and removals.",
+  dinamica   = "These indicators measure the change in the number and area of all agricultural establishments (family and non-family farms) between the 2006 and 2017 Censuses. The 2006 municipal sum does not, however, match the state table.")
+```
+
+```{r}
+faixa_versao()
+```
+
+The observatory covers `r nrow(IND)` indicators, grouped into six themes, for the 141 municipalities of Mato Grosso (MT). Each indicator page has:
+
+- a **choropleth map** of the 141 municipalities, with classes based on quintiles and X shown in grey;
+- a **ranking** within each biome and across Mato Grosso, highlighting the three pilot-area host municipalities;
+- a **time series**, where available, for indicators from the Greenhouse Gas Emissions and Removals Estimation System (SEEG);
+- aggregates by biome and by Manuscript 1 (M1) type;
+- the **full table**, with a column for the symbols used by the Brazilian Institute of Geography and Statistics (IBGE) and an option to download the filtered rows.
+
+Each card shows the value for Mato Grosso: the municipal sum for totals, the ratio of sums for proportions and means, and the change in sums for dynamics indicators. Key indicators carry the [key]{.selo} badge.
+
+```{r}
+legenda_sinais()
+```
+
+```{r}
+#| results: asis
+for (d in names(TEMAS)) {
+  n <- sum(IND$dim == d)
+  cat(sprintf("## %s {#%s}\n\n%s Indicators in this theme: %d.\n\n", TEMAS[[d]], d, TXT_TEMA[[d]], n))
+  cat("```{=html}\n", as.character(cartoes_tema(d)), "\n```\n\n", sep = "")
+}
+```
+
+## Comparison by biome and by M1 type
+
+The tables below give the aggregates for each indicator in its reference year. Biomes follow the IBGE 1:250,000 map (2019) and types follow the Manuscript 1 typology (k = 5), whose labels are provisional. In groups with X, the aggregate covers only municipalities with a published value.
+
+::: {.panel-tabset}
+
+### Structure
+
+```{r}
+resumo_tema("estrutura", prefixo = "")
+tabela_por_grupo(IND$id[IND$dim == "estrutura"], "tipo", incluir_mt = FALSE, prefixo = "")
+```
+
+### Technology
+
+```{r}
+resumo_tema("tecnologia", prefixo = "")
+tabela_por_grupo(IND$id[IND$dim == "tecnologia"], "tipo", incluir_mt = FALSE, prefixo = "")
+```
+
+### Food
+
+```{r}
+resumo_tema("alimentos", prefixo = "")
+tabela_por_grupo(IND$id[IND$dim == "alimentos"], "tipo", incluir_mt = FALSE, prefixo = "")
+```
+
+### Tenure
+
+```{r}
+resumo_tema("posse", prefixo = "")
+tabela_por_grupo(IND$id[IND$dim == "posse"], "tipo", incluir_mt = FALSE, prefixo = "")
+```
+
+### Climate
+
+```{r}
+resumo_tema("clima", prefixo = "")
+tabela_por_grupo(IND$id[IND$dim == "clima"], "tipo", incluir_mt = FALSE, prefixo = "")
+```
+
+### Dynamics
+
+```{r}
+resumo_tema("dinamica", prefixo = "")
+tabela_por_grupo(IND$id[IND$dim == "dinamica"], "tipo", incluir_mt = FALSE, prefixo = "")
+```
+
+:::
+
+```{r}
+fonte_rodape()
+```

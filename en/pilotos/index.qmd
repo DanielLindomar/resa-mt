@@ -1,0 +1,60 @@
+---
+title: "Pilot areas"
+description: "Key details of the RESA Project's three pilot areas, one in each biome of Mato Grosso: Vale do Arinos (Juara); Quatá and N. Sra. Aparecida (Lucas do Rio Verde); and Lambari (Poconé)"
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+The RESA Project studies three family-farm pilot areas, one in each biome of Mato Grosso (MT). They were selected in June 2026 and replace the areas named in the original proposal.
+
+This version of the website only **identifies** each area. The sources used give different figures for families and area, so these will not appear until they have been reconciled (`r as.character(selo_conciliacao())`). Nor does the website publish the boundaries of the pilot areas.
+
+```{r}
+cartoes_pilotos()
+```
+
+## Location of the host municipalities
+
+The map below shows the municipalities of Mato Grosso by dominant biome, with the pilot-area host municipalities outlined. It does not show the boundaries of the pilot areas themselves.
+
+```{r}
+mapa_municipio(SEDES$id_municipio, altura = 420, prefixo = "../municipios/")
+```
+
+```{r}
+p(class = "nota-fonte", "Source: compiled by the authors from the IBGE 2022 Municipal Mesh and, for each municipality’s dominant biome, the IBGE Biomes of Brazil map at a scale of 1:250,000 (2019). Municipal types: RESA Project Manuscript 1 (provisional labels).")
+```
+
+## Key details of the pilot areas
+
+The table below lists each pilot area with its host municipality, biome and project type. It also gives the status of the figures for families and area, and of the field reconnaissance.
+
+```{r}
+tabela_pilotos()
+```
+
+```{r}
+homonimos()
+```
+
+```{r}
+aviso_municipio()
+```
+
+Each pilot-area page gives a snapshot of its host municipality, subject to the caveat above. The [Municipalities](../municipios/index.qmd) section has a full profile of each municipality.
+
+## Next steps
+
+```{r}
+o_que_vem()
+```

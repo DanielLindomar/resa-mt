@@ -1,0 +1,194 @@
+---
+title: "2006–2017 dynamics by municipal type"
+subtitle: "Results from the project's Article C, recalculated using the Manuscript 1 types"
+description: "Change in the number, area and mean area of agricultural establishments between the 2006 and 2017 Censuses, by the five municipal types from Manuscript 1 and by biome"
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_resultados.R"))
+D  <- function(g, col) DIN[[col]][DIN$grupo == g]
+TS <- function(rec, m, col) DIN_TES[[col]][DIN_TES$recorte == rec & DIN_TES$metrica == m]
+C  <- function(item, col) DIN_CONC[[col]][DIN_CONC$item == item]
+tp <- DIN[DIN$recorte == "tipo", ]
+# frases comparativas: conferidas contra os números
+stopifnot(tp$grupo[which.max(tp$var_estab)] == "T5", tp$grupo[which.min(tp$var_estab)] == "T4",
+          tp$grupo[which.max(tp$var_area_media)] == "T4", D("T3", "var_estab") < 0, D("T4", "var_estab") < 0,
+          all(DIN_TES$p[DIN_TES$recorte == "tipo"] > 0.05), abs(D("T5", "var_area_media")) < 1,
+          D("Pantanal", "var_estab") == max(DIN$var_estab[DIN$recorte == "bioma"]))
+p_min_tipo <- min(DIN_TES$p[DIN_TES$recorte == "tipo"])
+fonte_din <- "Source: authors’ calculations based on IBGE, 2006 and 2017 Agricultural Censuses (SIDRA), all agricultural establishments; municipal database from Article C (corrected version); municipal types from RESA Project Manuscript 1 (provisional labels); dominant biome from the IBGE 1:250,000 map (2019)."
+```
+
+```{r}
+faixa_versao()
+```
+
+## Context and objective
+
+The project's Article C compared the 2006 and 2017 Agricultural Censuses, both conducted by the Brazilian Institute of Geography and Statistics (IBGE). This page recalculates those results using the **five types from Manuscript 1** (provisional labels) and the dominant biome from the IBGE 1:250,000 map. The aim is to examine how the number, area and mean area of establishments changed in each group.
+
+## Data and methods
+
+The figures refer to **all agricultural establishments**, not only family farms, in the 141 municipalities of Mato Grosso (MT). Intercensal changes are calculated from the municipal sum for each group. Differences between types and between biomes are assessed with the Kruskal-Wallis test on municipal percentage changes, with no correction for spatial autocorrelation. The municipal sum for the first Census does not reconcile with the state table, as detailed in the box below and in @tbl-conciliacao in the appendix to this page.
+
+```{r}
+div(class = "nota-conciliacao",
+  tags$h4("The 2006 municipal sum does not reconcile with the state table"),
+  tags$ul(
+    tags$li(paste0("The sum across the 141 municipalities comes to ", num(C("estab_2006", "soma_municipal"), 0), " establishments and ",
+                   num(C("area_2006", "soma_municipal") / 1e6, 2), " million ha in 2006. The 2006–2017 state comparison table records ",
+                   num(C("estab_2006", "tabela_estadual"), 0), " establishments and ", num(C("area_2006", "tabela_estadual") / 1e6, 2),
+                   " million ha, a difference in area of ", num(C("area_2006", "diferenca") / 1e3, 0), " thousand ha (",
+                   pct_txt(C("area_2006", "pct_diferenca")), ").")),
+    tags$li(paste0("The IBGE Census comparison table (historical series) records ", num(C("estab_2006", "tabela_confronto_ibge"), 0),
+                   " establishments and ", num(C("area_2006", "tabela_confronto_ibge"), 0),
+                   " ha in 2006, figures that match the municipal sum. It is not yet clear why these figures differ from the state table.")),
+    tags$li(paste0("In 2017, the sum reconciles: ", num(C("estab_2017", "soma_municipal"), 0), " establishments and ",
+                   num(C("area_2017", "soma_municipal"), 0), " ha, against ", num(C("area_2017", "tabela_estadual"), 0),
+                   " ha in the state total (a rounding difference).")),
+    tags$li("The changes shown below use the municipal sum in both years, so that 2006 and 2017 share the same basis.")))
+```
+
+### Value of production: excluded from this version
+
+::: {.callout-warning appearance="simple"}
+**The 2006 value of production does not reconcile.** The state table records R\$`r num(C("vbp_2006", "tabela_estadual") / 1e6, 2)` billion, but the sum from the corrected municipal database (IBGE, table 1118) comes to R\$`r num(C("vbp_2006", "soma_municipal") / 1e6, 2)` billion, `r pct_txt(C("vbp_2006", "pct_diferenca"), 0)` more (2006 values at current prices). Until the difference is explained, the change in the value of production between 2006 and 2017 remains excluded from the website.
+:::
+
+## Change in Mato Grosso
+
+The cards below summarise the change in the state as a whole.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Agricultural establishments", pct_txt(D("MT", "var_estab")),
+             sprintf("%s in 2006 → %s in 2017 · sum across the 141 municipalities", num(D("MT", "estab_2006"), 0), num(D("MT", "estab_2017"), 0))),
+  cartao_kpi("Area of establishments", pct_txt(D("MT", "var_area")),
+             sprintf("%s → %s million ha · sum across the 141 municipalities", num(D("MT", "area_2006") / 1e6, 2), num(D("MT", "area_2017") / 1e6, 2))),
+  cartao_kpi("Mean area per establishment", pct_txt(D("MT", "var_area_media")),
+             sprintf("%s → %s ha · ratio of sums", num(D("MT", "area_media_2006"), 0), num(D("MT", "area_media_2017"), 0))),
+  cartao_kpi("Municipalities that lost establishments", sprintf("%d of %d", D("MT", "n_mun_estab_cai"), D("MT", "n_mun")),
+             sprintf("%d of %d lost area · IBGE, 2006 and 2017 Censuses", D("MT", "n_mun_area_cai"), D("MT", "n_mun"))))
+nf(fonte_din)
+```
+
+## Change by type
+
+::: {#tbl-dinamica-tipo}
+
+```{r}
+tabela_dinamica("tipo")
+nf(fonte_din, " Note: change from 2006 to 2017, calculated from the municipal sum for each type.")
+```
+
+Establishments, area and mean area, by municipal type (provisional labels)
+
+:::
+
+::: {#fig-dinamica fig-cap-location="top"}
+
+```{r}
+svg_dinamica()
+```
+
+Change in the number, area and mean area of establishments, by type and by biome
+
+:::
+
+::: {.achado}
+As @tbl-dinamica-tipo and @fig-dinamica show, T5 recorded the largest increase in the number of establishments (`r pct_txt(D("T5", "var_estab"))`), with mean area almost unchanged (`r pct_txt(D("T5", "var_area_media"))`). T4, by contrast, lost `r pct_txt(-D("T4", "var_estab"))` of its establishments, while its mean area increased by `r pct_txt(D("T4", "var_area_media"))`, the largest rise of any type. T3 also lost establishments (`r pct_txt(D("T3", "var_estab"))`) and gained area (`r pct_txt(D("T3", "var_area"))`).
+:::
+
+These differences appear in the sums, but the statistical evidence for them across municipalities is not clear. @tbl-medianas-tipo complements the sums with the median municipal change. @tbl-testes-tipo indicates that none of the three measures differs between types in the Kruskal-Wallis test on municipal changes (p ≥ `r num(p_min_tipo, 2)`).
+
+::: {#tbl-medianas-tipo}
+
+```{r}
+tabela_medianas_dinamica("tipo")
+```
+
+Median municipal change and municipalities with losses, by municipal type
+
+:::
+
+::: {#tbl-testes-tipo}
+
+```{r}
+tabela_testes(DIN_TES, "tipo")
+nf("Note: Kruskal-Wallis test on percentage changes in the 141 municipalities (5 types), not corrected for spatial autocorrelation. ", fonte_din)
+```
+
+Tests for differences in change between types
+
+:::
+
+## Change by biome
+
+::: {#tbl-dinamica-bioma}
+
+```{r}
+tabela_dinamica("bioma")
+```
+
+Establishments, area and mean area, by dominant biome
+
+:::
+
+@tbl-medianas-bioma gives the median municipal change and the tests for differences between biomes.
+
+::: {#tbl-medianas-bioma}
+
+```{r}
+tabela_medianas_dinamica("bioma")
+tabela_testes(DIN_TES, "bioma")
+nf(fonte_din)
+```
+
+Median municipal change, municipalities with losses and tests for differences, by dominant biome
+
+:::
+
+As @tbl-dinamica-bioma shows, the number of establishments in the Pantanal rose by `r pct_txt(D("Pantanal", "var_estab"))`, although the biome has only `r D("Pantanal", "n_mun")` municipalities. In the Amazon, the number of establishments remained almost unchanged (`r pct_txt(D("Amazônia", "var_estab"))`), while area grew by `r pct_txt(D("Amazônia", "var_area"))`.
+
+## Pilot-area host municipalities
+
+@tbl-sedes-dinamica shows the change in the host municipalities of the three pilot areas.
+
+::: {#tbl-sedes-dinamica}
+
+```{r}
+aviso_municipio()
+tabela_sedes_dinamica()
+p(class = "nota-fonte", HTML(paste0(esc(fonte_din), " See also the indicators for ",
+  "<a href=\"../indicadores/var_estab_0617.html\">change in establishments</a> and ",
+  "<a href=\"../indicadores/var_area_0617.html\">change in area</a>, which include a map of the 141 municipalities.")))
+```
+
+Change in the number and area of establishments in pilot-area host municipalities
+
+:::
+
+## Concluding remarks
+
+This page has recalculated the dynamics of agricultural establishments between the two Censuses using the five municipal types and the dominant biome. The sums indicate an increase in the number of establishments in T5, with mean area almost unchanged. They also indicate a decrease in that number in T4 and T3, with mean area rising in T4 and area rising in T3. The statistical evidence for these differences across municipalities, however, is not clear.
+
+These results have limitations. The figures cover all agricultural establishments, not only family farms, and the municipal sum for the first Census does not reconcile with the state table. The value of production also remains excluded from this version until the difference is explained.
+
+## Appendix: reconciliation with the state tables
+
+@tbl-conciliacao, mentioned under Data and methods, compares the municipal sum with the IBGE state tables.
+
+::: {#tbl-conciliacao}
+
+```{r}
+tabela_conciliacao()
+nf("Source: authors’ calculations based on the municipal sum from the Article C database (IBGE, 2006 and 2017 Agricultural Censuses; 2006 value of production from SIDRA table 1118), the 2006–2017 state comparison table (Total column) and the IBGE Census comparison table (historical series), from the workbook of 2017 Census state tables compiled by the project.")
+```
+
+Reconciliation of the municipal sum with the state tables
+
+:::
+

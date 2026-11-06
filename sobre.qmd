@@ -24,8 +24,35 @@ A questão central da pesquisa consiste em verificar se os assentamentos rurais 
 ![](assets/logo-unemat.png){fig-alt="UNEMAT — Universidade do Estado de Mato Grosso"}
 :::
 
-- **Coordenação geral:** Prof. Dr. Rodrigo Bruno Zanin (UNEMAT)
-- **Responsável técnico e pela manutenção do site:** Prof. Dr. Lindomar Pegorini Daniel (UNEMAT), eixo socioeconômico
+## Equipe
+
+A @tbl-equipe apresenta os integrantes do projeto, com a função de cada um e a frente de trabalho a que se vinculam.
+
+| Integrante | Função no projeto | Frente de trabalho |
+|---|---|---|
+| Rodrigo Bruno Zanin | Coordenação geral | Território e geotecnologias |
+| Everton Valdomiro Pedroso Brum | Coordenação de geotecnologias | Território e geotecnologias |
+| Marcel Jesus Dias | Pesquisa | Território e geotecnologias |
+| Wylmor Constantino Tives Dalfovo | Coordenação de economia | Socioeconomia e bioeconomia |
+| Lindomar Pegorini Daniel | Coordenação de bioeconomia; responsável técnico e pela manutenção do site | Socioeconomia e bioeconomia |
+| Ivan Luiz Pedroso Pires | Pesquisa em tecnologia da informação | Socioeconomia e bioeconomia |
+| Wellynton Diniz | Doutorando em Biodiversidade | Socioeconomia e bioeconomia |
+| Géssica Batista | Bolsista | Área-piloto Vale do Arinos |
+| Ernandes Sobreira Oliveira | Pesquisa | Carbono e ambiente |
+| Ben Hur Marimon Junior | Pesquisa | Carbono e ambiente |
+| Francisco Lledo da Silva | Pesquisa | Carbono e ambiente |
+| Giselli Fujimori | Geoprocessamento | Sistemas de informação geográfica |
+| Henrique Brasil | Geoprocessamento | Sistemas de informação geográfica |
+| Helen Larocca | Geoprocessamento | Sistemas de informação geográfica |
+| Gustavo Jacob | Geoprocessamento | Sistemas de informação geográfica |
+
+: Equipe do Projeto RESA {#tbl-equipe}
+
+::: {.nota-fonte}
+Fonte: Elaboração própria com base na proposta e no orçamento do Projeto RESA, na apresentação do projeto no Encontro RESA e nos registros de trabalho da equipe.
+:::
+
+A frente de território e geotecnologias abrange a geodesia, a análise territorial e de paisagem, os dados secundários, o processamento e o banco de dados. A de socioeconomia e bioeconomia compreende a coleta de dados de campo, a análise socioeconômica e bioeconômica, a valoração, a modelagem de cenários, o engajamento, a disseminação e a arquitetura do banco de dados. Por sua vez, a de carbono e ambiente trata do balanço de carbono, da sustentabilidade ambiental, da ecologia florestal, da biomassa e dos estoques de carbono, além da construção de cenários e das recomendações técnicas. Essas três frentes, definidas na proposta do projeto, contribuem para o Pacote Tecnológico.
 
 ## Objetivos específicos
 
@@ -64,17 +91,19 @@ O site é gerado com [Quarto](https://quarto.org) e R, ao passo que os dados sã
 
 Trata-se de uma **versão preliminar** destinada à equipe do projeto, que será publicada no GitHub Pages após o aval da coordenação. Destaca-se, ainda, que todas as páginas solicitam aos mecanismos de busca que não as indexem e que o site não dispõe de mapa de páginas para buscadores.
 
+O site dispõe de uma versão em inglês, acessível pelas bandeiras da barra de menu. Essa versão é uma tradução do original em português, ainda em revisão pela equipe; em caso de divergência, prevalece o texto em português.
+
 ## Regras de conteúdo
 
 O conteúdo do site obedece a um conjunto de regras. No que se refere aos **sinais do IBGE**, os símbolos X (sigilo), – (zero absoluto) e ... (não disponível) são apresentados tal como publicados, e nenhum deles é convertido em zero ou em célula vazia. Desse modo, a célula traz o próprio sinal nas tabelas e nos arquivos, e, nestes, a coluna `sinal_<variável>` o repete; no mapa, X é representado em cinza. Quanto à **posse**, a categoria do Censo 2017 é sempre designada como "concessionário(a) ou assentado(a) aguardando titulação definitiva (Censo 2017)", a qual não equivale ao total de assentados da reforma agrária.
 
 Em relação à **tipologia**, o site utiliza exclusivamente a tipologia municipal do Manuscrito 1 (k = 5), cujos nomes de tipos constituem **rótulos provisórios** até a aprovação dos autores. O **bioma** dominante, em todo o site, segue o IBGE 1:250 mil (2019). No caso do **desmatamento**, emprega-se apenas a série oficial do PRODES, sistema de monitoramento do desmatamento por satélite do INPE, disponibilizada no TerraBrasilis e acompanhada da nota de correção. As **áreas-piloto**, por sua vez, são apresentadas somente com a sua identificação, uma vez que os números de famílias e de área serão incorporados após a conciliação entre as fontes.
 
-Adicionalmente, permanecem **fora do site** os dados pessoais (nomes, CPF/CNPJ, cadastro ambiental por imóvel e fotos de pessoas), as bases comerciais com licença restrita, os textos integrais de manuscritos e artigos, o orçamento, os dados de campo, as fotos e os dados de drone e de LiDAR. Por fim, quanto à **literatura**, divulgam-se apenas os metadados (autores, ano, título, periódico e DOI) e as contagens das buscas, sem resumos de terceiros.
+Adicionalmente, permanecem **fora do site** os dados pessoais de produtores e beneficiários (nomes, CPF/CNPJ e cadastro ambiental por imóvel), as fotos de pessoas, as bases comerciais com licença restrita, os textos integrais de manuscritos e artigos, o orçamento, os dados de campo, as fotos e os dados de drone e de LiDAR. Da **equipe** do projeto, divulgam-se apenas o nome, a função e a frente de trabalho. Por fim, quanto à **literatura**, divulgam-se apenas os metadados (autores, ano, título, periódico e DOI) e as contagens das buscas, sem resumos de terceiros.
 
 ## Como citar
 
-> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *Observatório RESA-MT*: agricultura familiar, assentamentos e carbono nos três biomas de Mato Grosso. Versão 0.1.1 (preliminar). Projeto RESA nº 115, com apoio do Instituto Clima e Sociedade (iCS), Doação D-25-02928. 2026. Disponível em: https://daniellindomar.github.io/resa-mt/. Acesso em: dia mês ano.
+> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *Observatório RESA-MT*: agricultura familiar, assentamentos e carbono nos três biomas de Mato Grosso. Versão 0.1.2 (preliminar). Projeto RESA nº 115, com apoio do Instituto Clima e Sociedade (iCS), Doação D-25-02928. 2026. Disponível em: https://daniellindomar.github.io/resa-mt/. Acesso em: dia mês ano.
 
 Para os tipos municipais, recomenda-se citar também o Manuscrito 1 do Projeto RESA (em preparação). No caso dos dados públicos, deve-se citar a fonte original indicada em cada número.
 

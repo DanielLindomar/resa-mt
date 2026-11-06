@@ -1,0 +1,241 @@
+---
+title: "Municipal typology of family farming"
+subtitle: "Results from Manuscript 1 (in preparation)"
+description: "Typology of Mato Grosso municipalities based on family farming: the five types from Manuscript 1 (k = 5), with provisional labels"
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_resultados.R"))
+FAT <- sobrepor_en(ler(ds("m1_fatores.csv")), "m1_fatores_en.csv", "fator")
+k4 <- regmatches(m1("K4_COMPOSICAO"), regexec("group of (\\d+) = (\\d+) of T2; (\\d+) of T4", m1("K4_COMPOSICAO")))[[1]]
+sedes_tipo <- paste(sprintf("%s (%s)", SEDES$municipio, SEDES$tipo_m1)[order(SEDES$municipio)], collapse = ", ")
+```
+
+```{r}
+faixa_versao()
+```
+
+::: {.callout-note appearance="simple"}
+**Results in preparation.** This page summarises RESA Project Manuscript 1 (M1), which has not yet been published. The figures shown are taken from the manuscript's final results file, and the type names are **provisional labels**, still subject to the authors' approval.
+:::
+
+## Context and objective
+
+The 2017 Agricultural Census, conducted by the Brazilian Institute of Geography and Statistics (IBGE), records the producer's land tenure status. One of the categories is **grantee or settler awaiting a definitive title (2017 Census)**, coded 46504 in the IBGE Automatic Retrieval System (SIDRA). Manuscript 1 addresses two questions. The first is whether this tenure status forms an axis of its own in family farming, distinct from scale and mechanisation. The second is how the municipalities of Mato Grosso (MT) group together when tenure is considered alongside production.
+
+The two hypotheses and the rule for judging them were fixed before estimation. The sections below cover the data and method, the resulting types and the decision rule on tenure, followed by an analysis of sensitivity to statistical suppression, a discussion and concluding remarks.
+
+## Data and methods
+
+The analysis has four stages, summarised below.
+
+::: {.cartoes .passos}
+
+::: {.cartao}
+#### [1]{.num-passo} Data
+Family-farm data for `r m1("AE_N_MUNICIPIOS")` municipalities come from the IBGE 2017 Agricultural Census. Of the `r m1("AFE_N_CANDIDATAS")` candidate variables, `r m1("AFE_N_VARIAVEIS")` were retained.
+:::
+
+::: {.cartao}
+#### [2]{.num-passo} Factor analysis
+Factors are extracted by principal axis factoring (PAF), with oblique oblimin rotation. Parallel analysis of the correlation matrix indicates that `r sub(" .*", "", m1("AFE_RETENCAO_HORN_R"))` factors should be retained, and the Kaiser-Meyer-Olkin measure of sampling adequacy (KMO) is `r m1("AFE_KMO")`.
+:::
+
+::: {.cartao}
+#### [3]{.num-passo} Scores
+Each municipality receives a Bartlett score on each factor. The `r sub(" .*", "", m1("TIPO_WINSORIZADOS"))` scores outside ±3 are truncated at ±3 before clustering.
+:::
+
+::: {.cartao}
+#### [4]{.num-passo} Clustering
+The *k-means* algorithm is run with k from 3 to 8. The rule fixed in advance selects the highest silhouette between k = 3 and k = 6, which gives k = `r m1("K_REGRA")`, with a silhouette of `r m1("K5_SILHUETA")`.
+:::
+
+:::
+
+The analysis retained five factors:
+
+```{r}
+tags$ul(lapply(seq_len(nrow(FAT)), function(i) tags$li(tags$b(paste0(FAT$fator[i], " · ", FAT$nome[i])), ": ", FAT$descricao[i], ".")))
+```
+
+**The choice of five types.** The silhouette at k = 5 (`r m1("K5_SILHUETA")`) is practically the same as at k = 4 (`r m1("K4_SILHUETA")`; a difference of `r m1("K_EMPATE_DIF")`). However, the gap criterion also points to k = `r m1("K_GAP_1EP")` (@fig-criterios-k), and Ward's hierarchical clustering agrees with *k-means*, with an adjusted Rand index (ARI) of `r m1("TIPO_ARI_WARD")`. At k = 4, moreover, `r k4[3]` municipalities from T2 and `r k4[4]` from T4 form a single group of `r k4[2]`. Finally, stability under resampling, measured by the mean Jaccard index, is `r m1("K5_JACCARD_MEDIO_REP")` when calculated with repetitions (duplicate draws kept) and `r m1("K5_JACCARD_MEDIO_PADRAO")` under the convention used by clusterboot, an R resampling routine.
+
+::: {#fig-criterios-k fig-cap-location="top"}
+
+```{r}
+figura_res("figA4_criterios_k_final.svg",
+           "Reproduced from Figure A4 of Manuscript 1: silhouette, Calinski-Harabasz, Davies-Bouldin, gap criterion and bootstrap Jaccard for each value of k. The grey band marks k = 5.",
+           "")
+fonte_m1("Tables 2 and A.5", c("AE_N_MUNICIPIOS", "AFE_N_CANDIDATAS", "AFE_N_VARIAVEIS", "AFE_RETENCAO_HORN_R", "AFE_KMO",
+                                "TIPO_WINSORIZADOS", "K_REGRA", "K5_SILHUETA", "K4_SILHUETA", "K_EMPATE_DIF", "K_GAP_1EP",
+                                "TIPO_ARI_WARD", "K4_COMPOSICAO", "K5_JACCARD_MEDIO_REP", "K5_JACCARD_MEDIO_PADRAO"))
+```
+
+Criteria for choosing the number of types (k)
+
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Previous version of the typology (superseded)
+
+Earlier versions of Manuscript 1 and the project's Articles A, B and C used a different typology, with six types (k = 6) derived from principal components with Varimax rotation. Manuscript 1 replaced this specification with the current one, which combines principal axis factoring with oblimin rotation, `r m1("AFE_N_VARIAVEIS")` variables, Bartlett scores and k = 5. One notable change is the exclusion of the total value of production, which duplicates the sum of crop and animal production values.
+
+Agreement between the two typologies, measured by the ARI, is `r m1("TIPO_ARI_ORIGINAL")`, and `r m1("TIPO_MUDANCAS_VS_ORIGINAL")` municipalities change type (Table A.6 of Manuscript 1). This website uses only the current typology. The pages on [emissions and deforestation](emissoes.qmd) and on [2006–2017 dynamics](dinamica.qmd) therefore recalculate the results of Articles A, B and C with the five types from Manuscript 1. For Article A, deforestation is now measured using official municipal PRODES data from the National Institute for Space Research (INPE) instead of the proxy from the Greenhouse Gas Emissions and Removals Estimation System (SEEG).
+:::
+
+## Spatial distribution of the types
+
+@fig-mapa-tipos maps the five types (provisional labels), each shown in its own colour. A dark outline marks the host municipalities of the three pilot areas: `r sedes_tipo`. Selecting a municipality on the map opens its profile.
+
+::: {#fig-mapa-tipos fig-cap-location="top"}
+
+```{r}
+mapa_municipio(NULL, altura = 470, prefixo = "../municipios/", cor_por = "tipo")
+```
+
+Municipal types of family farming in Mato Grosso (provisional labels)
+
+:::
+
+```{r}
+nf("Source: compiled by the authors from the Manuscript 1 types (Table A.19; derived from the IBGE 2017 Agricultural Census) and the IBGE 2022 Municipal Mesh. Provisional labels.")
+```
+
+## Type profiles
+
+@tbl-perfis, which reproduces Table 3 of Manuscript 1, gives the profile of each type. Factor scores have a mean of zero in Mato Grosso, so positive values lie above the state mean and negative values below it. As noted above, 46504 is the code for grantee or settler awaiting a definitive title (2017 Census).
+
+::: {#tbl-perfis}
+
+```{r}
+tabela_perfis_m1()
+fonte_m1("Table 3", extra = paste0("; beneficiaries: ", FONTE_BENEF, " (Table A.15)"))
+nf(sprintf(
+  "Note: mean of scores truncated at ±3, with the median in parentheses. The %% of area in category 46504 covers only municipalities without X; the MT value (%s%%) is not the state total, which is %s%%. X: value withheld by IBGE to avoid identifying the respondent.",
+  m1("T3_MT_PCT_AREA_46504_PONDERADA_SEM_SIGILO"), m1("PCT_46504_AREA_MT")))
+```
+
+Profiles of the municipal types of family farming (provisional labels)
+
+:::
+
+### Characteristics of each type
+
+The cards below summarise the defining features of each type and show which types contain a pilot-area host municipality.
+
+```{r}
+cartoes_tipos()
+fonte_m1("Tables 3 and A.8", c("T3_*", "INCRA_T3_REF_POR100AF_PONDERADO", "RAZAO_T2_46504_VS_MT", "RAZAO_T4_46504_VS_MT",
+                               "PREV_SEM_ITANHANGA_T4", "RAZAO_T4_46504_VS_MT_SEM_ITANHANGA", "OUT_T5_F4_SEM_COLNIZA"))
+```
+
+## Representative municipalities
+
+@tbl-representativos lists, for each type, the three municipalities closest to the centre of the group: those that best summarise its profile.
+
+::: {#tbl-representativos}
+
+```{r}
+tabela_representativos()
+nf("Source: RESA Project Manuscript 1 (in preparation), note to Table 3 (distance from the centre of the type, in scores truncated at ±3).")
+```
+
+Municipalities closest to the centre of each type
+
+:::
+
+The full list of municipalities in each type follows. Expand an item to see its list.
+
+```{r}
+lista_municipios_tipo()
+aviso_municipio()
+```
+
+## Association between type and biome
+
+::: {#tbl-tipo-bioma}
+
+```{r}
+tabela_tipo_bioma()
+fonte_m1("Tables 3 and A.9", extra = "; dominant biome: IBGE, Biomes 1:250,000 (2019)")
+```
+
+Municipalities by type and dominant biome
+
+:::
+
+@tbl-tipo-bioma shows that type and biome are associated, although neither mirrors the other. Cramér's V is `r m1_re("BIOMA_K5_250MIL_V", "^V = ([0-9.]+)")`, with a 95% confidence interval (CI) of `r sub("; ", " to ", m1_re("BIOMA_K5_250MIL_V", "^V = [0-9.]+ \\[([^]]+)\\]"), fixed = TRUE)`, and the chi-square statistic is `r m1_re("BIOMA_K5_250MIL_CHI2", "^([0-9.]+)")` with `r m1_re("BIOMA_K5_250MIL_CHI2", "\\((\\d+)\\)")` degrees of freedom (p = `r sci_br(m1_re("BIOMA_K5_250MIL_CHI2", "p = ([0-9.e-]+)"))`; by permutation, p = `r m1_re("BIOMA_K5_250MIL_CHI2", "perm\\. ([0-9.]+)")`). The permutation test is relevant because `r m1_re("BIOMA_K5_250MIL_V", "; ([0-9]+ of [0-9]+) cells")` cells in the table have an expected frequency below 5.
+
+T3 lies almost entirely in the Amazon, with `r m1("T3_T3_BIOMA250_AMAZONIA")` of its `r m1("T3_T3_N")` municipalities in that biome. The `r m1("T3_MT_BIOMA250_PANTANAL")` municipalities whose dominant biome is the Pantanal fall into T1 (`r m1("T3_T1_BIOMA250_PANTANAL")`) and T5 (`r m1("T3_T5_BIOMA250_PANTANAL")`). T1, T2 and T4, by contrast, are split in similar proportions between the Amazon and the Cerrado.
+
+## Decision rule on tenure
+
+In an oblique rotation, factors may correlate with one another, and the correlation between two factors is denoted Φ. Before estimation, the authors fixed a decision rule based on m, defined as the larger of Φ tenure × scale (aggregate scale) and Φ tenure × mechanisation. Under the rule, values of m below 0.20 would lead to tenure being treated as an independent axis. Values from 0.20 to 0.35 would indicate **partial independence**, and values of 0.35 or more would entail reformulating the hypothesis. @fig-regra places the estimates of m within these bands.
+
+::: {#fig-regra fig-cap-location="top"}
+
+```{r}
+svg_regua_regra()
+```
+
+Position of m within the decision-rule bands under the oblimin and promax rotations
+
+:::
+
+**Main result.** The estimates are Φ tenure × mechanisation = `r m1("PHI_POSSE_MEC")` (95% CI `r ic_br("PHI_POSSE_MEC_IC_IID")`) and Φ tenure × aggregate scale = `r m1("PHI_POSSE_ESC")` (`r ic_br("PHI_POSSE_ESC_IC_IID")`). This gives m = `r m1("REGRA_M")`, which under the rule corresponds to **`r m1("REGRA_VEREDITO_CANONICO")`**. Across the 2,000 resamples of municipalities, `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID")[1]`% of the estimates fall below 0.20, `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID")[2]`% lie in the partial independence band and `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID")[3]`% exceed 0.35. With resampling by regional blocks, the interval for m runs from `r ic_br("REGRA_M_IC_BOOT_BLOCOS")`.
+
+**Sensitivity to rotation.** With promax rotation, m = `r m1("REGRA_M_PROMAX")`, which under the rule would lead to **`r m1("REGRA_VEREDITO_CANONICO_PROMAX")`**, and `r m1_partes("REGRA_FAIXAS_CANONICAS_BOOT_IID_PROMAX")[3]`% of the resamples exceed 0.35. With Kaiser-normalised oblimin rotation, m = `r m1("REGRA_M_OBLIMIN_KAISER")`, again within the partial independence band.
+
+**Correlations not covered by the rule.** Tenure also correlates with horticulture and irrigation, with Φ = `r m1("PHI_POSSE_HORT")` (95% CI `r ic_br("PHI_POSSE_HORT_IC_IID")`). The second hypothesis, that food production and tenure would occupy separate axes, was therefore judged `r sub(" \\(.*", "", m1("H2_VEREDITO"))`. The correlation with permanent crops is Φ = `r m1("PHI_POSSE_PER")`. @fig-phi shows these correlations together.
+
+::: {#fig-phi fig-cap-location="top"}
+
+```{r}
+figura_res("fig3_matriz_phi_final.svg",
+           "Reproduced from Figure 3 of Manuscript 1: (a) Φ matrix for the oblimin solution, with 95% CIs from the simple bootstrap and the regional-block bootstrap; (b) Φ between tenure and the other factors under the oblimin and promax rotations, with thresholds at 0.20 and 0.35.",
+           "")
+fonte_m1("Tables A.2 and A.3", c("PHI_POSSE_MEC", "PHI_POSSE_MEC_IC_IID", "PHI_POSSE_ESC", "PHI_POSSE_ESC_IC_IID", "REGRA_M",
+                                 "REGRA_VEREDITO_CANONICO", "REGRA_FAIXAS_CANONICAS_BOOT_IID", "REGRA_M_IC_BOOT_BLOCOS",
+                                 "REGRA_M_PROMAX", "REGRA_M_IC_BOOT_IID_PROMAX", "REGRA_VEREDITO_CANONICO_PROMAX",
+                                 "REGRA_FAIXAS_CANONICAS_BOOT_IID_PROMAX", "REGRA_M_OBLIMIN_KAISER", "PHI_POSSE_HORT",
+                                 "PHI_POSSE_HORT_IC_IID", "PHI_POSSE_PER", "H2_VEREDITO"))
+```
+
+Factor correlations (Φ) and the decision rule
+
+:::
+
+## Sensitivity to statistical suppression
+
+IBGE suppresses cells that could identify a respondent, marking them with the symbol X. In Manuscript 1, X was read as zero in the `r m1("AFE_N_VARIAVEIS")` variables, a total of `r m1_re("SIG_21VARS_CELULAS_X", "^([0-9,]+)")` cells in `r m1_re("SIG_21VARS_CELULAS_X", "in ([0-9]+) municipalities")` municipalities. In category 46504, X appears for area in `r m1_partes("SIG_46504_AREA_STATUS")[2]` municipalities and for persons employed in `r m1_partes("SIG_46504_POCUP_STATUS")[2]`, but never for the number of establishments.
+
+**The tenure factor depends on reading X as zero** (Table A.10 of Manuscript 1). Restricting the analysis to municipalities with no X in the category's area or persons employed leaves `r m1_re("S3C_FILTRAGEM", "^([0-9]+) variables")` variables and `r m1_re("S3C_FILTRAGEM", "([0-9]+) factors")` factors, **with no tenure factor**. Likewise, when variables with more than 30% X are excluded, the tenure factor is not identified and `r m1_re("E2_R2A", "\\(([0-9]+) municipalities change\\)")` municipalities change type (ARI = `r m1_re("E2_R2A", "k5 = ([0-9.]+)")`). With multiple imputation of the X cells, the result remains in the partial independence band (m = `r m1_re("E2_R3", "; m = ([0-9.]+)")`), but `r m1_re("E2_R3", "\\(([0-9]+) change\\)")` municipalities change type (ARI = `r m1_re("E2_R3", "ARI k5 = ([0-9.]+)")`).
+
+**Results that do not depend on suppression.** The proportion of family farms in category 46504 has no X cells and shares only `r m1_partes("S4_H2_DWYER_PCTESTAB")[1]` of its variance with the four productive factors on a logarithmic scale (`r m1_partes("S4_H2_DWYER_PCTESTAB")[2]` on a percentage scale). Its correlations with mechanisation (`r m1_re("S4_PCTESTAB_X_F1", "^([0-9.]+)")`), aggregate scale (`r m1_re("S4_PCTESTAB_X_F2", "^([0-9.]+)")`) and horticulture (`r m1_re("S4_PCTESTAB_X_F3", "^([0-9.]+)")`) are positive and similar in magnitude. This result supports the interpretation that tenure cannot be reduced to the productive structure but is not independent of it.
+
+This website never converts the symbol X to zero: on maps and in tables it appears in grey, labelled "X (IBGE suppression)".
+
+```{r}
+fonte_m1("Tables 1 and A.10", c("SIG_21VARS_CELULAS_X", "SIG_46504_AREA_STATUS", "SIG_46504_POCUP_STATUS", "S3C_FILTRAGEM",
+                                "E2_R2A", "E2_R3", "S4_H2_DWYER_PCTESTAB", "S4_PCTESTAB_X_F1", "S4_PCTESTAB_X_F2", "S4_PCTESTAB_X_F3"))
+```
+
+## Discussion
+
+The results indicate that tenure as declared to the Census does not merely reflect scale or mechanisation, since the analysis identifies a tenure axis. However, this axis is not independent: where tenure awaiting title is more common, levels of mechanisation and horticulture tend to be slightly higher. The verdict also changes with the rotation and with the treatment of suppression, as discussed in the previous sections, so it should be read as a tendency rather than a sharp boundary.
+
+For the project, therefore, tenure needs to be interpreted alongside the productive structure. The census category must also be compared with the records of the National Institute for Colonisation and Agrarian Reform (INCRA), because it measures declared tenure status, not agrarian reform. The page on [Census tenure data and agrarian reform](posse.qmd) examines this point.
+
+## Concluding remarks
+
+This page has summarised the municipal typology of family farming proposed in M1 and the test of the hypothesis about tenure awaiting title. Under the rule fixed before estimation, tenure shows **`r m1("REGRA_VEREDITO_CANONICO")`** from scale and mechanisation, although the verdict is sensitive to rotation and suppression. The hypothesis that food production and tenure would occupy separate axes was judged **`r sub(" \\(.*", "", m1("H2_VEREDITO"))`**. In other words, tenure cannot be reduced to the productive structure, but neither is it independent of it.
+
+The analysis has limitations: the tenure factor depends on reading suppressed cells as zero, and the census category measures declared tenure status, not agrarian reform. Interpreting tenure therefore requires comparison with INCRA records, which is addressed on the tenure page. The type names remain provisional labels until the authors approve them.
+
+```{r}
+fonte_ind(c("estab_af", "estab_af_46504"))
+```

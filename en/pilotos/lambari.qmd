@@ -1,0 +1,14 @@
+---
+title: "Lambari"
+subtitle: "Pantanal pilot area · host municipality: Poconé"
+description: "Lambari pilot area (Poconé, MT), linked to Banco da Terra: key details of the area and context on the host municipality"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+PIL_SLUG <- "lambari"
+```
+
+{{< include _modelo_piloto.qmd >}}

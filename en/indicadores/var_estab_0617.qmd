@@ -1,0 +1,15 @@
+---
+title: "Change in the number of agricultural establishments, 2006–2017"
+description: "Indicator theme: 2006–2017 dynamics. Unit: % (2017 relative to 2006). Reference period: 2017. This page has a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table showing the IBGE symbols. Source: IBGE, 2006 and 2017 Agricultural Censuses."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "var_estab_0617"
+```
+
+{{< include _indicador.qmd >}}

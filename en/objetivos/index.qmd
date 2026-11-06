@@ -1,0 +1,56 @@
+---
+title: "The project's specific objectives"
+description: "The RESA Project's specific objectives, study phases and planned deliverables, with the status of each objective as at 19 October 2026"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+The RESA Project aims to determine whether family farming in settlements across Mato Grosso's three biomes can make the transition to a low-carbon economy that keeps the forest standing. The analysis integrates territorial, production, income and environmental dimensions to identify the factors that favour emission reductions, climate adaptation and long-term sustainability.
+
+The project's end product is a **Technology Package**: a set of tools, methods, models and recommendations designed to support public policy. The work is structured around three phases and six specific objectives (SOs). Phase 1, **Assessment and evidence** (SO1, SO2 and SO3), covers territory, production and income, carbon, water and soil in the pilot areas. Phase 2, **Strategies and viability modelling** (SO4), brings together low-carbon scenarios assessed with financial indicators. Phase 3, **Technology Package and engagement** (SO5 and SO6), includes workshops with families, consolidation of the package, training and public policy proposals.
+
+## Specific objectives, research questions and deliverables
+
+The table below sets out each specific objective with its phase, guiding research question, main deliverable and implementation status.
+
+```{r}
+tabela_oes()
+```
+
+```{r}
+p(class = "nota-fonte", "Source: compiled by the authors from the RESA Project proposal (specific objectives and methodology) and the project presentation at the RESA Meeting.",
+  "Status: internal project record as at 19 October 2026. The badges have yet to be validated by the project coordination team.")
+```
+
+## Implementation schedule
+
+The proposal's schedule has milestones in January, April, August and December of each year. Each milestone is shown below with its status as at 19 October 2026; the dates are those given in the proposal. Where a stage has no confirmed date, the badge reads "planned" and the accompanying note gives the reason.
+
+```{r}
+linha_tempo()
+```
+
+```{r}
+p(class = "nota-fonte", "Badges: ", selo_situacao("concluido"), " ", selo_situacao("andamento"), " ", selo_situacao("confirmar"), " ", selo_situacao("previsto"),
+  ". The colour of each milestone’s top border shows the least advanced stage it includes. The 2027 dates may change depending on how field data collection progresses.")
+```
+
+## A page for each specific objective
+
+Each specific objective has its own page, with details of the objective, its implementation status and, where available, the results published so far. To open a page, select its card below.
+
+```{r}
+div(class = "cartoes", lapply(seq_len(nrow(OES)), function(i) { o <- OES[i, ]
+  a(class = "cartao", href = paste0(o$pagina, ".html"),
+    div(class = "cartao-topo", span(class = "selo", paste("Phase", o$fase)), selo_situacao(o$situacao)),
+    tags$h4(paste(oe_tela(o$oe), "·", o$nome)), p(o$pergunta)) }))
+```

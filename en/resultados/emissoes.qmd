@@ -1,0 +1,331 @@
+---
+title: "Emissions and deforestation by municipal type"
+subtitle: "Results from the project's Articles A and B, recalculated using the Manuscript 1 types"
+description: "SEEG 13 emissions and PRODES deforestation across the five municipal types from Manuscript 1. The page also validates the deforestation proxy against official PRODES data and shows the PRODES series for Mato Grosso."
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_resultados.R"))
+E  <- function(g, col) EMI[[col]][EMI$grupo == g]
+TS <- function(rec, m, col) EMI_TES[[col]][EMI_TES$recorte == rec & EMI_TES$metrica == m]
+R  <- function(id) PROX_RES$valor[PROX_RES$id == id]
+ER <- function(id) EMI_RES$valor[EMI_RES$id == id]
+B  <- function(b, col) PROX_BIO[[col]][PROX_BIO$escala_bioma == "IBGE 1:250 mil (2019)" & PROX_BIO$bioma == b]
+B04 <- function(b, col) PROX_BIO[[col]][PROX_BIO$escala_bioma != "IBGE 1:250 mil (2019)" & PROX_BIO$bioma == b]
+tp <- EMI[EMI$recorte == "tipo", ]
+# frases comparativas: conferidas contra os números
+stopifnot(tp$grupo[which.max(tp$bruta_mediana_municipal)] == "T3", tp$grupo[which.max(tp$pct_do_total_municipal)] == "T1",
+          tp$grupo[which.max(tp$pct_energia)] == "T5", tp$grupo[which.min(tp$pct_mut)] == "T5", tp$grupo[which.max(tp$pct_mut)] == "T3",
+          all(tp$pct_mut > 50), all(c("Cuiabá", "Rondonópolis", "Sinop") %in% MUN$municipio[MUN$tipo_m1 == "T5"]),
+          EMI_TES$metrica[EMI_TES$recorte == "tipo"][which.max(EMI_TES$epsilon2[EMI_TES$recorte == "tipo"])] == "agro",
+          E("Pantanal", "pct_agro") > E("Pantanal", "pct_mut"),
+          tp$grupo[which.min(tp$t_por_estab_af)] == "T5", tp$grupo[which.max(tp$t_por_estab_af)] == "T4")
+data_br <- function(x) data_en(format(as.Date(x), "%Y-%m-%d"))   # em inglês: "19 Oct 2026"
+prt <- PRT[order(PRT$ano), ]; cons <- prt[prt$status == "consolidada", ]; estim <- prt[prt$status != "consolidada", ]
+ult <- cons[nrow(cons), ]; pico <- cons[which.max(cons$taxa_km2), ]
+prb25 <- PRB[PRB$ano == ult$ano & PRB$status == "consolidado", ]
+meta_prodes <- sprintf("INPE/PRODES data (TerraBrasilis dashboard, version %s; accessed on %s; updated by INPE on %s)",
+                       prt$versao_painel[1], data_br(prt$data_acesso[1]), data_br(prt$atualizacao_inpe[1]))
+fonte_seeg <- "Source: authors’ calculations based on SEEG 13 municipal data from Observatório do Clima (GWP-AR5); municipal types from RESA Project Manuscript 1 (provisional labels); dominant biome from the IBGE 1:250,000 map (2019)."
+# Artigo A refeito (PRODES municipal oficial, 2017–2025): frases conferidas contra os números
+DT <- function(rec, m, col) DESM_TES[[col]][DESM_TES$recorte == rec & DESM_TES$metrica == m]
+DG <- function(g, col) DESM_GR[[col]][DESM_GR$recorte == "tipo" & DESM_GR$grupo == g]
+DR <- function(m, col) DESM_RHO[[col]][DESM_RHO$metrica == m]
+dtp <- DESM_GR[DESM_GR$recorte == "tipo" & DESM_GR$grupo != "MT", ]
+stopifnot(dtp$grupo[which.max(dtp$pct_mt)] == "T1", DT("tipo", "desmat_km2", "p") < 0.05, DT("tipo", "desmat_km2", "p") > 0.01,
+          DT("tipo", "pct", "p") > 0.05, DR("desmat_km2", "p") > 0.05, DR("pct", "p") > 0.05,
+          abs(sum(DESM$desmat_km2) - sum(vapply(BIOMAS, function(b) sum(PRB$desmat_km2[PRB$bioma == b & PRB$ano %in% 2017:2025 & PRB$n_anos == 1 & PRB$status == "consolidado"]), numeric(1)))) < 0.5)
+fonte_desm <- sprintf("Source: authors’ calculations based on the annual PRODES increment by municipality for the Amazon, Cerrado and Pantanal (INPE, TerraBrasilis dashboard v%s, accessed on %s); municipal types from RESA Project Manuscript 1 (provisional labels); dominant biome from the IBGE 1:250,000 map (2019); municipal area calculated from the IBGE 2022 Municipal Mesh.",
+                      prt$versao_painel[1], data_br(prt$data_acesso[1]))
+```
+
+```{r}
+faixa_versao()
+```
+
+## Context and objective
+
+The project's Articles A and B related an earlier typology of family farming to deforestation and to municipal emissions estimated by the Greenhouse Gas Emissions and Removals Estimation System (SEEG). This page recalculates those results using the **five types from Manuscript 1** (provisional labels). It also reports the validation of the articles' deforestation proxy against the **official series from PRODES**, the satellite-based deforestation monitoring system run by the National Institute for Space Research (INPE). This validation was corrected on 19 October 2026.
+
+::: {.aviso-municipio}
+**SEEG measures the entire municipality**, including agriculture and livestock operations of all sizes, deforestation, energy, industry and urban waste. The figures below therefore describe the municipalities of each type, not family farming.
+:::
+
+## Data and methods
+
+In the tables and tests by type and by biome, emissions come from SEEG municipal data (Observatório do Clima) and are annual means from `r ER("ano_ini")` to `r ER("ano_fim")`, the period used in Article B. The time series and the column for the most recent year are shown separately. Gross emissions are the sum of the five SEEG sectors, excluding removals. They are expressed in carbon dioxide equivalent using the global warming potentials from the Fifth Assessment Report of the Intergovernmental Panel on Climate Change (GWP-AR5). Deforestation is the **official PRODES increment by municipality** from 2017 to 2025. For these nine years, all three PRODES biomes have consolidated annual data, and each municipality's total is the sum of the Amazon, Cerrado and Pantanal masks.
+
+Articles A and B estimated municipal deforestation using a proxy: SEEG land-use change emissions divided by `r num(R("fator_tco2e_ha"), 0)` tonnes of carbon dioxide equivalent (tCO2e) per hectare. This factor is an assumption made in the articles, has no primary source and is under review. To assess the proxy, this estimate was compared with the **official deforestation rate for Mato Grosso (MT)** from PRODES (Legal Amazon, forest formations). Differences between types and between biomes are assessed with the Kruskal-Wallis test, with epsilon squared (ε²) as the effect size and no correction for spatial autocorrelation.
+
+## Emissions by type
+
+@tbl-emissoes-tipo shows gross emissions by type. Together, the `r sum(tp$n_mun)` municipalities emit an average of `r num(ER("total_municipios_media"), 1)` million tonnes of carbon dioxide equivalent (MtCO2e) per year. The SEEG state total for the same period is `r num(ER("total_estadual_media"), 1)` MtCO2e per year, and the difference (`r num(ER("nao_alocado_media"), 2)`) is not allocated to any municipality.
+
+::: {#tbl-emissoes-tipo}
+
+```{r}
+tabela_emissoes("tipo")
+nf(fonte_seeg, " Note: the 2024 column comes from the website’s aggregates (municipal sum).")
+```
+
+Gross emissions by municipal type (provisional labels)
+
+:::
+
+::: {.achado}
+The types differ in gross emissions (Kruskal-Wallis: H = `r num(TS("tipo", "bruta", "H"), 2)`; `r txt_p(TS("tipo", "bruta", "p"))`; ε² = `r fmt_r(TS("tipo", "bruta", "epsilon2"), 2)`). This difference tracks aggregate scale: T3, the type with the highest aggregate scale, has the highest municipal median (`r num(E("T3", "bruta_mediana_municipal"), 2)` MtCO2e per year) and, with `r E("T3", "n_mun")` municipalities, accounts for `r pct_txt(E("T3", "pct_do_total_municipal"))` of total municipal emissions. T1, with `r E("T1", "n_mun")` municipalities, accounts for `r pct_txt(E("T1", "pct_do_total_municipal"))`.
+:::
+
+### Sectoral composition
+
+::: {#fig-composicao-tipo fig-cap-location="top"}
+
+```{r}
+svg_composicao("tipo")
+nf(fonte_seeg, " Note: each sector’s share of the group’s gross emissions, 2010–2020 mean.")
+```
+
+Sectoral composition of gross emissions by municipal type
+
+:::
+
+@fig-composicao-tipo shows that land-use change and forestry is the largest sector in every type, with a share ranging from `r pct_txt(E("T5", "pct_mut"))` (T5) to `r pct_txt(E("T3", "pct_mut"))` (T3). T5, which includes Cuiabá, Rondonópolis and Sinop, has the highest energy share (`r pct_txt(E("T5", "pct_energia"))`). Emissions from agriculture and livestock differ most between types (ε² = `r fmt_r(TS("tipo", "agro", "epsilon2"), 2)`), as the tests in @tbl-testes-tipo show.
+
+### Tests for differences between types
+
+::: {#tbl-testes-tipo}
+
+```{r}
+tabela_testes(EMI_TES, "tipo", c("bruta", "mut", "agro", "energia"))
+nf("Note: Kruskal-Wallis test on municipal means for 2010–2020 (141 municipalities, 5 types), not corrected for spatial autocorrelation. ", fonte_seeg)
+```
+
+Tests for differences in emissions between types
+
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Emissions per family farm and per hectare of family-farm area (interpret with caution)
+
+Article B divided municipal emissions by the number of family farms and by family-farm area. SEEG measures the entire municipality, so these ratios **do not represent the emission intensity of family farming** and serve only as context. Per family farm, they range from `r num(E("T5", "t_por_estab_af"), 0)` tCO2e (T5) to `r num(E("T4", "t_por_estab_af"), 0)` tCO2e (T4) per year. As @tbl-intensidades shows, the difference between types is weak per family farm (`r txt_p(TS("tipo", "t_por_estab_af", "p"))`; ε² = `r fmt_r(TS("tipo", "t_por_estab_af", "epsilon2"), 2)`) and not significant per hectare (`r txt_p(TS("tipo", "t_por_ha_af", "p"))`).
+
+::: {#tbl-intensidades}
+
+```{r}
+tabela_intensidades()
+tabela_testes(EMI_TES, "tipo", c("t_por_estab_af", "t_por_ha_af"))
+nf(fonte_seeg, " Number of family farms and family-farm area: IBGE, 2017 Agricultural Census, SIDRA, table 6878.")
+```
+
+Emission ratios per family farm and per hectare of family-farm area, with tests for differences between types (provisional labels)
+
+:::
+:::
+
+### Time series by type
+
+@fig-serie-tipo shows the time series of gross emissions by type. It starts in 1990 because SEEG estimates land-use change and forestry emissions only from that year onwards. Gross emissions for earlier years exclude the largest sector in Mato Grosso and are therefore not comparable with those for later years.
+
+::: {#fig-serie-tipo fig-cap-location="top"}
+
+```{r}
+a <- AGR[AGR$indicador == "seeg_emissao_bruta" & AGR$recorte == "tipo" & AGR$ano >= 1990, ]
+HTML(svg_linhas(lapply(names(TIPOS), function(t) { x <- a[a$grupo == t, ]
+  list(nome = paste0(t, " · ", TIPOS[[t]], " (provisional label)"), cor = COR_TIPO[[t]], larg = 2.4, dash = "", x = x$ano, y = x$valor / 1000) }),
+  fmt = "dec1", titulo = "Gross emissions by type, MtCO2e, 1990–2024"))
+nf("Note: gross emissions in MtCO2e per year from 1990 to 2024, summed over the municipalities of each type. ", fonte_seeg)
+```
+
+Time series of gross emissions by municipal type
+
+:::
+
+## Emissions by biome
+
+@tbl-emissoes-bioma shows gross emissions and their sectoral composition by dominant biome, and @tbl-testes-bioma gives the tests for differences between biomes.
+
+::: {#tbl-emissoes-bioma}
+
+```{r}
+tabela_emissoes("bioma")
+svg_composicao("bioma")
+```
+
+Gross emissions and sectoral composition by dominant biome
+
+:::
+
+::: {#tbl-testes-bioma}
+
+```{r}
+tabela_testes(EMI_TES, "bioma", c("bruta", "mut", "agro", "energia"))
+nf(fonte_seeg)
+```
+
+Tests for differences in emissions between biomes
+
+:::
+
+The Amazon accounts for `r pct_txt(E("Amazônia", "pct_do_total_municipal"))` of total municipal emissions, and land-use change makes up `r pct_txt(E("Amazônia", "pct_mut"))` of that biome's total. In the `r E("Pantanal", "n_mun")` Pantanal municipalities, by contrast, agriculture and livestock is the largest sector (`r pct_txt(E("Pantanal", "pct_agro"))`).
+
+## Deforestation by type: Article A recalculated with PRODES data
+
+Article A compared deforestation across municipal types using the SEEG proxy (2010–2020) and the earlier typology. Because the proxy lies far above PRODES, as the validation further down this page shows, this section revisits the question using the official PRODES increment by municipality and the five types from Manuscript 1.
+
+::: {.aviso-municipio}
+**PRODES measures the entire municipality**, not family farming. The figures therefore describe the municipalities of each type.
+:::
+
+::: {#tbl-desmat-tipo}
+
+```{r}
+tabela_desmat("tipo")
+nf(fonte_desm)
+```
+
+PRODES deforestation by municipal type (provisional labels)
+
+:::
+
+::: {.achado}
+As @tbl-desmat-tipo shows, the 141 municipalities recorded a total of `r num(sum(DESM$desmat_km2), 0)` km² of deforestation from 2017 to 2025, with T1 (`r DG("T1", "n_mun")` municipalities) accounting for `r pct_txt(DG("T1", "pct_mt"))`. The types differ little, however: the difference is weak for total area deforested (Kruskal-Wallis: H = `r num(DT("tipo", "desmat_km2", "H"), 2)`; `r txt_p(DT("tipo", "desmat_km2", "p"))`; ε² = `r fmt_r(DT("tipo", "desmat_km2", "epsilon2"), 2)`) and not significant for the percentage of territory deforested (`r txt_p(DT("tipo", "pct", "p"))`).
+:::
+
+As in Article A, deforestation does not track the share of family farms in category 46504 of the 2017 Census. Across the 141 municipalities, Spearman's ρ is `r fmt_r(DR("desmat_km2", "rho"), 2)` (`r txt_p(DR("desmat_km2", "p"))`) with total area deforested and `r fmt_r(DR("pct", "rho"), 2)` (`r txt_p(DR("pct", "p"))`) with the percentage of territory deforested (@tbl-testes-desmat).
+
+::: {#tbl-testes-desmat}
+
+```{r}
+tabela_testes(DESM_TES, "tipo")
+nf("Note: Kruskal-Wallis test on the 141 municipalities (5 types), not corrected for spatial autocorrelation; Spearman’s ρ between deforestation and the % of family farms in category 46504 (IBGE, 2017 Agricultural Census, table 6878). ", fonte_desm)
+```
+
+Tests for differences in deforestation between types
+
+:::
+
+@tbl-desmat-bioma shows deforestation by dominant biome and the tests for differences between biomes.
+
+::: {#tbl-desmat-bioma}
+
+```{r}
+tabela_desmat("bioma")
+tabela_testes(DESM_TES, "bioma")
+nf(fonte_desm, " Note: groups are the municipalities’ dominant biomes (IBGE 1:250,000). Each municipality’s total is the sum of all the PRODES masks, so the totals differ from the increment for each PRODES biome.")
+```
+
+PRODES deforestation by dominant biome, with tests for differences between biomes
+
+:::
+
+The map and table of deforestation by municipality are on the page for the project's first specific objective ([SO1](../objetivos/oe1.qmd)).
+
+## Validation of the deforestation proxy
+
+```{r}
+div(class = "nota-correcao",
+  tags$h4("Correction note (19 October 2026)"),
+  tags$ul(
+    tags$li("The PRODES series previously used in the project contained Amazon data entered by hand and labelled as the official series. In every year from 2005 to 2024, this series lay above the official rate for Mato Grosso."),
+    tags$li("That series was replaced by the official INPE series, retrieved from TerraBrasilis on 19 October 2026. The new series contains the annual rate for Mato Grosso in the Legal Amazon and the annual increment by biome. The website does not use the old series."),
+    tags$li(paste0("This replacement changes the validation in Article B. For the 2010–2020 state total, the proxy is about ", num(R("razao_total"), 0),
+                   " times the PRODES figure (previously “2.6 times”). The statement about “weak interannual agreement” no longer holds, because the Pearson correlation with the official rate is ",
+                   fmt_r(R("pearson"), 2), ".")),
+    tags$li("The text of Article B has not yet been rewritten, but the figures in this section already use the official series.")))
+```
+
+The cards below summarise how the proxy compares with the official rate for the state total.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Proxy ÷ PRODES, 2010–2020", paste(num(R("razao_total"), 2), "times"),
+             sprintf("%s ha from the proxy against %s ha from PRODES · state total, %d years", num(R("proxy_total_ha"), 0), num(R("prodes_total_ha"), 0), R("n_anos"))),
+  cartao_kpi("Year-by-year ratio", sprintf("%s to %s", num(R("razao_min"), 1), num(R("razao_max"), 1)), "times, 2010 to 2020"),
+  cartao_kpi("Pearson, year by year", fmt_r(R("pearson"), 2), sprintf("%s · %d years (2010–2020)", txt_p(R("pearson_p")), R("n_anos"))),
+  cartao_kpi("Spearman, year by year", fmt_r(R("spearman"), 2), sprintf("%s · %d years (2010–2020)", txt_p(R("spearman_p")), R("n_anos"))))
+```
+
+@fig-proxy-prodes shows this comparison year by year, with the series and the annual values.
+
+::: {#fig-proxy-prodes fig-cap-location="top"}
+
+```{r}
+svg_proxy_prodes()
+tabela_proxy_estadual()
+nf("Source: authors’ calculations based on the proxy from Articles A and B (SEEG 13 municipal land-use change emissions ÷ ", num(R("fator_tco2e_ha"), 0),
+  " tCO2e/ha; sum across the 141 municipalities) and on ", meta_prodes, ". Note: MT rate × 100 (to convert km² to ha). The calculations are based on the Article B robustness table, recalculated on 19 October 2026.")
+```
+
+Annual comparison of the deforestation proxy from Articles A and B with the official PRODES rate for Mato Grosso
+
+:::
+
+**By biome.** The proxy was summed over the municipalities of each dominant biome and compared with the annual PRODES increment for that biome, using only years with annual data (@tbl-proxy-bioma).
+
+::: {#tbl-proxy-bioma}
+
+```{r}
+tabela_proxy_bioma()
+nf("Source: authors’ calculations based on the proxy from Articles A and B and on ", meta_prodes, ". Note: dominant biome from the IBGE 1:250,000 map (2019).")
+```
+
+Validation of the deforestation proxy by dominant biome
+
+:::
+
+With the 2004 biome map used in the Article B robustness check, the values are similar: `r fmt_r(B04("Amazônia", "pearson"), 2)` (Pearson), `r fmt_r(B04("Amazônia", "spearman"), 2)` (Spearman) and a ratio of `r num(B04("Amazônia", "razao"), 1)` in the Amazon; `r fmt_r(B04("Cerrado", "pearson"), 2)`, `r fmt_r(B04("Cerrado", "spearman"), 2)` and `r num(B04("Cerrado", "razao"), 1)` in the Cerrado.
+
+## Official PRODES series for Mato Grosso
+
+The cards and figures below show the official PRODES series for the state.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi(sprintf("MT deforestation rate, %d", ult$ano), paste(num(ult$taxa_km2, 0), "km²"),
+             "PRODES Legal Amazon, forest formations · INPE/TerraBrasilis"),
+  cartao_kpi(sprintf("Highest rate in the series (%d–%d)", min(cons$ano), max(cons$ano)), paste(num(pico$taxa_km2, 0), "km²"),
+             sprintf("in %d · INPE/TerraBrasilis", pico$ano)),
+  cartao_kpi(sprintf("Increment by biome, %d", ult$ano), paste(num(sum(prb25$desmat_km2), 0), "km²"),
+             paste(sprintf("%s %s", nome_bioma(prb25$bioma), num(prb25$desmat_km2, 0)), collapse = " · ")),
+  cartao_kpi(sprintf("Estimated rate, %s", paste(estim$ano, collapse = ", ")), paste(num(estim$taxa_km2, 0), "km²"),
+             "INPE estimate, excluded from all calculations on the website"))
+```
+
+::: {#fig-prodes-taxa fig-cap-location="top"}
+
+```{r}
+svg_prodes_taxa()
+nf("Source: compiled by the authors from ", meta_prodes, ". Note: values in km²; the PRODES year runs from August to July.")
+```
+
+Annual deforestation rate for Mato Grosso in PRODES Legal Amazon (forest formations)
+
+:::
+
+::: {#fig-prodes-bioma fig-cap-location="top"}
+
+```{r}
+svg_prodes_bioma()
+nf("Source: authors’ calculations based on ", meta_prodes, ". Note: values in km². Amazon from 2008; Cerrado from 2002, in 2-year periods up to 2012; Pantanal from 2004, in periods of 1 to 4 years up to 2016. For multi-year periods, the point shows the annual mean (period value ÷ number of years).")
+```
+
+Annual deforestation increment in Mato Grosso by biome
+
+:::
+
+The rate for Mato Grosso (@fig-prodes-taxa) covers only the forest formations of the Legal Amazon, which includes the entire state, so it does not equal the sum of the increments for the three biomes (@fig-prodes-bioma). The data for `r paste(unique(c(estim$ano, PRB$ano[PRB$status != "consolidado"])), collapse = ", ")` are an estimate or a partial increment and were excluded from all calculations.
+
+## Discussion
+
+The results indicate that in the Amazon the proxy shows close agreement with interannual variation (Spearman's ρ = `r fmt_r(B("Amazônia", "spearman"), 2)`), although its level is `r num(B("Amazônia", "razao"), 1)` times that of PRODES. In the Cerrado, its level is `r num(B("Cerrado", "razao"), 1)` times that of PRODES and agreement on the ordering of the years is weak (Spearman's ρ = `r fmt_r(B("Cerrado", "spearman"), 2)`). In the Pantanal, there is no agreement. SEEG counts more than forest clear-cutting, and the factor of `r num(R("fator_tco2e_ha"), 0)` tCO2e/ha has no source. The proxy therefore serves as a **relative indicator** for comparing municipalities and types, not as a measure of deforested area.
+
+The proxy was validated for the state total and by biome, but the municipality-by-municipality comparison has not yet been made. PRODES data by municipality (2017–2025) are in the section on Article A above and on the [SO1](../objetivos/oe1.qmd) page.
+
+## Concluding remarks
+
+This page has recalculated the results of Articles A and B on emissions and deforestation using the five municipal types. The types differ in gross emissions, in line with their aggregate scale, and land-use change and forestry is the largest sector in all of them. Deforestation measured by PRODES, by contrast, differs little between types and does not track the share of family farms in the census category of tenure awaiting title. The validation indicates that the articles' proxy lies far above PRODES and should be treated only as a relative indicator.
+
+These results have limitations. SEEG and PRODES measure the entire municipality, not family farming, and the tests do not correct for spatial autocorrelation. The proxy has not yet been validated municipality by municipality, and the text of Article B has yet to be rewritten using the official PRODES series.

@@ -26,7 +26,7 @@ R="${RSCRIPT:-Rscript}"                          # Rscript no PATH, ou o caminho
 
 python -I scripts/01_preparar_dados.py          # dados_site/*.csv, downloads em arquivos/dados e arquivos/geo, figuras PNG do M1
 "$R" scripts/02_converter_rds.R                 # dados_site/*.rds lidos por R/funcoes.R
-python -I scripts/03_gerar_stubs.py             # municipios/<slug>.qmd (141) e indicadores/<id>.qmd (34)
+python -I scripts/03_gerar_stubs.py             # municipios/<slug>.qmd (141) e indicadores/<id>.qmd (34), também em en/
 python -I scripts/04_preparar_resultados.py     # dados_site/resultados/ e resultados/figuras/*.svg (M1, artigos B e C)
 python -I scripts/05_preparar_literatura.py     # dados_site/literatura/ e arquivos/literatura/
 python -I scripts/06_preparar_oe1.py            # objetivos/dados/ (PRODES municipal do OE1)
@@ -48,11 +48,12 @@ python -I scripts/06_preparar_oe1.py            # objetivos/dados/ (PRODES munic
 ### 2. Renderizar
 
 ```bash
-rm -rf _freeze _site
+rm -rf _freeze en/_freeze _site
 quarto render          # se o quarto não estiver no PATH, use o caminho completo do quarto.exe
+(cd en && quarto render)   # sempre depois do português: o render da raiz limpa _site/ inteira, inclusive _site/en/
 ```
 
-O render completo, sem `_freeze/`, leva cerca de 20 minutos (141 perfis e 34 páginas de indicador); com `_freeze/` em dia, cerca de 6 minutos. O site tem 200 páginas. Rode **um render por vez**: renders em paralelo na mesma pasta dão erros transitórios (`municipios/*_files`, `site_libs`).
+Cada render completo, sem `_freeze/`, leva cerca de 20 minutos (141 perfis e 34 páginas de indicador); com `_freeze/` em dia, cerca de 6 minutos. O site tem 200 páginas em cada idioma. Rode **um render por vez**: renders em paralelo na mesma pasta dão erros transitórios (`municipios/*_files`, `site_libs`).
 
 O `execute: freeze: auto` guarda os resultados em `_freeze/` e só executa de novo a página cujo `.qmd` mudou. **Depois de mudar `dados_site/`, `R/*.R` ou um modelo (`_perfil.qmd`, `_indicador.qmd`, `_modelo_piloto.qmd`)**, apague `_freeze/` (ou a subpasta da seção) antes do render, ou renderize as páginas afetadas uma a uma com `quarto render pasta/pagina.qmd`, que sempre executa o código. Páginas que montam links a partir dos arquivos existentes (`index.qmd`, `dados/index.qmd`, `pilotos/`, `objetivos/`) também precisam de render novo quando surgem páginas ou downloads.
 
@@ -60,9 +61,10 @@ O `execute: freeze: auto` guarda os resultados em `_freeze/` e só executa de no
 
 ```bash
 python -I scripts/07_checar_publicacao.py
+python -I scripts/08_checar_ingles.py
 ```
 
-Varre **todo** o repositório, inclusive `_site/` e `_freeze/` (conteúdo e nome dos arquivos). Só ficam fora `.git/` e as pastas ocultas locais da raiz (como `.quarto/`), que o `.gitignore` tira do controle de versão e o Quarto não publica. São cinco partes:
+O script 08 compara os dois idiomas: pares de arquivos, código das páginas, estrutura, números de cada par de páginas e sobras de português (ver "Versão em inglês"). O script 07 varre **todo** o repositório, inclusive `_site/` e `_freeze/` (conteúdo e nome dos arquivos). Só ficam fora `.git/` e as pastas ocultas locais da raiz (como `.quarto/`), que o `.gitignore` tira do controle de versão e o Quarto não publica. São cinco partes:
 
 1. **Termos proibidos:** link ou ID do Google Drive, a pasta do Drive, e-mail institucional ou pessoal, caminho local, CPF ou CNPJ, bases comerciais licenciadas e outros termos vetados pelo projeto (estes ficam no script só como hash), marcas de rascunho dos manuscritos e a série manual antiga do PRODES.
 2. **Sinais do IBGE:** nenhum X, – ou ... vira 0, número ou célula vazia em `dados_site/`, nos downloads, nas tabelas e nos mapas das páginas e nos `.rds`; com `RESA_FONTES`, toda célula X da fonte do IBGE continua X no download.
@@ -70,7 +72,7 @@ Varre **todo** o repositório, inclusive `_site/` e `_freeze/` (conteúdo e nome
 4. **Links internos** de `_site/` (páginas, arquivos, âncoras e cliques dos mapas) e nenhuma figura publicada sem uso.
 5. **Elementos obrigatórios** de cada página (meta `noindex, nofollow`, título, rodapé oficial com só o logo da UNEMAT, faixa de versão, nenhum NA ou NaN no texto), `robots.txt` com `Disallow: /` e nenhum `sitemap.xml`.
 
-Os falsos positivos legítimos ficam na lista `EXCECOES` do script, cada um com o motivo. Rode com `RESA_FONTES` definido para incluir a conferência contra a fonte do IBGE. Só publique com a saída "Pronto para publicar".
+Os falsos positivos legítimos ficam na lista `EXCECOES` do script, cada um com o motivo. Rode com `RESA_FONTES` definido para incluir a conferência contra a fonte do IBGE. Só publique com a saída "Pronto para publicar" do 07 e sem problemas no 08.
 
 ### 4. Publicar (só com o aval da coordenação)
 
@@ -78,17 +80,33 @@ Os falsos positivos legítimos ficam na lista `EXCECOES` do script, cada um com 
 
 O `.gitignore` deixa fora do controle de versão, por padrão, os dados com licença de redistribuição em conferência: `dados_site/valores.csv`, `dados_site/serie.rds`, `dados_site/ultimos.rds` (têm a série municipal do SEEG) e `objetivos/dados/` (PRODES por município). Eles são gerados pelos passos 01, 02 e 06; por isso, quem clonar o repositório precisa rodar o passo 1 antes do render. Se o repositório for privado, a coordenação pode tirar essas linhas do `.gitignore`.
 
+## Versão em inglês
+
+`en/` é um projeto Quarto próprio, com os mesmos nomes de arquivo do site em português. Sai em `_site/en/`, com menu, rodapé e busca próprios. As bandeiras da barra de menu (`assets/idioma.html`) levam à mesma página no outro idioma; são SVG porque o Windows não desenha os emojis de bandeira. A terminologia, as regras e o estilo ficam em `i18n/GLOSSARIO_EN.md`: o inglês tem de soar como texto de um nativo, sem seguir a construção da frase em português (seção 4).
+
+- **Texto de página mudou:** altere o `.qmd` da raiz e o de `en/` no mesmo commit. A estrutura precisa continuar igual: o script 08 compara blocos de R, funções, seções e números. Número pequeno por extenso ("three biomes" para "3 biomas") é aceito; trocas legítimas de outros números ficam em `EXCECOES_NUMEROS`, com o motivo.
+- **Texto em `R/*.R`:** todo texto visível passa por `tr("português", "English")`. Os dados internos continuam em português: não renomeie colunas nem valores; só o título (`colDef(name = tr(...))`) e a exibição (`nome_bioma()`, `dic()`) mudam.
+- **Dados:** os textos de `dados_site/*.csv` são traduzidos em `i18n/*_en.csv`, casados pela chave. Se um dado novo não tiver tradução, o render em inglês para com erro, de propósito. Os números do M1 passam por `conv_num_en()`, e os valores com palavras ficam em `i18n/m1_numeros_en.csv`.
+- **Modelos e cópias:** os stubs de `en/` saem de `scripts/03_gerar_stubs.py`. `en/assets/` e `en/resultados/resultados.css` são cópias conferidas pelo script 08.
+- **Figuras do M1:** `scripts/11_figuras_en.py` regenera as 4 figuras em inglês a partir do gerador do M1, com trocas de texto explícitas, sem gravar nada nas fontes (usa `RESA_FONTES`). Se as figuras em português mudarem, rode-o de novo.
+- **Testar uma página sem render:** `Rscript --vanilla scripts/10_testar_pagina.R en/resultados/posse.qmd`.
+- **Downloads** (`arquivos/`): só em português, numa única cópia na raiz do site publicado. Em `en/`, os links sobem um nível a mais.
+- A tradução está em revisão: cada página em inglês avisa que, em caso de divergência, prevalece o texto em português.
+
 ## Estrutura
 
 | Pasta/arquivo | Conteúdo |
 |---|---|
 | `scripts/01` a `06`, `07`, `09` | Preparo dos dados, stubs, conferência de publicação e testes (ver a tabela acima) |
+| `scripts/08`, `10`, `11` | Comparação entre os idiomas, teste de uma página sem render e figuras do M1 em inglês |
+| `en/` | Versão em inglês: projeto Quarto próprio, com os mesmos nomes de arquivo |
+| `i18n/` | Glossário e regras da tradução (`GLOSSARIO_EN.md`), textos dos dados em inglês (`*_en.csv`) e valores de categorias (`dic_*.csv`) |
 | `R/funcoes.R` | Funções comuns (formatação pt-BR, sinais, KPIs, tabelas, mapas, gráficos SVG); o cabeçalho documenta cada uma |
 | `R/pag_municipios.R` | Perfis, índice de municípios e páginas de indicador |
 | `R/pag_resultados.R` | Páginas de Resultados (tipologia, posse, emissões, dinâmica) |
 | `R/pag_objetivos.R` | Objetivos (OE1 a OE6) e áreas-piloto |
 | `R/pag_inicio.R` | Página inicial, Literatura, Dados e Biblioteca |
-| `R/idioma.R` | Textos em português das tabelas interativas |
+| `R/idioma.R` | Idioma da renderização: `tr()`, `nome_bioma()`, `dic()`, `sobrepor_en()`, `conv_num_en()` e os textos das tabelas interativas |
 | `municipios/_perfil.qmd`, `indicadores/_indicador.qmd` | Modelos dos 141 perfis e das 34 páginas de indicador (os stubs só incluem o modelo) |
 | `pilotos/_modelo_piloto.qmd` | Modelo comum das 3 páginas de áreas-piloto |
 | `dados_site/` | Dados lidos na renderização (não são publicados como arquivos) |
@@ -97,7 +115,7 @@ O `.gitignore` deixa fora do controle de versão, por padrão, os dados com lice
 | `objetivos/dados/` | PRODES municipal usado no OE1 e no desmatamento por tipo (não é download do site; fora do controle de versão) |
 | `arquivos/` | Downloads publicados: CSV com dicionário (`dados/`, `literatura/`) e malha GeoJSON (`geo/`) |
 | `resultados/figuras/` | Figuras finais do Manuscrito 1 usadas nas páginas (PNG em `m1/`; SVG); as demais não são copiadas |
-| `assets/` | Logo da UNEMAT, favicon, meta `noindex` e glossário |
+| `assets/` | Logo da UNEMAT, favicon, meta `noindex`, glossário de siglas e seletor de idioma |
 | `robots.txt` | Pede aos buscadores que não percorram o site (`Disallow: /`) |
 
 ### Dados do site (`dados_site/`)
@@ -127,8 +145,9 @@ Valem para todo arquivo do repositório, inclusive scripts e este README.
 - **Bioma:** IBGE 1:250 mil (2019) no site inteiro (76 Amazônia, 61 Cerrado, 4 Pantanal).
 - **PRODES:** só a série oficial do TerraBrasilis (baixada em 19/10/2026), com a nota de correção.
 - **Áreas-piloto:** só identificação, sem número de famílias ou área, sem polígonos; selo "números em conciliação".
-- **Fora do site:** dados pessoais (nomes, CPF/CNPJ, CAR por imóvel, fotos de pessoas, relações nominais, camadas estaduais com dados de proprietários); bases comerciais licenciadas de mercado financeiro e de créditos de carbono; textos integrais de manuscritos e artigos; orçamento, documentos da bolsa, questionários em rascunho, fotos de campo, drone e LiDAR; IDs do Google Drive, e-mails e caminhos locais.
-- **Números:** sempre com fonte, unidade e ano, em formato pt-BR (vírgula decimal, ponto de milhar), arredondados com meio para cima (como no M1). Nomes de municípios em ordem alfabética do português (`ordem_pt()` em `R/funcoes.R`).
+- **Equipe do projeto:** só nome, função e frente de trabalho, na tabela de `sobre.qmd` (e de `en/sobre.qmd`); sem e-mail, CPF, titulação não conferida ou valor de bolsa.
+- **Fora do site:** dados pessoais de produtores e beneficiários (nomes, CPF/CNPJ, CAR por imóvel, relações nominais, camadas estaduais com dados de proprietários); fotos de pessoas; bases comerciais licenciadas de mercado financeiro e de créditos de carbono; textos integrais de manuscritos e artigos; orçamento, documentos da bolsa, questionários em rascunho, fotos de campo, drone e LiDAR; IDs do Google Drive, e-mails e caminhos locais.
+- **Números:** sempre com fonte, unidade e ano, em formato pt-BR (vírgula decimal, ponto de milhar; em `en/`, o formato inglês), arredondados com meio para cima (como no M1). Nomes de municípios em ordem alfabética do português (`ordem_pt()` em `R/funcoes.R`).
 - **Literatura:** só metadados; o método aparece só pelas contagens das bases e pelas listas finais. A tabela dos 38 estudos do OE4 traz só Estudo, Local (bioma), Público, Arranjo e DOI, sem números.
 - **SEEG municipal:** aparece nas páginas, mas fica fora dos downloads até a conferência da licença.
 

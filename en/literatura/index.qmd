@@ -1,0 +1,72 @@
+---
+title: "Literature overview"
+description: "Record counts from the RESA Project's literature searches, by database, and the final reference lists with verified DOIs"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_inicio.R"))
+PAN <- sobrepor_en(PAN, "panorama_en.csv", "id")
+```
+
+```{r}
+faixa_versao("Preliminary version for the project team. The literature appears here only as metadata (authors, year, title, journal and DOI) and record counts from the databases searched. A synthesis of the findings will follow in a future version, as a separate text.")
+```
+
+The RESA Project has conducted two literature searches, and this page gives the record counts and final list for each. The first covers the literature on carbon, markets and ESG (environmental, social and governance) and informs the specific objectives on environment and carbon (SO3) and bioeconomic scenarios (SO4). The second targets studies similar to the reference study for SO4, Dominicis et al. (2023), which examines the viability of agroforestry systems (AFS) with payment for environmental services (PES) in settlements and on family farms.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Scopus records (carbon, markets and ESG)", pan_txt("scopus_total"),
+             "4 main queries · articles from 2005 to 2026 · run on 6 Sep 2026", "Source: Scopus, via the Portal de Periódicos da CAPES."),
+  cartao_kpi("References with verified DOIs", pan_txt("refs_doi"),
+             "final list for the carbon, markets and ESG review, in 6 blocks · Sep 2026", "DOI, title, authors, year and journal checked against Crossref."),
+  cartao_kpi("OpenAlex records (SO4)", pan_txt("oe4_openalex"),
+             "search for studies similar to Dominicis et al. (2023) · 15 Oct 2026", "Source: OpenAlex (open API)."),
+  cartao_kpi("Studies compared (SO4)", pan_txt("oe4_comparados"),
+             sprintf("%s with a DOI · Oct 2026", pan_txt("oe4_com_doi")), "DOIs checked against Crossref."))
+```
+
+## Carbon, markets and ESG review
+
+The four main queries, run in the Scopus database on 6 September 2026, returned a total of `r pan_txt("scopus_total")` records, covering articles published from 2005 to 2026. Coverage of 2026 is partial because the queries were run in September of that year. The table below breaks these records down by query theme.
+
+```{r}
+s <- PAN[PAN$grupo == "carbono_string", ]
+reactable(tibble::tibble(String = s$rotulo, Registros = s$valor), compact = TRUE, sortable = FALSE, pagination = FALSE,
+          columns = list(String = colDef(name = "Query theme", minWidth = 260),
+                         Registros = colDef(name = "Records", align = "right", format = colFormat(separators = TRUE, locales = "en-GB"))))
+```
+
+A broader query in OpenAlex, run on 7 September 2026, returned `r pan_txt("oa_colhidos")` records. The review's final list contains `r pan_txt("refs_doi")` references, each with a digital object identifier (DOI) verified against Crossref. They fall into six thematic blocks, and the table below gives the number in each.
+
+```{r}
+b <- PAN[PAN$grupo == "carbono_bloco", ]
+reactable(tibble::tibble(Bloco = b$rotulo, Referências = b$valor), compact = TRUE, sortable = FALSE, pagination = FALSE,
+          columns = list(Bloco = colDef(name = "Block", minWidth = 280), Referências = colDef(name = "References", align = "right")))
+```
+
+See [Carbon, markets and ESG](carbono.qmd) for the theme and question of each block and the complete list of references.
+
+## Studies of AFS and PES in settlements (SO4)
+
+The SO4 literature search, run on 15 and 16 October 2026, covered two databases: OpenAlex returned `r pan_txt("oe4_openalex")` records (15 October 2026) and Scopus `r pan_txt("oe4_scopus")` unique records (16 October 2026). The final list contains the `r pan_txt("oe4_comparados")` studies compared, `r pan_txt("oe4_com_doi")` of which have a DOI checked against Crossref. The rest have no DOI in this version, as they are generally reports and technical literature.
+
+See [AFS and PES in settlements](saf-psa.qmd) for the table of studies, the reference study and the gaps identified in the literature.
+
+## Pages in this section
+
+```{r}
+div(class = "cartoes",
+  a(class = "cartao", href = "carbono.html", tags$h4("Carbon, markets and ESG"),
+    p(sprintf("The six thematic blocks (A to F), each with its theme and question, and the %s references with DOIs.", pan_txt("refs_doi")))),
+  a(class = "cartao", href = "saf-psa.html", tags$h4("AFS and PES in settlements"),
+    p(sprintf("Dominicis et al. (2023) as the reference study for SO4, the %s studies compared and the gaps identified.", pan_txt("oe4_comparados")))),
+  a(class = "cartao", href = "estudos.html", tags$h4("Studies in the corpus"),
+    p("The two lists combined in a single table, with search and filters, and the CSV and BibTeX files.")))
+```
+
+::: {.nota-fonte}
+Source: compiled by the authors from Scopus (Portal de Periódicos da CAPES), OpenAlex and Crossref, on the dates shown. The counts were checked against the RESA Project's search files on 19 October 2026.
+:::

@@ -1,0 +1,6 @@
+fator,nome,descricao
+F1,Mechanised temporary crops,volume of mechanised temporary crops in each municipality
+F2,Aggregate scale,"family-farm totals for each municipality (area, persons employed, animal production and establishments with a tractor)"
+F3,Horticulture and irrigation,volume of horticulture and irrigation in each municipality
+F4,Permanent crops,"a factor dominated by a few municipalities, with area figures often suppressed (symbol X)"
+F5,Tenure awaiting title (46504),establishments and persons employed in category 46504

@@ -1,0 +1,15 @@
+---
+title: "Alta Floresta"
+description: "Profile of the municipality of Alta Floresta (MT). Its dominant biome is the Amazon, and Manuscript 1 classifies it as type T3 (provisional label). Indicators cover family farming and tenure in the 2017 Census, SIPRA and SEEG data, and 2006–2017 dynamics."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+MUN_ID <- 5100250L
+```
+
+{{< include _perfil.qmd >}}

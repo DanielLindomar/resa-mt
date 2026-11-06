@@ -1,0 +1,112 @@
+---
+title: "About the project"
+description: "RESA Project no. 115 — UNEMAT, supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+nb <- table(factor(MUN$bioma, BIOMAS))
+oe_link <- function(n) if (file.exists(file.path(RAIZ, "objetivos", paste0("oe", n, ".qmd")))) sprintf("[SO%d](objetivos/oe%d.qmd)", n, n) else sprintf("SO%d", n)
+```
+
+```{r}
+faixa_versao()
+```
+
+## Project overview
+
+**RESA Project no. 115**, *Economic Viability of Rural Settlements in the Three Biomes of Mato Grosso: An Integrated Analysis of Sustainability, Carbon and Territorial Dynamics*, is implemented by Mato Grosso State University (UNEMAT) with support from Instituto Clima e Sociedade (iCS) under Grant D-25-02928.
+
+The central research question is whether rural settlements in Mato Grosso can be economically viable while keeping the forest standing. To answer it, the project takes an integrated view of territory, production, income and carbon. The planned end product is a Technology Package of tools, methods, models and recommendations for public policy.
+
+::: {.logos-realizacao}
+![](assets/logo-unemat.png){fig-alt="UNEMAT — Mato Grosso State University"}
+:::
+
+## Team
+
+@tbl-equipe lists the project members, their roles and their workstreams.
+
+| Member | Project role | Workstream |
+|---|---|---|
+| Rodrigo Bruno Zanin | Project coordinator | Territory and geospatial technologies |
+| Everton Valdomiro Pedroso Brum | Geospatial technologies coordinator | Territory and geospatial technologies |
+| Marcel Jesus Dias | Researcher | Territory and geospatial technologies |
+| Wylmor Constantino Tives Dalfovo | Economics coordinator | Socioeconomics and bioeconomy |
+| Lindomar Pegorini Daniel | Bioeconomy coordinator; technical lead and website maintainer | Socioeconomics and bioeconomy |
+| Ivan Luiz Pedroso Pires | Information technology researcher | Socioeconomics and bioeconomy |
+| Wellynton Diniz | PhD candidate in Biodiversity | Socioeconomics and bioeconomy |
+| Géssica Batista | Research scholarship holder | Vale do Arinos pilot area |
+| Ernandes Sobreira Oliveira | Researcher | Carbon and environment |
+| Ben Hur Marimon Junior | Researcher | Carbon and environment |
+| Francisco Lledo da Silva | Researcher | Carbon and environment |
+| Giselli Fujimori | Geoprocessing | Geographic information systems |
+| Henrique Brasil | Geoprocessing | Geographic information systems |
+| Helen Larocca | Geoprocessing | Geographic information systems |
+| Gustavo Jacob | Geoprocessing | Geographic information systems |
+
+: RESA Project team {#tbl-equipe}
+
+::: {.nota-fonte}
+Source: compiled by the authors from the RESA Project proposal and budget, the project presentation at the RESA Meeting and the team's work records.
+:::
+
+The territory and geospatial technologies workstream covers geodesy, territorial and landscape analysis, secondary data, processing and the database. The socioeconomics and bioeconomy workstream covers field data collection, socioeconomic and bioeconomic analysis, valuation, scenario modelling, engagement, dissemination and database architecture. The carbon and environment workstream covers the carbon balance, environmental sustainability, forest ecology, biomass and carbon stocks, as well as scenario building and technical recommendations. These three workstreams, defined in the project proposal, contribute to the Technology Package.
+
+## Specific objectives
+
+@tbl-objetivos sets out the project's six specific objectives (SOs), with the theme and a description of each.
+
+| Objective | Theme | Description |
+|---|---|---|
+| `r oe_link(1)` | Territory and land use | Map land use, land cover and the landscape in the pilot areas using remote sensing. |
+| `r oe_link(2)` | Production and income | Build a database on production, costs, profitability and income in family production systems. |
+| `r oe_link(3)` | Environment and carbon | Measure socio-environmental impacts and estimate the carbon balance (emissions and removals), also covering water and soil. |
+| `r oe_link(4)` | Bioeconomic scenarios | Simulate low-carbon scenarios using net present value (NPV), internal rate of return (IRR) and payback, with carbon and payment for environmental services included. |
+| `r oe_link(5)` | Innovation and social capital | Analyse innovation capacity, knowledge diffusion and social capital in the pilot areas. |
+| `r oe_link(6)` | Technology Package | Integrate the results into a package of validated tools, methods, models and recommendations. |
+
+: Specific objectives of the RESA Project {#tbl-objetivos}
+
+::: {.nota-fonte}
+Source: compiled by the authors from the RESA Project proposal (specific objectives and methodology).
+:::
+
+See [Objectives](objetivos/index.qmd) for the status of each objective.
+
+## Implementation phases
+
+The project runs in three phases. Phase 1, **assessment and evidence generation** (SO1, SO2 and SO3), gathers information on territory, production, income and carbon from secondary and field data. Phase 2, **strategies and viability modelling** (SO4), builds low-carbon scenarios and carries out the financial analysis. Phase 3, **Technology Package and engagement for implementation** (SO5 and SO6), holds workshops with the settled families, consolidates the package and prepares a proposal for scaling up.
+
+## Research scope
+
+The spatial scope of the research is the **141 municipalities of Mato Grosso** covered by the 2017 Agricultural Census. They form the state-wide baseline and are analysed using public secondary data. The **three biomes** provide the basis for comparison, with each municipality assigned to the biome that occupies the largest part of its area. The assignment uses the 1:250,000 map (2019) from the Brazilian Institute of Geography and Statistics (IBGE) and places `r nb[["Amazônia"]]` municipalities in the Amazon, `r nb[["Cerrado"]]` in the Cerrado and `r nb[["Pantanal"]]` in the Pantanal.
+
+The field study has **three pilot areas**, one per biome: Vale do Arinos (Juara); Quatá and N. Sra. Aparecida (Lucas do Rio Verde); and Lambari (Poconé). They are described in [Pilot areas](pilotos/index.qmd). However, **a municipality is not the same as a pilot area**: municipal indicators provide context for the pilot areas but do not measure them.
+
+## Website development
+
+The website is built with [Quarto](https://quarto.org) and R. The data are prepared in Python from the project databases, which were frozen on 19 October 2026. The figures come from public sources and from the project's own results, such as the Manuscript 1 typology. The public sources are IBGE, the National Institute for Colonisation and Agrarian Reform (INCRA), Observatório do Clima's Greenhouse Gas Emissions and Removals Estimation System (SEEG) and the National Institute for Space Research (INPE). Each figure is shown with its source, unit and year, and [Data](dados/index.qmd) gives details of sources and licences.
+
+This is a **preliminary version** for the project team. It will be published on GitHub Pages once the project coordination team has approved it. All pages ask search engines not to index them, and the website has no sitemap for search engines.
+
+The website has an English version, available via the flags in the menu bar. It is a translation of the Portuguese original and is still being reviewed by the team. If the versions differ, the Portuguese text prevails.
+
+## Content rules
+
+The website follows a set of content rules. The **IBGE symbols** X (suppressed), – (true zero) and ... (not available) appear as published, and none of them is converted to zero or to an empty cell. Tables and files therefore show the symbol itself in the cell, and in files the `sinal_<variable>` column repeats it. On the map, X is shown in grey. For **tenure**, the 2017 Census category is always referred to as "grantee or settler awaiting a definitive title (2017 Census)". This category is not equivalent to the total number of agrarian-reform settlers.
+
+For the **typology**, the website uses only the municipal typology from Manuscript 1 (k = 5), and the type names remain **provisional labels** until the authors approve them. Throughout the website, the dominant **biome** is taken from the IBGE 1:250,000 map (2019). For **deforestation**, the only series used is the official one from PRODES, INPE's satellite-based deforestation monitoring system. The series is available on TerraBrasilis and is shown with the correction note. The **pilot areas** appear with identifying details only, because the figures for families and area will be added once the sources have been reconciled.
+
+The following are **not published on the website**: personal data of producers and beneficiaries (names, CPF/CNPJ and property-level environmental registry data), photographs of people, commercial databases with restricted licences, the full texts of manuscripts and articles, the budget, field data, photographs, and data from drones and LiDAR. For the project **team**, only names, roles and workstreams are published. For the **literature**, only metadata (authors, year, title, journal and DOI) and search counts are published, with no third-party abstracts.
+
+## How to cite {#como-citar}
+
+> UNIVERSIDADE DO ESTADO DE MATO GROSSO (UNEMAT). *RESA-MT Observatory*: family farming, settlements and carbon in the three biomes of Mato Grosso. Version 0.1.2 (preliminary). RESA Project no. 115, supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928. 2026. Available at: https://daniellindomar.github.io/resa-mt/en/. Accessed: day month year.
+
+When using the municipal types, please also cite RESA Project Manuscript 1 (in preparation). For public data, cite the original source given for each figure.
+
+## Reporting errors and suggestions
+
+Please report any errors to the project coordination team or the website maintainer, giving the page, the figure and the source used.

@@ -1,0 +1,76 @@
+---
+title: "RESA-MT Observatory"
+subtitle: "Family farming, settlements and carbon in the three biomes of Mato Grosso"
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_inicio.R"))
+```
+
+```{r}
+faixa_versao("Preliminary version for the project team. Results may change as the study progresses, and the municipal type labels remain provisional.")
+```
+
+The RESA Project investigates whether rural settlements in Mato Grosso can be economically viable while keeping the forest standing. It covers the state's three biomes (Amazon, Cerrado and Pantanal) and draws on an analysis of its 141 municipalities and three pilot areas.
+
+```{r}
+atalhos_inicio()
+```
+
+## Mato Grosso in figures
+
+The cards below summarise indicators of family farming, settlements, emissions and deforestation in Mato Grosso, giving the source, unit and year of each figure.
+
+```{r}
+kpis_inicio()
+```
+
+::: {.nota-fonte}
+This page uses the official series from PRODES, the satellite-based deforestation monitoring system run by the National Institute for Space Research (INPE). The official series replaces the one used earlier in project materials, as the correction note in [Emissions and deforestation](resultados/emissoes.qmd) explains. The totals shown are official state totals and may differ slightly from the municipal sum (see [Data](dados/index.qmd)).
+:::
+
+## Distribution of the 141 municipalities by type and biome
+
+The maps below show the municipal type of family farming, as defined in the project's Manuscript 1, and the dominant biome of each municipality. A dark outline marks the host municipalities of the three pilot areas. Hover over a municipality (or tap it) to see its name, and click it to open its profile.
+
+```{r}
+mapas_inicio(altura = 380)
+```
+
+```{r}
+aviso_municipio()
+```
+
+## Pilot areas
+
+The field study uses one pilot area per biome. The figures for families and area still differ between sources, so they will be added only once they have been reconciled.
+
+```{r}
+cartoes_pilotos()
+```
+
+## Sections of the observatory
+
+```{r}
+cartoes_secoes()
+```
+
+## What's new
+
+**5 November 2026 — Version 0.1.2.** Added an English version of the website, available via the flags in the menu bar, and listed the project team in [About](sobre.qmd).
+
+**23 October 2026 — Version 0.1.1.** Revised the page text to use scientific language, with no change to figures, sources or results.
+
+**19 October 2026 — Version 0.1.** First version for the project team, covering:
+
+- the 141 municipalities, with `r nrow(IND)` indicators and IBGE symbols displayed;
+- the indicator sources: 2017 Agricultural Census data on family farming, INCRA/SIPRA, SEEG 13 and the 2006–2017 dynamics;
+- the municipal typology from Manuscript 1 (k = 5, provisional labels);
+- Census tenure data and agrarian reform;
+- emissions and deforestation by type, with the official PRODES series and the correction note;
+- the three pilot areas, with identifying details only, and the six specific objectives;
+- the literature, limited to metadata, with 115 references on carbon, markets and ESG and 38 studies compared for SO4;
+- the data for download, with a data dictionary, sources and licences.

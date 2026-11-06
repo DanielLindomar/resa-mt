@@ -1,0 +1,72 @@
+---
+title: "Carbon, markets and ESG"
+description: "The thematic blocks of the literature review on carbon, markets and ESG, and its 115 references with verified DOIs, given as metadata only"
+page-layout: full
+toc: false
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_inicio.R"))
+BL <- sobrepor_en(ler_lit("blocos_carbono.csv"), "blocos_carbono_en.csv", "bloco")
+RF <- ler_lit("refs_carbono.csv")
+RF$nome_bloco <- dic(RF$nome_bloco)
+RF$tipo <- dic(RF$tipo)
+# Anotações do projeto no campo de periódico; os nomes das obras ficam no idioma original.
+RF$periodico <- sub("; reedição Routledge, 2010", "; reissued by Routledge, 2010", RF$periodico, fixed = TRUE)
+RF$periodico <- sub("v1 25/06/2019, versão atual v5", "v1 25 Jun 2019, current version v5", RF$periodico, fixed = TRUE)
+```
+
+```{r}
+faixa_versao("Preliminary version for the project team. This page gives reference metadata only (authors, year, title, journal and DOI). A synthesis of the findings will follow in a future version, as a separate text.")
+```
+
+The literature review on carbon, markets and ESG (environmental, social and governance) is organised into six thematic blocks, each defined by a theme and a question. Its `r fmt_valor(nrow(RF), "int")` references all have a digital object identifier (DOI) verified against Crossref (September 2026) and inform the specific objectives on environment and carbon (SO3) and bioeconomic scenarios (SO4). This page sets out the six blocks first, then the complete list of references, with files for download.
+
+## Thematic blocks of the review
+
+```{r}
+div(class = "cartoes", lapply(seq_len(nrow(BL)), function(i) {
+  b <- BL[i, ]
+  a(class = "cartao", href = sprintf("estudos.html#bloco=%s", b$bloco),
+    div(class = "cartao-topo", tags$h4(style = "margin: 0;", paste0(b$bloco, " · ", b$tema)),
+        span(class = "selo", style = "white-space: nowrap;", sprintf("%d references", b$n_refs))),
+    p(tags$i("Question: "), b$pergunta))
+}))
+```
+
+::: {.nota-fonte}
+Source: compiled by the authors from the RESA Project's literature review (September 2026). To see a block's references in the table of studies, select its card.
+:::
+
+## The `r nrow(RF)` references
+
+Use the search box to find an author, title or journal, and the column filters to narrow the list by block, year or type. Each DOI links to the publication page.
+
+```{r}
+tab <- RF |> left_join(select(BL, bloco, tema), by = "bloco") |> transmute(Bloco = paste0(bloco, " · ", tema), Autores = autores, Ano = as.character(ano),
+                       Título = titulo, Periódico = periodico, Tipo = ifelse(nzchar(tipo), tipo, "—"), DOI = doi)
+ordem_bl <- paste0(BL$bloco, " · ", BL$tema)
+reactable(tab, elementId = "tab-carbono", searchable = TRUE, filterable = TRUE, compact = TRUE, wrap = TRUE, striped = TRUE,
+  defaultPageSize = 20, showPageSizeOptions = TRUE, pageSizeOptions = c(20, 50, 115),
+  language = reactableLang(searchPlaceholder = "Search author, title or journal", noData = "No references found",
+                           pageInfo = "{rowStart}–{rowEnd} of {rows} references", pagePrevious = "Previous",
+                           pageNext = "Next", pageSizeOptions = "Show {rows}"),
+  columns = list(
+    Bloco = colDef(name = "Block", minWidth = 150, filterInput = filtro_lista_lit("tab-carbono", ordem_bl), filterMethod = filtro_igual_lit),
+    Autores = colDef(name = "Authors", minWidth = 170, filterable = FALSE),
+    Ano = colDef(name = "Year", minWidth = 85, align = "center", filterInput = filtro_lista_lit("tab-carbono", rev(sort(unique(tab$Ano)))),
+                 filterMethod = filtro_igual_lit),
+    Título = colDef(name = "Title", minWidth = 320, filterable = FALSE),
+    Periódico = colDef(name = "Journal", minWidth = 170, filterable = FALSE),
+    Tipo = colDef(name = "Type", minWidth = 95, filterInput = filtro_lista_lit("tab-carbono"), filterMethod = filtro_igual_lit),
+    DOI = colDef(minWidth = 170, filterable = FALSE, style = list(fontSize = "0.78rem", wordBreak = "break-all"), cell = function(v) link_doi(v))))
+```
+
+- [Download the `r nrow(RF)` references (CSV)](../../arquivos/literatura/resa_refs_carbono_esg.csv) · [data dictionary](../../arquivos/literatura/dicionarios/resa_refs_carbono_esg.csv)
+- [Download the complete literature list in BibTeX](../../arquivos/literatura/resa_literatura_estudos.bib), without abstracts
+
+::: {.nota-fonte}
+Source: compiled by the authors from the RESA Project's literature review (September 2026), with DOI, title, authors, year and journal checked against Crossref. Note: the year comes from the review record or, failing that, from Crossref; the Type column shows "—" where the record does not state the type. Third-party abstracts are not reproduced.
+:::

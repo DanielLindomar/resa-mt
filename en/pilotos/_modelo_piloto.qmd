@@ -1,0 +1,88 @@
+```{r}
+#| include: false
+# Modelo comum das páginas de área-piloto. A página define PIL_SLUG antes de incluir este arquivo:
+#   vale-do-arinos.qmd, quata-nsa-aparecida.qmd e lambari.qmd (nome do arquivo = slug de dados_site/pilotos.csv).
+# Não use o nome _piloto.qmd: o script 03 geraria páginas com outros nomes a partir dele.
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+P <- PIL[PIL$slug == PIL_SLUG, ]
+stopifnot(nrow(P) == 1)
+M <- MUN[MUN$id_municipio == P$id_municipio, ]
+INFO <- PIL_INFO[[PIL_SLUG]]
+KPIS <- c("estab_af", "pct_estab_af", "pct_estab_46504", "seeg_emissao_bruta")
+s46504 <- ultimo("estab_af_46504", M$id_municipio)
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+::: {.nav-mun}
+[← All pilot areas](index.qmd){.btn .btn-sm .btn-outline-primary}
+:::
+
+::: {.perfil-topo}
+:::: {}
+### Key details
+
+```{r}
+ident_piloto(PIL_SLUG)
+```
+
+```{r}
+if (length(INFO$notas)) tagList(lapply(INFO$notas, function(x) p(class = "nota-fonte", x)))
+```
+::::
+
+:::: {}
+```{r}
+mapa_municipio(M$id_municipio, altura = 340, prefixo = "../municipios/")
+```
+
+```{r}
+p(class = "nota-fonte", sprintf("Municipalities of Mato Grosso by dominant biome (IBGE, Biomes 1:250,000, 2019), with %s highlighted. The map does not show the boundary of the pilot area.", M$municipio))
+```
+::::
+:::
+
+```{r}
+homonimos(PIL_SLUG)
+```
+
+## The municipality of `r M$municipio` in the context of Mato Grosso
+
+```{r}
+aviso_municipio()
+```
+
+```{r}
+div(class = "kpi-grade", lapply(KPIS, kpi_mun, mun_id = M$id_municipio))
+```
+
+```{r}
+legenda_sinais()
+```
+
+```{r}
+#| results: asis
+if (identical(s46504$sinal, TRACO)) {
+  cat(sprintf(paste0(
+    "For %s, the 2017 Agricultural Census shows %s (true zero) for family farms in the category “",
+    "grantee or settler awaiting a definitive title (2017 Census)”. This does not imply that the municipality has no settlers. ",
+    "The category measures the producer’s declared land tenure status: a producer who already holds a title appears as an owner. ",
+    "The category also differs from the INCRA register. See [Census tenure data and agrarian reform](../resultados/posse.qmd) for a discussion.\n"),
+    M$municipio, TRACO))
+}
+```
+
+```{r}
+p("For the full profile, with all indicators and the municipality’s rank within its biome and within Mato Grosso, see the page for the ",
+  a(href = url_mun(M$slug), paste("municipality of", M$municipio, "→")))
+```
+
+## Next steps
+
+```{r}
+o_que_vem()
+```

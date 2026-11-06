@@ -31,7 +31,8 @@ Para com código 1 se achar qualquer problema. São cinco partes.
    c) os downloads de indicadores contra dados_site/valores.csv;
    d) as tabelas interativas (reactable) gravadas nas páginas de _site/;
    e) os mapas (leaflet) de _site/: município com a dica "X (sigilo IBGE)"
-      tem de estar pintado com a cor de X de R/funcoes.R (COR_X);
+      (ou "X (IBGE suppression)", em _site/en/) tem de estar pintado com a cor de
+      X de R/funcoes.R (COR_X);
    f) dados_site/serie.rds e ultimos.rds, se o Rscript for encontrado
       (variável RSCRIPT, PATH ou instalação padrão do R);
    g) se a raiz das fontes estiver informada (RESA_FONTES ou config.local.toml),
@@ -41,17 +42,25 @@ Para com código 1 se achar qualquer problema. São cinco partes.
    indicadores (índice de municípios, páginas de indicador, Posse, Dados e os
    141 perfis) e nos mapas das páginas de indicador, cada linha é casada pelo
    nome ou código do município com dados_site/valores.csv: o número guardado
-   e o texto mostrado (valor ou sinal) têm de ser os do mesmo município.
+   e o texto mostrado (valor ou sinal) têm de ser os do mesmo município. As
+   páginas de _site/en/ passam pela mesma conferência, com o formato inglês
+   (1,234.5; thousand, million, billion).
 
 4. LINKS INTERNOS de _site/: todo href/src relativo (inclusive dentro das
    tabelas e mapas) aponta para um arquivo que existe, toda âncora #id existe
-   na página de destino, todo clique de mapa abre um perfil que existe e toda
-   figura publicada em resultados/figuras/ é usada por alguma página.
+   na página de destino, todo clique de mapa abre um perfil que existe, toda
+   figura publicada em resultados/figuras/ (e em en/resultados/figuras/) é usada
+   por alguma página e toda página tem a sua par no outro idioma, para onde as
+   bandeiras apontam.
 
 5. ELEMENTOS OBRIGATÓRIOS de cada página de _site/: meta robots
    noindex,nofollow, título, rodapé com o texto oficial e só o logo da UNEMAT,
    faixa de versão e nenhum NA/NaN/NULL/Inf no texto visível; robots.txt sem
-   indexação e nenhum sitemap.
+   indexação e nenhum sitemap. Nas páginas de _site/en/, o rodapé oficial é o
+   da versão em inglês.
+
+A comparação entre os dois idiomas (estrutura, números e sobras de português)
+é feita pelo script 08_checar_ingles.py.
 """
 
 import csv
@@ -172,7 +181,8 @@ def arquivos_repo():
         if Path(raiz) == REPO:
             dirs[:] = [d for d in dirs if d != ".git" and d not in OCULTAS]
         else:
-            dirs[:] = [d for d in dirs if d != ".git"]
+            # en/ é um projeto Quarto próprio, com o seu cache local
+            dirs[:] = [d for d in dirs if d != ".git" and not (Path(raiz) == REPO / "en" and d == ".quarto")]
         for n in nomes:
             yield Path(raiz) / n
 
@@ -420,11 +430,11 @@ for pg in paginas:
                 if len(cores) != len(rot):
                     continue
                 for t, cor in zip(rot, cores):
-                    tem_x = "X (sigilo IBGE)" in html.unescape(t)
+                    tem_x = any(d_ in html.unescape(t) for d_ in ("X (sigilo IBGE)", "X (IBGE suppression)"))
                     if tem_x:
                         n_pol_x += 1
                         if COR_X and str(cor).lower()[:7] != COR_X:
-                            problema(f"{rel}: município com 'X (sigilo IBGE)' pintado com {cor} (esperado {COR_X})")
+                            problema(f"{rel}: município com X (sigilo) pintado com {cor} (esperado {COR_X})")
 print(f"  d) {n_pag} páginas; {n_tab} tabelas interativas, {n_tab_sinal} com coluna de sinal")
 print(f"  e) {n_mapas} mapas com municípios; {n_pol_x} municípios com X conferidos (cor {COR_X})")
 
@@ -510,9 +520,14 @@ MUNS = ler_csv(REPO / "dados_site" / "municipios.csv")
 NOME_ID = {r["municipio"]: int(r["id_municipio"]) for r in MUNS}
 SLUG_ID = {r["slug"]: int(r["id_municipio"]) for r in MUNS}
 ROT_IND = {r["rotulo"]: k for k, r in IND.items()}
+# Rótulos da versão em inglês (o explorador da página Dados casa a linha pelo rótulo do indicador)
+ROT_IND_EN = {r["rotulo"]: r["id"] for r in ler_csv(REPO / "i18n" / "indicadores_en.csv")}
 # colunas da tabela municipal da página Posse (R/pag_resultados.R, tabela_posse_municipal)
 COL_POSSE = {"e_v": "estab_af_46504", "p_v": "pct_estab_46504", "a_v": "pct_area_46504", "n_v": "n_pa", "f_v": "fam_pa"}
-MULT = {"mil": 1e3, "mi": 1e6, "bi": 1e9}
+MULT = {"mil": 1e3, "mi": 1e6, "bi": 1e9, "thousand": 1e3, "million": 1e6, "billion": 1e9}
+RX_TEXTO_PT = re.compile(r"(?:R\$|US\$)?\s*(-?[\d.]+(?:,(\d+))?)\s*(mil|mi|bi)?\s*%?")
+RX_TEXTO_EN = re.compile(r"(?:R\$|US\$)?\s*(-?[\d,]+(?:\.(\d+))?)\s*(thousand|million|billion)?\s*%?")
+EM_INGLES = False   # idioma da página em conferência
 
 
 def sem_numero(d) -> bool:
@@ -579,10 +594,10 @@ def confere_texto(t: str, mid: int, ind: str, em_reais: bool = True):
     s, v, _ = e
     if s != "valor":
         return None if t == s else f"mostra {t!r}, esperado {s}"
-    m_ = re.fullmatch(r"(?:R\$|US\$)?\s*(-?[\d.]+(?:,(\d+))?)\s*(mil|mi|bi)?\s*%?", t)
+    m_ = (RX_TEXTO_EN if EM_INGLES else RX_TEXTO_PT).fullmatch(t)
     if not m_:
         return f"mostra {t!r}, esperado um número"
-    num_ = float(m_.group(1).replace(".", "").replace(",", "."))
+    num_ = float(m_.group(1).replace(",", "")) if EM_INGLES else float(m_.group(1).replace(".", "").replace(",", "."))
     dec = len(m_.group(2) or "")
     mult = MULT.get(m_.group(3), 1.0)
     alvo = v * (1000 if IND[ind]["fmt"] == "brl_mil" and em_reais else 1)
@@ -613,6 +628,8 @@ erros_al = defaultdict(list)
 for pg in paginas:
     rel = pg.relative_to(REPO).as_posix()
     rel_site = pg.relative_to(REPO / "_site").as_posix()
+    EM_INGLES = rel_site.startswith("en/")
+    rel_site = rel_site[3:] if EM_INGLES else rel_site
     m_pf = re.fullmatch(r"municipios/([a-z0-9-]+)\.html", rel_site)
     mid_pagina = SLUG_ID.get(m_pf.group(1)) if m_pf else None
     m_ind = re.fullmatch(r"indicadores/([a-z0-9_]+)\.html", rel_site)
@@ -686,7 +703,7 @@ for pg in paginas:
                 if "Indicador" in dados and "Sinal" in dados and "Valor" in dados:
                     tx = textos("Ordem") if "Ordem" in dados else None
                     for k in range(nl):
-                        ind = ROT_IND.get(dados["Indicador"][k])
+                        ind = (ROT_IND_EN if EM_INGLES else ROT_IND).get(dados["Indicador"][k])
                         e = esperado(ids[k], ind) if ind else None
                         if e is None:
                             continue
@@ -815,11 +832,17 @@ for pg in paginas:
                         quebrados[rel].add(f"clique no mapa: {pref.group(1)}{lid}.html")
 for rel, alvos in sorted(quebrados.items()):
     problema(f"{rel}: {len(alvos)} link(s) quebrado(s): {', '.join(sorted(alvos)[:5])}")
-FIG_SITE = SITE / "resultados" / "figuras"
-sem_uso = sorted(p.relative_to(SITE).as_posix() for p in FIG_SITE.rglob("*") if p.is_file() and p.resolve() not in usados_site) \
-    if FIG_SITE.exists() else []
+sem_uso = sorted(p.relative_to(SITE).as_posix()
+                 for FIG_SITE in (SITE / "resultados" / "figuras", SITE / "en" / "resultados" / "figuras") if FIG_SITE.exists()
+                 for p in FIG_SITE.rglob("*") if p.is_file() and p.resolve() not in usados_site)
 if sem_uso:
     problema(f"figuras publicadas sem uso em nenhuma página ({len(sem_uso)}): {', '.join(sem_uso[:6])}")
+# As bandeiras levam à mesma página no outro idioma: toda página precisa da sua par.
+rels = {pg.relative_to(SITE).as_posix() for pg in paginas}
+sem_par = sorted(r_ for r_ in rels if (r_[3:] if r_.startswith("en/") else "en/" + r_) not in rels)
+if paginas and sem_par:
+    problema(f"página sem a sua par no outro idioma ({len(sem_par)}): {', '.join(sem_par[:6])}")
+print(f"  pares de idiomas: {len(rels) - len(sem_par)} de {len(rels)} páginas com a par no outro idioma")
 print(f"  {n_links} links, {n_ancoras} âncoras e {n_cliques} cliques de mapa conferidos; "
       f"{sum(len(v) for v in quebrados.values())} quebrados em {len(quebrados)} páginas; "
       f"{len(sem_uso)} figura(s) publicada(s) sem uso")
@@ -829,7 +852,9 @@ print(f"  {n_links} links, {n_ancoras} âncoras e {n_cliques} cliques de mapa co
 # ---------------------------------------------------------------------------
 print("\n5. Elementos obrigatórios das páginas")
 RODAPE = ("Projeto RESA nº 115 · Apoio: Instituto Clima e Sociedade (iCS), Doação D-25-02928 · Execução: UNEMAT · "
-          "Versão preliminar para a equipe do projeto · Atualizado em 23/10/2026")
+          "Versão preliminar para a equipe do projeto · Atualizado em 05/11/2026")
+RODAPE_EN = ("RESA Project no. 115 · Supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928 · Implemented by UNEMAT · "
+             "Preliminary version for the project team · Last updated 5 November 2026")
 SEM_FAIXA = set()   # páginas que não são principais (nenhuma hoje)
 RX_ROBOTS = re.compile(r'<meta\s+name="robots"\s+content="([^"]*)"', re.I)
 RX_RODAPE = re.compile(r'<footer class="footer">(.*?)</footer>', re.S)
@@ -848,7 +873,7 @@ for pg in paginas:
         falhas["sem rodapé"].append(rel)
     else:
         t_rod = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", rod.group(1)))).strip()
-        if RODAPE not in t_rod:
+        if (RODAPE_EN if pg.relative_to(SITE).as_posix().startswith("en/") else RODAPE) not in t_rod:
             falhas["rodapé diferente do texto oficial"].append(rel)
         imgs = re.findall(r'<img[^>]+src="([^"]+)"', rod.group(1))
         if [i for i in imgs if not re.search(r"logo-unemat\.png$", i)] or not imgs:

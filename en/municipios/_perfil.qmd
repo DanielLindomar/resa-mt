@@ -1,0 +1,117 @@
+```{r}
+#| include: false
+# Modelo dos perfis municipais em inglês. Cada en/municipios/<slug>.qmd (gerado por
+# scripts/03_gerar_stubs.py) define MUN_ID (código IBGE, inteiro) e inclui este arquivo.
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_municipios.R"))
+M    <- MUN[MUN$id_municipio == MUN_ID, ]
+NOME <- M$municipio
+```
+
+```{r}
+faixa_versao(paste("Preliminary version for the project team. The data come from the 2017 Agricultural Census (IBGE), INCRA/SIPRA (as at 3 June 2025),",
+                   "SEEG 13 (1970–2024) and the 2006 and 2017 Agricultural Censuses. Each value is shown with its reference year."))
+```
+
+```{r}
+navegacao_municipio(MUN_ID)
+```
+
+:::: {.perfil-topo}
+::: {.perfil-texto}
+```{r}
+tagList(cabecalho_municipio(MUN_ID), aviso_sede(MUN_ID), texto_perfil(MUN_ID))
+```
+:::
+::: {.perfil-mapa}
+```{r}
+svg_mapa_mt(destaque = MUN_ID, tol = 2000, id = "mapa-perfil")
+```
+:::
+::::
+
+## Key indicators
+
+This section shows the observatory's eight key indicators. Below each value are the medians for municipalities in the `r nome_bioma(M$bioma)` biome and for the 141 municipalities of Mato Grosso (MT). Some indicators instead show the municipality's share of the total across Mato Grosso municipalities. Green marks a value more favourable than the biome median and red a less favourable one. Context indicators are not coloured.
+
+```{r}
+grade_kpis_mun(MUN_ID)
+```
+
+## Rank in the biome and in Mato Grosso
+
+Municipalities with a published value are ranked from the largest value to the smallest (1st = largest). In this ranking, – (true zero) is treated as zero, while X (suppressed) and ... (not available) are excluded. The type is the group to which `r NOME` belongs in the Manuscript 1 typology (`r M$tipo_m1`, provisional label).
+
+```{r}
+tabela_posicao(MUN_ID)
+```
+
+## Indicators by theme
+
+In the "Rank" column, each light dot is a municipality in the `r nome_bioma(M$bioma)` biome, the dark dot is `r NOME` and the dotted line is the Mato Grosso median. Hover over the ⓘ icon (or tap it) to read each indicator's note.
+
+::: {.panel-tabset}
+
+### Structure of family farming
+
+```{r}
+tabela_tema_mun("estrutura", MUN_ID, NOME)
+```
+
+### Technology, technical assistance and credit
+
+```{r}
+tabela_tema_mun("tecnologia", MUN_ID, NOME)
+```
+
+### Production and food
+
+```{r}
+tabela_tema_mun("alimentos", MUN_ID, NOME)
+```
+
+### Tenure and agrarian reform
+
+Category 46504 of the 2017 Census (grantee or settler awaiting a definitive title) under-records agrarian reform, because producers who have already obtained their title appear as owners. SIPRA counts each settlement project only in its host municipality (INCRA, Report 0227, as at 3 June 2025). See [Census tenure data and agrarian reform](../resultados/posse.qmd) for a discussion.
+
+```{r}
+tabela_tema_mun("posse", MUN_ID, NOME)
+```
+
+### Climate (SEEG 13)
+
+SEEG estimates emissions for the whole municipality, not only for family farming (SEEG 13, Observatório do Clima, GWP-AR5).
+
+```{r}
+tabela_tema_mun("clima", MUN_ID, NOME)
+```
+
+### 2006–2017 dynamics
+
+The indicators under this theme cover all agricultural establishments (family and non-family farms). The 2006 municipal sum does not match the IBGE state table: 112,987 against 112,978 establishments and 48.69 against 47.81 million ha.
+
+```{r}
+tabela_tema_mun("dinamica", MUN_ID, NOME)
+```
+
+:::
+
+```{r}
+legenda_sinais()
+```
+
+## Emissions and removals over time
+
+The chart shows gross emissions and removals, along with emissions from land-use change and forestry and from agriculture and livestock, as estimated by SEEG 13 for the whole municipality from 1970 to 2024. Values are in thousand tonnes of carbon dioxide equivalent (thousand tCO2e, GWP-AR5). Removals are shown as absolute values. `r NOTA_1990` Hover over the chart (or tap it) to see the values for each year.
+
+```{r}
+HTML(svg_seeg_mun(MUN_ID, NOME))
+```
+
+```{r}
+fonte_rodape()
+```
+
+```{r}
+navegacao_municipio(MUN_ID)
+```

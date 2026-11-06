@@ -1,0 +1,108 @@
+<script>
+// Siglas explicadas ao passar o cursor (ou tocar, no celular). Aplica-se a parágrafos, listas e legendas.
+(function () {
+  var G = {
+    "FF": "Family farming, as defined by Law 11.326/2006 and the 2017 Agricultural Census",
+    "PA": "Agrarian-reform settlement project",
+    "PAs": "Agrarian-reform settlement projects",
+    "INCRA": "National Institute for Colonisation and Agrarian Reform",
+    "SIPRA": "Agrarian Reform Projects Information System (INCRA)",
+    "PNCF": "National Land Credit Programme (financing for land purchase)",
+    "PRONAF": "National Programme for Strengthening Family Farming",
+    "DAP": "PRONAF Eligibility Declaration",
+    "SEEG": "Greenhouse Gas Emissions and Removals Estimation System (Observatório do Clima)",
+    "PRODES": "INPE's satellite-based deforestation monitoring system",
+    "INPE": "National Institute for Space Research",
+    "GHG": "Greenhouse gases",
+    "CO2e": "Carbon dioxide equivalent: the sum of greenhouse gases, each weighted by its warming potential",
+    "GWP-AR5": "Global warming potential values from the IPCC Fifth Assessment Report, used by SEEG to aggregate the gases",
+    "AFS": "Agroforestry system",
+    "PES": "Payment for environmental services",
+    "ESG": "Environmental, social and governance criteria",
+    "REDD+": "Reducing emissions from deforestation and forest degradation",
+    "NPV": "Net present value",
+    "IRR": "Internal rate of return",
+    "EFA": "Exploratory factor analysis",
+    "PAF": "Principal axis factoring, an extraction method used in exploratory factor analysis",
+    "CI": "Confidence interval",
+    "M1": "Manuscript 1 of the RESA Project (in preparation)",
+    "SO": "Specific objective of the project",
+    "iCS": "Instituto Clima e Sociedade",
+    "UNEMAT": "Mato Grosso State University",
+    "MapBiomas": "Annual mapping of land use and land cover in Brazil",
+    "CAR": "Rural Environmental Registry",
+    "KMO": "Kaiser-Meyer-Olkin measure of the adequacy of the data for factor analysis, ranging from 0 to 1 (values above 0.8 indicate good adequacy)",
+    "ARI": "Adjusted Rand index, a measure of agreement between two classifications of the same municipalities (1 = identical classifications; 0 = agreement no better than chance)",
+    "Jaccard": "Coefficient measuring a group's stability across resamples; it equals 1 when the group recurs unchanged every time",
+    "clusterboot": "R function (fpc package) that assesses group stability by resampling",
+    "silhouette": "Measure of how well separated the groups are, ranging from −1 to 1; the higher the value, the more distinct the groups",
+    "Calinski-Harabasz": "Clustering quality index; the higher the value, the better separated the groups",
+    "Davies-Bouldin": "Clustering quality index; the lower the value, the better separated the groups",
+    "gap criterion": "Criterion for choosing the number of groups by comparing the clustering obtained with that of randomly generated data",
+    "Kruskal-Wallis": "Test for differences between groups based on the rank order of the values rather than the values themselves",
+    "ε²": "Effect size for the Kruskal-Wallis test: the share of variation explained by the group, from 0 to 1",
+    "Spearman": "Correlation coefficient based on the rank order of the values, ranging from −1 to 1",
+    "Pearson": "Linear correlation coefficient between the values, ranging from −1 to 1",
+    "Dutilleul": "Correction to the correlation test that takes account of the similarity between neighbouring municipalities",
+    "symlog": "Logarithmic scale that accommodates zero values",
+    "Φ": "Correlation between two factors in an oblique rotation",
+    "AFOLU": "Agriculture, forestry and other land use, a sector of the emissions inventory",
+    "banking": "Saving emission allowances from one period for later use",
+    "spillover": "Effect whereby what happens in one market affects another",
+    "cointegration": "Long-run relationship between price series"
+  };
+  var chaves = Object.keys(G).sort(function (a, b) { return b.length - a.length; });
+  var re = new RegExp("(^|[^\\wÀ-ú-])(" + chaves.map(function (k) { return k.replace(/[-+.]/g, "\\$&"); }).join("|") + ")(?![\\wÀ-ú-])");
+  function marcar(el) {
+    var usados = {};
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        while (p && p !== el) { if (/^(A|ABBR|CODE|SCRIPT|STYLE|SVG|BUTTON|SELECT|OPTION)$/i.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
+        return re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+    var nos = []; while (w.nextNode()) nos.push(w.currentNode);
+    nos.forEach(function (n) {
+      var m = n.nodeValue.match(re); if (!m || usados[m[2]]) return;
+      usados[m[2]] = true;
+      var i = m.index + m[1].length, depois = n.splitText(i); depois.splitText(m[2].length);
+      var ab = document.createElement("abbr"); ab.title = G[m[2]]; ab.tabIndex = 0; ab.textContent = m[2];
+      depois.parentNode.replaceChild(ab, depois);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("main p, main li, main figcaption, main .kpi-rotulo, main .kpi-meta").forEach(marcar);
+  });
+})();
+</script>
+<div id="dica-grafico" role="tooltip" aria-hidden="true"></div>
+<script>
+// Dica imediata para elementos com data-tip (pontos, barras e linhas dos gráficos SVG; selos).
+(function () {
+  var dica = document.getElementById("dica-grafico");
+  function mostrar(el, x, y) {
+    dica.textContent = el.getAttribute("data-tip");
+    dica.style.display = "block";
+    var w = dica.offsetWidth, h = dica.offsetHeight;
+    var left = Math.min(x + 12, window.innerWidth - w - 8), top = y - h - 12;
+    if (top < 4) top = y + 16;
+    dica.style.left = left + "px"; dica.style.top = top + "px";
+  }
+  function esconder() { dica.style.display = "none"; }
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el) mostrar(el, e.clientX, e.clientY);
+  });
+  document.addEventListener("mousemove", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); if (el && dica.style.display === "block") mostrar(el, e.clientX, e.clientY);
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (e.target.closest && e.target.closest("[data-tip]")) esconder();
+  });
+  document.addEventListener("touchstart", function (e) {
+    var el = e.target.closest && e.target.closest("[data-tip]"); var t = e.touches[0];
+    if (el) mostrar(el, t.clientX, t.clientY); else esconder();
+  }, { passive: true });
+  window.addEventListener("scroll", esconder, { passive: true });
+})();
+</script>

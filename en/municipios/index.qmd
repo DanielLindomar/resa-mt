@@ -1,0 +1,80 @@
+---
+title: "Municipalities"
+description: "Overview of the 141 municipalities of Mato Grosso based on the 2017 Agricultural Census: dominant biome, municipal type of family farming from Manuscript 1 (provisional label), main indicators and municipal profiles"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_municipios.R"))
+nb <- table(factor(MUN$bioma, BIOMAS)); nt <- table(factor(MUN$tipo_m1, names(TIPOS)))
+IDS_TAB <- c("estab_af", "pct_estab_af", "area_media_af", "pct_estab_46504", "pct_area_46504",
+             "valor_prod_estab_af", "n_pa", "fam_pa", "seeg_emissao_bruta", "var_estab_0617")
+```
+
+```{r}
+faixa_versao()
+```
+
+This page covers the 141 municipalities in the 2017 Agricultural Census. Boa Esperança do Norte was created later and is not included. Each municipality is assigned a **dominant biome** from the 1:250,000 biome map (2019) of the Brazilian Institute of Geography and Statistics (IBGE). This places `r nb[["Amazônia"]]` municipalities in the Amazon, `r nb[["Cerrado"]]` in the Cerrado and `r nb[["Pantanal"]]` in the Pantanal. A municipality's **type** is the group it belongs to in the municipal typology of family farming from RESA Project Manuscript 1 (M1). The type labels remain provisional until the authors approve them, and the profiles describe municipalities, not settlements.
+
+:::: {.perfil-topo}
+::: {.perfil-texto}
+### Pilot-area host municipalities
+
+```{r}
+div(class = "cartoes", lapply(seq_len(nrow(SEDES)), function(i) {
+  m <- SEDES[i, ]
+  corpo <- tagList(h4(m$municipio), p(chip_bioma(m$bioma), " ", chip_tipo(m$tipo_m1, rotulo = FALSE)),
+                   p(style = "margin-top:.35rem", paste("Host municipality of the", m$piloto, "pilot area")), p(selo_conciliacao()))
+  if (tem_perfil(m$slug)) a(class = "cartao", href = paste0(m$slug, ".html"), corpo) else div(class = "cartao", corpo)
+}))
+```
+
+### Municipal profiles
+
+```{r}
+if (nrow(PERFIS) > 0) div(class = "nav-mun",
+  tags$select(class = "form-select", `aria-label` = "Open a municipal profile",
+              onchange = "if (this.value) window.location = this.value",
+              tags$option(value = "", "Select a municipality"),
+              lapply(seq_len(nrow(PERFIS)), function(j) tags$option(value = paste0(PERFIS$slug[j], ".html"), PERFIS$municipio[j]))))
+```
+
+### The five municipal types from Manuscript 1
+
+The types were obtained by applying the *k-means* algorithm, with k = 5, to Bartlett scores from principal axis factoring (PAF) with oblimin rotation. The analysis covered 21 variables from the 2017 Agricultural Census in the 141 municipalities. See [Municipal typology of family farming](../resultados/tipologia.qmd) for the procedure and a description of each type.
+
+```{r}
+tags$ul(style = "list-style:none;padding-left:0", lapply(names(TIPOS), function(t)
+  tags$li(style = "margin-bottom:.3rem", chip_tipo(t), span(class = "sub", sprintf(" %d municipalities", nt[[t]])))))
+```
+:::
+::: {.perfil-mapa}
+```{r}
+svg_mapa_mt(alternar = TRUE, tol = 1200, id = "mapa-municipios")
+```
+
+[Hover over a municipality (or tap it) to see its name, biome and type; click it to open its profile. Use the buttons to colour the map by biome or by M1 type.]{.nota-fonte}
+:::
+::::
+
+## Selected indicators for the 141 municipalities
+
+Search the table by municipality name and filter it by biome and type using the drop-down lists in the header. Click a column name to sort the values. Cells with X (IBGE suppression), – (true zero) or ... (not available) show the symbol itself. When sorting, X and ... are placed last and – is treated as zero. Each indicator name links to a page with a map and ranking of municipalities.
+
+```{r}
+tabela_municipios(prefixo = "", ids = IDS_TAB)
+```
+
+```{r}
+legenda_sinais()
+```
+
+Notes: category 46504 (status of grantee or settler awaiting a definitive title, 2017 Census) under-records agrarian reform, as discussed in [Census tenure data and agrarian reform](../resultados/posse.qmd). The Agrarian Reform Projects Information System (SIPRA) counts each settlement project only in its host municipality (INCRA, Report 0227, as at 3 June 2025). The Greenhouse Gas Emissions and Removals Estimation System (SEEG) measures the whole municipality, not family farming. The 2006–2017 dynamics cover all establishments, and the 2006 municipal sum does not match the state table (112,987 against 112,978 establishments). The complete data and a data dictionary are available under [Data](../dados/index.qmd).
+
+```{r}
+fonte_rodape(IDS_TAB)
+```

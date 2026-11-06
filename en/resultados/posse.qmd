@@ -1,0 +1,190 @@
+---
+title: "Agricultural Census tenure data and agrarian reform"
+subtitle: "Agrarian reform and category 46504 of the 2017 Agricultural Census: results from Manuscript 1 (in preparation)"
+description: "The 2017 Census category of grantee or settler awaiting a definitive title, compared with INCRA records"
+css: resultados.css
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_resultados.R"))
+juara <- ultimo("estab_af_46504", 5105101)
+stopifnot(identical(juara$sinal, TRACO))          # Juara: – (zero absoluto) na categoria 46504
+pa_juara <- ultimo("n_pa", 5105101)
+stopifnot(identical(pa_juara$sinal, "valor"), pa_juara$valor > 0)
+disc <- regmatches(m1("INCRA_DISCORDANTES_A"), regexec("^(\\d+) \\(T1 (\\d+), T2 (\\d+), T3 (\\d+), T5 (\\d+)\\)", m1("INCRA_DISCORDANTES_A")))[[1]]
+stopifnot(length(disc) == 6)
+# frases comparativas do texto: conferidas contra os números
+v <- function(campo) setNames(as.numeric(M1N$valor_bruto[match(sprintf("INCRA_%s_%s", names(TIPOS), campo), M1N$id)]), names(TIPOS))
+stopifnot(names(which.max(v("PCT_TITULADO_BENEF_SIPRA"))) == "T4", names(which.min(v("REF_POR100AF_PONDERADO"))) == "T5",
+          names(which.min(v("ANO_CRIACAO_MEDIO_POND_FAMILIAS"))) == "T3", names(which.max(v("PCT_REF_DO_MT"))) == "T3")
+```
+
+```{r}
+faixa_versao()
+```
+
+## Context and objective
+
+The Agricultural Census, conducted by the Brazilian Institute of Geography and Statistics (IBGE), asks producers about their land tenure status. One possible answer is **grantee or settler awaiting a definitive title (2017 Census)**, coded as category 46504 in the IBGE Automatic Retrieval System (SIDRA). The category therefore records a **declared** tenure status. The Census does not ask whether an establishment is part of agrarian reform, and producers who have already received their title may declare themselves owners. Drawing on results from Manuscript 1, this page examines how far the category captures agrarian reform in Mato Grosso (MT).
+
+## Data and sources
+
+The analysis compares three sets of records. The first covers establishments in the census category, as published by IBGE, both for family farms and for all establishments (family and non-family farms). The second covers agrarian-reform establishments identified in the Census by IBGE jointly with the National Institute for Colonisation and Agrarian Reform (INCRA), using multiple criteria. The third comes from INCRA's administrative records: the projects in the Agrarian Reform Projects Information System (SIPRA) and the list of beneficiaries from INCRA's Regional Superintendency in Mato Grosso. The cards below show the size of each set of records in the state.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_kpi("Family farms in category 46504", m1("TOT_46504_ESTAB"),
+             sprintf("%s%% of the %s family farms · IBGE, 2017 Agricultural Census", m1("PCT_46504_ESTAB_MT"), m1("TOT_AF_ESTAB"))),
+  cartao_kpi("Family-farm area in category 46504", paste(m1("TOT_46504_AREA"), "ha"),
+             sprintf("%s%% of family-farm area · IBGE, 2017 Agricultural Census", m1("PCT_46504_AREA_MT"))),
+  cartao_kpi("All establishments in category 46504", m1("TOT_TODOS_46504_ESTAB"),
+             "family and non-family farms · IBGE, 2017 Agricultural Census"),
+  cartao_kpi("Agrarian-reform establishments in the Census", m1("MARQUES2021_ESTAB_RA_MT"),
+             "identified jointly by IBGE and INCRA using multiple criteria · 2017 Census (Marques, 2021)"),
+  cartao_kpi("Agrarian-reform projects", m1("INCRA_PROJETOS_2025"),
+             sprintf("%s settled families; %s ha · INCRA/SIPRA, Report 0227, as at 3 June 2025", m1("INCRA_FAMILIAS_2025"), m1("INCRA_AREA_2025"))),
+  cartao_kpi("INCRA beneficiaries", m1("INCRA_REF_BENEFICIARIOS"),
+             "settlers and titled beneficiaries approved up to 30 September 2017 · INCRA, SR-13 list of beneficiaries (count only)"))
+fonte_m1("Table 1 and the note to Table A.15", c("TOT_46504_ESTAB", "PCT_46504_ESTAB_MT", "TOT_AF_ESTAB", "TOT_46504_AREA", "PCT_46504_AREA_MT",
+                                               "TOT_TODOS_46504_ESTAB", "MARQUES2021_ESTAB_RA_MT", "INCRA_PROJETOS_2025",
+                                               "INCRA_FAMILIAS_2025", "INCRA_AREA_2025", "INCRA_REF_BENEFICIARIOS"),
+         extra = paste0("; INCRA/SIPRA, Report 0227; ", FONTE_BENEF, "; Marques (2021), IBGE-INCRA tabulation of the 2017 Census"))
+```
+
+## Coverage of agrarian reform by the category
+
+@fig-cobertura summarises the main result of the comparison: category 46504 captures at most `r m1("COBERTURA_MAX_46504_MARQUES")`% of the agrarian-reform establishments identified in the Census.
+
+::: {#fig-cobertura fig-cap-location="top"}
+
+```{r}
+svg_cobertura_46504()
+```
+
+Agrarian-reform establishments identified in the Census: upper limit inside the census category and lower limit outside it
+
+:::
+
+::: {.achado}
+Even if all `r m1("TOT_TODOS_46504_ESTAB")` establishments in category 46504 were agrarian-reform establishments, they would account for only **`r m1("COBERTURA_MAX_46504_MARQUES")`%** of the `r m1("MARQUES2021_ESTAB_RA_MT")` that IBGE and INCRA identified in the 2017 Census. At least `r m1("INCRA_LIM_INF_RA_FORA_46504")` (`r m1("INCRA_LIM_INF_RA_FORA_46504_PCT")`%) therefore lie outside the category.
+:::
+
+In family farming, the category's coverage of INCRA beneficiaries in Mato Grosso is `r m1("COBERTURA_46504AF_REF_MT")`: `r m1("TOT_46504_ESTAB")` establishments against `r m1("INCRA_REF_BENEFICIARIOS")` beneficiaries. **Many titled beneficiaries declare themselves owners**: the owners of `r m1("INCRA_PROP_TITRA_AF")` family farms obtained their land through agrarian-reform titling or licence (2017 Census, table 6774). Added to category 46504, these establishments form the **combined measure**, which covers `r m1("S4_PCT_MT")`% of family farms.
+
+```{r}
+fonte_m1("note to Table A.15", c("COBERTURA_MAX_46504_MARQUES", "TOT_TODOS_46504_ESTAB", "MARQUES2021_ESTAB_RA_MT", "INCRA_LIM_INF_RA_FORA_46504",
+                                 "INCRA_LIM_INF_RA_FORA_46504_PCT", "COBERTURA_46504AF_REF_MT", "INCRA_PROP_TITRA_AF", "S4_PCT_MT"),
+         extra = paste0("; ", FONTE_BENEF, "; Marques (2021)"))
+```
+
+## Census and INCRA compared by municipality
+
+::: {#fig-censo-incra fig-cap-location="top"}
+
+```{r}
+figura_res("fig6_censo_incra_final.png",
+           "Reproduced from Figure 6 of Manuscript 1: (a) family farms in category 46504 per 100 family farms (2017 Census); (b) INCRA beneficiaries (settlers and titled beneficiaries approved up to 30 September 2017) per 100 family farms, allocated to municipalities by the area of the project polygons. The classes are the same in the two maps.",
+           paste0("Source: calculations by the authors of Manuscript 1 based on IBGE, 2017 Agricultural Census; INCRA/SIPRA, Report 0227; ", FONTE_BENEF, ". ", nota_rotulos_figura()),
+           pasta = "figuras/m1/")
+```
+
+Census category and INCRA beneficiaries, by municipality
+
+:::
+
+@fig-censo-incra shows that the spatial patterns of the two maps diverge: where INCRA records many beneficiaries, the Census often records few establishments in the category. In all, `r disc[2]` municipalities have 50 or more beneficiaries per 100 family farms and less than 5% of family farms in the category: `r disc[3]` in T1, `r disc[4]` in T2, `r disc[5]` in T3 and `r disc[6]` in T5. The opposite pattern, with the category at or above the Mato Grosso mean and fewer than 10 beneficiaries per 100 family farms, occurs in `r sub(" \\(", " municipality (", m1("INCRA_DISCORDANTES_B"))`.
+
+## External validation
+
+If the category measured agrarian reform, municipalities with more INCRA beneficiaries should have more establishments in the category. However, @tbl-spearman shows that the association is weak and loses significance once spatial autocorrelation (the similarity between neighbouring municipalities) is controlled for with Dutilleul's modified t-test.
+
+::: {#tbl-spearman}
+
+```{r}
+tabela_spearman_incra()
+nf("Note: Spearman’s ρ between each measure and INCRA beneficiaries per 100 family farms [95% bootstrap CI]; p-values corrected for spatial autocorrelation (Dutilleul). Combined measure: category 46504 plus owners titled through agrarian reform.")
+fonte_m1("Table A.15", c("INCRA_RHO_PCT_ESTAB_*", "INCRA_RHO_F5_*", "INCRA_RHO_S4_*"), extra = paste0("; ", FONTE_BENEF))
+```
+
+Correlation between tenure measures and INCRA beneficiaries
+
+:::
+
+The combined measure (ρ = `r m1_re("INCRA_RHO_S4_141", "^([0-9.]+)")` across all municipalities) tracks INCRA records more closely than the category alone (ρ = `r m1_re("INCRA_RHO_PCT_ESTAB_141", "^([0-9.]+)")`). @tbl-validacao sets out the validation indicators by type.
+
+::: {#tbl-validacao}
+
+```{r}
+tabela_validacao_incra()
+fonte_m1("Table A.15", c("INCRA_T1_* a INCRA_MT_*"), extra = paste0("; INCRA/SIPRA, Report 0227; ", FONTE_BENEF, ", and allocated by the area of the project polygons"))
+```
+
+External validation indicators for the census category, by type (provisional labels)
+
+:::
+
+The results by type show distinct patterns. T3 accounts for `r m1("INCRA_T3_PCT_REF_DO_MT")`% of INCRA beneficiaries in Mato Grosso, but the category's coverage there is only `r m1("INCRA_T3_COBERTURA_46504AF_SOBRE_REF")`. Its projects are also older: the mean year of creation is `r m1("INCRA_T3_ANO_CRIACAO_MEDIO_POND_FAMILIAS")`, and `r m1("INCRA_T3_PCT_FAMILIAS_PROJETOS_ATE1995")`% of families are in projects created up to 1995. This makes clear that the "low" tenure in the label refers to the status declared to the Census. In T4, `r m1("INCRA_T4_PCT_TITULADO_BENEF_SIPRA")`% of beneficiaries are already titled in SIPRA, the highest proportion of any type, and coverage rises to `r m1("INCRA_T4_COBERTURA_46504AF_MAIS_PROPRA_SOBRE_REF")` once owners titled through agrarian reform are included. In T2, `r m1("INCRA_T2_PCT_FAMILIAS_PE_ESTADUAL")`% of families are in state projects, while T5 has the fewest beneficiaries per family farm (`r m1("INCRA_T5_REF_POR100AF_PONDERADO")` per 100). @fig-validacao-pontos shows these associations municipality by municipality.
+
+::: {#fig-validacao-pontos fig-cap-location="top"}
+
+```{r}
+figura_res("figA5_validacao_incra_final.svg",
+           "Reproduced from Figure A5 of Manuscript 1. Each point is a municipality: (a) % of family farms in category 46504, (b) tenure factor score and (c) combined measure, each plotted against INCRA beneficiaries per 100 family farms (on a logarithmic scale that allows for zero, known as symlog).",
+           paste0("Source: calculations by the authors of Manuscript 1 based on IBGE, 2017 Agricultural Census (tables 6878 and 6774); ", FONTE_BENEF, ". ", nota_rotulos_figura()))
+```
+
+Tenure measures and INCRA beneficiaries, by municipality
+
+:::
+
+## Statistical suppression in the category
+
+IBGE suppresses cells that could identify a respondent, marking them with the symbol X. In category 46504, X never appears for the number of **establishments**: `r m1_partes("SIG_46504_ESTAB_STATUS")[1]` municipalities have a value and `r m1_partes("SIG_46504_ESTAB_STATUS")[3]` have – (true zero). For **area**, by contrast, X appears in `r m1_partes("SIG_46504_AREA_STATUS")[2]` municipalities, leaving `r m1("AREA_46504_SOB_SIGILO")` ha (`r m1("PCT_AREA_46504_SOB_SIGILO")`% of the category's area in Mato Grosso) suppressed. For **persons employed**, X appears in `r m1_partes("SIG_46504_POCUP_STATUS")[2]` municipalities.
+
+For this reason, the percentage of area in the category, by type, covers only municipalities without X (see the [typology](tipologia.qmd) page for the table of type profiles, which reproduces Table 3 of the manuscript). This website never converts the symbol X to zero.
+
+**Juara, the host municipality of the Vale do Arinos settlement project (PA)**, is an example of agrarian reform outside the category. It appears with – (true zero) in category 46504, meaning that the Census recorded no family farms with this status, although the municipality has settlement projects in SIPRA.
+
+```{r}
+fonte_m1("Table 1", c("SIG_46504_ESTAB_STATUS", "SIG_46504_AREA_STATUS", "SIG_46504_POCUP_STATUS", "AREA_46504_SOB_SIGILO", "PCT_AREA_46504_SOB_SIGILO"),
+         extra = "; Juara: data from this observatory (2017 Census, table 6878; INCRA/SIPRA, 2025)")
+```
+
+## Tenure indicators by type
+
+@tbl-por-tipo aggregates the census category and SIPRA indicators by type.
+
+::: {#tbl-por-tipo}
+
+```{r}
+tabela_por_grupo(c("estab_af_46504", "pct_estab_46504", "pct_area_46504", "n_pa", "fam_pa"), recorte = "tipo")
+```
+
+Census category and settlement projects, by type (provisional labels)
+
+:::
+
+## Municipal data: 2017 Census and SIPRA
+
+@tbl-posse-municipal gives the data for each municipality and can be searched by name. Category 46504 comes from the 2017 Census. The projects and families come from SIPRA, as at 2025, and refer to the projects based in the municipality. Because the reference years differ, the table is suitable for comparing orders of magnitude, not for arithmetic between the sources.
+
+::: {#tbl-posse-municipal}
+
+```{r}
+aviso_municipio()
+legenda_sinais()
+tabela_posse_municipal()
+fonte_ind(c("estab_af_46504", "pct_estab_46504", "pct_area_46504", "n_pa", "fam_pa"))
+```
+
+Census category and SIPRA settlement projects, by municipality
+
+:::
+
+## Concluding remarks
+
+The census category measures declared tenure status and captures only part of the agrarian-reform establishments identified in the Census. This is evident both in the state aggregate and in the comparisons by municipality and by type. The combined measure, which includes owners titled through agrarian reform, tracks INCRA records more closely than the category alone. The category's association with these records is weak and loses significance when spatial autocorrelation is taken into account.
+
+These results have limitations. Area and persons employed in the category are subject to statistical suppression, and the Census and SIPRA have different reference years. The census category should therefore be interpreted as a measure of declared tenure status, not of agrarian reform. Whenever agrarian reform is the subject of analysis, the category must be compared with administrative records.

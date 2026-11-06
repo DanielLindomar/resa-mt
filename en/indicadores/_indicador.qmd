@@ -1,0 +1,124 @@
+```{r}
+#| include: false
+# Modelo das páginas de indicador em inglês. Cada en/indicadores/<id>.qmd (gerado por
+# scripts/03_gerar_stubs.py) define IND_ID e inclui este arquivo.
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_municipios.R"))
+R_ <- info_ind(IND_ID)
+AR <- ano_ref(IND_ID)
+```
+
+```{r}
+faixa_versao()
+```
+
+```{r}
+navegacao_indicador(IND_ID)
+```
+
+```{r}
+meta_indicador(IND_ID)
+```
+
+```{r}
+#| results: asis
+for (n in notas_indicador(IND_ID)) cat('::: {.callout-note appearance="simple"}\n', n, "\n:::\n\n", sep = "")
+```
+
+```{r}
+cartoes_indicador(IND_ID)
+```
+
+## Aggregates by biome and by M1 type
+
+Each group's aggregate is the `r REGRA_TXT[[R_$agregacao]]`, calculated using only municipalities with a published value. The median is the value of the group's median municipality. Biomes follow the IBGE 1:250,000 map (2019) and types follow the Manuscript 1 typology (M1, k = 5), whose labels are provisional.
+
+```{r}
+tabela_agregados(IND_ID)
+```
+
+:::: {.perfil-topo}
+::: {.perfil-texto}
+### Ranking
+
+The bars show the 20 largest values and highlight the pilot-area host municipalities (Juara, Lucas do Rio Verde and Poconé) in orange.
+
+::: {.panel-tabset}
+
+#### Mato Grosso
+
+```{r}
+ranking(IND_ID, "mt")
+```
+
+#### Amazon
+
+```{r}
+ranking(IND_ID, "bioma", "Amazônia")
+```
+
+#### Cerrado
+
+```{r}
+ranking(IND_ID, "bioma", "Cerrado")
+```
+
+#### Pantanal
+
+```{r}
+ranking(IND_ID, "bioma", "Pantanal")
+```
+
+:::
+:::
+::: {.perfil-mapa}
+### Map
+
+```{r}
+mapa_indicador(IND_ID, altura = 540)
+```
+
+[Colours show the quintiles of municipalities with a published value (`r AR`). Where many municipalities share the same value, classes merge and the legend shows fewer than five. Grey marks X (IBGE suppression) and light grey marks ... (not available); – (true zero) is treated as zero. A dark outline marks the pilot-area host municipalities. Click a municipality to open its profile.]{.nota-fonte}
+:::
+::::
+
+## Pilot-area host municipalities
+
+The municipal value provides context for the pilot area but does not measure it.
+
+```{r}
+cartoes_sedes(IND_ID)
+```
+
+```{r}
+#| results: asis
+if (isTRUE(R_$serie == 1)) {
+  cat("## Change over time\n\n",
+      "The charts show the annual series from ", sub("–", " to ", periodo_serie(IND_ID)), ". Those by biome and by type give the sum across the municipalities in each group, in MtCO2e (million tCO2e); ",
+      "the chart for the host municipalities is in ", R_$unidade, ". Hover over a point (or tap it) to see its year and value. ", NOTA_1990, "\n\n", sep = "")
+  cat("::: {.panel-tabset}\n\n### By biome\n\n```{=html}\n", series_grupos(IND_ID, "bioma", incluir_mt = TRUE), "\n```\n\n", sep = "")
+  cat("### By M1 type\n\nThe type labels are provisional.\n\n```{=html}\n", series_grupos(IND_ID, "tipo"), "\n```\n\n", sep = "")
+  cat("### Host municipalities\n\n```{=html}\n", series_sedes(IND_ID), "\n```\n\n:::\n\n", sep = "")
+} else if (identical(R_$origem, "censo2006_2017")) {
+  cat("## Change over time\n\nThis indicator already measures the change between the 2006 and 2017 Agricultural Censuses, so this source has no values for the years in between.\n\n")
+} else {
+  cat("## Change over time\n\nThis indicator is a snapshot of a single year (", if (identical(R_$origem, "sipra")) "SIPRA, as at 3 June 2025" else "2017 Agricultural Census",
+      "), so the website shows no time series for it.\n\n", sep = "")
+}
+```
+
+## All municipalities
+
+Search the table by municipality name and filter it by biome, type or symbol. The download button exports only the filtered rows.
+
+```{r}
+tabela_ind_recorte(IND_ID)
+```
+
+```{r}
+legenda_sinais()
+```
+
+```{r}
+fonte_rodape(IND_ID)
+```

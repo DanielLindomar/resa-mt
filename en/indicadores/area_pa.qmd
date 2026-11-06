@@ -1,0 +1,15 @@
+---
+title: "Area of settlement projects based in the municipality"
+description: "Indicator theme: Tenure and agrarian reform. Unit: hectares. Reference period: 2025. This page has a map of the 141 municipalities of Mato Grosso, rankings within each biome and across the state, and a table of the 141 municipalities. Source: INCRA/SIPRA, Report 0227 (as at 3 June 2025)."
+toc: false
+page-layout: full
+---
+
+<!-- stub gerado por scripts/03_gerar_stubs.py; edite o modelo, não este arquivo -->
+
+```{r}
+#| include: false
+IND_ID <- "area_pa"
+```
+
+{{< include _indicador.qmd >}}

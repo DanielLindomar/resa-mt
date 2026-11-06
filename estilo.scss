@@ -183,3 +183,23 @@ g.serie:hover circle.pt { fill: #1F4D3A; }
 
 /* Cartões das áreas-piloto e dos objetivos */
 .cartao .cartao-topo { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+
+/* Seletor de idioma na barra de menu (assets/idioma.html) */
+.seletor-idioma { display: flex; align-items: center; gap: .4rem; margin: 0 .5rem; flex-shrink: 0; order: 998; }  /* ao lado da busca */
+@media (max-width: 1199.98px) {
+  .seletor-idioma { order: 3; margin: 0 .35rem; gap: .3rem; }
+  .navbar .navbar-brand-container { flex: 1 1 0; min-width: 0; }   /* as bandeiras cabem na mesma linha do logo */
+}
+@media (max-width: 440px) { .seletor-idioma svg { width: 22px; height: 15px; } }
+/* Janelas de 1200 a 1299 px: menu um pouco menor, para as bandeiras e a busca caberem na mesma linha */
+@media (min-width: 1200px) and (max-width: 1299.98px) {
+  .navbar-nav .nav-link { padding-left: .24rem !important; padding-right: .24rem !important; font-size: .86rem; }
+  .navbar .navbar-title { font-size: 1rem; }
+  .navbar .navbar-brand { margin-right: .4rem; }
+  .seletor-idioma { margin: 0 .25rem; gap: .25rem; }
+  .seletor-idioma svg { width: 22px; height: 15px; }
+}
+.seletor-idioma .bandeira { display: inline-flex; line-height: 0; border-radius: 2px; overflow: hidden; }
+.seletor-idioma a.bandeira { opacity: .6; transition: opacity .15s; }
+.seletor-idioma a.bandeira:hover, .seletor-idioma a.bandeira:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: 1px; }
+.seletor-idioma .bandeira.atual { box-shadow: 0 0 0 2px #fff; }

@@ -21,8 +21,12 @@
 #   Nunca mostre X, – ou ... como 0 ou como célula vazia.
 #
 # -----------------------------------------------------------------------------
+# IDIOMA. As funções servem ao site em português e à versão em inglês (projeto Quarto em en/).
+#   EN = TRUE em en/; tr(pt, en) e os demais auxiliares estão em R/idioma.R. Os dados internos
+#   ficam em português ("Amazônia", "valor"): só o que aparece na tela é traduzido.
+#
 # OBJETOS CARREGADOS
-#   RAIZ   raiz do projeto Quarto; ds(...) = caminho em dados_site/
+#   RAIZ   raiz do repositório; ds(...) = caminho em dados_site/
 #   IND    tibble, 1 linha por indicador (34): id, ordem, dim, tema, rotulo,
 #          rotulo_curto, unidade, fmt, ano_ref, kpi, serie, soma, sentido,
 #          agregacao, numerador, denominador, fator, origem, fonte, arquivo,
@@ -46,10 +50,10 @@
 #   COR, COR_BIOMA, COR_TIPO, COR_X, COR_ND  cores (iguais às figuras do M1)
 #   TRACO  o caractere "–" (zero absoluto)
 #
-# FORMATAÇÃO (pt-BR: vírgula decimal, ponto de milhar)
+# FORMATAÇÃO (pt-BR: vírgula decimal, ponto de milhar; em inglês, o inverso)
 #   num(x, d = 0)                        -> chr; NA vira "—"; arredonda meio para cima (como o M1)
 #   ordem_pt(x), ordenar_pt(df, col)     -> ordem alfabética do português (stringi, pt_BR)
-#   escala(x, prefixo = "")              -> chr com "mil", "mi", "bi"
+#   escala(x, prefixo = "")              -> chr com "mil", "mi", "bi" (thousand, million, billion)
 #   fmt_valor(x, fmt)                    -> chr; fmt em int, dec1, dec2, dec3,
 #                                           pct1, pct2, brl, brl_mil, usd
 #   fmt_celula(valor, sinal, fmt)        -> chr; X, – ou ... quando é o caso
@@ -122,28 +126,43 @@ suppressPackageStartupMessages({
   library(dplyr); library(htmltools); library(reactable); library(leaflet); library(sf)
 })
 
-RAIZ <- Sys.getenv("QUARTO_PROJECT_DIR", unset = ".")
+# A versão em inglês é o projeto Quarto em en/; os dados e o código ficam na raiz do repositório.
+PROJETO <- Sys.getenv("QUARTO_PROJECT_DIR", unset = ".")
+EN <- basename(normalizePath(PROJETO, winslash = "/", mustWork = FALSE)) == "en"
+RAIZ <- if (EN) dirname(normalizePath(PROJETO, winslash = "/")) else PROJETO
 source(file.path(RAIZ, "R", "idioma.R"))
 ds   <- function(...) file.path(RAIZ, "dados_site", ...)
 ler  <- function(f, ...) tibble::as_tibble(data.table::fread(f, encoding = "UTF-8", ...))
 
 TRACO <- "–"
-IND  <- ler(ds("indicadores.csv"), na.strings = "")
+IND  <- sobrepor_en(ler(ds("indicadores.csv"), na.strings = ""), "indicadores_en.csv", "id")
 MUN  <- ler(ds("municipios.csv"))
 SER  <- readRDS(ds("serie.rds"))
 ULT  <- readRDS(ds("ultimos.rds"))
 GEO  <- readRDS(ds("geo_mt.rds"))
 AGR  <- readRDS(ds("agregados.rds"))
-TOT  <- ler(ds("totais_mt.csv"))
-PIL  <- ler(ds("pilotos.csv"))
+TOT  <- sobrepor_en(ler(ds("totais_mt.csv")), "totais_mt_en.csv", "id")
+PIL  <- sobrepor_en(ler(ds("pilotos.csv")), "pilotos_en.csv", "slug")
+if (EN) {
+  MUN$piloto <- sub("Quatá e ", "Quatá and ", MUN$piloto, fixed = TRUE)
+  PIL$piloto <- sub("Quatá e ", "Quatá and ", PIL$piloto, fixed = TRUE)
+}
 SEDES <- MUN[MUN$sede_piloto, ]
 
-TEMAS <- c(estrutura = "Estrutura da agricultura familiar", tecnologia = "Tecnologia, assistência e crédito",
-           alimentos = "Produção e alimentos", posse = "Posse e reforma agrária",
-           clima = "Clima (SEEG 13)", dinamica = "Dinâmica 2006–2017")
-TIPOS <- c(T1 = "Baixo porte agregado", T2 = "Posse aguardando titulação, sem especialização",
-           T3 = "Grande porte agregado", T4 = "Mecanizado com posse aguardando titulação",
-           T5 = "Hortícola-irrigado")
+TEMAS <- tr(
+  c(estrutura = "Estrutura da agricultura familiar", tecnologia = "Tecnologia, assistência e crédito",
+    alimentos = "Produção e alimentos", posse = "Posse e reforma agrária",
+    clima = "Clima (SEEG 13)", dinamica = "Dinâmica 2006–2017"),
+  c(estrutura = "Structure of family farming", tecnologia = "Technology, technical assistance and credit",
+    alimentos = "Production and food", posse = "Tenure and agrarian reform",
+    clima = "Climate (SEEG 13)", dinamica = "2006–2017 dynamics"))
+TIPOS <- tr(
+  c(T1 = "Baixo porte agregado", T2 = "Posse aguardando titulação, sem especialização",
+    T3 = "Grande porte agregado", T4 = "Mecanizado com posse aguardando titulação",
+    T5 = "Hortícola-irrigado"),
+  c(T1 = "Low aggregate scale", T2 = "Tenure awaiting title, unspecialised",
+    T3 = "High aggregate scale", T4 = "Mechanised with tenure awaiting title",
+    T5 = "Horticultural-irrigated"))
 BIOMAS <- c("Amazônia", "Cerrado", "Pantanal")
 
 COR_BIOMA <- c("Amazônia" = "#1baf7a", "Cerrado" = "#eb6834", "Pantanal" = "#2a78d6")
@@ -151,21 +170,24 @@ COR_TIPO  <- c(T1 = "#c3c2b7", T2 = "#4a3aa7", T3 = "#008300", T4 = "#eda100", T
 COR <- c(mun = "#1F4D3A", sede = "#b45309", barra = "#7fb59a", mt = "#6b7280", bom = "#1b7f4b", ruim = "#b42318")
 COR_X  <- "#c4c7ce"   # X (sigilo IBGE)
 COR_ND <- "#eceef2"   # ... (não disponível)
-SINAL_TXT <- setNames(c("X (sigilo IBGE)", paste(TRACO, "(zero absoluto)"), "... (não disponível)"), c("X", TRACO, "..."))
+SINAL_TXT <- setNames(tr(c("X (sigilo IBGE)", paste(TRACO, "(zero absoluto)"), "... (não disponível)"),
+                        c("X (IBGE suppression)", paste(TRACO, "(true zero)"), "... (not available)")), c("X", TRACO, "..."))
 
 # ---- Formatação pt-BR -------------------------------------------------------
 # Arredonda meio para cima (1.164,5 -> 1.165), a mesma regra dos números do Manuscrito 1.
 # O formatC sozinho arredonda o meio para o par (1.164,5 -> 1.164).
 arred <- function(x, d = 0) { k <- 10^d; sign(x) * floor(abs(x) * k + 0.5 + 1e-9) / k }
+NUM_MILHAR  <- tr(".", ",")
+NUM_DECIMAL <- tr(",", ".")
 num <- function(x, d = 0) ifelse(is.na(x), "—",
-  formatC(arred(x, d), format = "f", digits = d, big.mark = ".", decimal.mark = ","))
+  formatC(arred(x, d), format = "f", digits = d, big.mark = NUM_MILHAR, decimal.mark = NUM_DECIMAL))
 
 escala <- function(x, prefixo = "") {
   a <- abs(x)
   ifelse(is.na(x), "—",
-  ifelse(a >= 1e9, paste0(prefixo, num(x / 1e9, 1), " bi"),
-  ifelse(a >= 1e6, paste0(prefixo, num(x / 1e6, 1), " mi"),
-  ifelse(a >= 1e4, paste0(prefixo, num(x / 1e3, 1), " mil"),
+  ifelse(a >= 1e9, paste0(prefixo, num(x / 1e9, 1), tr(" bi", " billion")),
+  ifelse(a >= 1e6, paste0(prefixo, num(x / 1e6, 1), tr(" mi", " million")),
+  ifelse(a >= 1e4, paste0(prefixo, num(x / 1e3, 1), tr(" mil", " thousand")),
          paste0(prefixo, num(x, 0))))))
 }
 
@@ -174,14 +196,14 @@ fmt_valor <- function(x, fmt) {
     int = num(x, 0), dec1 = num(x, 1), dec2 = num(x, 2), dec3 = num(x, 3),
     pct1 = ifelse(is.na(x), "—", paste0(num(x, 1), "%")),
     pct2 = ifelse(is.na(x), "—", paste0(num(x, 2), "%")),
-    brl = escala(x, "R$ "), brl_mil = escala(x * 1000, "R$ "), usd = escala(x, "US$ "),
+    brl = escala(x, tr("R$ ", "R$")), brl_mil = escala(x * 1000, tr("R$ ", "R$")), usd = escala(x, tr("US$ ", "US$")),
     num(x, 2))
 }
 # Valor em escala "natural" (reais, não milhares de reais) e formato correspondente
 escala_natural <- function(r) if (r$fmt == "brl_mil") list(f = 1000, fmt = "brl") else list(f = 1, fmt = r$fmt)
 # Unidade como aparece na tela: valores "brl_mil" são exibidos em reais (R$ 81,4 mi), não em R$ mil.
 # Nos dados e nos downloads a unidade continua a de indicadores.csv.
-unid <- function(r) if (identical(r$fmt, "brl_mil")) sub("R$ mil", "R$", r$unidade, fixed = TRUE) else r$unidade
+unid <- function(r) if (identical(r$fmt, "brl_mil")) sub(tr("R$ mil", "R$ thousand"), "R$", r$unidade, fixed = TRUE) else r$unidade
 
 fmt_celula <- function(valor, sinal, fmt) {
   out <- fmt_valor(valor, fmt)
@@ -199,9 +221,9 @@ html_celula <- function(valor, sinal, fmt) {
 
 fmt_eixo <- function(v) {
   a <- max(abs(v), na.rm = TRUE)
-  if (a >= 1e9) return(ifelse(v == 0, "0", paste0(num(v / 1e9, 1), " bi")))
-  if (a >= 1e6) return(ifelse(v == 0, "0", paste0(num(v / 1e6, 1), " mi")))
-  if (a >= 1e4) return(ifelse(v == 0, "0", paste0(num(v / 1e3, 0), " mil")))
+  if (a >= 1e9) return(ifelse(v == 0, "0", paste0(num(v / 1e9, 1), tr(" bi", " bn"))))
+  if (a >= 1e6) return(ifelse(v == 0, "0", paste0(num(v / 1e6, 1), tr(" mi", " m"))))
+  if (a >= 1e4) return(ifelse(v == 0, "0", paste0(num(v / 1e3, 0), tr(" mil", " k"))))
   d <- if (all(abs(v - round(v)) < 1e-9)) 0 else if (a >= 10) 1 else 2
   num(v, d)
 }
@@ -217,8 +239,10 @@ esc <- function(x) { x <- gsub("&", "&amp;", x, fixed = TRUE); x <- gsub("<", "&
   x <- gsub(">", "&gt;", x, fixed = TRUE); gsub("\"", "&quot;", x, fixed = TRUE) }
 
 legenda_sinais <- function() div(class = "legenda-sinais",
-  "Sinais convencionais do IBGE: ", tags$b("X"), " sigilo (dado omitido para evitar a identificação do informante) · ",
-  tags$b(TRACO), " zero absoluto · ", tags$b("..."), " não disponível. Na exibição, nenhum desses sinais é tratado como zero.")
+  tr("Sinais convencionais do IBGE: ", "IBGE standard symbols: "), tags$b("X"),
+  tr(" sigilo (dado omitido para evitar a identificação do informante) · ", " suppressed (value withheld to avoid identifying the respondent) · "),
+  tags$b(TRACO), tr(" zero absoluto · ", " true zero · "), tags$b("..."),
+  tr(" não disponível. Na exibição, nenhum desses sinais é tratado como zero.", " not available. None of these symbols is shown as zero."))
 
 # ---- Consultas -------------------------------------------------------------
 info_ind <- function(id) { r <- IND[IND$id == id, ]; if (nrow(r) != 1) stop("indicador desconhecido: ", id); r }
@@ -273,9 +297,9 @@ resumo_ind <- function(id, mun_id) {
 # Situação em relação a uma mediana, considerando o sentido do indicador (0 = contexto, sem cor)
 situacao <- function(valor, mediana, sentido) {
   if (is.na(valor) || is.na(mediana)) return(list(txt = "—", cls = "sit-neutra"))
-  if (isTRUE(all.equal(valor, mediana))) return(list(txt = "= mediana", cls = "sit-neutra"))
+  if (isTRUE(all.equal(valor, mediana))) return(list(txt = tr("= mediana", "= equal"), cls = "sit-neutra"))
   acima <- valor > mediana
-  txt <- if (acima) "▲ acima" else "▼ abaixo"
+  txt <- if (acima) tr("▲ acima", "▲ above") else tr("▼ abaixo", "▼ below")
   cls <- if (is.na(sentido) || sentido == 0) "sit-neutra"
          else if ((acima && sentido > 0) || (!acima && sentido < 0)) "sit-boa" else "sit-ruim"
   list(txt = txt, cls = cls)
@@ -283,28 +307,37 @@ situacao <- function(valor, mediana, sentido) {
 
 # ---- Elementos de página -------------------------------------------------------
 faixa_versao <- function(texto = NULL) div(class = "faixa-versao",
-  if (is.null(texto)) "Versão preliminar para a equipe do projeto. Os resultados estão sujeitos a alteração à medida que as etapas do estudo forem concluídas." else texto)
+  if (is.null(texto)) tr("Versão preliminar para a equipe do projeto. Os resultados estão sujeitos a alteração à medida que as etapas do estudo forem concluídas.",
+                         "Preliminary version for the project team. Results may change as the study progresses.") else texto,
+  if (EN) " English translation under review. If the two versions differ, the Portuguese text prevails.")
 
 aviso_municipio <- function() div(class = "aviso-municipio",
-  tags$b("O município não é a área-piloto. "),
-  "Os indicadores descrevem o município inteiro (ou o conjunto de sua agricultura familiar) e, portanto, fornecem o contexto das áreas-piloto, sem medi-las.")
+  tags$b(tr("O município não é a área-piloto. ", "The municipality is not the pilot area. ")),
+  tr("Os indicadores descrevem o município inteiro (ou o conjunto de sua agricultura familiar) e, portanto, fornecem o contexto das áreas-piloto, sem medi-las.",
+     "The indicators describe the whole municipality (or all of its family farms), so they provide context for the pilot areas but do not measure them."))
 
 nota_correcao_prodes <- function() div(class = "nota-correcao",
-  tags$b("Nota de correção (19/10/2026). "),
-  "A série do PRODES utilizada anteriormente nos materiais do projeto continha a Amazônia digitada manualmente, com valores superiores à taxa oficial de MT de 2005 a 2024. ",
-  "O site passou a utilizar exclusivamente a série oficial do Instituto Nacional de Pesquisas Espaciais (INPE), disponível na plataforma TerraBrasilis e obtida em 19/10/2026, que compreende a taxa anual de MT na Amazônia Legal e o incremento anual por bioma.")
+  tags$b(tr("Nota de correção (19/10/2026). ", "Correction note (19 October 2026). ")),
+  tr("A série do PRODES utilizada anteriormente nos materiais do projeto continha a Amazônia digitada manualmente, com valores superiores à taxa oficial de MT de 2005 a 2024. ",
+     "In the PRODES series previously used in project materials, the Amazon values had been entered by hand and were higher than the official Mato Grosso rate from 2005 to 2024. "),
+  tr("O site passou a utilizar exclusivamente a série oficial do Instituto Nacional de Pesquisas Espaciais (INPE), disponível na plataforma TerraBrasilis e obtida em 19/10/2026, que compreende a taxa anual de MT na Amazônia Legal e o incremento anual por bioma.",
+     "The website now uses only the official series from the National Institute for Space Research (INPE), available on the TerraBrasilis platform and retrieved on 19 October 2026. This series covers the annual rate for Mato Grosso in the Legal Amazon and the annual increment by biome."))
 
-chip_bioma <- function(b) span(class = paste0("chip chip-", c("Amazônia" = "amazonia", "Cerrado" = "cerrado", "Pantanal" = "pantanal")[[b]]), b)
-selo_provisorio <- function() span(class = "rotulo-provisorio", title = "Rótulo pendente de aprovação dos autores do Manuscrito 1", "rótulo provisório")
+chip_bioma <- function(b) span(class = paste0("chip chip-", c("Amazônia" = "amazonia", "Cerrado" = "cerrado", "Pantanal" = "pantanal")[[b]]), nome_bioma(b))
+selo_provisorio <- function() span(class = "rotulo-provisorio", title = tr("Rótulo pendente de aprovação dos autores do Manuscrito 1", "Label pending approval by the authors of Manuscript 1"), tr("rótulo provisório", "provisional label"))
 chip_tipo <- function(t, rotulo = TRUE, provisorio = TRUE)
   tagList(span(class = paste0("chip chip-", tolower(t)), if (rotulo) paste0(t, " · ", TIPOS[[t]]) else t),
           if (rotulo && provisorio) selo_provisorio())
 selo_situacao <- function(estado = c("concluido", "andamento", "confirmar", "previsto")) {
   estado <- match.arg(estado)
   span(class = paste0("selo-situacao selo-", estado),
-       c(concluido = "concluído", andamento = "em andamento", confirmar = "a confirmar", previsto = "previsto")[[estado]])
+       tr(c(concluido = "concluído", andamento = "em andamento", confirmar = "a confirmar", previsto = "previsto"),
+          c(concluido = "completed", andamento = "in progress", confirmar = "to be confirmed", previsto = "planned"))[[estado]])
 }
-selo_conciliacao <- function() span(class = "selo-conciliacao", title = "Os números de famílias e de área divergem entre as fontes e serão incluídos após a conciliação", "números em conciliação")
+selo_conciliacao <- function() span(class = "selo-conciliacao",
+  title = tr("Os números de famílias e de área divergem entre as fontes e serão incluídos após a conciliação",
+             "Figures for families and area differ between sources and will be included once reconciled"),
+  tr("números em conciliação", "figures being reconciled"))
 
 cartao_kpi <- function(rotulo, valor, meta = NULL, comp = NULL)
   div(class = "kpi", div(class = "kpi-rotulo", rotulo), div(class = "kpi-valor", valor),
@@ -314,11 +347,11 @@ cartao_kpi <- function(rotulo, valor, meta = NULL, comp = NULL)
 comp_kpi <- function(r, s) {
   if (isTRUE(r$soma == 1) && is.finite(s$agr_mt) && s$agr_mt > 0 && identical(s$sinal, "valor")) {
     pc <- 100 * s$valor / s$agr_mt
-    if (pc == 0) "0% do total dos municípios de MT"
-    else if (pc < 0.05) "menos de 0,1% do total dos municípios de MT"
-    else sprintf("%s%% do total dos municípios de MT", num(pc, 1))
+    if (pc == 0) tr("0% do total dos municípios de MT", "0% of the total across MT municipalities")
+    else if (pc < 0.05) tr("menos de 0,1% do total dos municípios de MT", "less than 0.1% of the total across MT municipalities")
+    else sprintf(tr("%s%% do total dos municípios de MT", "%s%% of the total across MT municipalities"), num(pc, 1))
   } else {
-    sprintf("Mediana dos municípios: %s %s · MT %s", s$bioma, fmt_valor(s$med_bioma, r$fmt), fmt_valor(s$med_mt, r$fmt))
+    sprintf(tr("Mediana dos municípios: %s %s · MT %s", "Municipal median: %s %s · MT %s"), nome_bioma(s$bioma), fmt_valor(s$med_bioma, r$fmt), fmt_valor(s$med_mt, r$fmt))
   }
 }
 
@@ -343,15 +376,17 @@ figura_m1 <- function(arquivo, legenda, prefixo = "../")
               tags$figcaption(class = "figure-caption", legenda))
 
 fonte_rodape <- function(ids = NULL, prefixo = "../") {
-  fontes <- if (is.null(ids)) c("IBGE (Censos Agropecuários 2006 e 2017)", "INCRA/SIPRA",
+  fontes <- if (is.null(ids)) c(tr("IBGE (Censos Agropecuários 2006 e 2017)", "IBGE (2006 and 2017 Agricultural Censuses)"), "INCRA/SIPRA",
                                 "SEEG 13 (Observatório do Clima)", "INPE/PRODES (TerraBrasilis)")
             else unique(IND$fonte[IND$id %in% ids])
   # Um só nó HTML: com vários filhos, o htmltools quebra a linha entre eles e aparece espaço antes do ponto
   p(class = "nota-fonte", HTML(paste0(
-    "Fonte: Elaboração própria com base em ", esc(paste(fontes, collapse = "; ")), ". ",
-    "Bioma dominante: IBGE, Biomas 1:250 mil (2019). Tipos municipais: Manuscrito 1 do Projeto RESA (k = 5; rótulos provisórios). ",
-    "Medianas e agregados calculados no ano de referência de cada indicador; ", TRACO, " (zero absoluto) é tratado como zero, e X e ... são excluídos. Detalhes metodológicos em ",
-    '<a href="', paste0(prefixo, "dados/index.html"), '">Dados</a>.')))
+    tr("Fonte: Elaboração própria com base em ", "Source: authors’ calculations based on "), esc(paste(fontes, collapse = "; ")), ". ",
+    tr("Bioma dominante: IBGE, Biomas 1:250 mil (2019). Tipos municipais: Manuscrito 1 do Projeto RESA (k = 5; rótulos provisórios). ",
+       "Dominant biome: IBGE, Biomes 1:250,000 (2019). Municipal types: RESA Project Manuscript 1 (k = 5; provisional labels). "),
+    tr("Medianas e agregados calculados no ano de referência de cada indicador; ", "Medians and aggregates are calculated for each indicator’s reference year, with "),
+    TRACO, tr(" (zero absoluto) é tratado como zero, e X e ... são excluídos. Detalhes metodológicos em ", " (true zero) treated as zero, and X and ... excluded. For methodological details, see "),
+    '<a href="', paste0(prefixo, "dados/index.html"), '">', tr("Dados", "Data"), '</a>.')))
 }
 
 # ---- SVG: minissérie, posição no bioma e gráfico de linhas -------------------
@@ -361,12 +396,13 @@ svg_sparkline <- function(x, y, w = 110, h = 28, cor = COR[["mun"]]) {
   o <- order(x); x <- x[o]; y <- y[o]
   xr <- range(x); yr <- range(y); if (diff(yr) == 0) yr <- yr + c(-1, 1)
   px <- 3 + (x - xr[1]) / diff(xr) * (w - 6); py <- h - 3 - (y - yr[1]) / diff(yr) * (h - 6)
-  sprintf('<svg class="spark" viewBox="0 0 %d %d" width="%d" height="%d" role="img" aria-label="Série %d–%d"><title>Série %d–%d</title><polyline fill="none" stroke="%s" stroke-width="1.6" points="%s"/><circle cx="%.1f" cy="%.1f" r="2.4" fill="%s"/></svg>',
+  sprintf(tr('<svg class="spark" viewBox="0 0 %d %d" width="%d" height="%d" role="img" aria-label="Série %d–%d"><title>Série %d–%d</title><polyline fill="none" stroke="%s" stroke-width="1.6" points="%s"/><circle cx="%.1f" cy="%.1f" r="2.4" fill="%s"/></svg>',
+             '<svg class="spark" viewBox="0 0 %d %d" width="%d" height="%d" role="img" aria-label="Time series %d–%d"><title>Time series %d–%d</title><polyline fill="none" stroke="%s" stroke-width="1.6" points="%s"/><circle cx="%.1f" cy="%.1f" r="2.4" fill="%s"/></svg>'),
           w, h, w, h, xr[1], xr[2], xr[1], xr[2], cor,
           paste(sprintf("%.1f,%.1f", px, py), collapse = " "), tail(px, 1), tail(py, 1), cor)
 }
 
-svg_posicao <- function(vals, destaque, med_ref, fmt, w = 130, h = 26, rotulo = "Posição entre os municípios do bioma") {
+svg_posicao <- function(vals, destaque, med_ref, fmt, w = 130, h = 26, rotulo = tr("Posição entre os municípios do bioma", "Rank among municipalities in the biome")) {
   vals <- vals[is.finite(vals)]
   if (length(vals) < 2 || !destaque %in% names(vals)) return("")
   r <- range(c(vals, med_ref), na.rm = TRUE); if (diff(r) == 0) r <- r + c(-1, 1)
@@ -375,8 +411,8 @@ svg_posicao <- function(vals, destaque, med_ref, fmt, w = 130, h = 26, rotulo = 
   outros <- names(vals) != destaque
   pts <- paste(sprintf('<circle cx="%.1f" cy="13" r="3.4" fill="#b9d3c5" stroke="transparent" stroke-width="6" data-tip="%s: %s"/>',
                        sx(vals[outros]), esc(nomes[outros]), fmt_valor(vals[outros], fmt)), collapse = "")
-  mt <- if (is.finite(med_ref)) sprintf('<line x1="%.1f" x2="%.1f" y1="4" y2="22" stroke="#6b7280" stroke-dasharray="2,2" data-tip="Mediana de MT: %s"/>',
-                                        sx(med_ref), sx(med_ref), fmt_valor(med_ref, fmt)) else ""
+  mt <- if (is.finite(med_ref)) sprintf('<line x1="%.1f" x2="%.1f" y1="4" y2="22" stroke="#6b7280" stroke-dasharray="2,2" data-tip="%s: %s"/>',
+                                        sx(med_ref), sx(med_ref), tr("Mediana de MT", "MT median"), fmt_valor(med_ref, fmt)) else ""
   eu <- sprintf('<circle cx="%.1f" cy="13" r="5.5" fill="%s" stroke="#fff" stroke-width="1.5" data-tip="%s: %s"/>',
                 sx(vals[[destaque]]), COR[["mun"]], esc(nomes[!outros]), fmt_valor(vals[[destaque]], fmt))
   sprintf('<svg class="strip" viewBox="0 0 %d %d" width="%d" height="%d" role="img" aria-label="%s"><line x1="6" x2="%d" y1="13" y2="13" stroke="#e5e7eb" stroke-width="2"/>%s%s%s</svg>',
@@ -428,8 +464,8 @@ serie_mun_medianas <- function(id, mun_id, nome_mun) {
     summarise(bi = median(valor_calc[id_municipio %in% ib], na.rm = TRUE), mt = median(valor_calc, na.rm = TRUE), .groups = "drop")
   svg_linhas(list(
     list(nome = nome_mun, cor = COR[["mun"]], larg = 2.8, dash = "", x = me$ano, y = me$valor_calc * e$f),
-    list(nome = paste("Mediana", b), cor = COR_BIOMA[[b]], larg = 1.8, dash = "6,4", x = meds$ano, y = meds$bi * e$f),
-    list(nome = "Mediana MT", cor = COR[["mt"]], larg = 1.8, dash = "2,3", x = meds$ano, y = meds$mt * e$f)),
+    list(nome = tr(paste("Mediana", b), paste(nome_bioma(b), "median")), cor = COR_BIOMA[[b]], larg = 1.8, dash = "6,4", x = meds$ano, y = meds$bi * e$f),
+    list(nome = tr("Mediana MT", "MT median"), cor = COR[["mt"]], larg = 1.8, dash = "2,3", x = meds$ano, y = meds$mt * e$f)),
     fmt = e$fmt, titulo = paste0(r$rotulo, " — ", nome_mun))
 }
 
@@ -441,12 +477,13 @@ series_agregados <- function(id, recorte = c("tipo", "bioma"), campo = c("valor"
   grupos <- if (recorte == "tipo") names(TIPOS) else BIOMAS
   cores <- if (recorte == "tipo") COR_TIPO else COR_BIOMA
   ser <- lapply(grupos, function(g) { x <- a[a$grupo == g, ]
-    list(nome = if (recorte == "tipo") paste0(g, " · ", TIPOS[[g]]) else g, cor = cores[[g]], larg = 2.4, dash = "",
+    list(nome = if (recorte == "tipo") paste0(g, " · ", TIPOS[[g]]) else nome_bioma(g), cor = cores[[g]], larg = 2.4, dash = "",
          x = x$ano, y = x[[campo]] * e$f) })
   if (incluir_mt) { x <- a[a$grupo == "MT", ]
     ser <- c(ser, list(list(nome = "MT", cor = "#111827", larg = 2, dash = "2,3", x = x$ano, y = x[[campo]] * e$f))) }
   svg_linhas(ser, fmt = e$fmt,
-             titulo = paste0(r$rotulo, " — ", if (campo == "valor") "agregado" else "mediana", " por ", recorte))
+             titulo = tr(paste0(r$rotulo, " — ", if (campo == "valor") "agregado" else "mediana", " por ", recorte),
+                         paste0(r$rotulo, " — ", if (campo == "valor") "aggregate" else "median", " by ", c(tipo = "type", bioma = "biome")[[recorte]])))
 }
 
 # ---- Ranking (barras horizontais): os n_max maiores mais os destacados ---------
@@ -461,7 +498,7 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
   com <- com[order(-com$valor_calc, order(ordem_pt(com$municipio))), ]
   com$pos <- seq_len(nrow(com))
   sem <- u[is.na(u$valor_calc), ]
-  if (nrow(com) == 0) return(p(class = "nota-fonte", "Nenhum município apresenta valor publicado neste recorte."))
+  if (nrow(com) == 0) return(p(class = "nota-fonte", tr("Nenhum município apresenta valor publicado neste recorte.", "No municipality in this breakdown has a published value.")))
   mo <- com[com$pos <= n_max | com$id_municipio %in% destaque, ]
   # linhas, com um marcador "⋯" quando há posições puladas
   lin <- list(); prev <- 0
@@ -479,7 +516,7 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
     L <- lin[[k]]; y0 <- (k - 1) * lh
     if (isTRUE(L$gap)) return(sprintf('<text x="%d" y="%.1f" text-anchor="end" font-size="12" fill="#9ca3af">⋯</text>', pl - 8, y0 + 15))
     v <- L$valor_calc * e$f; d <- L$id_municipio %in% destaque
-    rot <- sprintf("%dº %s", L$pos, esc(L$municipio))
+    rot <- paste(ordinal(L$pos), esc(L$municipio))
     txt <- sprintf('<text x="%d" y="%.1f" text-anchor="end" font-size="12" fill="#1f2937"%s>%s</text>', pl - 8, y0 + 15,
                    if (d) ' font-weight="700"' else "", rot)
     if (tem_perfil(L$slug)) txt <- sprintf('<a href="%s">%s</a>', url_mun(L$slug, prefixo), txt)
@@ -490,16 +527,17 @@ ranking <- function(id, recorte = c("mt", "bioma", "tipo"), grupo = NULL, n_max 
   }, character(1))
   ref <- function(v, cor, rot, dy) if (is.finite(v)) sprintf('<line x1="%.1f" x2="%.1f" y1="0" y2="%d" stroke="%s" stroke-dasharray="4,3" stroke-width="1.5"/><text x="%.1f" y="%d" font-size="11" fill="%s" text-anchor="middle">%s</text>',
                                                          sx(v), sx(v), h - 26 + dy, cor, sx(v), h - 14 + dy, cor, rot) else ""
-  nome_g <- switch(recorte, mt = "MT", bioma = grupo, tipo = grupo)
+  nome_g <- switch(recorte, mt = "MT", bioma = nome_bioma(grupo), tipo = grupo)
   svg <- sprintf('<svg viewBox="0 0 %d %d" width="100%%" role="img" aria-label="Ranking: %s">%s%s%s</svg>',
                  w, h, esc(r$rotulo), paste(partes, collapse = ""),
-                 if (recorte != "mt") ref(med_g * e$f, "#1F4D3A", paste("mediana", nome_g), 0) else "",
-                 ref(med_mt * e$f, "#6b7280", "mediana MT", 13))
+                 if (recorte != "mt") ref(med_g * e$f, "#1F4D3A", tr(paste("mediana", nome_g), paste(nome_g, "median")), 0) else "",
+                 ref(med_mt * e$f, "#6b7280", tr("mediana MT", "MT median"), 13))
   notas <- lapply(c("X", "..."), function(si) { x <- sem$municipio[sem$sinal == si]
-    if (length(x)) p(class = "nota-fonte", sprintf("Sem valor em razão de %s: %s.", SINAL_TXT[[si]], paste(sort_pt(x), collapse = ", "))) })
+    if (length(x)) p(class = "nota-fonte", sprintf(tr("Sem valor em razão de %s: %s.", "No value owing to %s: %s."), SINAL_TXT[[si]], paste(sort_pt(x), collapse = ", "))) })
   tagList(HTML(svg),
-          p(class = "nota-fonte", sprintf("%d municípios com valor publicado%s.",
-                                          nrow(com), if (nrow(com) > n_max) sprintf("; exibem-se os %d maiores valores e os municípios-sede das áreas-piloto", n_max) else "")),
+          p(class = "nota-fonte", sprintf(tr("%d municípios com valor publicado%s.", "Municipalities with a published value: %d%s."),
+                                          nrow(com), if (nrow(com) > n_max) sprintf(tr("; exibem-se os %d maiores valores e os municípios-sede das áreas-piloto",
+                                                                                       "; the chart shows the %d largest values and the pilot-area host municipalities"), n_max) else "")),
           notas)
 }
 
@@ -515,9 +553,9 @@ tabela_dim <- function(dim, mun_id, nome_mun, prefixo = "../indicadores/") {
       Indicador = sprintf('<a href="%s">%s</a>%s<div class="sub">%s</div>', url_ind(id, prefixo), esc(r$rotulo), nota, esc(unid(r))),
       Valor = sprintf('<b>%s</b><div class="sub">%s</div>', html_celula(s$valor, s$sinal, r$fmt), ifelse(is.na(s$ano), "", s$ano)),
       Posicao = sprintf('%s<div class="sub">%s</div>', svg_posicao(s$vals_bioma, as.character(mun_id), s$med_mt, r$fmt),
-                        ifelse(is.na(s$pos_bioma), "", sprintf("%dº maior de %d", s$pos_bioma, s$n_bioma))),
+                        ifelse(is.na(s$pos_bioma), "", tr(sprintf("%dº maior de %d", s$pos_bioma, s$n_bioma), posicao_en(s$pos_bioma, s$n_bioma)))),
       Serie = if (isTRUE(r$serie == 1)) svg_sparkline(ser$ano, ser$valor_calc) else "",
-      Bioma = sprintf('<span class="sit %s">%s</span><div class="sub">mediana %s</div>', sit$cls, sit$txt, fmt_valor(s$med_bioma, r$fmt)),
+      Bioma = sprintf('<span class="sit %s">%s</span><div class="sub">%s %s</div>', sit$cls, sit$txt, tr("mediana", "median"), fmt_valor(s$med_bioma, r$fmt)),
       MT = fmt_valor(s$med_mt, r$fmt),
       serie_ok = isTRUE(r$serie == 1), ano_txt = as.character(s$ano), nota_txt = ifelse(is.na(r$nota), "", r$nota))
   }))
@@ -526,18 +564,19 @@ tabela_dim <- function(dim, mun_id, nome_mun, prefixo = "../indicadores/") {
             class = "tabela-dim",
             columns = list(
               id = colDef(show = FALSE), nota_txt = colDef(show = FALSE), serie_ok = colDef(show = FALSE), ano_txt = colDef(show = FALSE),
-              Indicador = colDef(html = TRUE, minWidth = 210),
-              Valor = colDef(html = TRUE, align = "right", minWidth = 95),
-              Posicao = colDef(name = paste("Posição no bioma", b), html = TRUE, align = "center", minWidth = 150),
-              Serie = colDef(name = "Série", html = TRUE, align = "center", minWidth = 110),
-              Bioma = colDef(name = paste("Frente ao bioma", b), html = TRUE, align = "center", minWidth = 120),
-              MT = colDef(name = "Mediana MT", align = "right", minWidth = 90)),
+              Indicador = colDef(name = tr("Indicador", "Indicator"), html = TRUE, minWidth = 210),
+              Valor = colDef(name = tr("Valor", "Value"), html = TRUE, align = "right", minWidth = 95),
+              Posicao = colDef(name = tr(paste("Posição no bioma", b), paste("Rank in the", nome_bioma(b), "biome")), html = TRUE, align = "center", minWidth = 150),
+              Serie = colDef(name = tr("Série", "Time series"), html = TRUE, align = "center", minWidth = 110),
+              Bioma = colDef(name = tr(paste("Frente ao bioma", b), paste("Relative to the", nome_bioma(b), "biome")), html = TRUE, align = "center", minWidth = 120),
+              MT = colDef(name = tr("Mediana MT", "MT median"), align = "right", minWidth = 90)),
             details = function(i) {
               g <- if (d$serie_ok[i]) serie_mun_medianas(d$id[i], mun_id, nome_mun) else ""
               div(class = "detalhe-ind",
-                  if (nzchar(g)) HTML(g) else p(class = "sub", sprintf("Retrato de um único ano (%s); o site não apresenta série histórica para este indicador.", d$ano_txt[i])),
-                  if (nzchar(d$nota_txt[i])) p(class = "nota-fonte", strong("Nota: "), d$nota_txt[i]),
-                  p(class = "nota-fonte", a(href = url_ind(d$id[i], prefixo), "Este indicador em todos os municípios →")))
+                  if (nzchar(g)) HTML(g) else p(class = "sub", sprintf(tr("Retrato de um único ano (%s); o site não apresenta série histórica para este indicador.",
+                                                                          "Single-year snapshot (%s); the website has no time series for this indicator."), d$ano_txt[i])),
+                  if (nzchar(d$nota_txt[i])) p(class = "nota-fonte", strong(tr("Nota: ", "Note: ")), d$nota_txt[i]),
+                  p(class = "nota-fonte", a(href = url_ind(d$id[i], prefixo), tr("Este indicador em todos os municípios →", "This indicator across all municipalities →"))))
             })
 }
 
@@ -546,35 +585,38 @@ tabela_indicador <- function(id, prefixo = "../municipios/") {
   u <- ULT$ultimos[ULT$ultimos$indicador == id, ] |>
     left_join(select(MUN, id_municipio, municipio, slug, bioma, tipo_m1), by = "id_municipio")
   u <- u[order(-u$valor_calc, order(ordem_pt(u$municipio)), na.last = TRUE), ]
-  d <- transmute(u, Município = municipio, slug, Bioma = bioma, Tipo = tipo_m1, Valor = valor_calc,
+  d <- transmute(u, Município = municipio, slug, Bioma = nome_bioma(bioma), Tipo = tipo_m1, Valor = valor_calc,
                  Exibir = html_celula(valor, sinal, r$fmt), Ano = ano)
   reactable(d, searchable = TRUE, compact = TRUE, striped = TRUE, defaultPageSize = 20,
             showPageSizeOptions = TRUE, pageSizeOptions = c(20, 50, 141),
             columns = list(slug = colDef(show = FALSE), Exibir = colDef(show = FALSE),
-              Município = colDef(minWidth = 170, cell = function(v, i)
+              Município = colDef(name = tr("Município", "Municipality"), minWidth = 170, cell = function(v, i)
                 if (tem_perfil(d$slug[i])) a(href = url_mun(d$slug[i], prefixo), v) else v),
-              Bioma = colDef(minWidth = 90),
-              Tipo = colDef(name = "Tipo (M1)", minWidth = 70, align = "center"),
-              Valor = colDef(align = "right", html = TRUE, sortNALast = TRUE, cell = function(v, i) d$Exibir[i]),
-              Ano = colDef(align = "center", minWidth = 60)))
+              Bioma = colDef(name = tr("Bioma", "Biome"), minWidth = 90),
+              Tipo = colDef(name = tr("Tipo (M1)", "Type (M1)"), minWidth = 70, align = "center"),
+              Valor = colDef(name = tr("Valor", "Value"), align = "right", html = TRUE, sortNALast = TRUE, cell = function(v, i) d$Exibir[i]),
+              Ano = colDef(name = tr("Ano", "Year"), align = "center", minWidth = 60)))
 }
 
 tabela_agregados <- function(id, ano = NULL) {
   r <- info_ind(id); a <- if (is.null(ano)) ano_ref(id) else ano
   g <- AGR[AGR$indicador == id & AGR$ano == a, ]
   g <- g[order(match(g$recorte, c("mt", "bioma", "tipo")), match(g$grupo, c("MT", BIOMAS, names(TIPOS)))), ]
-  regra <- c(soma = "soma dos municípios", razao = "razão das somas", variacao = "variação das somas", mediana = "mediana")
-  d <- tibble(Recorte = c(mt = "Mato Grosso", bioma = "Bioma", tipo = "Tipo do M1")[g$recorte],
-              Grupo = ifelse(g$recorte == "tipo", paste0(g$grupo, " · ", TIPOS[g$grupo]), g$grupo),
+  regra <- tr(c(soma = "soma dos municípios", razao = "razão das somas", variacao = "variação das somas", mediana = "mediana"),
+              c(soma = "municipal sum", razao = "ratio of sums", variacao = "change in sums", mediana = "median"))
+  d <- tibble(Recorte = tr(c(mt = "Mato Grosso", bioma = "Bioma", tipo = "Tipo do M1"), c(mt = "Mato Grosso", bioma = "Biome", tipo = "M1 type"))[g$recorte],
+              Grupo = ifelse(g$recorte == "tipo", paste0(g$grupo, " · ", TIPOS[g$grupo]), nome_bioma(g$grupo)),
               Agregado = fmt_valor(g$valor, r$fmt), Mediana = fmt_valor(g$mediana, r$fmt),
-              Municípios = sprintf("%d de %d", g$n_usados, g$n_mun), X = g$n_x)
+              Municípios = sprintf(tr("%d de %d", "%d of %d"), g$n_usados, g$n_mun), X = g$n_x)
   tagList(reactable(d, compact = TRUE, sortable = FALSE, pagination = FALSE, wrap = TRUE,
-                    columns = list(Grupo = colDef(minWidth = 200), Agregado = colDef(align = "right", name = paste0("Agregado (", regra[[r$agregacao]], ")")),
-                                   Mediana = colDef(align = "right", name = "Mediana municipal"),
-                                   Municípios = colDef(align = "center", name = "Municípios usados"),
-                                   X = colDef(align = "center", name = "Com X (sigilo)"))),
-          p(class = "nota-fonte", sprintf("Ano: %s.%s Os rótulos dos tipos do M1 são provisórios.", a,
-                                          if (any(g$n_x > 0)) " Nos grupos com X, o agregado considera apenas os municípios com valor publicado." else "")))
+                    columns = list(Recorte = colDef(name = tr("Recorte", "Breakdown")),
+                                   Grupo = colDef(name = tr("Grupo", "Group"), minWidth = 200), Agregado = colDef(align = "right", name = paste0(tr("Agregado (", "Aggregate ("), regra[[r$agregacao]], ")")),
+                                   Mediana = colDef(align = "right", name = tr("Mediana municipal", "Municipal median")),
+                                   Municípios = colDef(align = "center", name = tr("Municípios usados", "Municipalities used")),
+                                   X = colDef(align = "center", name = tr("Com X (sigilo)", "Suppressed (X)")))),
+          p(class = "nota-fonte", sprintf(tr("Ano: %s.%s Os rótulos dos tipos do M1 são provisórios.", "Year: %s.%s M1 type labels are provisional."), a,
+                                          if (any(g$n_x > 0)) tr(" Nos grupos com X, o agregado considera apenas os municípios com valor publicado.",
+                                                                 " In groups with X, the aggregate covers only municipalities with a published value.") else "")))
 }
 
 tabela_por_grupo <- function(ids, recorte = c("tipo", "bioma"), ano = NULL, incluir_mt = TRUE, prefixo = "../indicadores/") {
@@ -583,19 +625,21 @@ tabela_por_grupo <- function(ids, recorte = c("tipo", "bioma"), ano = NULL, incl
   linhas <- lapply(grupos, function(g) {
     vals <- vapply(ids, function(id) { r <- info_ind(id); a <- agregado(id, g, ano)
       paste0(fmt_valor(a$valor, r$fmt), if (isTRUE(a$n_x > 0)) "*" else "") }, character(1))
-    nome <- if (g == "MT") "Mato Grosso" else if (recorte == "tipo") sprintf("%s · %s", g, TIPOS[[g]]) else g
+    nome <- if (g == "MT") "Mato Grosso" else if (recorte == "tipo") sprintf("%s · %s", g, TIPOS[[g]]) else nome_bioma(g)
     c(list(Grupo = nome), as.list(setNames(vals, ids)))
   })
   d <- bind_rows(lapply(linhas, tibble::as_tibble))
   cab <- function(id) { r <- info_ind(id)
     sprintf('<a href="%s">%s</a><div class="sub">%s · %s</div>', url_ind(id, prefixo), esc(r$rotulo_curto), esc(unid(r)),
             if (is.null(ano)) ano_ref(id) else ano) }
-  cols <- c(list(Grupo = colDef(name = if (recorte == "tipo") "Tipo do M1 (rótulo provisório)" else "Bioma", minWidth = 220,
+  cols <- c(list(Grupo = colDef(name = if (recorte == "tipo") tr("Tipo do M1 (rótulo provisório)", "M1 type (provisional label)") else tr("Bioma", "Biome"), minWidth = 220,
                                 style = list(fontWeight = 600))),
             setNames(lapply(ids, function(id) colDef(header = HTML(cab(id)), html = TRUE, align = "right", minWidth = 120)), ids))
   tagList(reactable(d, compact = TRUE, sortable = FALSE, pagination = FALSE, wrap = TRUE, columns = cols),
-          p(class = "nota-fonte", "Agregados: soma dos municípios, para os totais; razão das somas, para as proporções e médias; e variação das somas, para a dinâmica. ",
-            "* O grupo contém municípios com X (sigilo); o valor considera apenas os municípios com valor publicado."))
+          p(class = "nota-fonte", tr("Agregados: soma dos municípios, para os totais; razão das somas, para as proporções e médias; e variação das somas, para a dinâmica. ",
+                                     "Aggregates: municipal sum for totals; ratio of sums for proportions and means; change in sums for dynamics. "),
+            tr("* O grupo contém municípios com X (sigilo); o valor considera apenas os municípios com valor publicado.",
+               "* The group includes municipalities with X (suppressed); the value covers only municipalities with a published value.")))
 }
 
 resumo_tema <- function(dim, prefixo = "../indicadores/") {
@@ -607,10 +651,10 @@ resumo_tema <- function(dim, prefixo = "../indicadores/") {
            X = agregado(id, "MT")$n_x)
   }))
   reactable(d, compact = TRUE, pagination = FALSE, sortable = FALSE, wrap = TRUE,
-            columns = list(Indicador = colDef(html = TRUE, minWidth = 240), Ano = colDef(align = "center", minWidth = 60),
-                           MT = colDef(align = "right", name = "Mato Grosso"), `Amazônia` = colDef(align = "right"),
+            columns = list(Indicador = colDef(name = tr("Indicador", "Indicator"), html = TRUE, minWidth = 240), Ano = colDef(name = tr("Ano", "Year"), align = "center", minWidth = 60),
+                           MT = colDef(align = "right", name = "Mato Grosso"), `Amazônia` = colDef(name = nome_bioma("Amazônia"), align = "right"),
                            Cerrado = colDef(align = "right"), Pantanal = colDef(align = "right"),
-                           X = colDef(align = "center", name = "Municípios com X")))
+                           X = colDef(align = "center", name = tr("Municípios com X", "Municipalities with X"))))
 }
 
 # ---- Navegação -------------------------------------------------------------------
@@ -621,7 +665,7 @@ navegacao_municipio <- function(mun_id) {
   ant <- P[ifelse(i == 1, nrow(P), i - 1), ]; prox <- P[ifelse(i == nrow(P), 1, i + 1), ]
   div(class = "nav-mun",
       a(class = "btn btn-sm btn-outline-primary", href = paste0(ant$slug, ".html"), paste("←", ant$municipio)),
-      tags$select(class = "form-select form-select-sm", `aria-label` = "Ir para outro município",
+      tags$select(class = "form-select form-select-sm", `aria-label` = tr("Ir para outro município", "Go to another municipality"),
                   onchange = "if (this.value) window.location = this.value",
                   lapply(seq_len(nrow(P)), function(j) tags$option(value = paste0(P$slug[j], ".html"),
                          selected = if (P$id_municipio[j] == mun_id) NA else NULL, P$municipio[j]))),
@@ -631,8 +675,8 @@ navegacao_municipio <- function(mun_id) {
 navegacao_indicador <- function(id) {
   O <- IND[order(IND$ordem), ]; i <- match(id, O$id); prox <- O[ifelse(i == nrow(O), 1, i + 1), ]
   div(class = "nav-mun",
-      a(class = "btn btn-sm btn-outline-primary", href = "index.html", "← Todos os indicadores"),
-      tags$select(class = "form-select form-select-sm", `aria-label` = "Ir para outro indicador",
+      a(class = "btn btn-sm btn-outline-primary", href = "index.html", tr("← Todos os indicadores", "← All indicators")),
+      tags$select(class = "form-select form-select-sm", `aria-label` = tr("Ir para outro indicador", "Go to another indicator"),
                   onchange = "if (this.value) window.location = this.value",
                   lapply(names(TEMAS), function(t) { g <- O[O$dim == t, ]
                     tags$optgroup(label = TEMAS[[t]], lapply(seq_len(nrow(g)), function(j)
@@ -647,7 +691,7 @@ js_clique <- function(prefixo) sprintf("function(el, x) { var map = this; map.ea
   if (l.options && l.options.layerId) { l.on('click', function() { window.location = '%s' + l.options.layerId + '.html'; });
     l.on('mouseover', function() { l.setStyle({weight: 2.5}); }); l.on('mouseout', function() { l.setStyle({weight: 1}); }); } }); }", prefixo)
 
-nota_sedes_mapa <- function() HTML('<div style="font-size:11px;background:#fff;padding:3px 7px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.15)"><span style="display:inline-block;width:13px;height:10px;border:2px solid #111827;vertical-align:-1px;margin-right:4px"></span>sede de área-piloto</div>')
+nota_sedes_mapa <- function() HTML(paste0('<div style="font-size:11px;background:#fff;padding:3px 7px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.15)"><span style="display:inline-block;width:13px;height:10px;border:2px solid #111827;vertical-align:-1px;margin-right:4px"></span>', tr("sede de área-piloto", "pilot-area host municipality"), '</div>'))
 
 # Polígonos com e sem perfil (só os com perfil são clicáveis) e contorno das sedes dos pilotos
 camadas_mun <- function(m, g, fill, rot, opac = 1) {
@@ -656,7 +700,7 @@ camadas_mun <- function(m, g, fill, rot, opac = 1) {
                                       weight = 0.6, label = lapply(rot[!perfil], HTML))
   if (any(perfil)) m <- addPolygons(m, data = g[perfil, ], layerId = ~slug, fillColor = fill[perfil], fillOpacity = opac,
                                      color = "#ffffff", weight = 1,
-                                     label = lapply(paste0(rot[perfil], "<br><i>Clique para abrir o perfil.</i>"), HTML))
+                                     label = lapply(paste0(rot[perfil], tr("<br><i>Clique para abrir o perfil.</i>", "<br><i>Click to open the profile.</i>")), HTML))
   sedes <- g[g$sede_piloto, ]
   addPolygons(m, data = sedes, fill = FALSE, color = "#111827", weight = 2.4, opacity = 1,
               options = pathOptions(interactive = FALSE))
@@ -666,14 +710,14 @@ mapa_municipio <- function(mun_id = NULL, altura = 360, prefixo = "", cor_por = 
   cor_por <- match.arg(cor_por)
   g <- GEO
   fill <- if (cor_por == "bioma") unname(COR_BIOMA[g$bioma]) else unname(COR_TIPO[g$tipo_m1])
-  rot <- sprintf("<b>%s</b><br>%s · %s (%s, rótulo provisório)%s", esc(g$municipio), g$bioma, g$tipo_m1,
-                 esc(unname(TIPOS[g$tipo_m1])), ifelse(g$sede_piloto, "<br>Sede de área-piloto", ""))
+  rot <- sprintf(tr("<b>%s</b><br>%s · %s (%s, rótulo provisório)%s", "<b>%s</b><br>%s · %s (%s, provisional label)%s"), esc(g$municipio), nome_bioma(g$bioma), g$tipo_m1,
+                 esc(unname(TIPOS[g$tipo_m1])), ifelse(g$sede_piloto, tr("<br>Sede de área-piloto", "<br>Pilot-area host municipality"), ""))
   m <- camadas_mun(mapa_vazio(altura), g, fill, rot, opac = 0.85)
   if (!is.null(mun_id)) m <- addPolygons(m, data = g[g$id_municipio %in% mun_id, ], fill = FALSE, color = COR[["sede"]],
                                          weight = 3.5, opacity = 1, options = pathOptions(interactive = FALSE))
-  leg <- if (cor_por == "bioma") list(cores = unname(COR_BIOMA), rotulos = sprintf("%s (%d)", BIOMAS, as.integer(table(factor(MUN$bioma, BIOMAS)))), titulo = "Bioma (IBGE 1:250 mil)")
+  leg <- if (cor_por == "bioma") list(cores = unname(COR_BIOMA), rotulos = sprintf("%s (%d)", nome_bioma(BIOMAS), as.integer(table(factor(MUN$bioma, BIOMAS)))), titulo = tr("Bioma (IBGE 1:250 mil)", "Biome (IBGE 1:250,000)"))
          else list(cores = unname(COR_TIPO), rotulos = sprintf("%s · %s (%d)", names(TIPOS), TIPOS, as.integer(table(factor(MUN$tipo_m1, names(TIPOS))))),
-                   titulo = "Tipo do M1 (rótulos provisórios)")
+                   titulo = tr("Tipo do M1 (rótulos provisórios)", "M1 type (provisional labels)"))
   bb <- st_bbox(g)
   m |>
     addLegend("bottomright", colors = leg$cores, labels = leg$rotulos, title = leg$titulo, opacity = 0.9) |>
@@ -696,8 +740,8 @@ mapa_indicador <- function(id, altura = 460, prefixo = "../municipios/") {
          else function(x) rep("#7fb59a", length(x))
   fill <- ifelse(g$sinal == "X", COR_X, ifelse(g$sinal == "...", COR_ND, pal(v)))
   txt <- ifelse(g$sinal == "valor", paste0(fmt_valor(v, e$fmt), " (", g$ano, ")"), unname(SINAL_TXT[g$sinal]))
-  rot <- sprintf("<b>%s</b><br>%s<br><span style='color:#6b7280'>%s · %s%s</span>", esc(g$municipio), esc(txt), g$bioma, g$tipo_m1,
-                 ifelse(g$sede_piloto, " · sede de área-piloto", ""))
+  rot <- sprintf("<b>%s</b><br>%s<br><span style='color:#6b7280'>%s · %s%s</span>", esc(g$municipio), esc(txt), nome_bioma(g$bioma), g$tipo_m1,
+                 ifelse(g$sede_piloto, tr(" · sede de área-piloto", " · pilot-area host municipality"), ""))
   m <- camadas_mun(mapa_vazio(altura), g, fill, rot, opac = 0.92)
   if (length(br) >= 4) {
     m <- addLegend(m, "bottomright", pal = pal, values = vv, title = esc(unid(r)), opacity = 0.9,
@@ -706,11 +750,11 @@ mapa_indicador <- function(id, altura = 460, prefixo = "../municipios/") {
                      else fmt_valor(cuts, e$fmt) })
   } else if (length(unique(vv)) >= 2) {
     m <- addLegend(m, "bottomright", pal = pal, values = vv, title = esc(unid(r)), opacity = 0.9,
-                   labFormat = labelFormat(transform = function(x) x, big.mark = "."))
+                   labFormat = labelFormat(transform = function(x) x, big.mark = NUM_MILHAR))
   }
   sin <- c(if (any(g$sinal == "X")) "X", if (any(g$sinal == "...")) "...")
   if (length(sin)) m <- addLegend(m, "bottomleft", colors = c(X = COR_X, "..." = COR_ND)[sin], labels = unname(SINAL_TXT[sin]),
-                                  opacity = 1, title = "Sem valor")
+                                  opacity = 1, title = tr("Sem valor", "No value"))
   bb <- st_bbox(g)
   m |> addControl(nota_sedes_mapa(), position = "topright") |>
     fitBounds(bb[["xmin"]], bb[["ymin"]], bb[["xmax"]], bb[["ymax"]]) |>

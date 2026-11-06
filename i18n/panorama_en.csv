@@ -1,0 +1,18 @@
+id,rotulo,data,fonte
+scopus_total,Scopus records across the 4 main queries,6 Sep 2026,"Scopus, via the Portal de Periódicos da CAPES; articles published from 2005 to 2026"
+scopus_bc,Regulated markets and carbon prices,6 Sep 2026,"Scopus, via the Portal de Periódicos da CAPES; articles published from 2005 to 2026"
+scopus_d,Voluntary market and forest credits,6 Sep 2026,"Scopus, via the Portal de Periódicos da CAPES; articles published from 2005 to 2026"
+scopus_e,Emissions in Brazil,6 Sep 2026,"Scopus, via the Portal de Periódicos da CAPES; articles published from 2005 to 2026"
+scopus_f,"ESG, climate risk and finance",6 Sep 2026,"Scopus, via the Portal de Periódicos da CAPES; articles published from 2005 to 2026"
+refs_doi,references with verified DOIs,Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"
+oa_colhidos,records retrieved from OpenAlex,7 Sep 2026,OpenAlex (open API)
+oe4_openalex,OpenAlex records,15 Oct 2026,OpenAlex (open API)
+oe4_scopus,unique Scopus records,16 Oct 2026,"Scopus, via the Portal de Periódicos da CAPES"
+oe4_comparados,studies compared (final list),16 Oct 2026,"Crossref (DOI, title, authors, year and journal checked)"
+oe4_com_doi,studies compared that have a checked DOI,19 Oct 2026,"Crossref (DOI, title, authors, year and journal checked)"
+refs_bloco_A,A · Foundations and instrument design,Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"
+refs_bloco_B,B · Ex-post effectiveness of markets and taxes,Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"
+refs_bloco_C,C · Carbon price econometrics,Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"
+refs_bloco_D,D · Voluntary market and forest credits,Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"
+refs_bloco_E,E · Emissions in Brazil: determinants and policies,Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"
+refs_bloco_F,"F · ESG, climate risk and finance",Sep 2026,"Crossref (DOI, title, authors, year and journal checked)"

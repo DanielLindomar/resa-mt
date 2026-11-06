@@ -1,0 +1,80 @@
+---
+title: "SO3 · Environment and carbon"
+description: "Specific objective 3 of the RESA Project: carbon balance, water and soil. Implementation status, Mato Grosso's emissions by sector (SEEG 13) and methodological caveats"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+tt <- function(id) TOT$valor[TOT$id == id]
+bruta <- tt("seeg_bruta_mt_2024"); mut <- tt("seeg_mut_mt_2024"); agro <- tt("seeg_agro_mt_2024")
+s24 <- SEEG_SETOR[SEEG_SETOR$ano == 2024, ]
+smun <- sum(ULT$ultimos$valor_calc[ULT$ultimos$indicador == "seeg_emissao_bruta"], na.rm = TRUE) / 1000
+stopifnot(abs(sum(s24$emissao_mtco2e) - bruta) < 1e-3)
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objective
+
+The third specific objective (SO3) is to use indicators to measure the socio-environmental impacts of production systems in the pilot areas. It estimates the carbon balance between greenhouse gas (GHG) emissions and removals, and assesses the condition of water and soil. The results will inform the environmental guidelines of the Technology Package, as well as mitigation and adaptation policies.
+
+**Methods.** The proposal is to estimate carbon stocks in biomass and soil, together with the emissions and removals associated with land-use change and management. These estimates will yield the net carbon balance of each pilot area.
+
+```{r}
+bloco_situacao("OE3", list(
+  c("concluido", "State and municipal context for emissions (SEEG 13) and deforestation (official PRODES data)."),
+  c("concluido", "Article B validation recalculated using official PRODES data.", "The text of the article is being revised."),
+  c("previsto", "Carbon balance by pilot area.", "Depends on land use and land cover data for the pilot areas (SO1)."),
+  c("previsto", "Water and soil indicators by pilot area.")))
+```
+
+## Greenhouse gas emissions in Mato Grosso by sector (SEEG 13)
+
+The Greenhouse Gas Emissions and Removals Estimation System (SEEG) puts gross emissions for Mato Grosso (MT) in 2024 at **`r num(bruta, 1)` MtCO2e** (million tonnes of carbon dioxide equivalent). Land-use change and forestry accounted for **`r num(100 * mut / bruta, 1)`%** of this total (`r num(mut, 1)` MtCO2e), and agriculture and livestock for **`r num(100 * agro / bruta, 1)`%** (`r num(agro, 1)` MtCO2e). The table below gives the sectoral composition for that year, and the chart shows the time series by sector.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_tot("seeg_bruta_mt_2024", "dec1", rotulo = "Gross emissions in MT"),
+  cartao_tot("seeg_mut_mt_2024", "dec1", rotulo = "Land-use change and forestry",
+             comp = sprintf("%s of gross emissions", fmt_valor(100 * mut / bruta, "pct1"))),
+  cartao_tot("seeg_agro_mt_2024", "dec1", rotulo = "Agriculture and livestock",
+             comp = sprintf("%s of gross emissions", fmt_valor(100 * agro / bruta, "pct1"))))
+```
+
+```{r}
+tabela_seeg_ano(2024)
+```
+
+```{r}
+HTML(grafico_seeg_setor(1990))
+```
+
+```{r}
+p(class = "nota-fonte", "Source: authors’ calculations based on SEEG 13, Observatório do Clima, state emissions by sector (GWP-AR5), 1990–2024. Note: SEEG estimates land-use change from 1990 onwards.")
+```
+
+### Methodological caveats
+
+Some caveats apply to these figures. First, they are estimates: SEEG calculates emissions using its own methods and factors, and each new collection revises the entire series. The figures here are from collection 13. Second, these are gross emissions, so carbon removals by vegetation have not been deducted; municipal data on removals are in the climate indicators. Third, SEEG measures emissions across the whole territory of the state and its municipalities, not those of family farming or settlements.
+
+The municipal sum does not match the state total. In 2024, the municipalities add up to `r num(smun, 2)` MtCO2e, against `r num(bruta, 2)` MtCO2e for the state. The difference is the share of emissions that SEEG does not attribute to any municipality. Land-use change tracks deforestation but is not equivalent to it; the official deforestation series is in [SO1](oe1.qmd). Finally, municipal SEEG data are shown on the website but left out of the downloads until the licence has been checked.
+
+## Results published so far and related pages
+
+For the SO3 results already available on this website, see the pages below.
+
+- [Emissions and deforestation](../resultados/emissoes.qmd): Article B results by Manuscript 1 municipal type, with validation against official PRODES data and the related correction note.
+- Climate indicators by municipality:
+
+```{r}
+links_indicadores("clima")
+```
+
+```{r}
+nav_oes("OE3")
+```

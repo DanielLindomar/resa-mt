@@ -1,0 +1,104 @@
+# Versão em inglês do Observatório RESA-MT: projeto Quarto próprio, com os mesmos nomes de
+# arquivo do site em português. Sai em _site/en/, com busca própria. Renderizar depois do
+# site em português, porque o "quarto render" da raiz limpa _site/ inteira (ver o README).
+project:
+  type: website
+  output-dir: ../_site/en
+  resources:
+    - resultados/figuras/
+
+website:
+  title: "RESA-MT Observatory"
+  description: "Results of RESA Project no. 115 — economic viability of rural settlements in the three biomes of Mato Grosso (UNEMAT, supported by Instituto Clima e Sociedade)"
+  favicon: assets/favicon.png
+  search: true
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    background: "#1F4D3A"
+    foreground: "#ffffff"
+    logo: assets/logo-unemat-branco.png
+    logo-alt: "UNEMAT — Mato Grosso State University"
+    collapse-below: xl
+    left:
+      - href: index.qmd
+        text: Home
+      - href: municipios/index.qmd
+        text: Municipalities
+      - href: indicadores/index.qmd
+        text: Indicators
+      - text: Results
+        menu:
+          - href: resultados/tipologia.qmd
+            text: "Municipal typology of family farming"
+          - href: resultados/posse.qmd
+            text: "Census tenure data and agrarian reform"
+          - href: resultados/emissoes.qmd
+            text: "Emissions and deforestation"
+          - href: resultados/dinamica.qmd
+            text: "2006–2017 dynamics"
+      - href: pilotos/index.qmd
+        text: "Pilot areas"
+      - text: Objectives
+        menu:
+          - href: objetivos/index.qmd
+            text: "All six objectives"
+          - href: objetivos/oe1.qmd
+            text: "SO1 · Territory and land use"
+          - href: objetivos/oe2.qmd
+            text: "SO2 · Production and income"
+          - href: objetivos/oe3.qmd
+            text: "SO3 · Environment and carbon"
+          - href: objetivos/oe4.qmd
+            text: "SO4 · Bioeconomic scenarios"
+          - href: objetivos/oe5.qmd
+            text: "SO5 · Innovation and social capital"
+          - href: objetivos/oe6.qmd
+            text: "SO6 · Technology Package"
+      - text: Literature
+        menu:
+          - href: literatura/index.qmd
+            text: "Overview"
+          - href: literatura/carbono.qmd
+            text: "Carbon, markets and ESG"
+          - href: literatura/saf-psa.qmd
+            text: "AFS and PES in settlements"
+          - href: literatura/estudos.qmd
+            text: "Studies in the corpus"
+      - href: dados/index.qmd
+        text: Data
+      - href: biblioteca/index.qmd
+        text: Library
+      - href: sobre.qmd
+        text: About
+  page-footer:
+    left: |
+      RESA Project no. 115 · Supported by Instituto Clima e Sociedade (iCS), Grant D-25-02928 · Implemented by UNEMAT · Preliminary version for the project team · Last updated 5 November 2026
+    right: |
+      ![UNEMAT](/assets/logo-unemat.png){height=40}
+
+crossref:
+  title-delim: " –"
+
+format:
+  html:
+    theme: [cosmo, ../estilo.scss]
+    lang: en-GB
+    toc: true
+    toc-depth: 2
+    toc-title: "On this page"
+    smooth-scroll: true
+    link-external-newwindow: true
+    lightbox: auto
+    include-in-header: ../assets/robots.html
+    include-after-body:
+      - assets/glossario.html
+      - ../assets/idioma.html
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+
+engine: knitr

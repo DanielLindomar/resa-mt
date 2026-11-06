@@ -1,0 +1,44 @@
+---
+title: "SO6 · Technology Package"
+description: "Specific objective 6 of the RESA Project: consolidating the results into a database and a Technology Package for public policy. Objective, planned methods and implementation status"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objective
+
+The sixth specific objective (SO6) is to bring together the project's results and analyses in a wide-ranging database and a practical **Technology Package** of validated tools, methods, models and recommendations. The package is the project's main instrument for dialogue with families and public officials, and for supporting policies that keep the forest standing at scale.
+
+```{r}
+bloco_situacao("OE6", list(
+  c("andamento", "Organising the project databases.", "Secondary data for the 141 municipalities are already organised, and this website shows some of these data."),
+  c("previsto", "Preliminary version of the Technology Package.", "Depends on the results of SO1 to SO5."),
+  c("previsto", "Technology Package validated in the pilot areas, summaries for public officials, articles and teaching materials.")))
+```
+
+## Planned methods
+
+The planned method involves building a database and a system that bring together the assessment, strategies and models from the previous objectives. Validation will take place in the pilot areas, with families and community leaders, at the SO5 workshops. Training for producers and a dissemination plan covering other settlements in Mato Grosso and the Legal Amazon are also planned. Finally, the project is to produce outputs tailored to each audience: technical reports and summaries for public officials (policy briefs), viability reports for banks and funders, booklets and videos for families, and scientific articles.
+
+## Expected results
+
+The project proposal sets the following targets for measuring progress: the validated "Floresta em Pé" (Standing Forest) Technology Package available as a support tool, an integrated database for the pilot areas, and public policy proposals. These proposals are to be based on the package and presented to decision-makers.
+
+The proposal's dissemination plan also provides for online data dashboards. This website is a preliminary version prepared for the project team.
+
+```{r}
+p(class = "nota-fonte", "Source: compiled by the authors from the RESA Project proposal (specific objectives, methodology and dissemination plan) and the project presentation at the RESA Meeting.")
+```
+
+```{r}
+nav_oes("OE6")
+```

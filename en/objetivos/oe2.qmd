@@ -1,0 +1,78 @@
+---
+title: "SO2 · Production and income"
+description: "Specific objective 2 of the RESA Project: technical and economic performance of family production systems. Implementation status and results published so far: a snapshot from the 2017 Agricultural Census and a municipal typology"
+---
+
+```{r}
+#| include: false
+source(file.path(Sys.getenv("QUARTO_PROJECT_DIR", "."), "..", "R", "funcoes.R"))
+source(file.path(RAIZ, "R", "pag_objetivos.R"))
+pct <- function(id) fmt_valor(TOT$valor[TOT$id == id], "pct1")
+```
+
+```{r}
+estilo_paginas()
+faixa_versao()
+```
+
+## Objective
+
+The second specific objective (SO2) is to build a database on the technical and economic performance of family production systems in the pilot areas. It measures costs, profitability, employment and income to identify low-carbon practices that are financially viable, meaning that they can cover their own costs. These results will also underpin the recommendations of the Technology Package.
+
+**Methods.** The proposal combines secondary data from censuses and public registers with a field survey in the pilot areas. The survey will use structured questionnaires and interviews on agricultural practices, costs, productivity, employment and income.
+
+```{r}
+bloco_situacao("OE2", list(
+  c("concluido", "Municipal snapshot of family farming in Mato Grosso, covering all 141 municipalities (IBGE, 2017 Agricultural Census)."),
+  c("concluido", "Municipal typology of family farming from Manuscript 1 (five types, with provisional labels).", "Manuscript being revised by the authors."),
+  c("previsto", "Field survey in the pilot areas.", "No confirmed date: this depends on the Research Ethics Committee approving the questionnaire."),
+  c("previsto", "Performance database by pilot area, and a socioeconomic and production assessment report.")))
+```
+
+## Results published so far
+
+### Profile of family farming in Mato Grosso
+
+The cards below summarise the share of family farming in the agricultural structure of Mato Grosso (MT), each with its unit, reference year and source.
+
+```{r}
+div(class = "kpi-grade",
+  cartao_tot("tot_af_estab", "int", rotulo = "Family farms in MT",
+             comp = sprintf("%s of agricultural establishments in MT", pct("pct_af_estab_mt"))),
+  cartao_tot("area_media_af_mt", "dec1", rotulo = "Mean area of family farms in MT"),
+  cartao_tot("pct_af_vbp_mt", "pct1", rotulo = "Family-farm share of the value of production in MT",
+             comp = sprintf("In permanent crops: %s · in horticulture: %s", pct("pct_af_vbp_lavperm_mt"), pct("pct_af_vbp_hort_mt"))),
+  cartao_tot("tot_46504_estab", "int",
+             comp = sprintf("%s of family farms in MT", pct("pct_46504_estab_mt"))))
+```
+
+### Municipal typology of family farming (Manuscript 1)
+
+The project's Manuscript 1 uses factor analysis and *k-means* clustering to group the 141 municipalities of Mato Grosso into five types, based on 21 variables from the 2017 Agricultural Census. The table below shows the number of municipalities in each type. The type labels are still provisional.
+
+```{r}
+tabela_tipos_m1()
+```
+
+```{r}
+p(class = "nota-fonte", "Source: authors’ calculations based on RESA Project Manuscript 1 (in preparation), using data from IBGE, 2017 Agricultural Census. Note: number of municipalities by type.")
+```
+
+The pages below give more detail on these results.
+
+- [Municipal typology of family farming](../resultados/tipologia.qmd): type profiles, map and method.
+- [Census tenure data and agrarian reform](../resultados/posse.qmd): the category of grantee or settler awaiting a definitive title (2017 Census) and the projects of the National Institute for Colonisation and Agrarian Reform (INCRA).
+- [2006–2017 dynamics](../resultados/dinamica.qmd): change in the number and area of establishments between the two Censuses.
+- [Municipalities](../municipios/index.qmd): a profile of each municipality.
+
+### Municipal indicators
+
+Each indicator has a map of the 141 municipalities, a ranking within the biome and within Mato Grosso, and a table.
+
+```{r}
+links_indicadores(c("estrutura", "tecnologia", "alimentos", "posse"))
+```
+
+```{r}
+nav_oes("OE2")
+```
